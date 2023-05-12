@@ -1,0 +1,18 @@
+<label class="form-label" [ngClass]="customItemLabelClass">{{label}}</label>
+<div class="form-control" style="border:none;background-color:transparent !important;">
+    <ng-container *ngIf="fc;else showDefalut">
+        <span class="d-inline-block cursor-pointer me-3" (click)="_setValue(1)">
+            <i class="text-primary" [ngClass]="{'bi bi-check-circle-fill':(fc?.value==1),'bi bi-circle':(fc?.value!=1)}" ></i> ภาคเรียนที่ 1
+        </span>
+        <span class="d-inline-block cursor-pointer me-3" (click)="_setValue(2)">
+            <i class="text-primary" [ngClass]="{'bi bi-check-circle-fill':(fc?.value==2),'bi bi-circle':(fc?.value!=2)}" ></i> ภาคเรียนที่ 2
+        </span>
+        <span class="d-inline-block cursor-pointer me-3" (click)="_setValue(3)">
+            <i class="text-primary" [ngClass]="{'bi bi-check-circle-fill':(fc?.value==3),'bi bi-circle':(fc?.value!=3)}" ></i> ภาคเรียนที่ 3
+        </span>
+    </ng-container>
+    <ng-template #showDefalut>
+        <span class="form-error fst-italic">formcontrol not defined</span>
+    </ng-template>
+</div>
+

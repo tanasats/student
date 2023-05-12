@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ title }}</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <!-- topbar -->
+      <div class="d-flex align-items-center p-2" style="background-color: rgb(255, 200, 0); color: rgb(50, 50, 50)">
+        <i class="bi bi-mortarboard me-2"></i>{{ title }}
+      </div>
+      <!-- header --> 
+      <div class="app-header">
+        <app-navbar></app-navbar>
+        <app-breadcrumb></app-breadcrumb>
+      </div>
+      <!-- content -->
+      <div class="app-content">
+        <router-outlet></router-outlet>
+      </div>
+      <!-- footer -->
+      <div class="app-footer">
+        <app-footer></app-footer>
+      </div>
+    </div>
+    <app-toaster-container></app-toaster-container>
+  </body>
+</html>

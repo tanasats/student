@@ -1,0 +1,556 @@
+
+<div class="container py-4">
+  <div class="row">
+    Button
+      <div class="col">
+          <button class="btn btn-primary">primary</button>
+          <button class="btn btn-success">success</button>
+          <button class="btn btn-danger">danger</button>
+          <button class="btn btn-info">info</button>
+          <button class="btn btn-secondary">secondary</button>
+          <button class="btn btn-warning">warning</button>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    data from API
+    <div class="alert alert-info">
+        {{ data | json }}
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-info">
+            xs: 0,
+            sm: 576px,
+            md: 768px,
+            lg: 992px,
+            xl: 1200px,
+            xxl: 1400px
+            <br>
+            Bootstrap 5 uses a default font-size of 1rem (16px by default), and its line-height is 1.5.
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-4 col-sm-12 order-md-2 order-sm-1"  >
+       <div class="alert alert-info" >เนือหารอง</div>
+   </div>
+   <div class="col-md-8 col-sm-12 order-md-1 order-sm-2">
+      <div class="alert alert-warning" >เนื้อหาหลัก</div>
+   </div>
+  </div>
+</div>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-4 col-sm-12 order-sm-2"  >
+       <div class="alert alert-info" >เนือหารอง</div>
+   </div>
+   <div class="col-md-8 col-sm-12 order-sm-1">
+      <div class="alert alert-warning" >เนื้อหาหลัก</div>
+   </div>
+  </div>
+</div>
+<div class="container pb-3">
+  <div class="row">
+
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title"><h4>Form in Card box</h4></div>
+          <form [formGroup]="frmUser" (ngSubmit)="onSubmit(frmUser)">
+            <div class="mb-3 row">
+              <label class="col-sm-2 col-form-label">Username</label>
+              <div class="col-sm-10">
+                <input formControlName="username" type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label class="col-sm-2 col-form-label">Password</label>
+              <div class="col-sm-10">
+                <input formControlName="password" type="password" class="form-control" />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <button type="submit" class="btn btn-primary btn-block w-100">
+                Submit
+              </button>
+            </div>
+          </form>
+        <div>
+          {{frmUser.value|json}}
+        </div>
+      </div>
+    </div>
+<hr>
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        Featured
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+      <div class="card-footer text-muted">
+        2 days ago
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+<div class="container">
+  <div class="row">
+    <h4>Form example</h4>
+    <div class="col">
+
+      <form action="">
+        <div class="row mb-3">
+          <label for="" class="col-sm-2">xxx</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="" class="col-sm-2">yyy</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="" class="col-sm-2">yyy</label>
+          <div class="col-sm-10">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="" class="col-sm-2">yyy</label>
+          <div class="col-auto">
+            <label for="staticEmail2" class="visually-hidden">Email</label>
+            <input
+              type="text"
+              readonly
+              class="form-control-plaintext"
+              id="staticEmail2"
+              value="email@example.com"
+            />
+          </div>
+          <div class="col-auto">
+            <label for="inputPassword2" class="visually-hidden">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword2"
+              placeholder="Password"
+            />
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">
+              Confirm identity
+            </button>
+          </div>
+        </div>
+
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Default checkbox
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckChecked"
+            checked
+          />
+          <label class="form-check-label" for="flexCheckChecked">
+            Checked checkbox
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault1"
+          />
+          <label class="form-check-label" for="flexRadioDefault1">
+            Default radio
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault2"
+            checked
+          />
+          <label class="form-check-label" for="flexRadioDefault2">
+            Default checked radio
+          </label>
+        </div>
+
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckDefault"
+          />
+          <label class="form-check-label" for="flexSwitchCheckDefault"
+            >Default switch checkbox input</label
+          >
+        </div>
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckChecked"
+            checked
+          />
+          <label class="form-check-label" for="flexSwitchCheckChecked"
+            >Checked switch checkbox input</label
+          >
+        </div>
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckDisabled"
+            disabled
+          />
+          <label class="form-check-label" for="flexSwitchCheckDisabled"
+            >Disabled switch checkbox input</label
+          >
+        </div>
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckCheckedDisabled"
+            checked
+            disabled
+          />
+          <label class="form-check-label" for="flexSwitchCheckCheckedDisabled"
+            >Disabled checked switch checkbox input</label
+          >
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+<hr>
+<div class="container">
+  <div class="row">
+    <h4>Form example 1</h4>
+    <div class="col">
+      <form class="row g-3">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail4" />
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Password</label>
+          <input type="password" class="form-control" id="inputPassword4" />
+        </div>
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputAddress"
+            placeholder="1234 Main St"
+          />
+        </div>
+        <div class="col-12">
+          <label for="inputAddress2" class="form-label">Address 2</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputAddress2"
+            placeholder="Apartment, studio, or floor"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="inputCity" class="form-label">City</label>
+          <input type="text" class="form-control" id="inputCity" />
+        </div>
+        <div class="col-md-4">
+          <label for="inputState" class="form-label">State</label>
+          <select id="inputState" class="form-select">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label for="inputZip" class="form-label">Zip</label>
+          <input type="text" class="form-control" id="inputZip" />
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck" />
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<hr />
+<div class="container mt-3">
+  <div class="row g-3">
+    <div class="col-sm-7">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="City"
+        aria-label="City"
+      />
+    </div>
+    <div class="col-sm">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="State"
+        aria-label="State"
+      />
+    </div>
+    <div class="col-sm">
+      <label class="form-label">zip</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Zip"
+        aria-label="Zip"
+      />
+    </div>
+  </div>
+</div>
+
+<hr>
+<section class="container mt-3">
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label for="inputState" class="form-label">วันที่</label>
+      <select id="inputState" class="form-select">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="inputState" class="form-label">เดือน</label>
+      <select id="inputState" class="form-select">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="inputState" class="form-label">ปี พ.ศ.</label>
+      <select id="inputState" class="form-select">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+
+
+<hr>
+<div class="container">
+
+  <div class="row">
+    <h4>Angular 15 Bootstrap 5 ngb datepick Example</h4>
+    <div class="col">
+      <form class="row row-cols-sm-auto">
+        <div class="col-12">
+          <div class="input-group">
+            <button
+              #buttonEl
+              class="btn btn-outline-secondary bi bi-calendar3"
+              (click)="dp1.toggle()"
+              type="button"
+            ></button>
+            <input ngbDatepicker
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp1"
+              #dp1="ngbDatepicker"
+              #c1="ngModel"
+              [(ngModel)]="model_date_to"
+              [positionTarget]="buttonEl"
+              [readOnly]="true"
+            />
+          </div>
+          <!-- {{ model.year+"-"+model.month+"-"+model.day |thaidate}} -->
+        </div>
+      </form>
+      <hr />
+      <!-- <button class="btn btn-sm btn-outline-primary" (click)="date_to = today">Select Today</button> -->
+      <pre>Model: {{ model_date_to | json }}</pre>
+      <pre>Modal to UI:{{ model_date_to | ngbdateShow }}</pre>
+      <pre>valid: {{ c1.status }}</pre>
+      
+      <!-- <pre *ngIf="model.year!==undefined">Model Text: {{ model.year+"-"+model.month+"-"+model.day }}</pre>
+            <pre *ngIf="model.year!==undefined">Model Text to Thai Date: {{ model.year+"-"+model.month+"-"+model.day |thaidate}}</pre>
+    -->
+    </div>
+    <div class="col">
+        <!-- <pre *ngIf="model.year!==undefined">Model Text: {{ model.year+"-"+model.month+"-"+model.day }}</pre>
+        <pre *ngIf="model.year!==undefined">Model Text to Thai Date: {{ model.year+"-"+model.month+"-"+model.day |thaidate}}</pre> -->
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+<section class="container">
+  <div class="row">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+
+    <button class="btn btn-success text-white">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </button>
+  </div>
+</section>
+
+
+<section class="container">
+  <div class="row">
+    <div class="col">
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <div
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne"
+              aria-expanded="false"
+              aria-controls="flush-collapseOne"
+            >
+              Accordion Item #1
+            </div>
+          </h2>
+          <div
+            id="flush-collapseOne"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-headingOne"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              Placeholder content for this accordion, which is intended to
+              demonstrate the <code>.accordion-flush</code> class. This is the
+              first item's accordion body.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseTwo"
+              aria-expanded="false"
+              aria-controls="flush-collapseTwo"
+            >
+              Accordion Item #2
+            </button>
+          </h2>
+          <div
+            id="flush-collapseTwo"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-headingTwo"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              Placeholder content for this accordion, which is intended to
+              demonstrate the <code>.accordion-flush</code> class. This is the
+              second item's accordion body. Let's imagine this being filled with
+              some actual content.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseThree"
+              aria-expanded="false"
+              aria-controls="flush-collapseThree"
+            >
+              Accordion Item #3
+            </button>
+          </h2>
+          <div
+            id="flush-collapseThree"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-headingThree"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              Placeholder content for this accordion, which is intended to
+              demonstrate the <code>.accordion-flush</code> class. This is the
+              third item's accordion body. Nothing more exciting happening here
+              in terms of content, but just filling up the space to make it
+              look, at least at first glance, a bit more representative of how
+              this would look in a real-world application.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- dialog example -->
+<div class="btn btn-success" (click)="function_with_toggle_dialog()">dialog</div>
+<app-confirm-dialog [id]="'test-dialog'"></app-confirm-dialog>
+<!-- canvas example -->
+<div class="btn btn-success" (click)="function_with_toggle_offcanvas()">canvas</div>
+<app-offcanvas-test [id]="'Example'"></app-offcanvas-test>
+
+<div class="pb-3"></div>
