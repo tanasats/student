@@ -1,8 +1,0 @@
-<div class="container">
-  <ul class="breadcrumb">
-    <li *ngFor="let breadcrumb of breadcrumbs$ | async">
-      <!-- <a [href]="breadcrumb.url">{{ breadcrumb.label }}</a> -->
-      <a routerLink="{{ breadcrumb.url }}">{{ breadcrumb.label }}</a>
-    </li>
-  </ul>
-</div>
