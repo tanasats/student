@@ -1,0 +1,48 @@
+<label class="form-label" [ngClass]="customItemLabelClass">{{ label }}</label>
+<ng-container *ngIf="fc; else defaultTemplate">
+  <div *ngIf="!fc?.value" class="alert alert-warning">
+    <i class="bi bi-exclamation-triangle me-2"></i
+    >โปรดเลือกคณะ/หน่วยงาน&nbsp;&nbsp;
+    <a class="cursor-pointer" (click)="_onClickSelect()">คลิกที่นี่</a>
+  </div>
+
+  <div *ngIf="fc?.value">
+    <ul style="list-style-type: none">
+      <li
+        class=""
+        *ngFor="let item of fc?.value; index as i"
+        [hidden]="moreitem && i > 2"
+      >
+        {{ i + 1 }}. {{ item.faculty_name }}
+      </li>
+      <li></li>
+      <div
+        *ngIf="fc?.value.length > 3"
+        class="cursor-pointer"
+        style="font-size: 0.875rem"
+      >
+        <ng-container *ngIf="moreitem; else noMoreitem">
+          <i class="mx-2 bi bi-arrow-down"></i
+          ><a class="cursor-pointer" (click)="_toggleMoreitem()">แสดงทั้งหมด</a
+          >&nbsp;(+{{ fc?.value.length - 3 }})</ng-container
+        >
+        <ng-template #noMoreitem
+          ><i class="mx-2 bi bi-arrow-up"></i
+          ><a class="cursor-pointer" (click)="_toggleMoreitem()"
+            >แสดงน้อยลง</a
+          ></ng-template
+        >
+      </div>
+      <div>
+        เลือกทั้งหมด {{fc?.value.length}} รายการ เพิ่มเติม&nbsp;&nbsp;<a
+          class="cursor-pointer"
+          (click)="_onClickSelect()"
+          >คลิกที่นี่</a
+        >
+      </div>
+    </ul>
+  </div>
+</ng-container>
+<ng-template #defaultTemplate>
+  <span class="form-error fst-italic">formcontrol not defined</span>
+</ng-template>

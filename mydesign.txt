@@ -1,0 +1,56 @@
+src/
+|-- app/
+    |-- core/
+    |   |-- authentication/      # Authentication services and guards
+    |   |-- error-handling/      # Global error handling
+    |   |-- interceptors/        # Http interceptors
+    |   |-- models/              # Shared data models
+    |   |-- services/            # Shared services
+    |   |-- utils/               # Shared utility functions
+    |   |-- core.module.ts       # Core module
+    |   |-- core-routing.module.ts # Core module routing
+    |
+    |-- features/
+    |   |-- admin/               # Admin feature module
+    |   |   |-- components/      # Admin-specific components
+    |   |   |-- services/        # Admin-specific services
+    |   |   |-- admin.module.ts  # Admin module
+    |   |   |-- admin-routing.module.ts # Admin module routing
+    |   |
+    |   |-- officer/             # Officer feature module
+    |   |   |-- components/      # Officer-specific components
+    |   |   |-- services/        # Officer-specific services
+    |   |   |-- officer.module.ts # Officer module
+    |   |   |-- officer-routing.module.ts # Officer module routing
+    |   |
+    |   |-- student/             # Student feature module
+    |   |   |-- components/      # Student-specific components
+    |   |   |-- services/        # Student-specific services
+    |   |   |-- student.module.ts # Student module
+    |   |   |-- student-routing.module.ts # Student module routing
+    |
+    |-- shared/                  # Shared feature module
+    |   |-- components/          # Shared components
+    │   |   ├── navbar/
+    │   |   ├── footer/
+    │   |   └── page-not-found/
+    |   |-- directives/          # Shared directives
+    |   |-- pipes/               # Shared pipes
+    |   |-- services/            # Shared services
+    |   |-- shared.module.ts     # Shared module
+    |   |-- shared-routing.module.ts # Shared module routing
+    |
+    |-- app.component.html      # App component template
+    |-- app.component.ts        # App component TypeScript
+    |-- app.component.scss      # App component styles
+    |-- app.module.ts           # App module
+    |-- app-routing.module.ts   # App module routing
+|-- assets/                     # Static assets (images, icons, etc.)
+|-- environments/               # Environment configurations
+|-- index.html                  # HTML entry point
+|-- styles.scss                 # Global styles
+|-- main.ts                     # Main entry point
+|-- polyfills.ts                # Polyfills
+|-- test.ts                     # Test entry point
+|-- tsconfig.json               # Typescript configuration
+|-- package.json                # Dependencies

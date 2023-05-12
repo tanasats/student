@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <!-- Section: Design Block -->
+      <section class="">
+        <!-- Jumbotron -->
+        <div class="px-4 py-5 px-md-5 text-center text-lg-start">
+          <div class="container">
+            <div class="row gx-lg-5 align-items-center">
+              <div class="col-lg-6 mb-5 mb-lg-0">
+                <h1 class="display-3 fw-bold ls-tight">SATs</h1>
+                <h4>
+                  <span class="text-primary"
+                    >Student Activity Transcript System</span
+                  >
+                </h4>
+                <p style="color: hsl(217, 10%, 50.8%)">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Eveniet, itaque accusantium odio, soluta, corrupti aliquam
+                  quibusdam tempora at cupiditate quis eum maiores libero
+                  veritatis? Dicta facilis sint aliquid ipsum atque?
+                </p>
+              </div>
+
+              <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="card">
+                  <div class="card-body py-5 px-md-5">
+                    <h5 class="card-title">ลงชื่อเข้าใช้งาน</h5>
+                    <hr />
+                    <form
+                      class="pt-3"
+                      [formGroup]="frmLogin"
+                      (ngSubmit)="onSubmit(frmLogin)"
+                    >
+                      <!-- username input -->
+                      <div class="form-outline mb-3">
+                        <label class="form-label">Username</label>
+                        <input
+                          formControlName="username"
+                          type="text"
+                          class="form-control"
+                        />
+                        <div
+                          *ngIf="
+                            frmLogin.get('username')?.invalid &&
+                            (frmLogin.get('username')?.dirty ||
+                              frmLogin.get('username')?.touched)
+                          "
+                          class="form-error"
+                        >
+                          <div
+                            *ngIf="frmLogin.get('username')?.errors?.['minlength']"
+                          >
+                            min length =3
+                          </div>
+                          <div
+                            *ngIf="frmLogin.get('username')?.errors?.['required']"
+                          >
+                            Please provide a name.
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Password input -->
+                      <div class="form-outline mb-3">
+                        <label class="form-label">Password</label>
+                        <input
+                          formControlName="password"
+                          type="password"
+                          class="form-control"
+                        />
+                        <div
+                          *ngIf="
+                            frmLogin.get('password')?.invalid &&
+                            (frmLogin.get('password')?.dirty ||
+                              frmLogin.get('password')?.touched)
+                          "
+                          class="form-error"
+                        >
+                          <!-- <div *ngIf="frmLogin.get('password')?.hasError('minlength')" >xxxx</div> -->
+                          Please provide a password.
+                        </div>
+                      </div>
+                      <!-- Checkbox -->
+                      <div
+                        class="form-check d-flex justify-content-center mb-3"
+                      >
+                        <input
+                          class="form-check-input me-2"
+                          type="checkbox"
+                          id="form2Example33"
+                          checked
+                        />
+                        <label class="form-check-label" for="form2Example33">
+                          Remember me
+                        </label>
+                      </div>
+                      <!-- Submit button -->
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-block mb-3 w-100"
+                        [disabled]="!frmLogin.valid || isloading"
+                      >
+                        Log in
+                      </button>
+
+                      <div *ngIf="isloading" class="d-flex justify-content-center">
+                        <div class="spinner-border text-primary" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
+
+                    </form>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Jumbotron -->
+      </section>
+      <!-- Section: Design Block -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div [ngClass]="{'custom-item-draft':(fc||is_draft),'custom-item':!(fc)}">
+    <div class="form-label" [ngClass]="customItemLabelClass">{{label}}</div>
+
+        <ng-container *ngIf="fc; else elseTemplate">
+            <input type="date" class="form-control" [formControl]="fc" [ngClass]="validateClass">
+        </ng-container>
+        <ng-template #elseTemplate>
+            <span class="document-sign-date" >{{value}}</span>
+        </ng-template>
+</div>
