@@ -42,12 +42,12 @@ export class OffcanvasFacultySelectComponent {
   }
 
   ngAfterViewChecked() {
-    console.log('faculty offcanvas ngAfterViewChecked()');
-    this.items;
-    let selected_list = this.facultys.filter((item: any) => {
-      return item.selected;
-    });
-    console.log(selected_list);
+    // console.log('faculty offcanvas ngAfterViewChecked()');
+    // this.items;
+    // let selected_list = this.facultys.filter((item: any) => {
+    //   return item.selected;
+    // });
+    // console.log(selected_list);
   }
 
   async _onSave() {

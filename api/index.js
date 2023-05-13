@@ -30,15 +30,23 @@ app.get("/", (req, res) => {
 //AUTH ROUTE
 const authRoute = require("./route/auth.route");
 app.use("/api", authRoute);
-//USER ROUTE
+//User ROUTE
 const userRoute = require("./route/user.route");
 app.use("/api", userRoute);
-//FACULTY ROUTE
+//Faculty ROUTE
 const facultyRoute = require("./route/faculty.route");
 app.use("/api", facultyRoute);
-//ACTIVITY ROUTE
+//Activity ROUTE
 const activityRoute = require("./route/activity.route");
 app.use("/api", activityRoute);
+//Agency ROUTE
+const agencyRoute = require("./route/agency.route");
+app.use("/api", agencyRoute);
+//ActivityType ROUTE
+const activitytypeRoute = require("./route/activitytype.route");
+app.use("/api", activitytypeRoute);
+
+
 
 // app.post('/api/v1/upload',(req,res)=>{
 // 	console.log(req.body);

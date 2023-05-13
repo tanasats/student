@@ -1,34 +1,154 @@
+<section class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">ข้อมูลนิสิต</h5>
+
+
+          <h6 class="card-subtitle mb-2 text-muted fs-sm">Card subtitle</h6>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">สรุปการทำกิจกรรม</h5>
+          <h6 class="card-subtitle mb-2 text-muted fs-sm">จำนวนกิจกรรมทั้งหมดที่เจ้าหน้าที่อนุมัติแล้ว</h6>
+          <div class="">
+            <ul class="my-1">
+              <li>กิจกรรมหลัก</li>
+              <ul>
+                <li>ระดับมหาวิทยาลัย: 2 กิจกรรม 6 ชั่วโมง</li>
+                <li>ระดับคณะ</li>
+              </ul>
+              <li>กิจกรรมเลือก</li>
+                <ul>
+                  <li>ด้านวิชาการ: 2 กิจกรรม 6 ชั่วโมง</li>
+                  <li>ด้าน xxxxx: 2 กิจกรรม 6 ชั่วโมง</li>
+                  <li>ด้าน xxxxx: 2 กิจกรรม 6 ชั่วโมง</li>
+                  <li>ด้าน xxxxx: 2 กิจกรรม 6 ชั่วโมง</li>
+                </ul>
+            </ul>
+          </div>
+          <!-- <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="row">
+    <div class="col">
+
+      <div class="row d-flex justify-content-between">
+        <div class="col-md-auto col-sm-12 order-md-1 order-sm-1">
+          <h5>รายการกิจกรรมของฉัน</h5>
+        </div>
+
+      </div>
+
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col"style="width:1px">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <div class="container mt-3">
-    <div class="row">
-        <div class="col">
-            <h4>แผงคบคุมสำหรับ{{title}}</h4>
-        </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 col-12">
-        <div class="list-group mb-3">
-          <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
-            The current button
-          </button>
-          <button type="button" class="list-group-item list-group-item-action">ตั้งค่า</button>
-          <button type="button" class="list-group-item list-group-item-action">A third button item</button>
-          <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
-          <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button>
-        </div>
-      </div>
-      <div class="col-md-8 col-12">
-        <div class="alert alert-info">เนื้อหา</div>
-      </div>
+  <div class="row">
+    <div class="col">
+      <h4>แผงคบคุมสำหรับ{{ title }}</h4>
     </div>
   </div>
-  
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 col-sm-12 order-md-2 order-sm-1"  >
-         <div class="alert alert-info" >RIGHT เนื้อหารอง</div>
-     </div>
-     <div class="col-md-8 col-sm-12 order-md-1 order-sm-2 ">
-        <div class="alert alert-warning" >LEFT เนื้อหาหลัก</div>
-     </div>
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <div class="list-group mb-3">
+        <button
+          type="button"
+          class="list-group-item list-group-item-action active"
+          aria-current="true"
+        >
+          The current button
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+          ตั้งค่า
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+          A third button item
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+          A fourth button item
+        </button>
+        <button
+          type="button"
+          class="list-group-item list-group-item-action"
+          disabled
+        >
+          A disabled button item
+        </button>
+      </div>
+    </div>
+    <div class="col-md-8 col-12">
+      <div class="alert alert-info">เนื้อหา</div>
     </div>
   </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-12 order-md-1 order-sm-1">
+      <div class="alert alert-info">order-md-1 order-sm-1</div>
+    </div>
+    <div class="col-md-8 col-sm-12 order-md-2 order-sm-2">
+      <div class="alert alert-warning">order-md-2 order-sm-2</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-12 order-md-2 order-sm-1">
+      <div class="alert alert-info">order-md-2 order-sm-1</div>
+    </div>
+    <div class="col-md-8 col-sm-12 order-md-1 order-sm-2">
+      <div class="alert alert-warning">order-md-1 order-sm-2</div>
+    </div>
+  </div>
+</div>

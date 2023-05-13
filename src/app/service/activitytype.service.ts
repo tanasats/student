@@ -7,17 +7,14 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from 'src/environments/environment'; 
-@Injectable({
-  providedIn: 'root'
-})
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActivityService {
+export class ActivitytypeService {
 
-  private endpoint = environment.endpoint+'/activity';
+  private endpoint = environment.endpoint+'/activitytype';
   constructor(private http: HttpClient) {}
 
   get httpOptions() {
@@ -41,20 +38,14 @@ export class ActivityService {
     let errorMsg: string;
     if (error.error instanceof ErrorEvent) {
       // Client side error
-      // console.log("Client error !!");
       errorMsg = `Client Error: ${error.error.message}`;
     } else {
       // Server side error
-      // console.log("Server error !!");
       if (error instanceof HttpErrorResponse) {
-        // console.log("error is HttpErrorResponse");
         switch(error.status){
           case 0: //"Http failure response: 0 Unknown Error"
               errorMsg="เกิดข้อผิดพลาด! ในการเข้าถึงบริการ Service API";
             break;
-          case 400:
-              errorMsg=error.message;
-            break;  
           default:
               errorMsg = error.statusText;
         }

@@ -6,7 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 const routes: Routes = [
   {path:'',component:DefaultPageComponent,
 children:[
-  {path:'dashboard', component:DashboardComponent,data:{'title':'นิสิต'}},
+  {path:'dashboard', component:DashboardComponent,data:{'title':'นิสิต', breadcrumb: 'แผงควบคุม' }},
 
   
 

@@ -36,7 +36,7 @@
               class="nav-link"
               [ngClass]="{ 'dropdown-toggle': menu.submenu.length > 0 }"
               [routerLink]="menu.path"
-              >{{ menu.title }}</a
+              ><i class="me-2" [ngClass]="menu.icon"></i>{{ menu.title }}</a
             >
             <a
             *ngIf="menu.submenu.length > 0"
@@ -44,7 +44,7 @@
             class="nav-link"
             [ngClass]="{ 'dropdown-toggle': menu.submenu.length > 0 }"
             [routerLink]="menu.path"
-            >{{ menu.title }}</a
+            ><i class="me-2" [ngClass]="menu.icon"></i>{{ menu.title }}</a
           >
             <ul
               *ngIf="menu.submenu.length > 0"
@@ -56,7 +56,7 @@
                   class="dropdown-item"
                   [routerLink]="submenu.path"
                   (click)="toggle()"
-                  >{{ submenu.title }}</a
+                  ><i class="me-2" [ngClass]="submenu.icon"></i>{{submenu.title }}</a
                 >
               </li>
             </ul>

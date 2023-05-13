@@ -8,7 +8,10 @@ import { ActivityMasterComponent } from './pages/activity/activity-master/activi
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ActivityCreateComponent } from './pages/activity/activity-create/activity-create.component';
-
+import { ActivityEditComponent } from './pages/activity/activity-edit/activity-edit.component';
+import { ActivityViewComponent } from './pages/activity/activity-view/activity-view.component';
+// import { MatDialogModule } from '@angular/material/dialog';
+// import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -16,12 +19,16 @@ import { ActivityCreateComponent } from './pages/activity/activity-create/activi
     DashboardComponent,
     ActivityMasterComponent,
     UserProfileComponent,
-    ActivityCreateComponent
+    ActivityCreateComponent,
+    ActivityEditComponent,
+    ActivityViewComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    // MatDialogModule,
+    // MatNativeDateModule,
     SharedModule,
-  ]
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

@@ -1,0 +1,67 @@
+
+<section class="container">
+
+    <div class="panel-form">
+      <div>
+        <h4>ข้อมูลกิจกรรม</h4>
+      </div>
+      <hr>
+    
+        <div class="row">
+          <div class="col-md-3 col-12">
+            <form-input-text [fc]="form.controls['activity_code']" [label]="'รหัสกิจกรรม'" [is_readonly]="true" [placeholder]="'อัตโนมัติ'"></form-input-text>
+          </div> 
+          <div class="col-md-2 col-12">
+            <activity-year-form-input [fc]="form.controls['activity_year']" [label]="'ปีการศึกษา'"></activity-year-form-input>
+          </div>
+          <div class="col-md-7 col-12">
+            <activity-term-form-input [fc]="form.controls['activity_term']"></activity-term-form-input>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-12">
+              <activity-type-form-input
+                [items]="activitytype_ref"
+                [fc]="form.controls['activitytype_code']"
+              ></activity-type-form-input>
+            </div>
+            <div class="col-md-6 col-12">
+              <activity-agency-form-input
+                [items]="agency_ref"
+                [fc]="form.controls['agency_code']"
+              ></activity-agency-form-input>
+            </div>
+          </div>
+    
+    
+          <div class="row">
+            <div class="col-12">
+              <form-input-text [fc]="form.controls['activity_name']" [label]="'ชื่อกิจกรรม'" [is_required]="true"></form-input-text>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col-12">
+              <form-textarea [fc]="form.controls['activity_description']" [label]="'รายละเอียดกิจกรรม'"></form-textarea>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+        <div class="row g-2 py-3">
+            <form-button-submit [bt_submit]="true" (onclick_bt_submit)="_submit()" [bt_cancle]="true" (onclick_bt_cancle)="_cancle()"></form-button-submit>
+        </div>        
+    </div>
+</section>
+
+<section class="container">
+<div class="alert alert-info">
+    {{form.value|json}}
+</div>
+</section>
+

@@ -6,7 +6,7 @@ const { authJwt } = require("../middleware/auth");
 // Read
 router.get("/facultys",/*authJwt.verifyToken,*/facultyController.getall);
 router.get("/faculty/filter",/*authJwt.verifyToken,*/facultyController.filter);
-// router.get("/faculty/:id",/*authJwt.verifyToken,*/ facultyController.getById);
+router.get("/faculty/:id",/*authJwt.verifyToken,*/ facultyController.getById);
 
 // Create
 router.post("/faculty", /*authJwt.verifyToken,*/ facultyController.create);

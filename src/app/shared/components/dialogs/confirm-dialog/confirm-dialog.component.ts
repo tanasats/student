@@ -1,59 +1,33 @@
-import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirm-dialog',
   templateUrl: './confirm-dialog.component.html',
   styleUrls: ['./confirm-dialog.component.scss']
 })
-export class ConfirmDialogComponent implements OnInit ,AfterViewInit{
-  @Input() id?: string;
-  @Input() title?:string;
-  @Input() description?:string;
-  @Input() label_cancle?:string;
-  @Input() label_confirm?:string;
-  @Output() onConfirm = new EventEmitter<any>();
-  @Output() onCancle = new EventEmitter<any>();
+export class ConfirmDialogComponent implements OnInit {
 
-  //private _element: any;
-  constructor( private el: ElementRef) { 
-    //this._element = el.nativeElement;
-    this.title ??= "Modal Title";
-    this.label_confirm ??= "Confirm"; //if Undefined then assign default value
-    this.label_cancle ??= "Cancle";
-  }
-  ngAfterViewInit(): void {
-    let parentEl = (<HTMLElement>this.el.nativeElement).querySelector('#'+this.id+"Label") as HTMLElement;
-    // add control toggle model button
-    var button = document.createElement('button');  
-		button.innerText = "Dialog Toggle"; 
-    button.setAttribute("id","modal-toggle-"+this.id);
-		button.setAttribute("data-bs-toggle","modal");
-		button.setAttribute("data-bs-target","#"+this.id);
-		button.setAttribute("hidden","hidden")
-		//document.body.appendChild(button);
-    parentEl.appendChild(button) 
-		//button.click();
-		//button.remove();
-  }
+  public title:string="ยืนยัน";
+  public yes:string = 'ยืนยัน';
+  public no:string = 'ยกเลิก';
+  public description:string="คุณต้องการยืนยันการดำเนินการนี้ใช่หรือไม่";
+  constructor( private dialogRef:MatDialogRef<any>,
+    @Inject(MAT_DIALOG_DATA)public data: any) { 
+      if(data?.title)this.title=data.title;
+      if(data?.description)this.description=data.description;
+      if(data?.yes)this.yes=data.yes;
+      if(data?.no)this.no=data.no;
+    }
+
   ngOnInit(): void {
-    // let controlbtn = (<HTMLElement>this.el.nativeElement).querySelector('#modal-'+this.id) as HTMLElement;
-    // console.log(controlbtn);
-    // controlbtn.setAttribute("data-bs-target",""+this.id);
   }
   
-
-  _onCancle(){
-    let datas={action:"cancle",msg:"test cancle"}
-    this.onCancle.emit(true)
+  _close(){
+    this.dialogRef.close(false);
+  }
+  _confirm(){
+    this.dialogRef.close(true);
   }
 
-  _onConfirm(){
-    let datas={action:"confirm",msg:"test"}
-    this.onConfirm.emit({id:this.id,datas:datas})
-
-    // let _close_btn: HTMLElement = document.getElementById('modal-close-'+this.id) as HTMLElement;
-    // _close_btn.click();
-    let btnElement = (<HTMLElement>this.el.nativeElement).querySelector('#modal-close-'+this.id) as HTMLElement;
-    btnElement.click();
-  }
 }

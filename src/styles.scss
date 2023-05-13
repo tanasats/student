@@ -16,7 +16,11 @@
 @import "bootstrap";
 @import "~@ng-select/ng-select/themes/default.theme.css";
 ////-----------------------------------
-
+:root{
+  --bs-modal-width:500px;
+  --bs-modal-padding:1em;
+  --bs-modal-footer-gap:1em;
+}
 body {
   font-family: 'Sarabun', sans-serif !important;
   // font-size: 14px;
@@ -31,11 +35,14 @@ a {
 a:hover {
   text-decoration: underline;
 }
-h3,h4,h6{
+h4,h6{
   //font-family: "Prompt";
   color:var(--bs-primary);
 }
-
+h3,.h3 {
+  color:var(--bs-primary);
+  line-height: 2rem;
+}
 h5,.h5 {
   color:var(--bs-primary);
   line-height: 1.870rem;
@@ -92,7 +99,14 @@ h5,.h5 {
 .btn-success:active {
   color:white !important;
 }
-
+.btn-confirm:hover,.btn-confirm:focus:active{
+  color:white;
+  background-color: var(--bs-red);
+}
+.btn-cancel:hover,.btn-cancel:focus:active{
+  color:white;
+  background-color: var(--bs-gray-400);
+}
 .navbar-brand:hover{
   text-decoration: none;
 }

@@ -8,7 +8,7 @@
   
       <div class="row">
         <div class="col-md-3 col-12">
-          <form-input-text [fc]="form.controls['activity_code']" [label]="'รหัสกิจกรรม'" [is_readonly]="true"></form-input-text>
+          <form-input-text [fc]="form.controls['activity_code']" [label]="'รหัสกิจกรรม'" [is_readonly]="true" [placeholder]="'อัตโนมัติ'"></form-input-text>
         </div> 
         <div class="col-md-2 col-12">
           <activity-year-form-input [fc]="form.controls['activity_year']" [label]="'ปีการศึกษา'"></activity-year-form-input>
@@ -22,14 +22,14 @@
       <div class="row">
         <div class="col-md-6 col-12">
           <activity-type-form-input
-            [items]="activity_type"
-            [fc]="form.controls['activitytype_id']"
+            [items]="activitytype_ref"
+            [fc]="form.controls['activitytype_code']"
           ></activity-type-form-input>
         </div>
         <div class="col-md-6 col-12">
           <activity-agency-form-input
-            [items]="agency"
-            [fc]="form.controls['agency_id']"
+            [items]="agency_ref"
+            [fc]="form.controls['agency_code']"
           ></activity-agency-form-input>
         </div>
       </div>
@@ -116,7 +116,7 @@
 
     <div class="row">
       <div class="col-md-3">
-        <form-input-text [fc]="form.controls['activity_receive']" [label]="'จำนวนที่รับ (คน)'"></form-input-text>
+        <form-input-number [fc]="form.controls['activity_receive']" [label]="'จำนวนที่รับ (คน)'"></form-input-number>
       </div>
     </div>
 
@@ -125,10 +125,10 @@
           <form-input-text [fc]="form.controls['activity_budget_source']" [label]="'แหล่งงบประมาณ'" [placeholder]="'ชื่อแหล่งเงิน'"></form-input-text> 
         </div>
         <div class="col-md-4">
-          <form-input-text [fc]="form.controls['activity_budget']" [label]="'งบประมาณที่ขอ'" [placeholder]="'0.00'"></form-input-text> 
+          <form-input-float [fc]="form.controls['activity_budget']" [label]="'งบประมาณที่ขอ'"></form-input-float> 
         </div>
         <div class="col-md-4">
-          <form-input-text [fc]="form.controls['activity_budget_paid']" [label]="'งบประมาณที่จ่ายจริง'" [placeholder]="'0.00'"></form-input-text> 
+          <form-input-float [fc]="form.controls['activity_budget_paid']" [label]="'งบประมาณที่จ่ายจริง'"></form-input-float> 
         </div>
     </div>
 

@@ -1,6 +1,8 @@
 <ng-container *ngFor="let item of items;let i=index;">
   <activity-view-details-item 
-  [item]="item"
-  (onView)="onView($event)"
+    [item]="item"
+    (_onView)="_onView.emit($event)"
+    (_onEdit)="_onEdit.emit($event)"
+    (_onDelete)="_onDelete.emit($event)"
   ></activity-view-details-item>  
 </ng-container>

@@ -1,0 +1,19 @@
+<div class="modal fade" id="{{id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="{{id}}Label">{{title}}</h5>
+          <button id="modal-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{description}} {{item}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="_onCancle()">{{label_cancle}}</button>
+          <button type="button" class="btn btn-primary" (click)="_onConfirm()">{{label_confirm}}</button>
+          <button id="modal-close-{{id}}" data-bs-dismiss="modal" aria-label="Close" [hidden]="true"></button>
+        </div>
+      </div>
+    </div>
+</div>
+<div *ngIf="!id">Error! Dialog id is not defined.{{id}}</div>

@@ -3,7 +3,7 @@
       <div class="col">
   
         <div class="d-flex justify-content-end">
-          <button class="btn btn-primary btn-sm" [routerLink]="['..', 'activity-create']">
+          <button class="btn btn-primary btn-sm" [routerLink]="['create']">
             <i class="bi bi-plus-circle me-1"></i>
             เพิ่มกิจกรรม
           </button>
@@ -17,8 +17,12 @@
     <div class="row">
       <div class="col">
   
-        <activity-view-details [items]="items"></activity-view-details>
-  
+        <activity-view-details 
+          [items]="items"
+          (_onView)="onView($event)"
+          (_onEdit)="onEdit($event)"
+          (_onDelete)="onDelete($event)"
+        ></activity-view-details>
       </div>
     </div>
   </section>

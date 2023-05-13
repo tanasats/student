@@ -12,10 +12,8 @@
           </div>
           <div>{{ userdata?.fullname_en }}</div>
           <ul class="list-unstyled mb-0">
-            <li><i class="bi bi-envelope me-2"></i>{{ userdata?.email }}</li>
-            <li>
-              <i class="bi bi-telephone me-2"></i>{{ userdata?.mobilephone }}
-            </li>
+            <li><i class="bi bi-envelope me-2"></i>{{ userdata?.email||'-'}}</li>
+            <li><i class="bi bi-telephone me-2"></i>{{ userdata?.mobilephone||'-'}}</li>
           </ul>
           <hr />
           <ul class="list-unstyled mb-0">
