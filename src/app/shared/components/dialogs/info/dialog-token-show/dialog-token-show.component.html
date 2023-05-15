@@ -1,0 +1,34 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        
+        <div class="modal-body pb-0">
+            <div class="modal-title">
+                <h5><span [innerHTML]="title"></span></h5>
+            </div>
+            <div class="alert alert-success">
+                โปรดแสดง QR code เพื่อลงชื่อเข้าร่วมกิจกรรม
+            </div>
+
+            <div class="d-flex">
+                <div class="col-lg-6 col-12 m-auto"><img class="img-fluid" src="assets/images/student.msu.ac.th.png" alt="" ></div>
+            </div>
+            <div>
+                <div class="form-label border-bottom">กิจกรรม</div>
+                <div class="h5">{{data.activity.activity_name}}</div>
+            </div>
+            <div>
+                <div class="form-label border-bottom">ข้อมูลนิสิต</div>
+                <div class="row">
+                    <div class="col-12 text-primary">{{data.userdata.studentcode}}</div>
+                    <div class="col-12 text-primary">{{data.userdata.fullname}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-confirm  me-1" (click)="_confirm()"><i class="bi bi-check-lg"></i> {{yes}}</button>
+            <button type="button" class="btn btn-cancel  me-1" (click)="_close()"><i class="bi bi-x-lg"></i>{{no}}</button> -->
+            <button type="button" class="btn btn-success  me-1" (click)="_close()"><i class="bi bi-x-lg me-2"></i>ปิด</button>
+        </div>
+
+    </div>
+</div>

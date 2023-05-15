@@ -2,6 +2,7 @@ export interface ICurrentuser {
     is_login:boolean,
     user_id:number,
     username:string,
+    studentcode:string,
     fullname:string, 
     email:string,
     role:{

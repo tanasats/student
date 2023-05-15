@@ -15,7 +15,7 @@
           'padding-bottom': '50%',
           'background-size': '100% 100%'
         }"
-      ></div> -->
+      ></div> --> 
       <div class="mt-3">
           <p [innerHTML]="item.activity_description" [style]="'text-indent:2em;'"></p>
         <div>
@@ -24,7 +24,7 @@
         </div>
         <div>
           <i class="bi bi-calendar4-week me-2  text-primary"></i>วันที่
-          {{ item.activity_date | thaidate }}
+          {{ item.activity_date_form | thaidate }}
         </div>
       </div>
     </div>

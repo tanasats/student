@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IActivity } from 'src/app/core/interface/activity';
 
 @Component({
   selector: 'app-activity-card-list-item',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./activity-card-list-item.component.scss']
 })
 export class ActivityCardListItemComponent {
-  @Input() item:any;
+  @Input() item!: IActivity;
   @Output() onSelect = new EventEmitter<any>();
 
   _onSelect(){

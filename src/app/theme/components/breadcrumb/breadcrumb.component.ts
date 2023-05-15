@@ -1,17 +1,37 @@
+// import { Component } from '@angular/core';
+// import { Observable } from 'rxjs';
+// import { Breadcrumb } from './breadcrumb.model'
+// import { BreadcrumbService } from '../../service/breadcrumb.service';
+
+// @Component({
+//   selector: 'app-breadcrumb',
+//   templateUrl: './breadcrumb.component.html',
+//   styleUrls: ['./breadcrumb.component.scss']
+// })
+// export class BreadcrumbComponent {
+//   breadcrumbs$: Observable<Breadcrumb[]>; 
+ 
+//   constructor(private readonly breadcrumbService: BreadcrumbService) { 
+//     this.breadcrumbs$ = breadcrumbService.breadcrumbs$; 
+//   } 
+// }
+
+
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Breadcrumb } from './breadcrumb.model'
-import { BreadcrumbService } from '../../service/breadcrumb.service';
+
+import { Breadcrumb } from './breadcrumb.model';
+import { BreadcrumbService } from '../../service/breadcrumb.service'; 
 
 @Component({
   selector: 'app-breadcrumb',
   templateUrl: './breadcrumb.component.html',
-  styleUrls: ['./breadcrumb.component.scss']
+  styleUrls: ['./breadcrumb.component.scss'],
 })
 export class BreadcrumbComponent {
-  breadcrumbs$: Observable<Breadcrumb[]>; 
- 
-  constructor(private readonly breadcrumbService: BreadcrumbService) { 
-    this.breadcrumbs$ = breadcrumbService.breadcrumbs$; 
-  } 
+  breadcrumbs$: Observable<Breadcrumb[]>;
+
+  constructor(breadcrumbService: BreadcrumbService) {
+    this.breadcrumbs$ = breadcrumbService.breadcrumbs$;
+  }
 }

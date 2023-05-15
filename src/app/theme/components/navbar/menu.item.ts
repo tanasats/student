@@ -112,8 +112,16 @@ export const student_menu_items: IMenuItem[] = [
       submenu: [],
     }, 
     {
-      path: 'student/calendar',
+      path: 'student/activity',
       title: 'รายการกิจกรรม',
+      icon: 'bi bi-calendar',
+      class: '',
+      extralink: false,
+      submenu: [],
+    },
+    {
+      path: 'student/checkcredit',
+      title: 'ตรวจสอบจบ',
       icon: 'bi bi-calendar',
       class: '',
       extralink: false,

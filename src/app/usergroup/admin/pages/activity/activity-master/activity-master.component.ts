@@ -5,7 +5,7 @@ import { ActivityService } from 'src/app/service/activity.service';
 import { ActivitytypeService } from 'src/app/service/activitytype.service';
 import { AgencyService } from 'src/app/service/agency.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
-import { ConfirmDialogComponent } from 'src/app/shared/components/dialogs/confirm-dialog/confirm-dialog.component';
+import { DialogWarningConfirmComponent } from 'src/app/shared/components/dialogs/confirm/dialog-warning-confirm/dialog-warning-confirm.component';
 
 @Component({
   selector: 'app-activity-master',
@@ -65,13 +65,13 @@ export class ActivityMasterComponent {
     });
   }
 
-  onDelete(item: any) {
+  onDelete(item: any) { 
     console.log('onDelete()');
     this.dialog
-      .open(ConfirmDialogComponent, {
+      .open(DialogWarningConfirmComponent, {
         data: {
           title: 'โปรดยืนยันการลบรายการ',
-          description: item.activity_name,
+          description: 'ชื่อกิจกรรม: '+item.activity_name,
         },
       })
       .afterClosed()

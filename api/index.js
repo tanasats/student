@@ -45,7 +45,9 @@ app.use("/api", agencyRoute);
 //ActivityType ROUTE
 const activitytypeRoute = require("./route/activitytype.route");
 app.use("/api", activitytypeRoute);
-
+//Enroll ROUTE
+const enrollRoute = require("./route/enroll.route");
+app.use("/api", enrollRoute);
 
 
 // app.post('/api/v1/upload',(req,res)=>{

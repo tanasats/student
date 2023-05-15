@@ -23,11 +23,15 @@ import { ActivityFacultyFormInputComponent } from './components/activity/activit
 import { ActivityViewDetailsComponent } from './components/activity/activity-view-details/activity-view-details.component';
 import { ActivityViewDetailsItemComponent } from './components/activity/activity-view-details-item/activity-view-details-item.component';
 import { ReadmorePipe } from './pipes/readmore.pipe';
-import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormInputNumberComponent } from './components/form/form-input-number/form-input-number.component';
 import { FormInputFloatComponent } from './components/form/form-input-float/form-input-float.component';
+import { ActivityViewTableComponent } from './components/activity/activity-view-table/activity-view-table.component';
+import { ActivityViewTableItemComponent } from './components/activity/activity-view-table-item/activity-view-table-item.component';
+import { DialogEnrollStudentConfirmComponent } from './components/dialogs/form/dialog-enroll-student-confirm/dialog-enroll-student-confirm.component';
+import { DialogWarningConfirmComponent } from './components/dialogs/confirm/dialog-warning-confirm/dialog-warning-confirm.component';
+import { DialogTokenShowComponent } from './components/dialogs/info/dialog-token-show/dialog-token-show.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +58,13 @@ import { FormInputFloatComponent } from './components/form/form-input-float/form
     ActivityViewDetailsComponent,
     ActivityViewDetailsItemComponent,
     ReadmorePipe,
-    ConfirmDialogComponent,
     FormInputNumberComponent,
     FormInputFloatComponent,
+    ActivityViewTableComponent,
+    ActivityViewTableItemComponent,
+    DialogEnrollStudentConfirmComponent,
+    DialogWarningConfirmComponent,
+    DialogTokenShowComponent,
     
   ],
   imports: [
@@ -86,9 +94,10 @@ import { FormInputFloatComponent } from './components/form/form-input-float/form
     OffcanvasFacultySelectComponent,
     ActivityViewDetailsComponent,
     ActivityViewDetailsItemComponent,
-    ConfirmDialogComponent,
     FormInputNumberComponent,
     FormInputFloatComponent,
+    ActivityViewTableComponent,
+    ActivityViewTableItemComponent,
   ]
 })
 export class SharedModule { }

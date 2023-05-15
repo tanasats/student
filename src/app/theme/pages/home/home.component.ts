@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IActivity } from 'src/app/core/interface/activity';
 import { ActivityService } from 'src/app/service/activity.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
 
@@ -10,40 +11,7 @@ import { ToasterService } from 'src/app/service/toaster/toaster.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
-  public activity_datas:any[] = [
-    {
-      id: 11,
-      title: 'Test Person1',
-      description: 'Section 1',
-      picture: 'https://picsum.photos/id/56/1200/630',
-      receive:100,
-      register:11,
-    },
-    {
-      id: 175,
-      title: 'Test Person3',
-      description: 'Section 3',
-      picture: 'https://picsum.photos/id/175/1200/630'
-    },
-    {
-      id: 32,
-      title: 'Test Person3',
-      description: 'Section 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex minima nulla nesciunt? Illo reprehenderitLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex minima nulla nesciunt? Illo reprehenderit',
-      picture: 'https://picsum.photos/id/21/1200/630'
-    },
-    {
-      id: 56,
-      title: 'Test Person3',
-      description: 'Section 3',
-      picture: 'https://picsum.photos/id/34/1200/630'
-    },
-    {
-      id: 77,
-      title: 'Test Person3',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex minima nulla nesciunt? Illo reprehenderit vero quae dolor, esse, iure doloremque deserunt voluptate, tempora eveniet blanditiis ullam dolores dignissimos debitis ipsa. Velit delectus quae, aspernatur harum dolor hic voluptatum? Odit quo totam, voluptatibus blanditiis nam dolorem obcaecati exercitationem vel quia ad cumque sed, architecto saepe nobis magnam accusantium alias aperiam vero?',
-      picture: 'https://picsum.photos/id/75/1200/630'
-    },
-  ];
+  public activitys:IActivity[] = [];
   
 
   constructor(
@@ -62,7 +30,7 @@ export class HomeComponent implements OnInit{
 		.subscribe({
 			next:(res) =>{
 				console.log(res);
-        this.activity_datas=res;
+        this.activitys=res;
 			},
 			error:(err) =>{
 				throw new Error('Method not implemented.',err);

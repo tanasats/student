@@ -20,7 +20,9 @@
   --bs-modal-width:500px;
   --bs-modal-padding:1em;
   --bs-modal-footer-gap:1em;
+  --bs-modal-header-padding:1em;
 }
+
 body {
   font-family: 'Sarabun', sans-serif !important;
   // font-size: 14px;
@@ -35,6 +37,10 @@ a {
 a:hover {
   text-decoration: underline;
 }
+.hover:hover {
+  background-color: var(--bs-gray-200) !important;
+}
+
 h4,h6{
   //font-family: "Prompt";
   color:var(--bs-primary);
@@ -107,6 +113,19 @@ h5,.h5 {
   color:white;
   background-color: var(--bs-gray-400);
 }
+.btn-icon{
+  padding:0.2em;
+}
+.btn-icon:hover{
+  color:var(--bs-primary);
+}
+.btn-icon:hover:focus{
+  // border-color:var(--bs-gray-600);
+  color:var(--bs-primary);
+}
+
+
+
 .navbar-brand:hover{
   text-decoration: none;
 }
@@ -277,6 +296,13 @@ button.calendar, button.calendar:active {
   font-size:0.750rem;
 }
 
+.cdk-global-overlay-wrapper {
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+  overflow: auto;
+  pointer-events: auto;  
+}
 
 // --- profile template ----
 .profile-img img {

@@ -22,7 +22,7 @@
 
         <app-activity-card-list-item
         [item]="item"
-        (onSelect)="_onSelect($event)"
+        (onSelect)="onSelect.emit($event)"
         ></app-activity-card-list-item>
 
       </div>

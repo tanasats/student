@@ -1,8 +1,24 @@
 <div class="container">
   <ul class="breadcrumb">
     <li *ngFor="let breadcrumb of breadcrumbs$ | async">
-      <!-- <a [href]="breadcrumb.url">{{ breadcrumb.label }}</a> -->
+
       <a routerLink="{{ breadcrumb.url }}">{{ breadcrumb.label }}</a>
     </li>
   </ul>
 </div>
+
+
+<!-- <ol id="breadcrumbNav" class="breadcrumb-nav">
+  <li *ngFor="let breadcrumb of breadcrumbs$ | async; let i = index">
+    <a
+      *ngIf="i != ((breadcrumbs$ | async)?.length||0) - 1"
+      [href]="breadcrumb.url"
+      >{{ breadcrumb.label }}</a
+    >
+    <span
+      class="breadcrumb-last-li"
+      *ngIf="i == ((breadcrumbs$ | async)?.length||0) - 1"
+      >{{ breadcrumb.label }}</span
+    >
+  </li>
+  </ol> -->

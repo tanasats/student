@@ -45,11 +45,16 @@ export class CurrentUserService{
             this.auth.me().subscribe({
               next:([res])=>{
                 if(res.username){
+
                   this.login({
-                    username:res.username,
-                    fullname:res.fullname,
-                    usertype:res.usertype,
-                    roles:res.roles,
+                    user_id: res.user_id,
+                    username: res.username,
+                    studentcode: res.studentcode,
+                    staffid: res.staffid,
+                    fullname: res.fullname,
+                    email: res.email,
+                    usertype: res.usertype,
+                    roles: res.roles,
                   });
                 }
               }
@@ -70,6 +75,7 @@ export class CurrentUserService{
       is_login: false,
       user_id:0,
       username:'',
+      studentcode:'',
       fullname:'', 
       email:'',
       role:{role_id:0,role_name:''},
@@ -105,14 +111,15 @@ export class CurrentUserService{
   login(data:any){
     const roles = JSON.parse(data.roles);
     const minimum_role = roles.reduce((prev: any, curr: any) =>
-      prev.role_id > curr.role_id ? prev : curr
+      prev.role_id < curr.role_id ? prev : curr
     );
     this._currentuser ={
       "is_login":false,
-      "user_id":0,
+      "user_id":data.user_id,
       "username":data.username,
+      "studentcode": data.studentcode,
       "fullname":data.fullname,
-      "email":'',
+      "email":data.email,
       "role":minimum_role,
       "roles":roles,
     }

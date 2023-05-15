@@ -1,0 +1,86 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header pb-0">
+      <h4 class="modal-title">ลงทะเบียนเข้าร่วมกิจกรรม</h4>
+      <div
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="_close()"
+      ></div>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle me-2"></i>โปรดตรวจสอบข้อมูลให้ถูกต้อง ก่อนบันทึกการลงทะเบียน
+      </div>
+      <div class="py-1 border-bottom fw-bold">ข้อมูลกิจกรรม</div>
+      <div class="h6 pt-2">{{data.activity_code}}</div>
+      <div class="h5 pt-0">{{data.activity_name}}</div>
+      <div class="fs-sm text-muted d-inline-block mx-1">
+        <i class="bi bi-easel2 text-primary me-1"></i>{{data.activity_year}}/{{data.activity_term}}
+      </div>
+      <div class="fs-sm text-muted d-inline-block mx-1">
+        <i class="bi bi-calendar4-week text-primary me-1"></i>{{data.activity_date_form}}
+      </div>
+      <div class="fs-sm text-muted d-inline-block mx-1">
+        <i class="bi bi-geo-alt text-primary me-1"></i>{{data.activity_place}}
+      </div>
+
+      <div class="py-1 mt-3 border-bottom fw-bold">ข้อมูลผู้ลงทะเบียน</div>
+      <div class="col-md-12 custom-form">
+        <div class="custom-form-label mt-2">รหัสนิสิต : <span class="text-primary">{{data.studentcode}}</span></div>
+        <div class="custom-form-label mt-2">ชื่อ-สกุล : <span class="text-primary">{{data.fullname}}</span></div>
+        <div class="custom-form-label mt-2">อีเมล์ : <span class="text-primary">{{data.email}}</span></div>
+      </div>
+
+      <div class="py-1 mt-3 fw-bold">ตำแหน่งที่เข้าร่วม <span class="text-danger mx-1">*</span></div>
+
+      <div class="" [formGroup]="fg">
+        <div class="col-md-12 custom-form form-group">
+          <!-- <div class="form-label">เข้าร่วมในตำแหน่ง</div> -->
+          <ng-select
+            [items]="items"
+            bindLabel="name"
+            bindValue="id"
+            formControlName="enroll_position"
+            tabindex="-1"
+            ><ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+              <!-- <div><span>Title: </span>{{item.name}}</div><small><b>Id:</b> {{item.id}} | <b>UserId:</b> {{item.name}}</small> -->
+              {{ item.id }} : {{ item.name }}
+            </ng-template>
+          </ng-select>
+
+          <!-- <div class="form-control-wrap">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="file_description"
+            />
+          </div> -->
+
+        </div>
+      </div>
+
+        <!-- <div class="alert alert-info mt-2">
+            โปรดตรวจสอบข้อมูลให้ถูกต้อง ก่อนบันทึกการลงทะเบียน
+        </div>     -->
+
+    </div>
+
+
+    <div class="modal-footer">
+    
+      <button type="button" class="btn btn-secondary btn-sm me-1" (click)="_close()">
+        <i class="bi bi-x-lg"></i> ยกเลิก
+      </button>
+      <button
+        type="button"
+        class="btn btn-success btn-sm me-1"
+        [disabled]="is_form_valid"
+        (click)="_save()"
+      >
+        <i class="bi bi-save"></i> บันทึก
+      </button>
+    </div>
+  </div>
+</div>

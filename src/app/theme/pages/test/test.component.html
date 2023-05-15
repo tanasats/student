@@ -546,8 +546,7 @@
   </div>
 </section>
 
-<!-- dialog example -->
-<div class="btn btn-success" (click)="function_with_toggle_dialog()">dialog</div>
+
 <!-- <app-confirm-dialog
  [id]="'test-dialog'"
 [description]="'Test dialog'"
@@ -558,3 +557,84 @@
 <app-offcanvas-test [id]="'Example'"></app-offcanvas-test>
 
 <div class="pb-3"></div>
+
+
+
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col">
+      <h4>แผงคบคุมสำหรับ</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <div class="list-group mb-3">
+        <button
+          type="button"
+          class="list-group-item list-group-item-action active"
+          aria-current="true"
+        >
+          The current button
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+          ตั้งค่า
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+          A third button item
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+          A fourth button item
+        </button>
+        <button
+          type="button"
+          class="list-group-item list-group-item-action"
+          disabled
+        >
+          A disabled button item
+        </button>
+      </div>
+    </div>
+    <div class="col-md-8 col-12">
+      <div class="alert alert-info">เนื้อหา</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-12 order-md-1 order-sm-1">
+      <div class="alert alert-info">order-md-1 order-sm-1</div>
+    </div>
+    <div class="col-md-8 col-sm-12 order-md-2 order-sm-2">
+      <div class="alert alert-warning">order-md-2 order-sm-2</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-12 order-md-2 order-sm-1">
+      <div class="alert alert-info">order-md-2 order-sm-1</div>
+    </div>
+    <div class="col-md-8 col-sm-12 order-md-1 order-sm-2">
+      <div class="alert alert-warning">order-md-1 order-sm-2</div>
+    </div>
+  </div>
+</div>
+
+
+<section class="container">
+  <h5>more option menu</h5>
+  <div class="more-option">
+    <i class="bi bi-three-dots-vertical cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" ><i class="bi bi-eye"></i> เมนูย่อย-1</a></li>
+        <li><a class="dropdown-item" ><i class="bi bi-paperclip"></i> เมนูย่อย-2</a></li>
+        <li><a class="dropdown-item" ><i class="bi bi-geo-alt"></i> เมนูย่อย-3</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" ><i class="bi bi-trash"></i> เมนูย่อย-4</a></li>
+        <li><a class="dropdown-item" ><i class="bi bi-x-lg"></i> เมนูย่อย-5</a></li>
+    </ul>
+  </div>
+</section>
