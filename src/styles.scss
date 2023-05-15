@@ -35,10 +35,14 @@ a {
   text-decoration: none;
 }
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 .hover:hover {
   background-color: var(--bs-gray-200) !important;
+}
+.link{
+  color:var(--bs-primary);
+  cursor: pointer;
 }
 
 h4,h6{
@@ -114,6 +118,7 @@ h5,.h5 {
   background-color: var(--bs-gray-400);
 }
 .btn-icon{
+  color:var(--bs-gray-600);
   padding:0.2em;
 }
 .btn-icon:hover{
@@ -124,7 +129,11 @@ h5,.h5 {
   color:var(--bs-primary);
 }
 
-
+// matToolTip
+.mdc-tooltip__surface{
+  color:white !important;
+  background-color: rgb(85, 85, 85) !important;
+}
 
 .navbar-brand:hover{
   text-decoration: none;

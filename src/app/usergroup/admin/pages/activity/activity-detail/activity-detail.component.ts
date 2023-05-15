@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-activity-view',
-  templateUrl: './activity-view.component.html',
-  styleUrls: ['./activity-view.component.scss']
+  selector: 'app-activity-detail',
+  templateUrl: './activity-detail.component.html',
+  styleUrls: ['./activity-detail.component.scss']
 })
-export class ActivityViewComponent implements OnInit {
+export class ActivityDetailComponent {
   public id:any;
   public state: any;
   public item:any;

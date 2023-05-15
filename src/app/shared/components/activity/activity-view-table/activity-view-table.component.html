@@ -18,10 +18,23 @@
 <ng-container *ngFor="let item of items; let i = index">
   <activity-view-table-item 
   [item]="item"
-  [is_onView]= "is_onView"
-  (_onView)="_onView.emit($event)"
+
   [is_onQRcode]= "is_onQRcode"
   (_onQRcode)="_onQRcode.emit($event)"
+  
+  [is_onView]= "is_onView"
+  (_onView)="_onView.emit($event)"
+  [is_onEdit]= "is_onEdit"
+  (_onEdit)="_onEdit.emit($event)"
+  [is_onDelete]= "is_onDelete"
+  (_onDelete)="_onDelete.emit($event)"
+  [is_onRegister]= "is_onRegister"
+  (_onRegister)="_onRegister.emit($event)"
+
+  
+
+
+
   > </activity-view-table-item>
 </ng-container>
 

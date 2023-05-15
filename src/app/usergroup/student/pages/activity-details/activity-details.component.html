@@ -38,7 +38,7 @@
           <li><i class="bi bi-person me-2 text-primary"></i>จำนวนที่รับ: {{ item.activity_receive }}</li>
         </ul>
         <hr />
-        <button *ngIf="!useractivity" class="btn btn-success w-100" [disabled]="useractivity"  (click)="onRegister()">สมัครเข้าร่วมกิจกรรม</button>
+        <button *ngIf="!useractivity" class="btn btn-success w-100" [disabled]="useractivity"  (click)="onRegister()">ลงทะเบียนเข้าร่วม</button>
         <div *ngIf="useractivity" class="alert alert-success"><i class="bi bi-check-circle me-2 h5"></i>คุณได้ลงทะเบียนแล้ว เมื่อวันที่ {{useractivity.cdate}}</div>
          <!-- {{useractivity|json}} -->
       </div>

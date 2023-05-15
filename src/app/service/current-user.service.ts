@@ -111,7 +111,7 @@ export class CurrentUserService{
   login(data:any){
     const roles = JSON.parse(data.roles);
     const minimum_role = roles.reduce((prev: any, curr: any) =>
-      prev.role_id < curr.role_id ? prev : curr
+      prev.role_id > curr.role_id ? prev : curr
     );
     this._currentuser ={
       "is_login":false,

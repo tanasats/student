@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ActivityService } from 'src/app/service/activity.service';
 import { CurrentUserService } from 'src/app/service/current-user.service';
 import { EnrollService } from 'src/app/service/enroll.service';
@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   public activitys: any;
   public me: any;
   constructor(
+    private router:Router,
     private route: ActivatedRoute,
     private currentuserservice: CurrentUserService,
     private activityservice: ActivityService,
@@ -65,4 +66,10 @@ export class DashboardComponent implements OnInit {
         },
       });
   }
+
+  onView(item:any){
+    this.router.navigate(["../activity/details",item.activity_id], {relativeTo: this.route, state: { datas: item } });
+  }
+
+
 }

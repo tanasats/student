@@ -13,7 +13,7 @@
     </div>
   </section>
   
-  <section class="container">
+  <!-- <section class="container">
     <div class="row">
       <div class="col">
   
@@ -25,4 +25,20 @@
         ></activity-view-details>
       </div>
     </div>
-  </section>
+  </section> -->
+
+  <section class="container">
+    <ng-container >
+        <activity-view-table
+        [items]="items"
+        [title]="'ข้อมูลกิจกรรม'"
+        [is_onView] = true
+        (_onView)="onView($event)"
+        [is_onEdit]=true
+        (_onEdit)="onEdit($event)"
+        [is_onDelete]=true
+        (_onDelete)="onDelete($event)"   
+        >
+        </activity-view-table>
+    </ng-container>
+</section>

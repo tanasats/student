@@ -9,7 +9,8 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ActivityCreateComponent } from './pages/activity/activity-create/activity-create.component';
 import { ActivityEditComponent } from './pages/activity/activity-edit/activity-edit.component';
-import { ActivityViewComponent } from './pages/activity/activity-view/activity-view.component';
+import { ActivityDetailComponent } from './pages/activity/activity-detail/activity-detail.component';
+// import {MatTooltipModule} from '@angular/material/tooltip';
 // import { MatDialogModule } from '@angular/material/dialog';
 // import { MatNativeDateModule } from '@angular/material/core';
 
@@ -21,11 +22,12 @@ import { ActivityViewComponent } from './pages/activity/activity-view/activity-v
     UserProfileComponent,
     ActivityCreateComponent,
     ActivityEditComponent,
-    ActivityViewComponent,
+    ActivityDetailComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    // MatTooltipModule,
     // MatDialogModule,
     // MatNativeDateModule,
     SharedModule,

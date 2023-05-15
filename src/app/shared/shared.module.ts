@@ -32,6 +32,7 @@ import { ActivityViewTableItemComponent } from './components/activity/activity-v
 import { DialogEnrollStudentConfirmComponent } from './components/dialogs/form/dialog-enroll-student-confirm/dialog-enroll-student-confirm.component';
 import { DialogWarningConfirmComponent } from './components/dialogs/confirm/dialog-warning-confirm/dialog-warning-confirm.component';
 import { DialogTokenShowComponent } from './components/dialogs/info/dialog-token-show/dialog-token-show.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { DialogTokenShowComponent } from './components/dialogs/info/dialog-token
     NgbDatepickerModule,
     MatDialogModule,
     MatNativeDateModule,
+    MatTooltipModule,
   ],
   exports:[
     ThaidatePipe,
@@ -98,6 +100,7 @@ import { DialogTokenShowComponent } from './components/dialogs/info/dialog-token
     FormInputFloatComponent,
     ActivityViewTableComponent,
     ActivityViewTableItemComponent,
+    MatTooltipModule,
   ]
 })
 export class SharedModule { }

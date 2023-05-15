@@ -13,7 +13,7 @@ import { DialogWarningConfirmComponent } from 'src/app/shared/components/dialogs
   styleUrls: ['./activity-master.component.scss'],
 })
 export class ActivityMasterComponent {
-  public items: any;
+  public items: any; 
 
 
   constructor(
