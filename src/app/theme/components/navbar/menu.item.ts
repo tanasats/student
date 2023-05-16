@@ -11,11 +11,11 @@ export const admin_menu_items: IMenuItem[] = [
   },
   {
     path: 'admin/activity',
-    title: 'รายการกิจกรรม',
+    title: 'จัดการกิจกรรม',
     icon: 'bi bi-bell',
     class: '',
     extralink: false,
-    submenu: [],
+    submenu: [], 
   },
   {
     path: '',
@@ -66,40 +66,40 @@ export const admin_menu_items: IMenuItem[] = [
       },
     ],
   },
-  {
-    path: '',
-    title: 'ทดสอบ',
-    icon: 'bi bi-patch-check',
-    class: '',
-    extralink: false,
-    submenu: [
-      {
-        path: 'test',
-        title: 'Test UI',
-        icon: 'bi bi-patch-check',
-        class: '',
-        extralink: false,
-        submenu: [],
-      },
-      {
-        path: 'testchart',
-        title: 'Test Chart',
-        icon: 'bi bi-patch-check',
-        class: '',
-        extralink: false,
-        submenu: [],
-      },
-      {
-        path: '404',
-        title: 'Test 404',
-        icon: 'bi bi-patch-check',
-        class: '',
-        extralink: false,
-        submenu: [],
-      },
+  // {
+  //   path: '',
+  //   title: 'ทดสอบ',
+  //   icon: 'bi bi-patch-check',
+  //   class: '',
+  //   extralink: false,
+  //   submenu: [
+  //     {
+  //       path: 'test',
+  //       title: 'Test UI',
+  //       icon: 'bi bi-patch-check',
+  //       class: '',
+  //       extralink: false,
+  //       submenu: [],
+  //     },
+  //     {
+  //       path: 'testchart',
+  //       title: 'Test Chart',
+  //       icon: 'bi bi-patch-check',
+  //       class: '',
+  //       extralink: false,
+  //       submenu: [],
+  //     },
+  //     {
+  //       path: '404',
+  //       title: 'Test 404',
+  //       icon: 'bi bi-patch-check',
+  //       class: '',
+  //       extralink: false,
+  //       submenu: [],
+  //     },
 
-    ],
-  },
+  //   ],
+  // },
 ];
 
 export const student_menu_items: IMenuItem[] = [
@@ -136,20 +136,20 @@ export const student_menu_items: IMenuItem[] = [
       submenu: [
         {
           path: 'student/xxx',
-          title: 'เข้าร่วมกิจกรรมด้วย Token key',
+          title: 'เข้าร่วมกิจกรรมด้วย บัตรกิจกรรม',
           icon: 'bi bi-calendar',
           class: '',
           extralink: false,
           submenu: [],
         },
-        {
-          path: 'student/xxx',
-          title: 'รายการกิจกรรม',
-          icon: 'bi bi-calendar',
-          class: '',
-          extralink: false,
-          submenu: [],
-        },
+        // {
+        //   path: 'student/xxx',
+        //   title: 'รายการกิจกรรม',
+        //   icon: 'bi bi-calendar',
+        //   class: '',
+        //   extralink: false,
+        //   submenu: [],
+        // },
       ],
     },
 

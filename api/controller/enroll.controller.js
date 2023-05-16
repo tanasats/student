@@ -127,3 +127,18 @@ exports.activitybyuser = async (req,res)=>{
     res.status(400).send({ message: "Invalid request parameter" });
   } 
 };
+
+exports.registrant = async (req,res)=>{
+  const activity_id = req.params.activity_id;
+  if(activity_id){
+    enrollModel
+    .registrant(activity_id)
+    .then(([row])=>{
+      res.status(200).json(row);
+    })
+    .catch((error)=>{
+      console.log(error);
+      res.status(400).send(error);
+    })
+  }
+}

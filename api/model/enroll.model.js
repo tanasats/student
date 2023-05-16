@@ -33,6 +33,12 @@ class _class {
     return db.execute(sql);
   }
 
+  registrant(activity_id){
+    let query = "select * from enroll left join user on enroll.user_id=user.user_id where enroll.activity_id=?";
+    let sql = db.format(query,[activity_id]);
+    return db.execute(sql);
+  }
+
 }//class
 
 let ClassModel = new _class();

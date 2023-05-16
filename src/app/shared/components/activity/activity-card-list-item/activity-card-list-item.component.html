@@ -11,7 +11,7 @@
     <div style="font-size: 0.85em">
       <div><i class="bi bi-people me-2"></i>{{item.activity_register}}/{{item.activity_receive}}</div>
       <div><i class="bi bi-geo-alt me-2"></i>สถานที่ <span class="d-inline-block">{{item.activity_place}}</span></div>
-      <div><i class="bi bi-calendar4-week me-2"></i>วันที่ {{item.activity_date_form|thaidate}}</div>
+      <div><i class="bi bi-calendar4-week me-2"></i>วันที่ {{item.activity_date_from|thaidate}}</div>
     </div>
     <div>
       <div class="btn btn-sm btn-success text-nowrap" (click)="_onSelect()">รายละเอียด</div>

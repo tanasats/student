@@ -47,18 +47,14 @@ export class ActivityMasterComponent {
     console.log('onView():', item);
     // absolute path
     //this.router.navigate(["activity",item.activity_id], { state: { datas: item } })
-
     // relative path
-    this.router.navigate(['../activity/view', item.activity_id], {
+    this.router.navigate(['../activity/detail', item.activity_id], {
       relativeTo: this.route,
       state: { datas: item },
     });
   }
 
   onEdit(item: any) {
-    // console.log("onEdit():",item);
-    // console.log("route:",this.route);
-    // relative path
     this.router.navigate(['../activity/edit', item.activity_id], {
       relativeTo: this.route,
       state: { datas: item },
@@ -93,4 +89,22 @@ export class ActivityMasterComponent {
         }
       });
   }
+
+  onGear(item: any) {
+    console.log("current route:",this.route);
+    console.log('onView():', item);
+    this.router.navigate(['../activity/manage', item.activity_id], {
+      relativeTo: this.route,
+      state: { datas: item },
+    });
+  }
+
+  onCreate(){
+    console.log("onCreate()")
+    this.router.navigate(['create'], {
+      relativeTo: this.route,
+      state: { },
+    });
+  }
+
 } // class

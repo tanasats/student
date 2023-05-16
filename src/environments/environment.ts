@@ -24,4 +24,10 @@ export const environment = {
         99: 'ผู้ดูแลระบบ',
       },
 
+    ENROLL_POSITION: {
+        E: 'ผู้เข้าร่วมโครงการ',
+        A: 'ผู้บริหาร'
+    }
+
+
   };

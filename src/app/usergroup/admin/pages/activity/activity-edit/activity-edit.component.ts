@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IActivityFormGroup } from 'src/app/core/interface/activity';
+import { OffcanvasService } from 'src/app/service/offcanvas.service';
 
 @Component({
   selector: 'app-activity-edit',
@@ -21,6 +22,7 @@ export class ActivityEditComponent implements OnInit {
   constructor(
     private route:ActivatedRoute,
     private fb:FormBuilder,
+    public offcanvas:OffcanvasService,
   ){
     this.form = this.fb.group({
       activity_id: [null, []],
@@ -31,8 +33,10 @@ export class ActivityEditComponent implements OnInit {
       activitytype_code:  [null, [Validators.required]], 
       activity_name: [null, [Validators.required]],      
       activity_description: [null, [Validators.required]],
-      activity_date: [null, [Validators.required]],
+      activity_date_form: [null, [Validators.required]],
+      activity_date_to:[null,[Validators.required]],
       activity_place: [null, [Validators.required]],
+      activity_hour: [null,[Validators.required]],
       activity_receive: [null, [Validators.required]],
       activity_faculty:[null,[Validators.required]],
       activity_picture: [null, []],
@@ -40,7 +44,7 @@ export class ActivityEditComponent implements OnInit {
       activity_budget_source: [null, [Validators.required]],
       activity_budget: [null, [Validators.required]],
       activity_budget_paid: [null, [Validators.required]],
-    });
+    }) as unknown as IActivityFormGroup;
   }//constructor
 
   ngOnInit(): void {

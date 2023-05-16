@@ -33,6 +33,9 @@ import { DialogEnrollStudentConfirmComponent } from './components/dialogs/form/d
 import { DialogWarningConfirmComponent } from './components/dialogs/confirm/dialog-warning-confirm/dialog-warning-confirm.component';
 import { DialogTokenShowComponent } from './components/dialogs/info/dialog-token-show/dialog-token-show.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatTabsModule} from '@angular/material/tabs';
+import { UserViewTableComponent } from './components/user/user-view-table/user-view-table.component';
+import { UserViewTableItemComponent } from './components/user/user-view-table-item/user-view-table-item.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +69,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DialogEnrollStudentConfirmComponent,
     DialogWarningConfirmComponent,
     DialogTokenShowComponent,
+    UserViewTableComponent,
+    UserViewTableItemComponent,
     
   ],
   imports: [
@@ -77,6 +82,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatDialogModule,
     MatNativeDateModule,
     MatTooltipModule,
+    MatTabsModule,
   ],
   exports:[
     ThaidatePipe,
@@ -101,6 +107,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ActivityViewTableComponent,
     ActivityViewTableItemComponent,
     MatTooltipModule,
+    MatTabsModule,
+    UserViewTableComponent,
+    UserViewTableItemComponent,
   ]
 })
 export class SharedModule { }

@@ -13,7 +13,7 @@ import { lastValueFrom } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent { 
   public isloading:boolean=false;
   constructor(
     private fb: FormBuilder,
@@ -27,9 +27,13 @@ export class LoginComponent {
   public frmLogin: FormGroup = this.fb.group({
     username: ['6310197', [Validators.required, Validators.minLength(3)]],
     password: ['1449900889660', Validators.required],
+    // username: ['6010180', [Validators.required, Validators.minLength(3)]],
+    // password: ['1449900754543', Validators.required],
   });
 
   onSubmit(form: FormGroup) {
+    const _username = form.value.username;
+    const _password = form.value.password;
     this.isloading=true;
     this.auth.signin(form.value).subscribe({
       next: (res) => {
@@ -53,7 +57,111 @@ export class LoginComponent {
         console.log('auth.signin() err:', err);
         switch (err) {
           case "0":
-            this.toaster.show('error', 'ผู้ใช้ยังไม่ได้สมัครสมาชิก !!!');
+            //this.toaster.show('error', 'ผู้ใช้ยังไม่ได้สมัครสมาชิก !!!',7000);
+            this.msuauth.signin(form.value).subscribe({
+              next:(res)=>{
+                  console.log("msuauth res:",res);
+                  if(res.access_token){
+                    localStorage.setItem("access-token",res.access_token);
+                    this.msuauth.me().subscribe({
+                      next:(res)=>{
+                        console.log("msuauth.me() res:",res);
+                        if(res.username&&res.fullname&&res.usertype){
+                          let _roles:{};
+                          switch(res.usertype){
+                            case 'satit':
+                              _roles=[{
+                                role_id:0,
+                                role_name:'guest',
+                              }];
+                              res.studentcode=form.value.username;
+                              break;
+                            case 'student':
+                              _roles=[{
+                                role_id:10,
+                                role_name:'student',
+                              }];
+                              break;
+                            case 'staff':
+                              _roles=[{
+                                role_id:20,
+                                role_name:'officer',
+                              }];
+                              break;
+                            default:
+                              _roles=[{
+                                role_id:0,
+                                role_name:'guest',
+                              }];
+                          }
+                            let userdata = {
+                              username: res.username,
+                              password: form.value.password,
+                              fullname: res.fullname,
+                              usertype: res.usertype,
+                              faculty: res.faculty||null,
+                              roles: JSON.stringify(_roles),
+                              email: res.email||'xxx@msu.ac.th'
+                            }
+                            this.userservice.create(userdata).subscribe({
+                              next:(res)=>{
+                                console.log("user.create res:",res);
+                                if(res.affectedRows===1){
+                                  this.auth.signin(form.value).subscribe({
+                                    next:(res)=>{
+                                      console.log("2 auth.signin res:",res);
+                                      if(res.access_token){
+                                        localStorage.setItem('access-token', res.access_token);
+                                        this.auth.me().subscribe({
+                                          next: ([res]) => {
+                                            console.log('auth.me() res:', res);
+                                            const userdata = res;
+                                            this.currentuser.login(userdata);
+                                            this.router.navigate(['/']);
+                                            this.toaster.show('success', 'ยินดีต้อนรับสมาชิกใหม่ เข้าใช้งานระบบ',7000);
+                                          },
+                                          // error: (err) => {
+                                          //   console.log('auth.me() err:', err);
+                                          // },
+                                        });
+
+
+                                      }
+    
+ 
+
+
+                                    },
+                                    error:(err)=>{
+                                      console.log("2 auth.signin err:",err);
+                                    }
+                                  })
+  
+                                }
+                              },
+                              error:(err)=>{
+                                console.log("user create err:",err);
+                              }
+                            });
+                        }
+
+
+
+
+
+                      },
+                      error:(err)=>{
+                        console.log("msuauth.me err:",err);
+                      }
+                    })
+                  }
+              }, 
+              error:(err)=>{
+                  console.log("msuauth err:",err);
+                  this.toaster.show('error', 'ไม่สามารถยืนยันตัวตนในบัญชีผู้ใช้งานมหาวิทยาลัยมหาสารคามได้ !!!',7000);
+              }
+            })
+
             break;
           case "1":
             this.toaster.show('error', 'รหัสผ่านผิด !!!');
@@ -174,13 +282,13 @@ export class LoginComponent {
   //   }
   // }
 
-  private msuauthen(userauth: any) {
-    return new Promise<any>((resolve) => {
-      this.delay(3000).then(() => {
-        return resolve('tanasat');
-      });
-    });
-  }
+  // private msuauthen(userauth: any) {
+  //   return new Promise<any>((resolve) => {
+  //     this.delay(3000).then(() => {
+  //       return resolve('tanasat');
+  //     });
+  //   });
+  // }
 
   // private _authenMSU(authdata: any) {
   //   return new Promise((resolve, reject) => {

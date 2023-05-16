@@ -1,17 +1,5 @@
 <section class="container">
-    <div class="row">
-      <div class="col">
-  
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-primary btn-sm" [routerLink]="['create']">
-            <i class="bi bi-plus-circle me-1"></i>
-            เพิ่มกิจกรรม
-          </button>
-        </div>
-      
-      </div>
-    </div>
-  </section>
+
   
   <!-- <section class="container">
     <div class="row">
@@ -32,13 +20,20 @@
         <activity-view-table
         [items]="items"
         [title]="'ข้อมูลกิจกรรม'"
-        [is_onView] = true
+        [is_onView] = false
         (_onView)="onView($event)"
         [is_onEdit]=true
         (_onEdit)="onEdit($event)"
         [is_onDelete]=true
         (_onDelete)="onDelete($event)"   
+        [is_onGear]=true
+        (_onGear)="onGear($event)"         
+        [is_onCreate]=true
+        (_onCreate)="onCreate()"
+
         >
         </activity-view-table>
     </ng-container>
 </section>
+
+

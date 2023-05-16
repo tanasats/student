@@ -90,7 +90,7 @@ selectedCityId?: number;
       activitytype_code:  [null, [Validators.required]], 
       activity_name: [null, [Validators.required]],      
       activity_description: [null, [Validators.required]],
-      activity_date_form: [null, [Validators.required]],
+      activity_date_from: [null, [Validators.required]],
       activity_date_to:[null,[Validators.required]],
       activity_place: [null, [Validators.required]],
       activity_hour: [null,[Validators.required]],

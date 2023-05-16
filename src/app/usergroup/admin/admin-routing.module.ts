@@ -7,6 +7,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { ActivityCreateComponent } from './pages/activity/activity-create/activity-create.component';
 import { ActivityEditComponent } from './pages/activity/activity-edit/activity-edit.component';
 import { ActivityDetailComponent } from './pages/activity/activity-detail/activity-detail.component';
+import { ActivityManageComponent } from './pages/activity/activity-manage/activity-manage.component';
 
 const routes: Routes = [
   { path:'',component:DefaultPageComponent,
@@ -16,6 +17,7 @@ const routes: Routes = [
       {path:'activity/create',component:ActivityCreateComponent,data:{breadcrumb:'สร้างกิจกรรม'}},
       {path:'activity/detail/:id',component:ActivityDetailComponent,data:{breadcrumb:'รายละเอียด'}},    
       {path:'activity/edit/:id',component:ActivityEditComponent,data:{breadcrumb:'แก้ไข'}},      
+      {path:'activity/manage/:id',component:ActivityManageComponent,data:{breadcrumb:'จัดการกิจกรรม'}},
       {path:'user-profile',component:UserProfileComponent},
 
   

@@ -16,6 +16,8 @@ export class ActivityViewTableItemComponent {
   @Output() _onDelete= new EventEmitter<any>();
   @Input() is_onRegister:boolean=false; 
   @Output() _onRegister= new EventEmitter<any>();
+  @Input() is_onGear:boolean=false; 
+  @Output() _onGear= new EventEmitter<any>();
 
   @Input() is_onQRcode:boolean=false; 
   @Output() _onQRcode= new EventEmitter<any>();

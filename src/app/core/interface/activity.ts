@@ -9,7 +9,7 @@ export interface IActivity {
     activitytype_code:string,
     activity_name:string,
     activity_description:string,
-    activity_date_form:string,
+    activity_date_from:string,
     activity_date_to:string,
     activity_hour:number,
     activity_place:string,
