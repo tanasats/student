@@ -8,6 +8,7 @@ import { TestChartComponent } from './theme/pages/test-chart/test-chart.componen
 import { TestComponent } from './theme/pages/test/test.component';
 import { ActivityDetailComponent } from './shared/components/activity/activity-detail/activity-detail.component';
 import { UserProfileComponent } from './theme/pages/user-profile/user-profile.component';
+import { TestUploadComponent } from './theme/pages/test-upload/test-upload.component';
 
 
 const routes: Routes = [
@@ -17,19 +18,20 @@ const routes: Routes = [
   {path:'activity/:id',component:ActivityDetailComponent,data: { breadcrumb: 'รายละเอียดกิจกรรม' }},
   {path:'admin',
     // loadChildren: () => import('./features/admin/admin-routing.module').then(m => m.AdminRoutingModule),data:{title:'ผู้ดูแลระบบ'}
-    loadChildren: () => import('./usergroup/admin/admin-routing.module').then(m => m.AdminRoutingModule),data:{title:'ผู้ดูแลระบบ'}
+    loadChildren: () => import('./userroles/admin/admin-routing.module').then(m => m.AdminRoutingModule),data:{title:'ผู้ดูแลระบบ'}
 
   },  
   {path:'student',
-    loadChildren: () => import('./usergroup/student/student-routing.module').then(m=>m.StudentRoutingModule),data:{title:'นิสิต'}
+    loadChildren: () => import('./userroles/student/student-routing.module').then(m=>m.StudentRoutingModule),data:{title:'นิสิต'}
   },
   {path:'offcer',
-    loadChildren: () => import('./usergroup/officer/officer-routing.module').then(m=>m.OfficerRoutingModule),data:{title:'เจ้าหน้าที่'}
+    loadChildren: () => import('./userroles/officer/officer-routing.module').then(m=>m.OfficerRoutingModule),data:{title:'เจ้าหน้าที่'}
   },
 
   //test-------------
   {path:'test',component:TestComponent,data: { breadcrumb: 'Test' }}, 
   {path:'testchart',component:TestChartComponent,data: { breadcrumb: 'Test Chart' }},
+  {path:'testupload',component:TestUploadComponent,data: { breadcrumb: 'Test Upload' }},
   {path:'page-not-found',component:PageNotFoundComponent,data: { breadcrumb: 'page not found !!' }},
   {path:'user-profile',component:UserProfileComponent},
   {path:'**',redirectTo:'/page-not-found'}

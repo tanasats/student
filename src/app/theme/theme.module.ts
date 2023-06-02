@@ -8,6 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { TestUploadComponent } from './pages/test-upload/test-upload.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     LoginComponent,
     BreadcrumbComponent,
     UserProfileComponent,
+    TestUploadComponent,
   ],
   imports: [
     CommonModule,

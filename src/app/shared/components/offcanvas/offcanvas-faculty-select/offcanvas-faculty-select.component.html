@@ -12,34 +12,35 @@
   <div class="offcanvas-body">
     <div class="my-3">
       <div class="w-100">
-        <span
+        <span class="cursor-pointer" (click)="onSelectall()"
           ><i
             class="me-2 bi cursor-pointer"
             [ngClass]="{
               'bi-square': !is_select_all,
               'bi-check-square-fill text-primary': is_select_all
             }"
-            (click)="is_select_all = !is_select_all"
           ></i
-          >เลือกทั้งหมด</span
+          ><span class="fw-bold">เลือกทั้งหมด</span></span
         >
       </div>
       <div class="w-100" *ngFor="let item of facultys">
-        <span class="ps-4 cursor-pointer me-2">
+        <span
+          class="fs-md ps-4 cursor-pointer me-2 mt-2"
+          (click)="item.selected = !item.selected"
+        >
           <i
             class="cursor-pointer bi"
             [ngClass]="{
               'bi-square': !item.selected,
               'bi-check-square-fill text-primary': item.selected
             }"
-            (click)="item.selected = !item.selected"
-          ></i> </span
-        >{{ item.faculty_name }}
+          ></i>
+          {{ item.faculty_name }}</span
+        >
       </div>
     </div>
 
     <button class="btn btn-success" (click)="_onSave()">บันทึก</button>
-    <hr />
-    <div class="alert alert-warning">{{ facultys | json }}</div>
+    <!-- <div class="alert alert-warning">{{ facultys | json }}</div> -->
   </div>
 </div>

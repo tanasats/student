@@ -1,0 +1,181 @@
+<section class="container">
+
+  <div class="mb-2">
+    <div>
+      <h4>ข้อมูลกิจกรรม</h4>
+    </div>
+    <hr>
+  
+      <div class="row">
+        <div class="col-md-3 col-12">
+          <form-input-text [fc]="form.controls['activity_code']" [label]="'รหัสกิจกรรม'" [is_readonly]="true" [placeholder]="'อัตโนมัติ'"></form-input-text>
+        </div> 
+        <div class="col-md-2 col-12">
+          <activity-year-form-input [fc]="form.controls['activity_year']" [label]="'ปีการศึกษา'"></activity-year-form-input>
+        </div>
+        <div class="col-md-7 col-12">
+          <activity-term-form-input [fc]="form.controls['activity_term']"></activity-term-form-input>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <activity-type-form-input
+            [items]="activitytype_ref"
+            [fc]="form.controls['activitytype_code']"
+          ></activity-type-form-input>
+        </div>
+        <div class="col-md-6 col-12">
+          <activity-agency-form-input
+            [items]="agency_ref"
+            [fc]="form.controls['agency_code']"
+          ></activity-agency-form-input>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-12">
+          <form-input-text [fc]="form.controls['activity_name']" [label]="'ชื่อกิจกรรม'" [is_required]="true"></form-input-text>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <form-textarea [fc]="form.controls['activity_description']" [label]="'รายละเอียดกิจกรรม'"></form-textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <form-input-text [fc]="form.controls['activity_place']" [label]="'สถานที่จัด'"></form-input-text>
+        </div>        
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label class="form-label">ภาพประกอบ</label>
+          <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            อัพโหลดภาพ 800x500 pixel <a class="cursor-pointer">คลิกที่นี่</a></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <form-input-date
+            [fc]="form.controls['activity_date_form']"
+            [label]="'วันที่เริ่มกิจกรรม'">
+          </form-input-date>
+        </div>
+        <div class="col">
+          <form-input-date
+          [fc]="form.controls['activity_date_to']"
+          [label]="'วันที่สิ้นสุดกิจกรรม'">
+        </form-input-date>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <form-input-number [fc]="form.controls['activity_hour']" [label]="'จำนวนชั่วโมง'"></form-input-number>
+        </div>
+        <div class="col-md-3">
+          <form-input-number [fc]="form.controls['activity_receive']" [label]="'จำนวนที่รับ (คน)'"></form-input-number>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col">
+              <activity-faculty-form-input [fc]="form.controls['activity_faculty']" (onClickSelect)="offcanvas.toggle('offcanvas-faculty-select')"></activity-faculty-form-input>
+        </div>
+      </div>
+
+
+<!-- <div class="row">
+  <div class="col">
+
+    <form [formGroup]="form">
+      <label class="form-label">test richtext editor</label>
+      <div class="ngxEditor__wrapper" *ngIf="editor">
+        <ngx-editor-menu [editor]="editor"> </ngx-editor-menu> -->
+
+        <!-- <ngx-editor
+          [editor]="editor"
+          [(ngModel)]="htmlContent"
+          [disabled]="false"
+          [placeholder]="'Type here...'"
+        ></ngx-editor> -->
+
+        <!-- <ngx-editor
+          [editor]="editor"
+          formControlName="activity_description"
+          [disabled]="false"
+          [placeholder]="'Type here...'"
+        ></ngx-editor> -->
+
+        <!-- <ngx-editor style="min-height:300px"
+          [editor]="editor"
+          formControlName="activity_description"
+          [disabled]="false"
+          [placeholder]="'Type here...'"
+        ></ngx-editor> -->
+
+<!-- 
+      </div>
+    </form>
+  </div>
+</div>
+
+<div [innerHTML]="form.controls['activity_description'].value"></div>
+<div [innerHTML]="htmlContent"></div> -->
+
+
+    <div class="row">
+        <div class="col-md-4">
+          <form-input-text [fc]="form.controls['activity_budget_source']" [label]="'แหล่งงบประมาณ'" [placeholder]="'ชื่อแหล่งเงิน'"></form-input-text> 
+        </div>
+        <div class="col-md-4">
+          <form-input-float [fc]="form.controls['activity_budget']" [label]="'งบประมาณที่ขอ'"></form-input-float> 
+        </div>
+        <div class="col-md-4">
+          <form-input-float [fc]="form.controls['activity_budget_paid']" [label]="'งบประมาณที่จ่ายจริง'"></form-input-float> 
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label class="form-label">เอกสารโครงการ</label>
+        <div class="alert alert-warning">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          อัพโหลดไฟล์เอกสาร (pdf,doc)<a class="cursor-pointer"> คลิกที่นี่</a></div>
+      </div>
+    </div>
+
+    <div class="row g-2 py-3">
+        <form-button-submit [bt_submit]="true" (onclick_bt_submit)="_submit()" [bt_cancle]="true" (onclick_bt_cancle)="_cancle()"></form-button-submit>
+    </div>
+  </div>
+
+
+
+</section>
+
+<!-- <div [innerHTML]="form.controls['activity_description'].value"></div> -->
+
+<!-- <section class="container">
+  <div class="row">
+    <div class="alert alert-warning">
+      {{ form.value | json }}<br />
+      Form Valid: {{ form.valid }}
+    </div>
+  </div>
+</section> -->
+
+<!-- <app-offcanvas-test [id]="offcanvas_department"></app-offcanvas-test> -->
+<!-- <offcanvas-department-select [fc]="form.controls['activity_faculty']" [items]="department_ref"></offcanvas-department-select> -->
+<offcanvas-faculty-select [fc]="form.controls['activity_faculty']" ></offcanvas-faculty-select>
+ <!-- [items]="faculty_ref" -->

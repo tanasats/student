@@ -21,7 +21,7 @@ export class ActivityService {
   constructor(private http: HttpClient) {}
 
   get httpOptions() {
-    let token = localStorage.getItem('access-token') || '';
+    //let token = localStorage.getItem('access-token') || '';
     return {
       headers: this.httpHeaders,
     };
@@ -47,18 +47,18 @@ export class ActivityService {
       // Server side error
       // console.log("Server error !!");
       if (error instanceof HttpErrorResponse) {
-        // console.log("error is HttpErrorResponse");
+         console.log("error is HttpErrorResponse",error);
         switch(error.status){
           case 0: //"Http failure response: 0 Unknown Error"
               errorMsg="เกิดข้อผิดพลาด! ในการเข้าถึงบริการ Service API";
             break;
           case 400:
               errorMsg=error.message;
+              if(error.error.message) errorMsg=error.error.message;
             break;  
           default:
               errorMsg = error.statusText;
         }
-
       } else {
           errorMsg = error;
       }
@@ -72,6 +72,17 @@ export class ActivityService {
   getall(): Observable<any> {
     return this.http
       .get(this.endpoint + 's', this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+  filter(params?:any): Observable<any> {
+    return this.http
+      .get(this.endpoint + 's', {headers: this.httpHeaders, params:params})
+      .pipe(catchError(this.handleError));
+  }
+
+  getnextseq(code:any): Observable<any> {
+    return this.http
+      .get(this.endpoint + '/nextseq/'+code, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
@@ -89,8 +100,10 @@ export class ActivityService {
 
   update(datas: any): Observable<any> {
     return this.http
-      .put(this.endpoint + '/' + datas.faculty_id, datas, this.httpOptions)
+      .put(this.endpoint + '/' + datas.activity_id, datas, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
+
+  
 
 }

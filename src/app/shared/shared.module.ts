@@ -27,8 +27,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormInputNumberComponent } from './components/form/form-input-number/form-input-number.component';
 import { FormInputFloatComponent } from './components/form/form-input-float/form-input-float.component';
-import { ActivityViewTableComponent } from './components/activity/activity-view-table/activity-view-table.component';
-import { ActivityViewTableItemComponent } from './components/activity/activity-view-table-item/activity-view-table-item.component';
 import { DialogEnrollStudentConfirmComponent } from './components/dialogs/form/dialog-enroll-student-confirm/dialog-enroll-student-confirm.component';
 import { DialogWarningConfirmComponent } from './components/dialogs/confirm/dialog-warning-confirm/dialog-warning-confirm.component';
 import { DialogTokenShowComponent } from './components/dialogs/info/dialog-token-show/dialog-token-show.component';
@@ -36,6 +34,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatTabsModule} from '@angular/material/tabs';
 import { UserViewTableComponent } from './components/user/user-view-table/user-view-table.component';
 import { UserViewTableItemComponent } from './components/user/user-view-table-item/user-view-table-item.component';
+import { FormInputFilesComponent } from './components/form/form-input-files/form-input-files.component';
+import { FileListItemComponent } from './components/listitems/file-list-item/file-list-item.component';
+import { ActivityListComponent } from './components/activity/activity-list/activity-list.component';
+import { ActivityListItemComponent } from './components/activity/activity-list-item/activity-list-item.component';
+import { PaginationLinkComponent } from './components/pagination-link/pagination-link.component';
+
 
 @NgModule({
   declarations: [
@@ -64,13 +68,16 @@ import { UserViewTableItemComponent } from './components/user/user-view-table-it
     ReadmorePipe,
     FormInputNumberComponent,
     FormInputFloatComponent,
-    ActivityViewTableComponent,
-    ActivityViewTableItemComponent,
     DialogEnrollStudentConfirmComponent,
     DialogWarningConfirmComponent,
     DialogTokenShowComponent,
     UserViewTableComponent,
     UserViewTableItemComponent,
+    FormInputFilesComponent,
+    FileListItemComponent,
+    ActivityListComponent,
+    ActivityListItemComponent,
+    PaginationLinkComponent,
     
   ],
   imports: [
@@ -83,6 +90,7 @@ import { UserViewTableItemComponent } from './components/user/user-view-table-it
     MatNativeDateModule,
     MatTooltipModule,
     MatTabsModule,
+
   ],
   exports:[
     ThaidatePipe,
@@ -104,12 +112,14 @@ import { UserViewTableItemComponent } from './components/user/user-view-table-it
     ActivityViewDetailsItemComponent,
     FormInputNumberComponent,
     FormInputFloatComponent,
-    ActivityViewTableComponent,
-    ActivityViewTableItemComponent,
     MatTooltipModule,
     MatTabsModule,
     UserViewTableComponent,
     UserViewTableItemComponent,
+    FormInputFilesComponent,
+    ActivityListComponent,
+    ActivityListItemComponent,
+    PaginationLinkComponent,
   ]
 })
 export class SharedModule { }

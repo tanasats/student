@@ -4,7 +4,11 @@ const activityController = require("../controller/activity.controller");
 const { authJwt } = require("../middleware/auth");
 
 // Read
-router.get("/activitys",/*authJwt.verifyToken,*/activityController.getall);
+// router.get("/activitys",/*authJwt.verifyToken,*/activityController.getall);
+router.get("/activitys",authJwt.verifyToken,activityController.filter);
+router.get("/activity/nextseq/:code",/*authJwt.verifyToken,*/activityController.getNextSeq);
+
+
 // router.get("/activity/filter",/*authJwt.verifyToken,*/activityController.filter);
 // router.get("/activitys/current",/*authJwt.verifyToken,*/activityController.current);
 // router.get("/activity/:id/registerusers",activityController.getRegisterUsers);
@@ -12,7 +16,7 @@ router.get("/activitys",/*authJwt.verifyToken,*/activityController.getall);
 // router.get("/activity/user/:id", activityController.getUserActivity);
 
 // Create
-router.post("/activity", /*authJwt.verifyToken,*/ activityController.create);
+router.post("/activity", authJwt.verifyToken, activityController.create);
 // Update
 router.put("/activity/:id", /*authJwt.verifyToken,*/ activityController.update);
 // Delete

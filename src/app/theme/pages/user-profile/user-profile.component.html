@@ -31,10 +31,11 @@
                 <input
                   class="form-check-input cursor-pointer"
                   type="checkbox"
+                  id={{role.role_name}}
                   [checked]="role.role_name === currentuser?.role?.role_name"
                   (click)="changerole(role.role_id)"
                 />
-                <label class="form-check-label">{{ role.role_name }} </label>
+                <label for={{role.role_name}} class="form-check-label cursor-pointer">{{ role.role_name }} </label>
               </div>
             </li>
           </ul>

@@ -21,10 +21,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxEditorModule } from 'ngx-editor';
 
 //import { AdminModule } from './features/admin/admin.module';
-import { AdminModule } from './usergroup/admin/admin.module';
-import { StudentModule } from './usergroup/student/student.module';
-import { OfficerModule } from './usergroup/officer/officer.module';
+import { AdminModule } from './userroles/admin/admin.module';
+import { StudentModule } from './userroles/student/student.module';
+import { OfficerModule } from './userroles/officer/officer.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { CookieConcentComponent } from './core/component/cookie-concent/cookie-concent.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ToasterComponent,
     ToasterContainerComponent,
     HomeComponent,
+    CookieConcentComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,8 +52,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     BrowserAnimationsModule,
     MatTooltipModule,
    
-    
-
     AdminModule,
     OfficerModule,
     StudentModule,

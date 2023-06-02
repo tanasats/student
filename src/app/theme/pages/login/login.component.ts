@@ -25,8 +25,10 @@ export class LoginComponent {
     private toaster: ToasterService
   ) {}
   public frmLogin: FormGroup = this.fb.group({
-    username: ['6310197', [Validators.required, Validators.minLength(3)]],
-    password: ['1449900889660', Validators.required],
+    // username: ['', [Validators.required, Validators.minLength(3)]],
+    // password: ['', Validators.required],
+    username: ['65010999001', [Validators.required, Validators.minLength(3)]],
+    password: ['3440600170765', Validators.required],
     // username: ['6010180', [Validators.required, Validators.minLength(3)]],
     // password: ['1449900754543', Validators.required],
   });
@@ -158,13 +160,13 @@ export class LoginComponent {
               }, 
               error:(err)=>{
                   console.log("msuauth err:",err);
-                  this.toaster.show('error', 'ไม่สามารถยืนยันตัวตนในบัญชีผู้ใช้งานมหาวิทยาลัยมหาสารคามได้ !!!',7000);
+                  this.toaster.show('error', 'username/password ไม่ถูกต้อง !',7000);
               }
             })
 
             break;
           case "1":
-            this.toaster.show('error', 'รหัสผ่านผิด !!!');
+            this.toaster.show('error', 'username/password ไม่ถูกต้อง !');
             break;
           default:
             //this.toaster.show('error', err,7000);

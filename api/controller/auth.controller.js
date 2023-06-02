@@ -61,7 +61,8 @@ exports.signin = async (req, res) => {
       }
 
       //---Authorized----
-      let token = jwt.sign({ username: user.username }, config.secret, {
+      let payload={username:user.username,user_id:user.user_id}
+      let token = jwt.sign(payload, config.secret, {
         expiresIn: config.jwtExpiration,
       });
       res.status(200).json({

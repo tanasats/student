@@ -12,7 +12,7 @@ export class FormTextareaComponent {
   @Input() label?:string="_LABEL_";
   @Input() value?:string;
   @Input() placeholder:string="";
-  @Input() rows:string="5";
+  @Input() rows:string="7";
 
 
   

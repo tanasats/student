@@ -1,0 +1,12 @@
+### เรียกทั้งหมด
+GET  http://localhost:3000/api/activitys
+
+### Pagination
+GET http://localhost:3000/api/activitys?page=10&limit=5
+
+### Pagination + filter
+GET http://localhost:3000/api/activitys?page=1&limit=5&code=A00&name=dddd
+
+
+####
+get http://localhost:3000/api/activitys

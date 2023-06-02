@@ -1,0 +1,28 @@
+<section class="container">
+
+  <section class="container">
+    <ng-container >
+        <activity-list
+        [items]="items"
+        [totalItems]="totalItems"
+        [totalPages]="totalPages"
+        [currentPage]="currentPage"
+        
+        [title]="'ข้อมูลกิจกรรม'"
+        [is_onView] = false
+        (_onView)="onView($event)"
+        [is_onEdit]=true
+        (_onEdit)="onEdit($event)"
+        [is_onDelete]=true
+        (_onDelete)="onDelete($event)"   
+        [is_onGear]=true
+        (_onGear)="onGear($event)"         
+        [is_onCreate]=true
+        (_onCreate)="onCreate()"
+        (_onPageChange)="onPageChange($event)"
+        >
+        </activity-list>
+    </ng-container>
+</section>
+
+

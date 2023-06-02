@@ -1,0 +1,174 @@
+<section class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">ข้อมูลนิสิต</h5>
+
+
+          <h6 class="card-subtitle mb-2 text-muted fs-sm">Card subtitle</h6>
+          <div class="card-text">
+            <div class="row">
+            <div class="col-lg-6 col-12 order-lg-1">
+              <img src="https://picsum.photos/id/270/800/500" class="img-fluid rounded float-end">
+            </div>  
+            <div class="col-lg-6 col-12 order-lg-2">
+              <ul class="ms-3 list-unstyled">
+                <li><span>รหัสนิสิต : </span>{{me.studentcode}}</li>
+                <li><span>ชื่อ-สกุล : </span>{{me.fullname}}</li>
+                <li><span>คณะ : </span>--</li>
+                <li><span>สาขาวิชา : </span>--</li>
+                <li><span>ระดับการศึกษา : </span>--</li>
+              </ul>
+            </div>
+
+  
+            </div>
+</div>
+          <!-- <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a> -->
+
+
+        </div> 
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">สรุปการทำกิจกรรม</h5>
+          <h6 class="card-subtitle mb-2 text-muted fs-sm">จำนวนกิจกรรมทั้งหมดที่เจ้าหน้าที่อนุมัติแล้ว</h6>
+            <div class="card-text">
+              <ul class="my-1">
+                <li>กิจกรรมตามระดับ</li>
+                <ul>
+                  <li>
+                    <div class="d-flex justify-content-between">
+                      <div>ระดับมหาวิทยาลัย</div>
+                      <div>2 กิจกรรม 6 ชั่วโมง</div>
+                    </div>                      
+                  </li>
+                  <li>
+                    <div class="d-flex justify-content-between">
+                      <div>ระดับคณะ/หน่วยงาน</div>
+                      <div>2 กิจกรรม 6 ชั่วโมง</div>
+                    </div>                      
+                  </li>
+                  <li>
+                    <div class="d-flex justify-content-between">
+                      <div>ระดับสโมสร/ชมรม</div>
+                      <div>2 กิจกรรม 6 ชั่วโมง</div>
+                    </div>                      
+                  </li>                    
+
+                </ul>
+                <li>กิจกรรมรายด้าน</li>
+                  <ul>
+                    <li>
+                      <div class="d-flex justify-content-between">
+                        <div>ด้านนิสิตสัมพันธ์และวิชาการ</div>
+                        <div>2 กิจกรรม 6 ชั่วโมง</div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="d-flex justify-content-between">
+                        <div>ด้านกีฬา</div>
+                        <div>2 กิจกรรม 6 ชั่วโมง</div>
+                      </div>                      
+                    </li>
+                    <li>
+                      <div class="d-flex justify-content-between">
+                        <div>ด้านบำเพ็ญประโยชน์</div>
+                        <div>2 กิจกรรม 6 ชั่วโมง</div>
+                      </div>                      
+                    </li>
+                    <li>
+                      <div class="d-flex justify-content-between">
+                        <div>ด้านศิลปวัฒนธรรม</div>
+                        <div>2 กิจกรรม 6 ชั่วโมง</div>
+                      </div>                      
+                    </li>                                        
+                  </ul>
+              </ul>
+            </div>
+          
+          <div class="d-flex justify-content-end"><a href="#" class="card-link">ตรวจสอบจบ</a></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="container">
+  <div class="row">
+    <div class="col">
+
+      <!-- <div class="row d-flex justify-content-between">
+        <div class="col-md-auto col-sm-12 order-md-1 order-sm-1">
+          <h5>รายการกิจกรรมของฉัน</h5>
+        </div>
+      </div> -->
+
+      <activity-list
+      [items]="activitys"
+      [title]="'กิจกรรมที่ลงทะเบียน'"
+      [is_onQRcode]="true"
+      (_onQRcode)="onQRcode($event)"
+      [is_onView]="true"
+      (_onView)="onView($event)"
+      ></activity-list>
+
+
+
+
+      <!-- <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col"style="width:1px">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table> -->
+
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="container">
+
+  <div class="more-option">
+    <i class="bi bi-three-dots-vertical cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" ><i class="bi bi-eye"></i> ดูข้อมูลรายการ</a></li>
+        <li><a class="dropdown-item" ><i class="bi bi-paperclip"></i> ดูไฟล์หนังสือนำส่ง</a></li>
+        <li><a class="dropdown-item" ><i class="bi bi-geo-alt"></i> ติดตามหนังสือ</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" ><i class="bi bi-trash"></i> ลบข้อมูลรายการ</a></li>
+        <li><a class="dropdown-item" ><i class="bi bi-x-lg"></i> ยกเลิกรายการ</a></li>
+    </ul>
+  </div>
+
+</section> -->

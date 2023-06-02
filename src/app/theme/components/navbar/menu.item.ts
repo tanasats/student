@@ -66,40 +66,48 @@ export const admin_menu_items: IMenuItem[] = [
       },
     ],
   },
-  // {
-  //   path: '',
-  //   title: 'ทดสอบ',
-  //   icon: 'bi bi-patch-check',
-  //   class: '',
-  //   extralink: false,
-  //   submenu: [
-  //     {
-  //       path: 'test',
-  //       title: 'Test UI',
-  //       icon: 'bi bi-patch-check',
-  //       class: '',
-  //       extralink: false,
-  //       submenu: [],
-  //     },
-  //     {
-  //       path: 'testchart',
-  //       title: 'Test Chart',
-  //       icon: 'bi bi-patch-check',
-  //       class: '',
-  //       extralink: false,
-  //       submenu: [],
-  //     },
-  //     {
-  //       path: '404',
-  //       title: 'Test 404',
-  //       icon: 'bi bi-patch-check',
-  //       class: '',
-  //       extralink: false,
-  //       submenu: [],
-  //     },
+  {
+    path: '',
+    title: 'ทดสอบ',
+    icon: 'bi bi-patch-check',
+    class: '',
+    extralink: false,
+    submenu: [
+      {
+        path: 'test',
+        title: 'Test UI',
+        icon: 'bi bi-patch-check',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
+      {
+        path: 'testchart',
+        title: 'Test Chart',
+        icon: 'bi bi-patch-check',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
+      {
+        path: 'testupload',
+        title: 'Test Upload',
+        icon: 'bi bi-patch-check',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },      
+      {
+        path: '404',
+        title: 'Test 404',
+        icon: 'bi bi-patch-check',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
 
-  //   ],
-  // },
+    ],
+  },
 ];
 
 export const student_menu_items: IMenuItem[] = [

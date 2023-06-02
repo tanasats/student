@@ -1,0 +1,25 @@
+<section class="container">
+  <p>test-upload works!</p>
+
+    <input
+      class="form-control"
+      type="file"
+      (change)="fileChangeEvent($event)"
+      placeholder="Upload file..."
+    />
+    <button class="btn btn-success" type="button" (click)="onSubmitUpload()">
+      Upload
+    </button>
+
+  <hr />
+  <div>name : {{ fileToUpload.name }}</div>
+  <div>type : {{ fileToUpload.type }}</div>
+
+</section>
+<section class="container">
+    <div class="row">
+        <label for="" class="form-label">image:</label>
+        <input type="file" class="form-control" (input)="fileChoosen($event)">
+        <button class="btn btn-primary" (click)="submitPhoto()">submit</button>
+    </div>
+</section>

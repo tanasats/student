@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-between mt-2"><!-- align-items-center -->
+    <div class="fst-italic fs-sm text-muted">พบ {{totalItems}} รายการ แสดงหน้าที่ {{currentPage}} จาก {{totalPages}} </div>
+    <nav aria-label="Page navigation ">
+        <ul class="pagination pagination-sm">
+          <li class="page-item" [ngClass]="{'disabled':currentPage==1}" >
+            <a class="page-link" [ngClass]="{'bg-light':currentPage==1}" tabindex="-1"  (click)="_onPageChange.emit(currentPage-1)"><i class="bi bi-chevron-left">&nbsp;</i></a>
+          </li>
+            <ng-container *ngFor="let p of [].constructor(totalPages); let i = index">
+          <li class="page-item"><a class="page-link" [ngClass]="{'active':currentPage==(i+1)}" (click)="_onPageChange.emit(i+1)">{{i+1}}</a></li>
+          </ng-container>
+          <li class="page-item" [ngClass]="{'disabled':currentPage==totalPages}">
+            <a class="page-link" [ngClass]="{'bg-light':currentPage==totalPages}" (click)="_onPageChange.emit(currentPage+1)"><i class="bi bi-chevron-right">&nbsp;</i></a>
+          </li>
+        </ul>
+    </nav>
+</div>

@@ -1,17 +1,49 @@
 const activityModel = require("../model/activity.model");
 
-exports.getall = async (req,res) => {
-  activityModel.getall()
-  .then(([row]) => {
-    res.status(200).json(row);
-  })
-  .catch((error) => {
-    console.log(error);
-    res.status(400).send(error);
-  });
-}
+exports.getall = async (req, res) => {
+  activityModel
+    .getall()
+    .then(([row]) => {
+      res.status(200).json(row);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(200).json(row);
+    });
+};
+
+// exports.paging = async (req,res) => {
+//   activityModel.rowcount().then((rows)=>{
+//     res.status(200).json(rows);
+//   }).catch((err)=>{
+//     console.log(err);
+//     res.status(400).send(err)
+//   })
+// }
 
 exports.filter = async (req, res) => {
+  console.log("userId:",req.userId)
+  let page = parseInt(req.query.page)||1;
+  let limit = parseInt(req.query.limit)||9999999;
+  let code = req.query.code||'';
+  let name = req.query.name||'';
+  // let status = req.query.status||'';
+  if(code.length<3) code='';
+  if(name.length<3) name='';
+
+  activityModel
+    .filter({ page:page, limit: limit, code:code, name:name})
+    .then((rows) => {
+      //console.log(rows);
+      res.status(200).send(rows);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).send(err);
+    });
+};
+
+exports.oldfilter = async (req, res) => {
   try {
     let page = parseInt(req.query.page) || 1;
     let pagesize = parseInt(req.query.pagesize) || 10;
@@ -37,7 +69,6 @@ exports.filter = async (req, res) => {
   }
 };
 
-
 exports.current = async (req, res) => {
   try {
     let page = parseInt(req.query.page) || 1;
@@ -47,7 +78,7 @@ exports.current = async (req, res) => {
         page: page,
         pagesize: pagesize,
       }),
-      activityModel.countCurrent({ keyword: '' }),
+      activityModel.countCurrent({ keyword: "" }),
     ]);
     return res.status(200).json({
       currentpage: page,
@@ -90,27 +121,43 @@ exports.delete = (req, res) => {
   }
 };
 
-exports.getRegisterUsers = (req,res) => {
+exports.getRegisterUsers = (req, res) => {
   const id = req.params.id;
-  activityModel.getRegisterUsers({id:id})
-  .then(([row]) =>{
-    res.status(200).json(row);
-  })
-  .catch((error)=>{
-    res.status(400).send(error);
-  })
+  activityModel
+    .getRegisterUsers({ id: id })
+    .then(([row]) => {
+      res.status(200).json(row);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    });
 };
 
-exports.getUserActivity = (req,res) =>{
+exports.getUserActivity = (req, res) => {
   const id = req.params.id;
-  activityModel.getuseractivity({id:id})
-  .then(([row]) =>{
-    console.log(row);
-    res.status(200).json(row);
-  })
-  .catch((error) => {
-    res.status(400).send(error);
-  });
+  activityModel
+    .getuseractivity({ id: id })
+    .then(([row]) => {
+      console.log(row);
+      res.status(200).json(row);
+    })
+    .catch((error) => {
+      console.log(row);
+      res.status(400).send(error);
+    });
+};
+
+exports.getNextSeq = (req, res) => {
+  const code = req.params.code;
+  activityModel
+    .getnextseq({ code: code })
+    .then(([[row]]) => {
+      row.max;
+      res.status(200).json(row);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    });
 };
 
 exports.update = async (req, res) => {
@@ -133,6 +180,7 @@ exports.update = async (req, res) => {
         // if (error.message) {
         //   return res.status(400).send({ message: error.message });
         // }
+        if (error.sqlMessage) error.sqlMessage;
         res.status(400).send(error);
       });
   } else {
@@ -143,9 +191,11 @@ exports.update = async (req, res) => {
 exports.create = async (req, res) => {
   console.log(req.body);
   const datas = req.body;
-  datas.cdate = new Date();
-  datas.mdate = new Date();
-  console.log();
+  const owner = req.user_id;
+  console.log("create owner:",owner)
+  datas.cowner = owner;
+  datas.mowner = owner;  
+
   if (req.body.activity_name) {
     console.log("data:", datas);
     activityModel
@@ -177,7 +227,7 @@ exports.upload = async (req, res) => {
         //res.status(401).send("Upload failed!");// เขียน DB ไม่ได้ ต้องกลับไปลบ ไฟล์ออกด้วย
       } else {
         activityModel
-          .updatePoster({ 
+          .updatePoster({
             id: req.body.id,
             filename: req.file.originalname,
             caption: req.body.caption,
@@ -185,12 +235,10 @@ exports.upload = async (req, res) => {
           .then(([row]) => {
             console.log("updatePoster()->result:", row);
             if (row.affectedRows == 1) {
-              res
-                .status(200)
-                .send({
-                  message:
-                    "Uploaded the file successfully: " + req.file.originalname,
-                });
+              res.status(200).send({
+                message:
+                  "Uploaded the file successfully: " + req.file.originalname,
+              });
             } else {
               res.status(401).send("Upload failed!"); // เขียน DB ไม่ได้ ต้องกลับไปลบ ไฟล์ออกด้วย
             }
@@ -201,7 +249,6 @@ exports.upload = async (req, res) => {
           });
       }
     });
-
 
     //await uploadFile(req, res);
     // if (req.file == undefined) {
@@ -220,7 +267,6 @@ exports.upload = async (req, res) => {
     //   console.log(error);
     //   res.status(400).send(error);
     // })
-
   } catch (err) {
     console.log(`${err}`);
     res.status(500).send({
