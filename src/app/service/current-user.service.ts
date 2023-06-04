@@ -56,6 +56,7 @@ export class CurrentUserService{
                     usertype: res.usertype,
                     roles: res.roles,
                   });
+                  
                 }
               }
             })

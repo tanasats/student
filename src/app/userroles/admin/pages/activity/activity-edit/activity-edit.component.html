@@ -1,8 +1,7 @@
 <section class="container">
-
   <div class="mb-2">
     <div>
-      <h4>ข้อมูลกิจกรรม</h4>
+      <h4>ข้อมูลกิจกรรม</h4>{{form.controls['activity_id'].value}}
     </div>
     <hr>
   
@@ -21,16 +20,16 @@
 
       <div class="row">
         <div class="col-md-6 col-12">
-          <activity-type-form-input
-            [items]="activitytype_ref"
-            [fc]="form.controls['activitytype_code']"
-          ></activity-type-form-input>
-        </div>
-        <div class="col-md-6 col-12">
           <activity-agency-form-input
             [items]="agency_ref"
             [fc]="form.controls['agency_code']"
           ></activity-agency-form-input>
+        </div>
+        <div class="col-md-6 col-12">
+          <activity-type-form-input
+            [items]="activitytype_ref"
+            [fc]="form.controls['activitytype_code']"
+          ></activity-type-form-input>
         </div>
       </div>
 
@@ -57,7 +56,7 @@
         <div class="col">
           <label class="form-label">ภาพประกอบ</label>
           <div class="alert alert-warning">
-            <i class="bi bi-exclamation-triangle me-2"></i>
+            <i class="bi bi-image me-2"></i>
             อัพโหลดภาพ 800x500 pixel <a class="cursor-pointer">คลิกที่นี่</a></div>
         </div>
       </div>
@@ -65,7 +64,7 @@
       <div class="row">
         <div class="col">
           <form-input-date
-            [fc]="form.controls['activity_date_form']"
+            [fc]="form.controls['activity_date_from']"
             [label]="'วันที่เริ่มกิจกรรม'">
           </form-input-date>
         </div>
@@ -86,53 +85,11 @@
         </div>
       </div>
 
-
-
       <div class="row">
         <div class="col">
               <activity-faculty-form-input [fc]="form.controls['activity_faculty']" (onClickSelect)="offcanvas.toggle('offcanvas-faculty-select')"></activity-faculty-form-input>
         </div>
       </div>
-
-
-<!-- <div class="row">
-  <div class="col">
-
-    <form [formGroup]="form">
-      <label class="form-label">test richtext editor</label>
-      <div class="ngxEditor__wrapper" *ngIf="editor">
-        <ngx-editor-menu [editor]="editor"> </ngx-editor-menu> -->
-
-        <!-- <ngx-editor
-          [editor]="editor"
-          [(ngModel)]="htmlContent"
-          [disabled]="false"
-          [placeholder]="'Type here...'"
-        ></ngx-editor> -->
-
-        <!-- <ngx-editor
-          [editor]="editor"
-          formControlName="activity_description"
-          [disabled]="false"
-          [placeholder]="'Type here...'"
-        ></ngx-editor> -->
-
-        <!-- <ngx-editor style="min-height:300px"
-          [editor]="editor"
-          formControlName="activity_description"
-          [disabled]="false"
-          [placeholder]="'Type here...'"
-        ></ngx-editor> -->
-
-<!-- 
-      </div>
-    </form>
-  </div>
-</div>
-
-<div [innerHTML]="form.controls['activity_description'].value"></div>
-<div [innerHTML]="htmlContent"></div> -->
-
 
     <div class="row">
         <div class="col-md-4">
@@ -146,36 +103,28 @@
         </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <label class="form-label">เอกสารโครงการ</label>
-        <div class="alert alert-warning">
-          <i class="bi bi-exclamation-triangle me-2"></i>
-          อัพโหลดไฟล์เอกสาร (pdf,doc)<a class="cursor-pointer"> คลิกที่นี่</a></div>
-      </div>
-    </div>
+
+    <!-- <form-input-files
+    [files]="docfile_list"
+    [title]="'เอกสารโครงการ'"
+    [user_id]="currentuser.user_id"
+    [table_name]="'activity'"
+    [table_id]="form.controls['activity_id'].value"
+    (onFileSave)="_onFileSave($event)"
+    
+    ></form-input-files> -->
+
 
     <div class="row g-2 py-3">
-        <form-button-submit [bt_submit]="true" (onclick_bt_submit)="_submit()" [bt_cancle]="true" (onclick_bt_cancle)="_cancle()"></form-button-submit>
+        <form-button-submit [bt_submit]="true" (onclick_bt_submit)="_onSubmit()" [bt_cancle]="true" (onclick_bt_cancle)="_onCancle()"></form-button-submit>
     </div>
   </div>
-
 
 
 </section>
 
-<!-- <div [innerHTML]="form.controls['activity_description'].value"></div> -->
-
-<!-- <section class="container">
-  <div class="row">
-    <div class="alert alert-warning">
-      {{ form.value | json }}<br />
-      Form Valid: {{ form.valid }}
-    </div>
-  </div>
-</section> -->
-
+{{form.value|json}}
 <!-- <app-offcanvas-test [id]="offcanvas_department"></app-offcanvas-test> -->
 <!-- <offcanvas-department-select [fc]="form.controls['activity_faculty']" [items]="department_ref"></offcanvas-department-select> -->
 <offcanvas-faculty-select [fc]="form.controls['activity_faculty']" ></offcanvas-faculty-select>
- <!-- [items]="faculty_ref" -->
+ <!-- [items]="faculty_ref" --> 

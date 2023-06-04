@@ -39,7 +39,8 @@ import { FileListItemComponent } from './components/listitems/file-list-item/fil
 import { ActivityListComponent } from './components/activity/activity-list/activity-list.component';
 import { ActivityListItemComponent } from './components/activity/activity-list-item/activity-list-item.component';
 import { PaginationLinkComponent } from './components/pagination-link/pagination-link.component';
-
+import { QRCodeModule } from 'angularx-qrcode';
+import { FileDescriptionComponent } from './components/dialogs/form/file-description/file-description.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { PaginationLinkComponent } from './components/pagination-link/pagination
     ActivityListComponent,
     ActivityListItemComponent,
     PaginationLinkComponent,
+    FileDescriptionComponent,
     
   ],
   imports: [
@@ -90,6 +92,7 @@ import { PaginationLinkComponent } from './components/pagination-link/pagination
     MatNativeDateModule,
     MatTooltipModule,
     MatTabsModule,
+    QRCodeModule,
 
   ],
   exports:[

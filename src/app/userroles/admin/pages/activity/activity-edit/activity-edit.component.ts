@@ -7,6 +7,7 @@ import { ActivitytypeService } from 'src/app/service/activitytype.service';
 import { AgencyService } from 'src/app/service/agency.service';
 import { FacultyService } from 'src/app/service/faculty.service';
 import { OffcanvasService } from 'src/app/service/offcanvas.service';
+import { ToasterService } from 'src/app/service/toaster/toaster.service';
 
 @Component({
   selector: 'app-activity-edit',
@@ -32,6 +33,7 @@ export class ActivityEditComponent implements OnInit {
     private facultyservice:FacultyService,
     private agencyservice:AgencyService,
     private activitytypeservice:ActivitytypeService,
+    private toaster:ToasterService
     
   ){
     this.form = this.fb.group({
@@ -42,18 +44,18 @@ export class ActivityEditComponent implements OnInit {
       agency_code:[null, [Validators.required]],
       activitytype_code:  [null, [Validators.required]], 
       activity_name: [null, [Validators.required]],      
-      activity_description: [null, [Validators.required]],
-      activity_date_form: [null, [Validators.required]],
-      activity_date_to:[null,[Validators.required]],
-      activity_place: [null, [Validators.required]],
-      activity_hour: [null,[Validators.required]],
-      activity_receive: [null, [Validators.required]],
-      activity_faculty:[null,[Validators.required]],
+      activity_description: [null, []],
+      activity_date_from: [null, []],
+      activity_date_to:[null,[]],
+      activity_place: [null, []],
+      activity_hour: [null,[]],
+      activity_receive: [null, []],
+      activity_faculty:[null,[]],
       activity_picture: [null, []],
       activity_status: [null, []],
-      activity_budget_source: [null, [Validators.required]],
-      activity_budget: [null, [Validators.required]],
-      activity_budget_paid: [null, [Validators.required]],
+      activity_budget_source: [null, []],
+      activity_budget: [null, []],
+      activity_budget_paid: [null, []],
     }) as unknown as IActivityFormGroup;
   }//constructor
 
@@ -67,6 +69,11 @@ export class ActivityEditComponent implements OnInit {
     this.item.activity_faculty = JSON.parse(this.item.activity_faculty);
     this.faculty_ref=this.item.activity_faculty;
     this.form.patchValue(this.item);
+   
+    //this.form.controls['activity_date_from'].setValue(this.item.activity_date_from.substr(0,10))
+    //this.form.controls['activity_date_to'].setValue(this.item.activity_date_to.substr(0,10))
+    
+    //this.form.controls['activity_date_from'].setValue('')
     
 
   }
@@ -107,10 +114,22 @@ export class ActivityEditComponent implements OnInit {
       },
     });     
   }
-  _submit(){
+  _onSubmit(){
+    let datas = this.form.getRawValue();
+    datas.activity_faculty = JSON.stringify(datas.activity_faculty);
 
+    this.activityservice.update(datas).subscribe({
+      next:(res)=>{
+        console.log("update activity res:",res);
+        this.toaster.show("success","บันทึกข้อมูลเรียบร้อย");
+      },
+      error:(err)=>{
+        console.log("update activity err:",err);
+        this.toaster.show("error","ผิดพลาด! "+err);
+      }
+    })
   }
-  _cancle(){
+  _onCancle(){
 
   }
 }

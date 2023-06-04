@@ -2,27 +2,34 @@ const uploadFile = require("../model/uploadfile.model");
 const fs = require("fs");
 const baseUrl = "http://localhost:3000/api/file/";
 
+const docfileModel = require("../model/docfile.model");
+
 const upload = async (req, res) => {
   console.log("upload.controller");
-  console.log(req.files);
+  console.log("req.body.description:", req.body.description);
   try {
     await uploadFile(req, res);
-    if (req.file == undefined) {
-      return res.status(400).send({ message: "Please upload a file!" });
-    }
-    //console.log(req.file); //<<-- file uploaded
+    //---After file Uploaded success----//
+    //---get field in form
+    console.log("req.files.file: ", req.files.file);
+    console.log("req.body.description after uploadfle:", req.body.description);
+
     res.status(200).json({
       status: "success",
       message: "File created successfully!!",
+      file: {
+        filename: req.files.file[0].filename,
+        mimetype: req.files.file[0].mimetype,
+        size: req.files.file[0].size,
+      },
     });
     //.send({  message: "Uploaded the file successfully: "+req.file.originalname,    });
-
   } catch (err) {
     if (err.code == "LIMIT_FILE_SIZE") {
       return res.status(500).send({
         //status: "error",
         message: "File size cannot be larger than 2MB!",
-      }); 
+      });
     }
     res.status(500).send({
       //message: `Could not upload the file: ${req.file.originalname}. ${err}`,
@@ -66,8 +73,69 @@ const download = (req, res) => {
   });
 };
 
+const docfileUpload = async (req, res) => {
+  console.log("docfileUpload.controller");
+  try {
+    await uploadFile(req, res);
+    //---After file Uploaded success----//
+    //---get field in form
+    // console.log("req.files.file: ",req.files.file);
+    // console.log("docfile_title:",req.body.docfile_title);
+    // console.log("docfile_description:",req.body.docfile_description);
+    // console.log("docfile_filename:",req.files.file[0].filename);
+    // console.log("docfile_filetype:",req.files.file[0].mimetype);
+    const docfile_datas = {
+      docfile_id: null,
+      docfile_title: req.body.docfile_title,
+      docfile_description: req.body.docfile_description,
+      docfile_filename: req.files.file[0].filename,
+      docfile_filetype: req.files.file[0].mimetype,
+      docfile_ref_user_id: 1,
+      docfile_ref_table_name: "activity",
+      docfile_ref_table_id: 1,
+    };
+    console.log(docfile_datas);
+
+    docfileModel
+      .create({datas:docfile_datas})
+      .then(([row]) => {
+        if (row.affectedRows == 1) {
+          // res.status(200).json(row);
+          res.status(200).json({
+            status: "success",
+            message: "File created successfully!!",
+            file: {
+              filename: req.files.file[0].filename,
+              mimetype: req.files.file[0].mimetype,
+              size: req.files.file[0].size,
+            },
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        res.status(400).send(error);
+      });
+
+    //.send({  message: "Uploaded the file successfully: "+req.file.originalname,    });
+  } catch (err) {
+    if (err.code == "LIMIT_FILE_SIZE") {
+      return res.status(500).send({
+        //status: "error",
+        message: "File size cannot be larger than 2MB!",
+      });
+    }
+    res.status(500).send({
+      //message: `Could not upload the file: ${req.file.originalname}. ${err}`,
+      //status: "error",
+      message: `Could not upload the file:  ${err}`,
+    });
+  }
+};
+
 module.exports = {
   upload,
   getListFiles,
   download,
+  docfileUpload,
 };

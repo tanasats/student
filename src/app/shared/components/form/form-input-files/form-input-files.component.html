@@ -1,11 +1,11 @@
 <div>
-    <div><input type="file" [id]="uniqueid" (change)="_fileChange($event)" /></div> 
+    <div><input #inputFile hidden type="file" [id]="uniqueid" (change)="_fileChange($event)" /></div> 
   <label class="form-label">{{ title }}</label>
-  <ng-container *ngIf="files.value; else elseTemplate">
-    <file-list-item *ngFor="let file of files.value" 
+  <ng-container *ngIf="files.length>0; else elseTemplate">
+    <file-list-item *ngFor="let file of files" 
     [file]="file"
     ></file-list-item>
-    <div class="ps-3 fs-sm">+ แนบไฟล์เพิ่ม <label class="cursor-pointer text-primary" [for]="uniqueid">คลิกที่นี่</label></div>
+    <div class="ps-3">+ แนบไฟล์เพิ่ม <label class="cursor-pointer text-primary" [for]="uniqueid">คลิกที่นี่</label></div>
   </ng-container>
   <ng-template #elseTemplate>
     <div class="alert alert-warning">

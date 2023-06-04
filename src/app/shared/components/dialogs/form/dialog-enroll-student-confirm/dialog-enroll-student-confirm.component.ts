@@ -39,7 +39,8 @@ export class DialogEnrollStudentConfirmComponent {
     this.dialogRef.close(false);
   }
 
-  public _save(){
+  _save(){
+    console.log(this.fg.getRawValue());
     if (this.fg.valid) {
       this.dialogRef.close(this.fg.value);
     }

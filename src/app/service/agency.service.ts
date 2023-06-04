@@ -80,7 +80,7 @@ export class AgencyService {
 
   update(datas: any): Observable<any> {
     return this.http
-      .put(this.endpoint + '/' + datas.faculty_id, datas, this.httpOptions)
+      .put(this.endpoint + '/' + datas.agency_id, datas, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

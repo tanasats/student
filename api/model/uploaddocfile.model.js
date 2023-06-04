@@ -5,7 +5,7 @@ const maxSize = 5 * 1024 * 1024;
 // Multer Storage
 let multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, __basedir + "/uploads/");
+    cb(null, __basedir + "/uploads/docfiles/");
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
@@ -16,9 +16,6 @@ let multerStorage = multer.diskStorage({
 const multerFilter = (req, file, cb) => {
   if (
     file.mimetype == "application/pdf" ||
-    file.mimetype == "image/png" ||
-    file.mimetype == "image/jpeg" ||
-    file.mimetype == "image/jpg" ||
     file.mimetype ==
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
   ) {
@@ -28,7 +25,7 @@ const multerFilter = (req, file, cb) => {
   }
 };
 
-let uploadFile = multer({
+let uploadDocFile = multer({
   storage: multerStorage,
   fileFilter: multerFilter,
   limits: { fileSize: maxSize },
@@ -37,5 +34,5 @@ let uploadFile = multer({
 
 //const uploadavatar = multer().single('avatar')
 
-let uploadFileMiddleware = util.promisify(uploadFile);
-module.exports = uploadFileMiddleware;
+let uploadDocFileMiddleware = util.promisify(uploadDocFile);
+module.exports = uploadDocFileMiddleware;

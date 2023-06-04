@@ -1,5 +1,4 @@
 <section class="container">
-{{form.value|json}}
   <div class="mb-2">
     <div>
       <h4>ข้อมูลกิจกรรม</h4>{{form.controls['activity_id'].value}}
@@ -86,53 +85,11 @@
         </div>
       </div>
 
-
-
       <div class="row">
         <div class="col">
               <activity-faculty-form-input [fc]="form.controls['activity_faculty']" (onClickSelect)="offcanvas.toggle('offcanvas-faculty-select')"></activity-faculty-form-input>
         </div>
       </div>
-
-
-<!-- <div class="row">
-  <div class="col">
-
-    <form [formGroup]="form">
-      <label class="form-label">test richtext editor</label>
-      <div class="ngxEditor__wrapper" *ngIf="editor">
-        <ngx-editor-menu [editor]="editor"> </ngx-editor-menu> -->
-
-        <!-- <ngx-editor
-          [editor]="editor"
-          [(ngModel)]="htmlContent"
-          [disabled]="false"
-          [placeholder]="'Type here...'"
-        ></ngx-editor> -->
-
-        <!-- <ngx-editor
-          [editor]="editor"
-          formControlName="activity_description"
-          [disabled]="false"
-          [placeholder]="'Type here...'"
-        ></ngx-editor> -->
-
-        <!-- <ngx-editor style="min-height:300px"
-          [editor]="editor"
-          formControlName="activity_description"
-          [disabled]="false"
-          [placeholder]="'Type here...'"
-        ></ngx-editor> -->
-
-<!-- 
-      </div>
-    </form>
-  </div>
-</div>
-
-<div [innerHTML]="form.controls['activity_description'].value"></div>
-<div [innerHTML]="htmlContent"></div> -->
-
 
     <div class="row">
         <div class="col-md-4">
@@ -146,21 +103,15 @@
         </div>
     </div>
 
-    <!-- <div class="row">
-      <div class="col">
-        <label class="form-label">เอกสารโครงการ</label>
-        <div class="alert alert-warning">
-          <i class="bi bi-paperclip me-2"></i>
-          อัพโหลดไฟล์เอกสาร (pdf,doc)<a class="cursor-pointer"> คลิกที่นี่</a></div>
-      </div>
-    </div> -->
 
-
-<!-- [files]="[{name:'1111.pdf',type:'pdf',size:55566,caption:'เอกสารโครงการ +ลงนาม'},{name:'222.docx',type:'docx',size:12345,caption:''}]" -->
-    
     <form-input-files
-    [files]="form.controls['activity_docfiles']"
+    [files]="docfile_list"
     [title]="'เอกสารโครงการ'"
+    [user_id]="currentuser.user_id"
+    [table_name]="'activity'"
+    [table_id]="form.controls['activity_id'].value"
+    (onFileSave)="_onFileSave($event)"
+    
     ></form-input-files>
 
 
@@ -169,7 +120,9 @@
     </div>
   </div>
 
-
+<div class="alert alert-info">
+  {{currentuser|json}}
+</div>
 
 </section>
 

@@ -55,6 +55,9 @@ const fileRouter = require("./route/file.route");
 app.use("/api",fileRouter);
 const uploadImageRouter = require("./route/uploadimage.route");
 app.use("/api",uploadImageRouter);
+const docfileRouter = require("./route/docfile.route");
+app.use("/api",docfileRouter);
+
 
 // app.post('/api/v1/upload',(req,res)=>{
 // 	console.log(req.body);

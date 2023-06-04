@@ -27,6 +27,9 @@ import { OfficerModule } from './userroles/officer/officer.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { CookieConcentComponent } from './core/component/cookie-concent/cookie-concent.component';
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +54,7 @@ import { CookieConcentComponent } from './core/component/cookie-concent/cookie-c
     NgxEditorModule,
     BrowserAnimationsModule,
     MatTooltipModule,
+
    
     AdminModule,
     OfficerModule,

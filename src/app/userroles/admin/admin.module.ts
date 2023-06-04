@@ -11,6 +11,7 @@ import { ActivityCreateComponent } from './pages/activity/activity-create/activi
 import { ActivityEditComponent } from './pages/activity/activity-edit/activity-edit.component';
 import { ActivityDetailComponent } from './pages/activity/activity-detail/activity-detail.component';
 import { ActivityManageComponent } from './pages/activity/activity-manage/activity-manage.component';
+import { UserComponent } from './pages/user/user.component';
 // import {MatTooltipModule} from '@angular/material/tooltip';
 // import { MatDialogModule } from '@angular/material/dialog';
 // import { MatNativeDateModule } from '@angular/material/core';
@@ -25,6 +26,7 @@ import { ActivityManageComponent } from './pages/activity/activity-manage/activi
     ActivityEditComponent,
     ActivityDetailComponent,
     ActivityManageComponent,
+    UserComponent,
   ],
   imports: [
     CommonModule,

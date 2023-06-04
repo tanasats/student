@@ -12,8 +12,12 @@ export class FormInputDateComponent {
   @Input() is_draft:boolean=false;
   @Input() label?:string = "_LABEL_";
 
-  constructor() { }
-  ngOnInit(): void {}
+  constructor() {}
+  ngOnInit(): void {
+    if(this.fc){
+      //this.fc.value=this.fc.value.substr(0,10);
+    }
+  }
 
   get validateClass(): any {
     return {

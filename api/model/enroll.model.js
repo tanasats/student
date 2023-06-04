@@ -24,6 +24,9 @@ class _class {
     return db.execute(sql);
   }
 
+
+  
+
   useractivity(user_id,activity_id){
     let sql = db.format("SELECT * FROM enroll WHERE user_id = ? and activity_id = ?", [user_id,activity_id]);
     return db.execute(sql);

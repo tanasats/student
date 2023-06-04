@@ -10,6 +10,8 @@ import { ToasterService } from 'src/app/service/toaster/toaster.service';
 import { AgencyService } from 'src/app/service/agency.service';
 import { ActivitytypeService } from 'src/app/service/activitytype.service';
 import { CurrentUserService } from 'src/app/service/current-user.service';
+import { ICurrentuser } from 'src/app/core/interface/currentuser';
+import { DocfileService } from 'src/app/service/docfile.service';
 
 @Component({
   selector: 'app-activity-create',
@@ -22,6 +24,9 @@ export class ActivityCreateComponent implements OnInit {
   //public faculty_ref:any;
   public agency_ref: any;
   public activitytype_ref: any;
+  public currentuser!: ICurrentuser;
+  public docfile_list:any=[];
+
 
   // editor: Editor | undefined;
   // toolbar: Toolbar = [
@@ -78,10 +83,12 @@ export class ActivityCreateComponent implements OnInit {
     private currentuserservice: CurrentUserService,
     private activityservice: ActivityService,
     private agencyservice: AgencyService,
+    private docfileservice: DocfileService,
     private activitytypeservice: ActivitytypeService,
     public offcanvas: OffcanvasService,
     public toaster: ToasterService
   ) {
+
     this.form = this.fb.group({
       activity_id: [null, []],
       activity_code: [null, []],
@@ -103,7 +110,7 @@ export class ActivityCreateComponent implements OnInit {
       activity_budget_source: [null, []],
       activity_budget: [null, []],
       activity_budget_paid: [null, []],
-      activity_docfiles: [null, []],
+      //activity_docfiles: [null, []],
       cowner: [null, []],
       mowner: [null, []],
     }) as unknown as IActivityFormGroup;
@@ -111,6 +118,8 @@ export class ActivityCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this._load_ref_data();
+    //this._load_docfile();
+    
     // this.editor = new Editor();
     // this.form.controls['activity_year'].valueChanges.subscribe((x) => {
     //   this.genActivityCode();
@@ -130,6 +139,9 @@ export class ActivityCreateComponent implements OnInit {
     // this.form.controls['activity_description'].valueChanges.subscribe((x) => {
     //   this.genActivityCode();
     // });
+  }
+  ngAfterContentInit(){
+    this.currentuser = this.currentuserservice.getdata;
   }
 
   _load_ref_data() {
@@ -159,6 +171,28 @@ export class ActivityCreateComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+  
+  _onFileSave(event:any){
+    console.log("onfileSave event:",event);
+    if(event){
+     this._load_docfile();
+    }
+  }
+
+  _load_docfile() {
+    this.currentuser=this.currentuserservice.getdata;
+    this.docfileservice
+      .getbytable('activity',this.form.controls['activity_id'].value, this.currentuser.user_id)
+      .subscribe({
+        next: (res) => {
+          console.log("load_docfile res:",res)
+            this.docfile_list=res;
+        },
+        error: (err) => { 
+          console.log("load_docfile err:",err);
+        },
+      });
   }
 
   _onCancle() {
@@ -275,9 +309,9 @@ export class ActivityCreateComponent implements OnInit {
       if (this.form.valid && this.form.controls['activity_id'].value == null) {
         let datas = this.form.getRawValue();
         datas.activity_faculty = JSON.stringify(datas.activity_faculty);
-        let user = this.currentuserservice.getdata;
-        datas.cowner = user.user_id;
-        datas.mowner = user.user_id;
+        //let user = this.currentuserservice.getdata;
+        datas.cowner = this.currentuser.user_id;
+        datas.mowner = this.currentuser.user_id;
         this.activityservice.create(datas).subscribe({
           next: (res) => {
             console.log('activity service create res:', res);

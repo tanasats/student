@@ -99,12 +99,16 @@ export class LoginComponent {
                             let userdata = {
                               username: res.username,
                               password: form.value.password,
+                              studentcode: res.studentcode,
                               fullname: res.fullname,
+                              program: res.program,
+                              level: res.level,
                               usertype: res.usertype,
                               faculty: res.faculty||null,
                               roles: JSON.stringify(_roles),
-                              email: res.email||'xxx@msu.ac.th'
+                              email: res.email||res.studentcode+'@msu.ac.th'
                             }
+                            console.log("userdata:",userdata);
                             this.userservice.create(userdata).subscribe({
                               next:(res)=>{
                                 console.log("user.create res:",res);

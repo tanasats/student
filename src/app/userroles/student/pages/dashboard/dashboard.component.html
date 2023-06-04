@@ -14,11 +14,11 @@
             </div>  
             <div class="col-lg-6 col-12 order-lg-2">
               <ul class="ms-3 list-unstyled">
-                <li><span>รหัสนิสิต : </span>{{me.studentcode}}</li>
-                <li><span>ชื่อ-สกุล : </span>{{me.fullname}}</li>
-                <li><span>คณะ : </span>--</li>
-                <li><span>สาขาวิชา : </span>--</li>
-                <li><span>ระดับการศึกษา : </span>--</li>
+                <li><span>รหัสนิสิต : </span>{{userdata.studentcode}}</li>
+                <li><span>ชื่อ-สกุล : </span>{{userdata.fullname}}</li>
+                <li><span>คณะ : </span>{{userdata.faculty}}</li>
+                <li><span>สาขาวิชา : </span>{{userdata.program}}</li>
+                <li><span>ระดับการศึกษา : </span>ปริญญา{{userdata.level}}</li>
               </ul>
             </div>
 

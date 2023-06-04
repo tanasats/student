@@ -1,0 +1,48 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header pb-0">
+      <h4 class="modal-title">รายละเอียดไฟล์</h4>
+      <div
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="_onClose()"
+      ></div>
+    </div>
+    <div class="modal-body">
+      <div class="" [formGroup]="fg">
+        <div [innerHTML]="fg.controls['docfile_filename'].value"></div>
+        <label class="form-label">ชื่อเอกสาร</label>
+        <input
+          formControlName="docfile_title"
+          type="text"
+          class="form-control"
+        />
+        <label class="form-label">คำอธิบาย</label>
+        <input
+          formControlName="docfile_description"
+          type="text"
+          class="form-control"
+        />
+      </div>
+    </div>
+    <!--modal-body -->
+
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-success btn-sm me-1"
+        (click)="_onSave()"
+      >
+        <i class="bi bi-save"></i> บันทึก
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary btn-sm me-1"
+        (click)="_onClose()"
+      >
+        <i class="bi bi-x-lg"></i> ยกเลิก
+      </button>
+    </div>
+  </div>
+</div>

@@ -17,7 +17,7 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
 ////-----------------------------------
 :root{
-  --bs-modal-width:500px;
+  --bs-modal-width:100%;
   --bs-modal-padding:1em;
   --bs-modal-footer-gap:1em;
   --bs-modal-header-padding:1em;
@@ -390,5 +390,17 @@ button.calendar, button.calendar:active {
 //   margin-left: 5px;
 //   position: relative;
 //   top: 2px;
+// }
+
+
+
+
+// @media (min-width: 576px)
+// {
+//  .modal-dialog {
+//     max-width: var(--bs-modal-width);
+//     margin-right: auto;
+//     margin-left: auto;
+// } 
 // }
 

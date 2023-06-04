@@ -1,5 +1,5 @@
 {
-  "name": "data",
+  "name": "student",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -24,13 +24,12 @@
     "@ng-bootstrap/ng-bootstrap": "^14.1.0",
     "@ng-select/ng-select": "^10.0.4",
     "@popperjs/core": "^2.11.7",
+    "angularx-qrcode": "^15.0.1",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.4",
     "chart.js": "^4.2.1",
-    "ng-qrcode": "^16.0.0",
     "ng2-charts": "^4.1.1",
     "ngx-editor": "^15.3.0",
-    "qrcode": "^1.5.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
