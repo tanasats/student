@@ -5,6 +5,7 @@ const { authJwt } = require("../middleware/auth");
 
 // Get all user
 router.get("/files",fileController.getListFiles);
+router.get("/file/picture/:name",fileController.picturefile)
 router.get("/file/:name",fileController.download)
 router.post("/file/upload",fileController.upload);
 

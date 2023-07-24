@@ -6,12 +6,16 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./form-button-submit.component.scss']
 })
 export class FormButtonSubmitComponent {
-@Input() fc?:any;
-@Input() bt_submit:boolean=false;
-@Input() is_bt_submit_disabled:boolean=false;
-@Output() onclick_bt_submit= new EventEmitter<any>();
+@Input() form?:any;
+@Input() btn_submit:boolean=false;
+@Input() btn_submit_disabled:boolean=false;
+@Output() onclick_btn_submit= new EventEmitter<any>();
 
-@Input() bt_cancle:boolean=false;
-@Output() onclick_bt_cancle= new EventEmitter<any>();
+@Input() btn_cancle:boolean=false;
+@Input() btn_cancle_disabled:boolean=false;
+@Output() onclick_btn_cancle= new EventEmitter<any>();
 
+get isFormValid():boolean{
+  return this.form?.valid;
+}
 }

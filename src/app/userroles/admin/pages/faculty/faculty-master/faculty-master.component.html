@@ -1,0 +1,25 @@
+<section class="container">
+  <toolsbar-control-list
+    [title]="'ข้อมุลคณะ/หน่วยงาน'"
+    (_onCreate)="onCreate($event)"
+  ></toolsbar-control-list>
+
+  <faculty-create
+    [isCreate]="isCreate"
+    [fc]="fc"
+    (_onSubmit)="onSubmitCreate($event)"
+    (_onCancel)="onCancelCreate($event)"
+  ></faculty-create>
+
+  <faculty-edit
+    [fc]="fc"
+    (_onCancel)="onCancelEdit($event)"
+    (_onSubmit)="onSubmitEdit($event)"
+  ></faculty-edit>
+
+  <faculty-list
+    [items]="items"
+    (_onDelete)="onDelete($event)"
+    (_onEdit)="onEdit($event)"
+  ></faculty-list>
+</section>

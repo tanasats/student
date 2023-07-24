@@ -1,4 +1,4 @@
 <div class="col">
-  <button class="btn btn-success me-2" (click)="onclick_bt_submit.emit(true)" [disabled]="is_bt_submit_disabled">บันทึก</button>
-  <button class="btn btn-secondary" (click)="onclick_bt_cancle.emit(true)">ยกเลิก</button>
+  <button *ngIf="btn_submit" class="btn btn-success me-2" (click)="onclick_btn_submit.emit(true)" [disabled]="btn_submit_disabled">บันทึก</button>
+  <button *ngIf="btn_cancle" class="btn btn-secondary" (click)="onclick_btn_cancle.emit(true)" [disabled]="btn_cancle_disabled">ยกเลิก</button>
 </div>

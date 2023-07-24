@@ -98,8 +98,8 @@ exports.update = async (req, res) => {
 exports.create = async (req, res) => {
   console.log(req.body);
   const datas = req.body;
-  datas.cdate = new Date();
-  datas.mdate = new Date();
+  // datas.cdate = new Date();
+  // datas.mdate = new Date();
   if (req.body.agency_name) {
     console.log("data:", datas);
     agencyModel

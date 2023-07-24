@@ -7,17 +7,15 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from 'src/environments/environment'; 
+import { environment } from 'src/environments/environment';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ActivityService {
-
-  private endpoint = environment.endpoint+'/activity';
+  private endpoint = environment.endpoint + '/activity';
   constructor(private http: HttpClient) {}
 
   get httpOptions() {
@@ -47,20 +45,24 @@ export class ActivityService {
       // Server side error
       // console.log("Server error !!");
       if (error instanceof HttpErrorResponse) {
-         console.log("error is HttpErrorResponse",error);
-        switch(error.status){
+        console.log('error is HttpErrorResponse', error);
+        switch (error.status) {
           case 0: //"Http failure response: 0 Unknown Error"
-              errorMsg="เกิดข้อผิดพลาด! ในการเข้าถึงบริการ Service API";
+            errorMsg = 'เกิดข้อผิดพลาด! ในการเข้าถึงบริการ Service API';
             break;
-          case 400:
-              errorMsg=error.message;
-              if(error.error.message) errorMsg=error.error.message;
-            break;  
+          case 400: 
+            errorMsg = error.message;
+            if (error.error.message) errorMsg = error.error.message;
+            break;
+          case 403: // "Forbidden"
+            errorMsg = error.message;
+            if (error.error.message) errorMsg = error.error.message;
+            break;
           default:
-              errorMsg = error.statusText;
+            errorMsg = error.statusText;
         }
       } else {
-          errorMsg = error;
+        errorMsg = error;
       }
     }
     return throwError(() => {
@@ -74,15 +76,21 @@ export class ActivityService {
       .get(this.endpoint + 's', this.httpOptions)
       .pipe(catchError(this.handleError));
   }
-  filter(params?:any): Observable<any> {
+  getbyid(id: any): Observable<any> {
     return this.http
-      .get(this.endpoint + 's', {headers: this.httpHeaders, params:params})
+      .get(this.endpoint + '/' + id, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  getnextseq(code:any): Observable<any> {
+  filter(params?: any): Observable<any> {
     return this.http
-      .get(this.endpoint + '/nextseq/'+code, this.httpOptions)
+      .get(this.endpoint + 's', { headers: this.httpHeaders, params: params })
+      .pipe(catchError(this.handleError));
+  }
+
+  getnextseq(code: any): Observable<any> {
+    return this.http
+      .get(this.endpoint + '/nextseq/' + code, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
@@ -103,7 +111,4 @@ export class ActivityService {
       .put(this.endpoint + '/' + datas.activity_id, datas, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
-
-  
-
 }

@@ -5,6 +5,7 @@ import { FileService } from 'src/app/service/file.service';
 import { FormGroup } from '@angular/forms';
 import { DocfileService } from 'src/app/service/docfile.service';
 import { CurrentUserService } from 'src/app/service/current-user.service';
+import { ToasterService } from 'src/app/service/toaster/toaster.service';
 
 @Component({
   selector: 'form-input-files',
@@ -20,16 +21,15 @@ export class FormInputFilesComponent {
 
   @Output() onFileSave = new EventEmitter<any>();
 
-  @ViewChild('inputFile')
-  myInputFile!: ElementRef;
-
+  @ViewChild('inputFile') myInputFile!: ElementRef;
   public uniqueid: string;
 
   constructor(
     private dialog: MatDialog,
     //private fileservice:FileService
     private docfileservice: DocfileService,
-    private currentuser:CurrentUserService
+    private currentuser:CurrentUserService,
+    private toaster:ToasterService,
   ) {
     let randid = (Math.random() + 1).toString(36).substring(2);
     this.uniqueid = randid;
@@ -77,8 +77,12 @@ export class FormInputFilesComponent {
           },
           error: (err) => {
             console.log('err:', err);
+            this.toaster.show("error",err);
           },
         });
       });
   }
+
+
+  
 }

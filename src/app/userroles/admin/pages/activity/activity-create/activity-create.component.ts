@@ -12,6 +12,8 @@ import { ActivitytypeService } from 'src/app/service/activitytype.service';
 import { CurrentUserService } from 'src/app/service/current-user.service';
 import { ICurrentuser } from 'src/app/core/interface/currentuser';
 import { DocfileService } from 'src/app/service/docfile.service';
+import { APPCONST } from 'src/environments/environment';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-activity-create',
@@ -25,8 +27,7 @@ export class ActivityCreateComponent implements OnInit {
   public agency_ref: any;
   public activitytype_ref: any;
   public currentuser!: ICurrentuser;
-  public docfile_list:any=[];
-
+  public docfile_list: any = [];
 
   // editor: Editor | undefined;
   // toolbar: Toolbar = [
@@ -88,7 +89,6 @@ export class ActivityCreateComponent implements OnInit {
     public offcanvas: OffcanvasService,
     public toaster: ToasterService
   ) {
-
     this.form = this.fb.group({
       activity_id: [null, []],
       activity_code: [null, []],
@@ -98,15 +98,16 @@ export class ActivityCreateComponent implements OnInit {
       agency_code: [null, [Validators.required]],
       activitytype_code: [null, [Validators.required]],
       activity_name: [null, [Validators.required]],
-      activity_description: [null, [Validators.required]],
+      activity_description: [null, []],
       activity_date_from: [null, []],
       activity_date_to: [null, []],
       activity_place: [null, []],
       activity_hour: [null, []],
       activity_receive: [null, []],
+      activity_skill: [APPCONST.SKILL, []],
       activity_faculty: [null, []],
       activity_picture: [null, []],
-      activity_status: [null, []],
+      activity_status: ['d', []],
       activity_budget_source: [null, []],
       activity_budget: [null, []],
       activity_budget_paid: [null, []],
@@ -119,29 +120,23 @@ export class ActivityCreateComponent implements OnInit {
   ngOnInit(): void {
     this._load_ref_data();
     //this._load_docfile();
-    
     // this.editor = new Editor();
-    // this.form.controls['activity_year'].valueChanges.subscribe((x) => {
-    //   this.genActivityCode();
-    // });
-    // this.form.controls['activity_term'].valueChanges.subscribe((x) => {
-    //   this.genActivityCode();
-    // });
-    // this.form.controls['agency_code'].valueChanges.subscribe((x) => {
-    //   this.genActivityCode();
-    // });
-    // this.form.controls['activitytype_code'].valueChanges.subscribe((x) => {
-    //   this.genActivityCode();
-    // });
-    // this.form.controls['activity_name'].valueChanges.subscribe((x) => {
-    //   this.genActivityCode();
-    // });
-    // this.form.controls['activity_description'].valueChanges.subscribe((x) => {
-    //   this.genActivityCode();
-    // });
+    this.form.controls['activity_year'].valueChanges.subscribe((x) => {
+      this.genActivityCode();
+    });
+    this.form.controls['activity_term'].valueChanges.subscribe((x) => {
+      this.genActivityCode();
+    });
+    this.form.controls['agency_code'].valueChanges.subscribe((x) => {
+      this.genActivityCode();
+    });
+    this.form.controls['activitytype_code'].valueChanges.subscribe((x) => {
+      this.genActivityCode();
+    });
   }
-  ngAfterContentInit(){
+  ngAfterContentInit() {
     this.currentuser = this.currentuserservice.getdata;
+    //this.form.controls['activity_skill'].setValue(APPCONST.SKILL);
   }
 
   _load_ref_data() {
@@ -172,37 +167,39 @@ export class ActivityCreateComponent implements OnInit {
       },
     });
   }
-  
-  _onFileSave(event:any){
-    console.log("onfileSave event:",event);
-    if(event){
-     this._load_docfile();
+
+  _onFileSave(event: any) {
+    console.log('onfileSave event:', event);
+    if (event) {
+      this._load_docfile();
     }
   }
 
   _load_docfile() {
-    this.currentuser=this.currentuserservice.getdata;
+    this.currentuser = this.currentuserservice.getdata;
     this.docfileservice
-      .getbytable('activity',this.form.controls['activity_id'].value, this.currentuser.user_id)
+      .getbytable(
+        'activity',
+        this.form.controls['activity_id'].value,
+        this.currentuser.user_id
+      )
       .subscribe({
         next: (res) => {
-          console.log("load_docfile res:",res)
-            this.docfile_list=res;
+          console.log('load_docfile res:', res);
+          this.docfile_list = res;
         },
-        error: (err) => { 
-          console.log("load_docfile err:",err);
+        error: (err) => {
+          console.log('load_docfile err:', err);
         },
       });
   }
 
-  _onCancle() {
-    this.router.navigate(['admin/activity']);
-  }
+
 
   genActivityCode() {
     let agency = this.form.controls['agency_code'].value || 'xxxx';
     let year = this.form.controls['activity_year'].value.toString();
-    let term = this.form.controls['activity_term'].value.toString();
+    let term = (this.form.controls['activity_term'].value||'x').toString();
     let type = this.form.controls['activitytype_code'].value || 'x';
     let running = this.padLeft(
       this.form.controls['activity_seq_term'].value || '0',
@@ -210,34 +207,18 @@ export class ActivityCreateComponent implements OnInit {
       2
     );
     this.form.controls['activity_code'].setValue(
-      agency + year.substr(-2) + term + type + running
+      agency + year.substr(-2) + term + type + 'xx' //+ running
     );
-    if (this.form.valid) {
-      this.activityservice
-        .getnextseq(this.form.controls['activity_code'].value)
-        .subscribe({
-          next: (res) => {
-            console.log(res);
-            this.form.controls['activity_seq_term'].setValue(
-              res.nextseq || '00'
-            );
-            this.form.controls['activity_code'].setValue(
-              agency + year.substr(-2) + term + type + (res.nextseq || '00')
-            );
-            this._onSaveDraft();
-          },
-          error: (err) => {
-            console.log('error:', err);
-          },
-        });
-    }
   }
 
   padLeft(text: string, padChar: string, size: number): string {
     return (String(padChar).repeat(size) + text).substr(size * -1, size);
   }
 
-  _cancle() {
+  // _onCancle() {
+  //   this.router.navigate(['admin/activity']);
+  // }
+  _onCancel() {
     this.form.markAsUntouched();
     this.router.navigate(['/admin/activity']);
   }
@@ -254,7 +235,7 @@ export class ActivityCreateComponent implements OnInit {
   //       next:(res)=>{
   //         console.log("activity service res:",res);
   //         if(res.affectedRows){ //affectedRows,insertId
-  //           this.toaster.show("success","ยันทึกข้อมูลเรียบร้อย");
+  //           this.toaster.show("success","บันทึกข้อมูลเรียบร้อย");
   //           this.router.navigate(['../../']);
   //         }
   //       },
@@ -269,9 +250,31 @@ export class ActivityCreateComponent implements OnInit {
   // }
 
   _onSubmit() {
-    console.log('xxx', this.form.controls['activity_id'].value);
+    //this.form.markAllAsTouched();
     if (this.form.controls['activity_id'].value === null) {
-      this._onSaveDraft();
+      if(this.form.controls['activity_code'].value===null){
+        this.form.markAllAsTouched();
+        this.toaster.show("error","กรุณากรอกข้อมูลให้ครบถ้วน");
+        return
+      }
+      this.activityservice
+        .getnextseq(this.form.controls['activity_code'].value)
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+            this.form.controls['activity_seq_term'].setValue(
+              res.nextseq || '00'
+            );
+            const acode = this.form.controls['activity_code'].value.substr(0,8);
+            this.form.controls['activity_code'].setValue(
+              acode + this.padLeft(res.nextseq || 0, '0', 2)
+            );
+            this._onSaveDraft();
+          },
+          error: (err) => {
+            console.log('error:', err);
+          },
+        });
     } else {
       this._onSaveUpdate();
     }
@@ -282,12 +285,13 @@ export class ActivityCreateComponent implements OnInit {
     if (this.form.valid) {
       let datas = this.form.getRawValue();
       datas.activity_faculty = JSON.stringify(datas.activity_faculty);
+      datas.activity_skill = JSON.stringify(datas.activity_skill);
       this.activityservice.update(datas).subscribe({
         next: (res) => {
           console.log('activity service update res:', res);
           if (res.affectedRows) {
             //affectedRows,insertId
-            this.toaster.show('success', 'ยันทึกข้อมูลเรียบร้อย');
+            this.toaster.show('success', 'บันทึกข้อมูลเรียบร้อย');
             this.router.navigate(['../../']);
           } else {
             this.toaster.show('error', 'การบันทึกข้อมูลผิดพลาด');
@@ -306,35 +310,84 @@ export class ActivityCreateComponent implements OnInit {
   _onSaveDraft() {
     this.form.markAllAsTouched();
     if (this.form.valid) {
-      if (this.form.valid && this.form.controls['activity_id'].value == null) {
-        let datas = this.form.getRawValue();
-        datas.activity_faculty = JSON.stringify(datas.activity_faculty);
-        //let user = this.currentuserservice.getdata;
-        datas.cowner = this.currentuser.user_id;
-        datas.mowner = this.currentuser.user_id;
-        this.activityservice.create(datas).subscribe({
+
+      this.activityservice
+        .getnextseq(this.form.controls['activity_code'].value)
+        .subscribe({
           next: (res) => {
-            console.log('activity service create res:', res);
-            if (res.affectedRows) {
-              //affectedRows,insertId
-              this.form.controls['activity_id'].setValue(res.insertId);
-              this.toaster.show('success', 'ยันทึกข้อมูลร่างโครงการแล้ว', 7000);
-            }
+            console.log(res);
+            this.form.controls['activity_seq_term'].setValue(
+              res.nextseq || '00'
+            );
+            const acode = this.form.controls['activity_code'].value.substr(0,8);
+            this.form.controls['activity_code'].setValue(
+              acode + this.padLeft(res.nextseq || 0, '0', 2)
+            );
+            // SaveDraft----------------------
+              let datas = this.form.getRawValue();
+              datas.activity_faculty = JSON.stringify(datas.activity_faculty);
+              datas.activity_skill = JSON.stringify(datas.activity_skill);
+              //let user = this.currentuserservice.getdata;
+              datas.cowner = this.currentuser.user_id;
+              datas.mowner = this.currentuser.user_id;
+              this.activityservice.create(datas).subscribe({
+                next: (res) => {
+                  console.log('activity service create res:', res);
+                  if (res.affectedRows) {//res->affectedRows,insertId
+                    
+                    this.form.controls['activity_id'].setValue(res.insertId);
+                    this.toaster.show('success', 'บันทึกข้อมูลร่างโครงการแล้ว', 7000);
+                  }
+                },
+                error: (err) => {
+                  console.log('activity service err:', err);
+                  this.toaster.show('error', err, 7000);
+                },
+              });
+
           },
-          error: (err) => {
-            console.log('activity service err:', err);
-            this.toaster.show('error', err, 7000);
+          error: (err) => { //getnextseq():err
+            console.log('error:', err);
           },
         });
-      }
-    } else {
+
+
+    } else { // not form.valid
       this.toaster.show('error', 'กรุณากรอกข้อมูลให้ครบถ้วน');
     }
   }
+
 
   goBack() {
     this.router.navigate(['/admin/activity']);
   }
 
   onUpdate(datas: any) {}
+
+
+
+  onImageSave(filename: any) {
+    console.log(filename);
+    const datas = {
+      activity_id: this.form.controls['activity_id'].value,
+      activity_picture: filename,
+    };
+    this.activityservice.update(datas).subscribe({
+      next: (res) => {
+        console.log('activity picture res:', res);
+        //this.loadData();
+        this.form.controls['activity_picture'].setValue(filename);
+        this.toaster.show("success","Image Upload success");
+      },
+      error: (err) => {
+        console.log('activity picure err:', err);
+      },
+    });
+  }
+
+
+
+
+
+
 } // class

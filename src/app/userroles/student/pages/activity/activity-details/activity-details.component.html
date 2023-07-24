@@ -9,7 +9,7 @@
   <section class="container mt-0">
     <div class="row">
       <div class="col-md-8 col-12">
-        <img class="img-fluid img-thumbnail" [src]="item.activity_picture || '../assets/images/image_not_available.png'"/>
+        <img class="img-fluid img-thumbnail" [src]="'http://localhost:3000/api/file/picture/'+item.activity_picture || '../assets/images/image_not_available.png'"/>
         <!-- <div
           [ngStyle]="{
             background: 'url(' + (item.activity_picture|| '../assets/images/image_not_available.png') + ')',

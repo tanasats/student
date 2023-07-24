@@ -167,9 +167,15 @@ exports.update = async (req, res) => {
     // empty datas
     return res.status(400).send({ message: "Invalid request parameter" });
   }
+  const owner = req.user_id;
+//  console.log("create owner:",owner)
+  datas.cowner = owner;
+  datas.mowner = owner;  
+
   if (req.params.id) {
     delete datas.cdate;
     datas.mdate = new Date();
+    console.log("update activity datas:",datas);
     activityModel
       .update({ id: id, datas: datas })
       .then(([row]) => {
@@ -196,6 +202,7 @@ exports.create = async (req, res) => {
   datas.cowner = owner;
   datas.mowner = owner;  
 
+  console.log("create activity owner:",owner)
   if (req.body.activity_name) {
     console.log("data:", datas);
     activityModel

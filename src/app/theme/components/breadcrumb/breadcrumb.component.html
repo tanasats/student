@@ -1,12 +1,10 @@
 <div class="container">
   <ul class="breadcrumb">
     <li *ngFor="let breadcrumb of breadcrumbs$ | async">
-
       <a routerLink="{{ breadcrumb.url }}">{{ breadcrumb.label }}</a>
     </li>
   </ul>
 </div>
-
 
 <!-- <ol id="breadcrumbNav" class="breadcrumb-nav">
   <li *ngFor="let breadcrumb of breadcrumbs$ | async; let i = index">

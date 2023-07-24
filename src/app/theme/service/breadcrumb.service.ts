@@ -21,6 +21,7 @@ export class BreadcrumbService {
     ).subscribe(event => {
       // Construct the breadcrumb hierarchy
       const root = this.router.routerState.snapshot.root;
+      console.log("root:",root);
       const breadcrumbs: Breadcrumb[] = [];
       this.addBreadcrumb(root, [], breadcrumbs);
 
@@ -34,6 +35,9 @@ export class BreadcrumbService {
     if (route) {
       // Construct the route URL
       const routeUrl = parentUrl.concat(route.url.map(url => url.path));
+      //console.log("route:",route.parent?.data);
+      //console.log("routeUrl:",routeUrl);
+      //console.log("Breadcrumb data:",route.data['breadcrumb']);
 
       // Add an element for the current route part
       if (route.data['breadcrumb']) {

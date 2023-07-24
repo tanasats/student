@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-between hover p-2 border-bottom">
+  <div class="flex-fill">{{ item.agency_code }}:{{ item.agency_name }}</div>
+
+  <div class="w-50 col-auto d-flex align-items-center justify-content-between">
+    <div class="">{{ faculty_name }}</div>
+    <div class="more-option">
+      <i
+        class="bi bi-three-dots-vertical cursor-pointer"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      ></i>
+      <ul class="dropdown-menu">
+        <!-- <li><a class="dropdown-item" ><i class="bi bi-eye me-2"></i>แสดงรายละเอียด</a></li>
+                  <li><a class="dropdown-item" ><i class="bi bi-paperclip me-2"></i>QR Code</a></li>
+                  <li><a class="dropdown-item"  ><i class="bi bi-qr-code me-2"></i>แสดง QR Code</a></li> 
+                  <li><a class="dropdown-item" ><i class="bi bi-geo-alt me-2"></i> อื่น ๆ </a></li>
+                  <li><hr class="dropdown-divider"></li> -->
+        <li (click)="_onEdit.emit(item)">
+          <a class="dropdown-item"
+            ><i class="bi bi-pencil me-2"></i> แก้ไขรายการ</a
+          >
+        </li>
+        <li (click)="_onDelete.emit(item)">
+          <a class="dropdown-item"><i class="bi bi-trash me-2"></i> ลบรายการ</a>
+        </li>
+        <!-- <li><a class="dropdown-item" ><i class="bi bi-x-lg me-2"></i> ยกเลิกการลงทะเบียน</a></li> -->
+      </ul>
+    </div>
+  </div>
+
+
+  
+</div>

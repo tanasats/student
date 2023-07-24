@@ -1,132 +1,182 @@
 <section class="container">
   <div class="mb-2">
     <div>
-      <h4>ข้อมูลกิจกรรม</h4>{{form.controls['activity_id'].value}}
+      <h4>ข้อมูลกิจกรรม</h4>
     </div>
-    <hr>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-tab1-tab" data-bs-toggle="tab" data-bs-target="#nav-tab1" type="button" role="tab" aria-controls="nav-tab1" aria-selected="true">
+          ข้อมูลกิจกรรม</button>
+        <button [disabled]="form.controls['activity_id'].value===null" class="nav-link" id="nav-tab2-tab" data-bs-toggle="tab" data-bs-target="#nav-tab2" type="button" role="tab" aria-controls="nav-tab2" aria-selected="false">
+          ภาพประชาสัมพันธ์</button>
+        <button [disabled]="form.controls['activity_id'].value===null" class="nav-link" id="nav-tab3-tab" data-bs-toggle="tab" data-bs-target="#nav-tab3" type="button" role="tab" aria-controls="nav-tab3" aria-selected="false">
+          เอกสารประกอบ</button>
+      </div>
+    </nav>
+
+    
+    <div class="tab-content" id="nav-tabContent">
+      <!-- Tab 1 -->
+      <div class="tab-pane fade show active" id="nav-tab1" role="tabpanel" aria-labelledby="nav-tab1-tab">
+        <div class="row">
+          <div class="col-md-3 col-12">
+            <form-input-text [fc]="form.controls['activity_code']" [label]="'รหัสกิจกรรม'" [is_readonly]="true" [placeholder]="'อัตโนมัติ'"></form-input-text>
+          </div> 
+          <div class="col-md-2 col-12">
+            <activity-year-form-input [fc]="form.controls['activity_year']" [label]="'ปีการศึกษา'"></activity-year-form-input>
+          </div>
+          <div class="col-md-7 col-12">
+            <activity-term-form-input [fc]="form.controls['activity_term']"></activity-term-form-input>
+          </div>
+        </div>
+  
+  
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <activity-agency-form-input
+              [items]="agency_ref"
+              [fc]="form.controls['agency_code']"
+            ></activity-agency-form-input>
+          </div>
+          <div class="col-md-6 col-12">
+            <activity-type-form-input
+              [items]="activitytype_ref"
+              [fc]="form.controls['activitytype_code']"
+            ></activity-type-form-input>
+          </div>
+        </div>
+  
+  
+        <div class="row">
+          <div class="col-12">
+            <form-input-text [fc]="form.controls['activity_name']" [label]="'ชื่อกิจกรรม'" [is_required]="true"></form-input-text>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-12">
+            <form-textarea [fc]="form.controls['activity_description']" [label]="'รายละเอียดกิจกรรม'"></form-textarea>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col">
+            <form-input-text [fc]="form.controls['activity_place']" [label]="'สถานที่จัด'"></form-input-text>
+          </div>        
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <form-input-date
+              [fc]="form.controls['activity_date_from']"
+              [label]="'วันที่เริ่มกิจกรรม'">
+            </form-input-date>
+          </div>
+          <div class="col">
+            <form-input-date
+            [fc]="form.controls['activity_date_to']"
+            [label]="'วันที่สิ้นสุดกิจกรรม'">
+          </form-input-date>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <form-input-number [fc]="form.controls['activity_hour']" [label]="'จำนวนชั่วโมง'"></form-input-number>
+          </div>
+          <div class="col-md-3">
+            <form-input-number [fc]="form.controls['activity_receive']" [label]="'จำนวนที่รับ (คน)'"></form-input-number>
+          </div>
+        </div>
+
+
+
+        <app-activity-skill-form-input
+        [fc]="form.controls['activity_skill']"
+        ></app-activity-skill-form-input>
+
+
+        <div class="row">
+          <div class="col">
+                <activity-faculty-form-input [fc]="form.controls['activity_faculty']" (onClickSelect)="offcanvas.toggle('offcanvas-faculty-select')"></activity-faculty-form-input>
+          </div>
+        </div>
   
       <div class="row">
-        <div class="col-md-3 col-12">
-          <form-input-text [fc]="form.controls['activity_code']" [label]="'รหัสกิจกรรม'" [is_readonly]="true" [placeholder]="'อัตโนมัติ'"></form-input-text>
-        </div> 
-        <div class="col-md-2 col-12">
-          <activity-year-form-input [fc]="form.controls['activity_year']" [label]="'ปีการศึกษา'"></activity-year-form-input>
-        </div>
-        <div class="col-md-7 col-12">
-          <activity-term-form-input [fc]="form.controls['activity_term']"></activity-term-form-input>
-        </div>
+          <div class="col-md-4">
+            <form-input-text [fc]="form.controls['activity_budget_source']" [label]="'แหล่งงบประมาณ'" [placeholder]="'ชื่อแหล่งเงิน'"></form-input-text> 
+          </div>
+          <div class="col-md-4">
+            <form-input-float [fc]="form.controls['activity_budget']" [label]="'งบประมาณที่ขอ'"></form-input-float> 
+          </div>
+          <div class="col-md-4">
+            <form-input-float [fc]="form.controls['activity_budget_paid']" [label]="'งบประมาณที่จ่ายจริง'"></form-input-float> 
+          </div>
       </div>
 
 
-      <div class="row">
-        <div class="col-md-6 col-12">
-          <activity-agency-form-input
-            [items]="agency_ref"
-            [fc]="form.controls['agency_code']"
-          ></activity-agency-form-input>
-        </div>
-        <div class="col-md-6 col-12">
-          <activity-type-form-input
-            [items]="activitytype_ref"
-            [fc]="form.controls['activitytype_code']"
-          ></activity-type-form-input>
-        </div>
+
+
+
+
+
+
       </div>
+      <!-- Tab 2 -->
+      <div class="tab-pane fade" id="nav-tab2" role="tabpanel" aria-labelledby="nav-tab2-tab">
+
+        <!-- <div class="row">
+          <div class="col">
+            <label class="form-label">ภาพประกอบ</label>
+            <div class="alert alert-warning">
+              <i class="bi bi-image me-2"></i>
+              อัพโหลดภาพ 800x500 pixel <a class="cursor-pointer">คลิกที่นี่</a></div>
+          </div>
+        </div> -->
+
+        <form-input-image
+        [title]="'ภาพหน้าปก'"
+        [fc]="form.controls['activity_picture']"
+        (onImageSave)="onImageSave($event)"
+        >
+        </form-input-image>
 
 
-      <div class="row">
-        <div class="col-12">
-          <form-input-text [fc]="form.controls['activity_name']" [label]="'ชื่อกิจกรรม'" [is_required]="true"></form-input-text>
-        </div>
+  
+
       </div>
+      <!-- Tab 3 -->
+      <div class="tab-pane fade" id="nav-tab3" role="tabpanel" aria-labelledby="nav-tab3-tab">
 
-      <div class="row">
-        <div class="col-12">
-          <form-textarea [fc]="form.controls['activity_description']" [label]="'รายละเอียดกิจกรรม'"></form-textarea>
-        </div>
+
+        <form-input-files
+        [files]="docfile_list"
+        [title]="'เอกสารโครงการ'"
+        [user_id]="currentuser.user_id"
+        [table_name]="'activity'"
+        [table_id]="form.controls['activity_id'].value"
+        (onFileSave)="_onFileSave($event)"
+        
+        ></form-input-files>
+    
+
       </div>
-
-      <div class="row">
-        <div class="col">
-          <form-input-text [fc]="form.controls['activity_place']" [label]="'สถานที่จัด'"></form-input-text>
-        </div>        
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <label class="form-label">ภาพประกอบ</label>
-          <div class="alert alert-warning">
-            <i class="bi bi-image me-2"></i>
-            อัพโหลดภาพ 800x500 pixel <a class="cursor-pointer">คลิกที่นี่</a></div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <form-input-date
-            [fc]="form.controls['activity_date_from']"
-            [label]="'วันที่เริ่มกิจกรรม'">
-          </form-input-date>
-        </div>
-        <div class="col">
-          <form-input-date
-          [fc]="form.controls['activity_date_to']"
-          [label]="'วันที่สิ้นสุดกิจกรรม'">
-        </form-input-date>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <form-input-number [fc]="form.controls['activity_hour']" [label]="'จำนวนชั่วโมง'"></form-input-number>
-        </div>
-        <div class="col-md-3">
-          <form-input-number [fc]="form.controls['activity_receive']" [label]="'จำนวนที่รับ (คน)'"></form-input-number>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col">
-              <activity-faculty-form-input [fc]="form.controls['activity_faculty']" (onClickSelect)="offcanvas.toggle('offcanvas-faculty-select')"></activity-faculty-form-input>
-        </div>
-      </div>
-
-    <div class="row">
-        <div class="col-md-4">
-          <form-input-text [fc]="form.controls['activity_budget_source']" [label]="'แหล่งงบประมาณ'" [placeholder]="'ชื่อแหล่งเงิน'"></form-input-text> 
-        </div>
-        <div class="col-md-4">
-          <form-input-float [fc]="form.controls['activity_budget']" [label]="'งบประมาณที่ขอ'"></form-input-float> 
-        </div>
-        <div class="col-md-4">
-          <form-input-float [fc]="form.controls['activity_budget_paid']" [label]="'งบประมาณที่จ่ายจริง'"></form-input-float> 
-        </div>
     </div>
 
 
-    <!-- <form-input-files
-    [files]="docfile_list"
-    [title]="'เอกสารโครงการ'"
-    [user_id]="currentuser.user_id"
-    [table_name]="'activity'"
-    [table_id]="form.controls['activity_id'].value"
-    (onFileSave)="_onFileSave($event)"
-    
-    ></form-input-files> -->
+
+
+
+
 
 
     <div class="row g-2 py-3">
-        <form-button-submit [bt_submit]="true" (onclick_bt_submit)="_onSubmit()" [bt_cancle]="true" (onclick_bt_cancle)="_onCancle()"></form-button-submit>
+        <form-button-submit [btn_submit]="true" (onclick_btn_submit)="_onSubmit()" [btn_cancle]="true" (onclick_btn_cancle)="_onCancel()"></form-button-submit>
     </div>
   </div>
 
 
 </section>
 
-
-
-{{form.value|json}}
 <!-- <app-offcanvas-test [id]="offcanvas_department"></app-offcanvas-test> -->
 <!-- <offcanvas-department-select [fc]="form.controls['activity_faculty']" [items]="department_ref"></offcanvas-department-select> -->
 <offcanvas-faculty-select [fc]="form.controls['activity_faculty']" ></offcanvas-faculty-select>
- <!-- [items]="faculty_ref" --> 

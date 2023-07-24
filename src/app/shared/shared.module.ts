@@ -31,7 +31,7 @@ import { DialogEnrollStudentConfirmComponent } from './components/dialogs/form/d
 import { DialogWarningConfirmComponent } from './components/dialogs/confirm/dialog-warning-confirm/dialog-warning-confirm.component';
 import { DialogTokenShowComponent } from './components/dialogs/info/dialog-token-show/dialog-token-show.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule} from '@angular/material/tabs';
 import { UserViewTableComponent } from './components/user/user-view-table/user-view-table.component';
 import { UserViewTableItemComponent } from './components/user/user-view-table-item/user-view-table-item.component';
 import { FormInputFilesComponent } from './components/form/form-input-files/form-input-files.component';
@@ -41,6 +41,18 @@ import { ActivityListItemComponent } from './components/activity/activity-list-i
 import { PaginationLinkComponent } from './components/pagination-link/pagination-link.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { FileDescriptionComponent } from './components/dialogs/form/file-description/file-description.component';
+import { FormInputImageComponent } from './components/form/form-input-image/form-input-image.component';
+import { AgencyListComponent } from './components/agency/agency-list/agency-list.component';
+import { AgencyListItemComponent } from './components/agency/agency-list-item/agency-list-item.component';
+import { ActivitytypeListComponent } from './components/activitytype/activitytype-list/activitytype-list.component';
+import { ActivitytypeListItemComponent } from './components/activitytype/activitytype-list-item/activitytype-list-item.component';
+import { FacultyListComponent } from './components/faculty/faculty-list/faculty-list.component';
+import { FacultyListItemComponent } from './components/faculty/faculty-list-item/faculty-list-item.component';
+import { ToolsbarControlListComponent } from './components/toolsbar-control-list/toolsbar-control-list.component';
+import { FormInputSelectComponent } from './components/form/form-input-select/form-input-select.component';
+import { PaginationPipe } from './pipes/pagination.pipe';
+import { ActivitySkillFormInputComponent } from './components/activity/activity-skill-form-input/activity-skill-form-input.component';
+import { ActivityToolbarComponent } from './components/activity/activity-toolbar/activity-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +69,7 @@ import { FileDescriptionComponent } from './components/dialogs/form/file-descrip
     ActivityTypeFormInputComponent,
     ActivityTermFormInputComponent,
     ActivityFacultyFormInputComponent,
+    ActivityToolbarComponent,
     DatepickerFormInputComponent,
     FormInputDateComponent,
     FormInputTextComponent,
@@ -80,6 +93,19 @@ import { FileDescriptionComponent } from './components/dialogs/form/file-descrip
     ActivityListItemComponent,
     PaginationLinkComponent,
     FileDescriptionComponent,
+    FormInputImageComponent,
+    AgencyListComponent,
+    AgencyListItemComponent,
+    ActivitytypeListComponent,
+    ActivitytypeListItemComponent,
+    FacultyListComponent,
+    FacultyListItemComponent,
+    ToolsbarControlListComponent,
+    FormInputSelectComponent,
+    PaginationPipe,
+    ActivitySkillFormInputComponent,
+    ActivityToolbarComponent,
+
     
   ],
   imports: [
@@ -90,7 +116,7 @@ import { FileDescriptionComponent } from './components/dialogs/form/file-descrip
     NgbDatepickerModule,
     MatDialogModule,
     MatNativeDateModule,
-    MatTooltipModule,
+    MatTooltipModule, 
     MatTabsModule,
     QRCodeModule,
 
@@ -104,6 +130,7 @@ import { FileDescriptionComponent } from './components/dialogs/form/file-descrip
     ActivityTypeFormInputComponent,
     ActivityTermFormInputComponent,
     ActivityFacultyFormInputComponent,
+    ActivityToolbarComponent,
     DatepickerFormInputComponent,
     FormInputDateComponent,
     FormInputTextComponent,
@@ -123,6 +150,16 @@ import { FileDescriptionComponent } from './components/dialogs/form/file-descrip
     ActivityListComponent,
     ActivityListItemComponent,
     PaginationLinkComponent,
+    FormInputImageComponent,
+    AgencyListComponent,
+    AgencyListItemComponent,
+    ActivitytypeListComponent,
+    ActivitytypeListItemComponent,
+    FacultyListComponent,
+    FacultyListItemComponent,
+    ToolsbarControlListComponent,
+    FormInputSelectComponent,
+    ActivitySkillFormInputComponent,
   ]
 })
 export class SharedModule { }

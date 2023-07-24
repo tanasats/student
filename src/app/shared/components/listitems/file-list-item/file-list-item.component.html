@@ -4,7 +4,7 @@
         <span class="text-primary">{{file.docfile_title||''}}</span>
         <span *ngIf="!file.docfile_title" class="text-primary">{{file.docfile_filename||'-'}}</span>
         <span class="ms-2 fs-sm">({{file.docfile_filesize/1024|number:'1.0-1'}} Kb)</span>
-
+        <a class="m-2" [href]="'http://localhost:3000/api/docfile/'+file.docfile_filename" ><i class="bi bi-download"></i></a>
     </div>
     <div>
         <li *ngIf="false" class="d-inline-block me-2"><i class="bi bi-gear"></i></li>

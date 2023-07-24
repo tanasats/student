@@ -2,7 +2,7 @@
   <!-- <div [ngStyle]="{'background' : 'url('+item.activity_picture+')','padding-bottom':'50%','background-size':'100% 100%'}"></div> -->
   
   <!-- <img class="img-fluid" src="{{item.activity_picture}}"> -->
-  <img class="img-fluid img-thumbnail" [src]="item.activity_picture || '../assets/images/image_not_available.png'"/>
+  <img class="img-fluid img-thumbnail" [src]="'http://localhost:3000/api/file/picture/'+item.activity_picture || '../assets/images/image_not_available.png'"/>
   <div class="mt-3">
     <h5>{{ item.activity_name }}</h5>
     <div class="d-flex justify-content-end ">

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { APPLABEL } from 'src/environments/environment';
 
 @Component({
   selector: 'user-view-table-item',
@@ -9,7 +10,5 @@ import { environment } from 'src/environments/environment';
 export class UserViewTableItemComponent {
 @Input() item:any;
 @Input() index:any;
-
-ENROLL_POSITION= environment.ENROLL_POSITION;
 
 }

@@ -1,5 +1,4 @@
 <div [ngClass]="{'custom-item-draft':(fc||is_draft),'custom-item':!(fc)}">
-    {{fc.value}}
     <div class="form-label" [ngClass]="customItemLabelClass">{{label}}</div>
 
         <ng-container *ngIf="fc; else elseTemplate">

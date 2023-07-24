@@ -4,7 +4,7 @@ import { ICurrentuser } from 'src/app/core/interface/currentuser';
 import { IMenuItem } from 'src/app/core/interface/menuitem';
 import { CurrentUserService } from 'src/app/service/current-user.service';
 import { environment } from 'src/environments/environment';
-import { admin_menu_items, student_menu_items } from './menu.item';
+import { admin_menu_items, student_menu_items,officer_menu_items } from './menu.item';
 
 @Component({
   selector: 'app-navbar',
@@ -36,7 +36,7 @@ export class NavbarComponent {
             this.menuItems = student_menu_items;
             break;
           case 'officer':
-              this.menuItems =[];
+              this.menuItems =officer_menu_items;
               break;
           case 'developer':
               this.menuItems=[];

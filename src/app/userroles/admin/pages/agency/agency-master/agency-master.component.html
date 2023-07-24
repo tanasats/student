@@ -1,0 +1,27 @@
+<section class="container">
+  <!-- {{ fc.value | json }} -->
+  <toolsbar-control-list
+    [title]="'ข้อมูลองค์กรผู้จัดกิจกรรม'"
+    (_onCreate)="onCreate($event)"
+  ></toolsbar-control-list>
+
+  <agency-create
+    [fc]="fc"
+    [isCreate]="isCreate"
+    (_onSubmit)="onSubmitCreate($event)"
+    (_onCancel)="onCancelCreate($event)"
+  ></agency-create>
+
+  <agency-edit 
+  [fc]="fc" 
+  (_onSubmit)="onSubmitEdit($event)" 
+  (_onCancel)="onCancleEdit($event)"
+  ></agency-edit>
+
+  <agency-list
+    [items]="items"
+    (_onEdit)="onEdit($event)"
+    (_onDelete)="onDelete($event)"
+  ></agency-list>
+
+</section>

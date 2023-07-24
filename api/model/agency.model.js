@@ -3,7 +3,7 @@ const db = require("../config/db");
 class _class { 
 
   getall() {
-    let sql = db.format("SELECT * FROM agency");
+    let sql = db.format("SELECT * FROM agency order by agency_code");
     return db.execute(sql);
   }
   getById({id = ""}) {

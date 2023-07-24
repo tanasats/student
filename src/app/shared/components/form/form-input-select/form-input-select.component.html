@@ -1,0 +1,13 @@
+<label for="exampleFormControlTextarea1" class="form-label">{{label}}</label>
+<ng-select
+    [items]=items
+    bindLabel="name"
+    bindValue="id"
+    [formControl]="fc"
+    [ngClass]="validateClass"
+    ><ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+        <!-- <div><span>Title: </span>{{item.name}}</div>
+        <small><b>Id:</b> {{item.id}} | <b>UserId:</b> {{item.name}}</small> -->
+        {{item.name}} 
+    </ng-template>
+</ng-select>

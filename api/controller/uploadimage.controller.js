@@ -9,7 +9,9 @@ const upload = async (req, res) => {
       return res.status(400).send({ message: "Please upload a file!" });
     }
     res.status(200).send({
-      message: "Uploaded the file successfully: " + req.file.originalname,
+      //message: "Uploaded the file successfully: " + req.file.originalname,
+      message: "Uploaded the file successfully: " + req.file.filename, 
+      file:req.file
     });
   } catch (err) {
     res.status(500).send({

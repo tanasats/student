@@ -21,4 +21,8 @@ export class ActivityListItemComponent {
 
   @Input() is_onQRcode:boolean=false; 
   @Output() _onQRcode= new EventEmitter<any>();
+
+  @Input() is_onQRScanner:boolean=false; 
+  @Output() _onQRScanner= new EventEmitter<any>();
+
 }

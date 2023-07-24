@@ -37,6 +37,9 @@ export class ActivityListComponent {
   @Input() is_onQRcode:boolean=false; 
   @Output() _onQRcode= new EventEmitter<any>();
 
+  @Input() is_onQRScanner:boolean=false; 
+  @Output() _onQRScanner= new EventEmitter<any>();
+
   @Output() _onPageChange = new EventEmitter<any>();
 
 

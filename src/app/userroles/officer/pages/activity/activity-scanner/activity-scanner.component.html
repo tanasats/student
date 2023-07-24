@@ -1,0 +1,49 @@
+<section class="container mb-4">
+  <div class="row">
+    <div class="col">
+      <div class="fst-italic pb-2">
+        <i class="bi bi-qr-code me-1 text-primary"></i>แสดง QR Code
+        เข้าร่วมกิจกรรม<i class="bi bi-calendar4 ms-4 me-1 text-primary"></i
+        >{{ item.activity_date_from | thaidate }}
+      </div>
+      <h4>{{ item.activity_name }}</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-12">
+      <zxing-scanner
+        [enable]="scannerEnabled"
+        [formats]="allowedFormats"
+        (scanSuccess)="onCodeResult($event)"
+      ></zxing-scanner>
+    </div>
+    <div class="col-lg-6 col-12">
+      <div>
+        <!-- <span class="me-2">Result:</span>
+                <strong class="text-primary">{{ qrResultString }}</strong> -->
+        <div class="row">
+          <div class="col-6">
+            <div class="mx-1 alert alert-info text-center">  
+              <div class="fst-italic">จำนวนที่ลงชื่อ</div>
+              <h2 class="fw-bold">2</h2>
+            </div> 
+          </div>
+          <div class="col-6">
+            <div class="mx-1 alert alert-info text-center">
+                <div class="fst-italic">จำนวนที่สมัคร</div> 
+                <h2 class="fw-bold">30</h2> 
+            </div>
+          </div>
+        </div> 
+
+        <ng-container *ngFor="let item of checkinlist; let i = index">
+          <div class="d-flex justify-content-between">
+            <div>{{ i + 1 }}:65010999001 : ธนศาสตร์ สุดจริง</div>
+            <div>เวลา 15:32</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>

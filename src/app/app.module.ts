@@ -30,6 +30,7 @@ import { CookieConcentComponent } from './core/component/cookie-concent/cookie-c
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,6 @@ import { CookieConcentComponent } from './core/component/cookie-concent/cookie-c
     NgxEditorModule,
     BrowserAnimationsModule,
     MatTooltipModule,
-
    
     AdminModule,
     OfficerModule,

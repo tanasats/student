@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { TestUploadComponent } from './pages/test-upload/test-upload.component';
+import { TestQrcodeComponent } from './pages/test-qrcode/test-qrcode.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TestUploadComponent } from './pages/test-upload/test-upload.component';
     BreadcrumbComponent,
     UserProfileComponent,
     TestUploadComponent,
+    TestQrcodeComponent,
   ],
   imports: [
     CommonModule,

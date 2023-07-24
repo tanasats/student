@@ -6,16 +6,22 @@
           <h5 class="card-title">ข้อมูลนิสิต</h5>
 
 
-          <h6 class="card-subtitle mb-2 text-muted fs-sm">Card subtitle</h6>
+          <!-- <h6 class="card-subtitle mb-2 text-muted fs-sm">Card subtitle</h6> -->
           <div class="card-text">
             <div class="row">
-            <div class="col-lg-6 col-12 order-lg-1">
-              <img src="https://picsum.photos/id/270/800/500" class="img-fluid rounded float-end">
+            <div class="col-lg-5 col-12 order-lg-1">
+              <img
+              src="https://mdbcdn.b-cdn.net/img/new/avatars/3.webp"
+              class="rounded-circle mb-3"
+              style="width: 100%"
+              alt="Avatar"
+            />
+
             </div>  
-            <div class="col-lg-6 col-12 order-lg-2">
+            <div class="col-lg-7 col-12 order-lg-2">
               <ul class="ms-3 list-unstyled">
-                <li><span>รหัสนิสิต : </span>{{userdata.studentcode}}</li>
-                <li><span>ชื่อ-สกุล : </span>{{userdata.fullname}}</li>
+                <li><h3>{{userdata.fullname}}</h3></li>
+                <li><h5>{{userdata.studentcode}}</h5></li>
                 <li><span>คณะ : </span>{{userdata.faculty}}</li>
                 <li><span>สาขาวิชา : </span>{{userdata.program}}</li>
                 <li><span>ระดับการศึกษา : </span>ปริญญา{{userdata.level}}</li>
@@ -39,59 +45,67 @@
           <h6 class="card-subtitle mb-2 text-muted fs-sm">จำนวนกิจกรรมทั้งหมดที่เจ้าหน้าที่อนุมัติแล้ว</h6>
             <div class="card-text">
               <ul class="my-1">
-                <li>กิจกรรมตามระดับ</li>
+                <li class="h6">สรุปกิจกรรม จำแนกตามระดับ</li>
                 <ul>
                   <li>
                     <div class="d-flex justify-content-between">
                       <div>ระดับมหาวิทยาลัย</div>
-                      <div>2 กิจกรรม 6 ชั่วโมง</div>
+                      <div>2 กิจกรรม 12 ชั่วโมง</div>
                     </div>                      
                   </li>
                   <li>
                     <div class="d-flex justify-content-between">
-                      <div>ระดับคณะ/หน่วยงาน</div>
-                      <div>2 กิจกรรม 6 ชั่วโมง</div>
+                      <div>ระดับคณะ/องค์กรนิสิต</div>
+                      <div>5 กิจกรรม 22 ชั่วโมง</div>
                     </div>                      
-                  </li>
-                  <li>
+                  </li>  
+                  <div class="fst-italic text-muted">
                     <div class="d-flex justify-content-between">
-                      <div>ระดับสโมสร/ชมรม</div>
-                      <div>2 กิจกรรม 6 ชั่วโมง</div>
-                    </div>                      
-                  </li>                    
+                      <div>รวม</div>
+                      <div>7 กิจกรรม 34 ชั่วโมง</div>
+                    </div>
+                  </div>                                 
 
                 </ul>
-                <li>กิจกรรมรายด้าน</li>
+                <li class="h6">สรุปกิจกรรม จำแนกรายด้าน</li>
                   <ul>
                     <li>
                       <div class="d-flex justify-content-between">
                         <div>ด้านนิสิตสัมพันธ์และวิชาการ</div>
-                        <div>2 กิจกรรม 6 ชั่วโมง</div>
+                        <div>2 กิจกรรม 10 ชั่วโมง</div>
                       </div>
                     </li>
                     <li>
                       <div class="d-flex justify-content-between">
                         <div>ด้านกีฬา</div>
-                        <div>2 กิจกรรม 6 ชั่วโมง</div>
+                        <div>1 กิจกรรม 6 ชั่วโมง</div>
                       </div>                      
                     </li>
                     <li>
                       <div class="d-flex justify-content-between">
                         <div>ด้านบำเพ็ญประโยชน์</div>
-                        <div>2 กิจกรรม 6 ชั่วโมง</div>
+                        <div>3 กิจกรรม 14 ชั่วโมง</div>
                       </div>                      
                     </li>
                     <li>
                       <div class="d-flex justify-content-between">
                         <div>ด้านศิลปวัฒนธรรม</div>
-                        <div>2 กิจกรรม 6 ชั่วโมง</div>
+                        <div>1 กิจกรรม 4 ชั่วโมง</div>
                       </div>                      
-                    </li>                                        
+                    </li>     
+                    
+                      <div class="fst-italic text-muted">
+                        <div class="d-flex justify-content-between">
+                          <div>รวม</div>
+                          <div>7 กิจกรรม 34 ชั่วโมง</div>
+                        </div>
+                      </div>                  
+                                                          
                   </ul>
               </ul>
             </div>
           
-          <div class="d-flex justify-content-end"><a href="#" class="card-link">ตรวจสอบจบ</a></div>
+          <!-- <div class="d-flex justify-content-end"><a href="#" class="card-link">ตรวจสอบจบ</a></div> -->
 
         </div>
       </div>

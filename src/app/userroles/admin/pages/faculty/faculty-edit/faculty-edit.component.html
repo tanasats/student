@@ -1,0 +1,60 @@
+<div *ngIf="fc.controls['faculty_id'].value"  class="card mb-3">
+    <!-- <div class="card-header">เพิ่ม</div> -->
+    <div class="card-body">
+      <h5 class="card-title">แก้ไข</h5>
+  
+      <div class="card-text mb-3">
+        <div class="row">
+          <!-- <div class="col-4">
+            <label class="form-label">รหัส</label>
+            <input
+              [formControl]="fc.controls['faculty_id']"
+              type="text"
+              class="form-control"
+            />
+          </div> -->
+          <div class="col-lg-6 col-12">
+            <div class="form-row">
+              <label class="form-label">ชื่อ</label>
+              <input
+                [formControl]="fc.controls['faculty_name']"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 col-12">
+            <div class="form-row">
+              <label class="form-label">ชื่อ (ภาษาอังกฤษ)</label>
+              <input
+                [formControl]="fc.controls['faculty_name_en']"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>          
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-12">
+            <label class="form-label">ประเภทคณะ/หน่วยงาน</label>
+            <ng-select 
+            [items]="faculty_group"
+            bindLabel="name" 
+            bindValue="id" 
+            [formControl]="fc.controls['faculty_group']"
+            ></ng-select>            
+          </div>
+        </div>
+
+      </div>
+  
+      <div class="">
+        <button class="btn btn-success me-2" (click)="_onSubmit.emit(fc.value)">
+          <i class="bi bi-check-lg me-1"></i>บันทึก
+        </button>
+        <button class="btn btn-secondary" (click)="_onCancel.emit(true)">
+          <i class="bi bi-x-lg me-1"></i>ยกเลิก
+        </button>
+      </div>
+    </div>
+  </div>

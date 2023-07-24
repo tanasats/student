@@ -8,7 +8,7 @@
 <section class="container">
   <div class="row">
     <div class="col-md-8 col-12">
-      <img class="img-fluid img-thumbnail" [src]="item.activity_picture || '../assets/images/image_not_available.png'"/>
+      <img class="img-fluid img-thumbnail" [src]="'http://localhost:3000/api/file/picture/'+item.activity_picture || '../assets/images/image_not_available.png'"/>
       <!-- <div
         [ngStyle]="{
           background: 'url(' + (item.activity_picture|| '../assets/images/image_not_available.png') + ')',
@@ -24,7 +24,7 @@
         </div>
         <div>
           <i class="bi bi-calendar4-week me-2  text-primary"></i>วันที่
-          {{ item.activity_date_form | thaidate }}
+          {{ item.activity_date_from | thaidate }}
         </div>
       </div>
     </div>

@@ -1,1 +1,29 @@
-<p>dashboard works!</p>
+<section class="container">
+  <div class="row mb-3">
+    <div class="col-lg-4 col-12">
+      <img
+        src="https://mdbcdn.b-cdn.net/img/new/avatars/4.webp"
+        class="rounded-circle mb-3"
+        style="width: 200px"
+        alt="Avatar"
+      />
+
+      <h5 class="mb-2"><strong>{{userdata.fullname}}</strong></h5>
+      <div class="text-muted">
+        <div class="d-block">เจ้าหน้าที่ส่วนคณะ <span class="badge bg-primary">Officer</span></div>
+        <div class="d-block">{{userdata.faculty}}</div>
+      </div>
+    </div>
+
+    <div class="col-lg-8 col-2"></div>
+  </div>
+
+  <div class="row">
+    <activity-list
+    [title]="'อนุมัติ'"
+    [items]="items"
+    [is_onQRScanner]="true"
+    (_onQRScanner)="onQRScanner($event)"
+    ></activity-list>
+  </div>
+</section>

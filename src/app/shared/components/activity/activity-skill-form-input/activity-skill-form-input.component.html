@@ -1,0 +1,15 @@
+<label class="form-label">ทักษะที่นิสิตจะรับจากการเข้าร่วมกิจกรรม</label>
+<small class="text-muted fst-italic ms-2">(เลือกได้มากกว่า 1 ข้อ)</small>      
+<div class="indent-2">
+    <ng-container *ngIf="fc.value!==null;else elseTemplate" >
+        <ng-container *ngFor="let item of fc.value;let i=index;">
+            <div class="form-check">
+                <input [id]="'skill-chk'+item.skill_id" class="form-check-input" type="checkbox" [value]="item.skill_code" [checked]="item.checked" (change)="toggleChecked($event)">
+                <label class="form-check-label" [htmlFor]="'skill-chk'+item.skill_id">{{item.skill_code}} {{item.skill_name}}</label>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <div class="form-error">Error! initial values.</div>
+    </ng-template>
+</div>

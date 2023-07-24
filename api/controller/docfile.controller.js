@@ -1,5 +1,6 @@
 const docfileModel = require("../model/docfile.model");
 const uploadDocFile = require("../model/uploaddocfile.model");
+const fs = require("fs");
 
 exports.getall = async (req, res) => {
   docfileModel
@@ -65,11 +66,15 @@ exports.delete = (req, res) => {
 
 exports.getbyTable = async (req, res) => {
   const ref_table_name = req.params.tablename;
-  const ref_table_id =req.params.tableid;
+  const ref_table_id = req.params.tableid;
   const ref_user_id = req.params.userid;
   if (ref_table_name && ref_table_id && ref_user_id) {
     docfileModel
-      .getbyTable({ ref_table_name: ref_table_name,ref_table_id:ref_table_id, ref_user_id: ref_user_id })
+      .getbyTable({
+        ref_table_name: ref_table_name,
+        ref_table_id: ref_table_id,
+        ref_user_id: ref_user_id,
+      })
       .then(([row]) => {
         res.status(200).json(row);
       })
@@ -77,12 +82,10 @@ exports.getbyTable = async (req, res) => {
         console.log(error);
         res.status(400).send(error);
       });
-
   } else {
     res.status(400).send({ message: "Invalid request parameter" });
   }
 };
-
 
 exports.update = async (req, res) => {
   const id = req.params.id;
@@ -157,7 +160,7 @@ exports.upload = async (req, res) => {
       docfile_filename: req.body.docfile_filename,
       docfile_filetype: req.files.file[0].mimetype,
       docfile_filesize: req.files.file[0].size,
-    //docfile_ref_user_id: req.body.docfile_ref_user_id,
+      //docfile_ref_user_id: req.body.docfile_ref_user_id,
       docfile_ref_user_id: req.user_id,
       docfile_ref_table_name: req.body.docfile_ref_table_name,
       docfile_ref_table_id: req.body.docfile_ref_table_id,
@@ -198,4 +201,31 @@ exports.upload = async (req, res) => {
       message: `Could not upload the file:  ${err}`,
     });
   }
+};
+
+exports.getbyFilename = (req, res) => {
+  const fileName = req.params.name;
+  const directoryPath = __basedir + "/uploads/docfiles/";
+  // res.download(directoryPath + fileName, fileName);
+  res.download(directoryPath + fileName, fileName, (err) => {
+    if (err) {
+      res.status(500).send({
+        message: "Could not download the file. " + err,
+      });
+    }
+  });
+};
+
+exports.openfile = (req, res) => {
+  const fileName = req.params.name;
+  const directoryPath = __basedir + "/uploads/docfiles/";
+  fs.readFile(directoryPath + fileName, function (err, data) {
+    if (err) {
+      res.status(500).send({
+        message: "Could not download the file. " + err,
+      });
+    }
+    //res.contentType("application/pdf");
+    res.send(data);
+  });
 };

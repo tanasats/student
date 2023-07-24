@@ -3,19 +3,37 @@ import { IMenuItem } from "src/app/core/interface/menuitem";
 export const admin_menu_items: IMenuItem[] = [
   {
     path: 'admin/dashboard',
-    title: 'แผงควบคุม',
+    title: 'หน้าควบคุม',
     icon: 'bi bi-speedometer2',
     class: '',
     extralink: false,
     submenu: [],
   },
   {
-    path: 'admin/activity',
-    title: 'จัดการกิจกรรม',
+    path: '',
+    title: 'กิจกรรม',
     icon: 'bi bi-bell',
     class: '',
     extralink: false,
-    submenu: [], 
+    submenu: [
+      {
+        path: 'admin/activity',
+        title: 'จัดการกิจกรรม',
+        icon: 'bi bi-bell',
+        class: '',
+        extralink: false,
+        submenu: [], 
+      },
+      {
+        path: 'admin/checkin',
+        title: 'บันทึกเข้าร่วม ด้วย QR Code',
+        icon: 'bi bi-qr-code',
+        class: '',
+        extralink: false,
+        submenu: [], 
+      },
+
+    ], 
   },
   {
     path: '',
@@ -33,7 +51,7 @@ export const admin_menu_items: IMenuItem[] = [
         submenu: [],
       },
       {
-        path: 'admin/acttype',
+        path: 'admin/activitytype',
         title: 'ประเภทกิจกรรม',
         icon: 'bi bi-patch-check',
         class: '',
@@ -41,7 +59,7 @@ export const admin_menu_items: IMenuItem[] = [
         submenu: [],
       },
       {
-        path: 'admin/actorganization',
+        path: 'admin/agency',
         title: 'องค์กรที่จัดกิจกรรม',
         icon: 'bi bi-patch-check',
         class: '',
@@ -57,7 +75,7 @@ export const admin_menu_items: IMenuItem[] = [
         submenu: [],
       },
       {
-        path: 'admin/faculty',
+        path: 'admin/setting',
         title: 'ตั้งค่าระบบ',
         icon: 'bi bi-gear',
         class: '',
@@ -73,6 +91,14 @@ export const admin_menu_items: IMenuItem[] = [
     class: '',
     extralink: false,
     submenu: [
+      {
+        path: 'admin/transcript/preview',
+        title: 'ตัวอย่าง Transcript',
+        icon: 'bi bi-patch-check',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
       {
         path: 'test',
         title: 'Test UI',
@@ -96,7 +122,15 @@ export const admin_menu_items: IMenuItem[] = [
         class: '',
         extralink: false,
         submenu: [],
-      },      
+      },   
+      {
+        path: 'testqrcode',
+        title: 'Test QR Code',
+        icon: 'bi bi-patch-check',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },            
       {
         path: '404',
         title: 'Test 404',
@@ -113,7 +147,7 @@ export const admin_menu_items: IMenuItem[] = [
 export const student_menu_items: IMenuItem[] = [
     {
       path: 'student/dashboard',
-      title: 'แผงควบคุม',
+      title: 'หน้าควบคุม',
       icon: 'bi bi-speedometer2',
       class: '',
       extralink: false,
@@ -160,5 +194,45 @@ export const student_menu_items: IMenuItem[] = [
         // },
       ],
     },
+
+  ];
+
+
+  export const officer_menu_items: IMenuItem[] = [
+    {
+      path: 'officer/dashboard',
+      title: 'หน้าควบคุม',
+      icon: 'bi bi-speedometer2',
+      class: '',
+      extralink: false,
+      submenu: [],
+    }, 
+    {
+      path: 'officer/activity',
+      title: 'จัดการกิจกรรม',
+      icon: 'bi bi-calendar',
+      class: '',
+      extralink: false,
+      submenu: [],
+    },
+
+    // {
+    //   path: 'officer/activity-report',
+    //   title: 'บันทึกเข้าร่วม',
+    //   icon: 'bi bi-patch-check',
+    //   class: '',
+    //   extralink: false,
+    //   submenu: [
+    //     {
+    //       path: 'officer/xxx',
+    //       title: 'เข้าร่วมกิจกรรมด้วย บัตรกิจกรรม',
+    //       icon: 'bi bi-calendar',
+    //       class: '',
+    //       extralink: false,
+    //       submenu: [],
+    //     }
+
+    //   ],
+    // },
 
   ];

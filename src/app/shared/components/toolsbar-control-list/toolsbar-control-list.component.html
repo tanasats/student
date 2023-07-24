@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between mb-2">
+  <div class="flex-grow-1">
+    <div class="h5">{{ title }}</div>
+  </div>
+  
+  <div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="ค้นหา" />
+      <button class="btn btn-primary" type="button"><span>ค้นหา</span></button>
+    </div>
+  </div>
+
+  <div>
+    
+    <button
+      class="btn btn-primary btn-custom"
+      (click)="test()"
+      matTooltip="เพิ่มรายการ">
+      <i class="bi bi-plus"></i><span>เพิ่ม</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="mb-5">
+  <ng-container *ngIf="items; else showLoading">
+
+    <ng-container *ngFor="let item of items | pagination:page_number:page_limit;let i=index">
+        <faculty-list-item
+         [item]="item"
+         (_onEdit)="_onEdit.emit($event)"
+         (_onDelete)="_onDelete.emit($event)"
+        ></faculty-list-item>
+    </ng-container>
+    <div class="pt-3 d-flex justify-content-between">
+        <div class="pagination-description">รายการที่ {{ first_index }} - {{ last_index }} จาก {{ items?.length }}</div>
+        <div>
+            <a class="btn btn-primary btn-sm pagination-icon-prev" [ngClass]="{'disabled': isPrevDisabled}"
+                (click)="(!isPrevDisabled)?(page_number=page_number-1):''" matTooltip="หน้าก่อนหนัา"><em
+                    class="bi bi-chevron-left"></em></a>
+            หน้าที่ {{page_number+1}}/{{page_total}}
+            <a class="btn btn-primary btn-sm pagination-icon-next" [ngClass]="{'disabled': isNextDisabled}"
+                (click)="(!isNextDisabled)?(page_number = page_number + 1):''" matTooltip="หน้าถัดไป"><em
+                    class="bi bi-chevron-right"></em></a>
+        </div>
+    </div>
+
+  </ng-container>
+  <ng-template #showLoading> Loading..... </ng-template>
+</div>

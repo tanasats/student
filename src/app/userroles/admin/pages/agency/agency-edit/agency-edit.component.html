@@ -1,0 +1,43 @@
+<div *ngIf="fc.controls['agency_id'].value" class="card mb-3">
+  <!-- <div class="card-header">แก้ไข</div> -->
+  <div class="card-body">
+    <h5 class="card-title">แก้ไข</h5>
+
+
+    <div class="card-text mb-3">
+      <div class="row">
+        <div class="col-4">
+          <label class="form-label">รหัส</label>
+          <input
+            [formControl]="fc.controls['agency_code']"
+            type="text"
+            class="form-control"
+          />
+        </div>
+        <div class="col-8">
+          <div class="form-row">
+            <label class="form-label">ชื่อ</label>
+            <input
+              [formControl]="fc.controls['agency_name']"
+              type="text"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <form-input-select
+            [label]="'หน่วยงานดำเนินการ'"
+            [fc]="fc.controls['agency_faculty']"
+            [items]="faculty_ref"
+          ></form-input-select>
+        </div>
+      </div>
+    </div>
+
+
+    <button class="btn btn-success me-2" (click)="_onSubmit.emit(fc.value)"><i class="bi bi-check-lg me-1"></i>บันทึก</button>
+    <button class="btn btn-secondary" (click)="_onCancel.emit(true)"><i class="bi bi-x-lg me-1"></i>ยกเลิก</button>
+  </div>
+</div>

@@ -6,7 +6,6 @@ import { ToasterService } from 'src/app/service/toaster/toaster.service';
 import { CurrentUserService } from 'src/app/service/current-user.service';
 import { UserService } from 'src/app/service/user.service';
 import { AuthService } from 'src/app/service/auth.service';
-import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +26,8 @@ export class LoginComponent {
   public frmLogin: FormGroup = this.fb.group({
     // username: ['', [Validators.required, Validators.minLength(3)]],
     // password: ['', Validators.required],
-    username: ['65010999001', [Validators.required, Validators.minLength(3)]],
-    password: ['3440600170765', Validators.required],
+    username: ['tanasat', [Validators.required, Validators.minLength(3)]],
+    password: ['tanasat71521150', Validators.required],
     // username: ['6010180', [Validators.required, Validators.minLength(3)]],
     // password: ['1449900754543', Validators.required],
   });
@@ -106,7 +105,7 @@ export class LoginComponent {
                               usertype: res.usertype,
                               faculty: res.faculty||null,
                               roles: JSON.stringify(_roles),
-                              email: res.email||res.studentcode+'@msu.ac.th'
+                              email: res.mail||res.username+'@msu.ac.th'
                             }
                             console.log("userdata:",userdata);
                             this.userservice.create(userdata).subscribe({

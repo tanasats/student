@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EnrollService } from 'src/app/service/enroll.service';
-import { environment } from 'src/environments/environment';
+import { APPCONST } from 'src/environments/environment';
 
 @Component({
   selector: 'app-activity-manage',
@@ -28,7 +28,15 @@ export class ActivityManageComponent implements OnInit {
   load_registrant(){
     this.enrollservice.registrant(this.item.activity_id).subscribe({
       next:(res)=>{
-        this.registrant=res;
+
+        this.registrant=res.map((item:any)=>{
+          const found = APPCONST.ENROLL_POSITION.find(obj=>{return obj.id==item.enroll_position})
+          if(found) { item.enroll_position_name=found.name}
+          else { item.enroll_position_name="*"}
+          return item;
+        });
+        console.log(this.registrant);
+        
       },
       error:(err)=>{
         console.log("enroll.registrant err:",err);

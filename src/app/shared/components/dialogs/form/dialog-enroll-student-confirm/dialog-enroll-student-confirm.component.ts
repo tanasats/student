@@ -10,11 +10,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DialogEnrollStudentConfirmComponent {
   public fg:FormGroup;
   public items:any[]=[
-    {id:"E",name:"ผู้เข้าร่วมกิจกรรม"},
-    {id:"D",name:"ผู้สร้างชื่อเสรียง"},
-    {id:"C",name:"ผู้นำองค์กรนิสิต"},
+    {id:"A",name:"ผู้รับผิดชอบโครงการ"},
     {id:"B",name:"ผู้ดำเนินโครงการ"},
-    {id:"A",name:"ผู้แทนมหาวิทยาลัย"},
+    {id:"C",name:"ผู้เข้าร่วมกิจกรรม"},
   ]
   constructor(
     private fb:FormBuilder,
