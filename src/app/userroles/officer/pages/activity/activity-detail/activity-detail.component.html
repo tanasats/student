@@ -1,0 +1,11 @@
+<activity-item-toolbar
+[title]="'อยู่ระหว่างขออนุมัติ'"
+[is_onGoBack]="true"
+(onGoBack)="onGoBack($event)"
+[is_onCancelApprove]="true"
+(onCancelApprove)="onCancelApprove($event)"
+></activity-item-toolbar>
+
+<activity-item-detail
+[item]="item"
+></activity-item-detail>

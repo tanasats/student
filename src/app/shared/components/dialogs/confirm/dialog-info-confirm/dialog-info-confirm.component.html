@@ -1,0 +1,23 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body pb-0">
+        <div class="modal-title">
+          {{ title }}
+        </div>
+        <div class="d-flex">
+          <div class="p-2 flex-grow-1 text-primary modal-dialog-description">
+            <i class="bi me-1 h4" [ngClass]="icon" ></i><span [innerHTML]="description"></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel btn-sm me-1" (click)="_close()">
+          <i class="bi bi-x-lg"></i> {{ no }}
+        </button>
+        <button type="button" class="btn btn-primary btn-sm me-1" (click)="_confirm()">
+          <i class="bi bi-check-lg"></i> {{ yes }}
+        </button>
+      </div>
+    </div>
+  </div>
+  

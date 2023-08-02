@@ -162,14 +162,6 @@ export const student_menu_items: IMenuItem[] = [
       submenu: [],
     },
     {
-      path: 'student/checkcredit',
-      title: 'ตรวจสอบจบ',
-      icon: 'bi bi-calendar',
-      class: '',
-      extralink: false,
-      submenu: [],
-    },
-    {
       path: 'student/activity-report',
       title: 'บันทึกเข้าร่วม',
       icon: 'bi bi-patch-check',
@@ -194,6 +186,14 @@ export const student_menu_items: IMenuItem[] = [
         // },
       ],
     },
+    // {
+    //   path: 'student/checkcredit',
+    //   title: 'ตรวจสอบจบ',
+    //   icon: 'bi bi-calendar',
+    //   class: '',
+    //   extralink: false,
+    //   submenu: [],
+    // },
 
   ];
 
@@ -208,31 +208,21 @@ export const student_menu_items: IMenuItem[] = [
       submenu: [],
     }, 
     {
-      path: 'officer/activity',
-      title: 'จัดการกิจกรรม',
-      icon: 'bi bi-calendar',
+      path: '',
+      title: 'กิจกรรม',
+      icon: 'bi bi-bell',
       class: '',
       extralink: false,
-      submenu: [],
-    },
-
-    // {
-    //   path: 'officer/activity-report',
-    //   title: 'บันทึกเข้าร่วม',
-    //   icon: 'bi bi-patch-check',
-    //   class: '',
-    //   extralink: false,
-    //   submenu: [
-    //     {
-    //       path: 'officer/xxx',
-    //       title: 'เข้าร่วมกิจกรรมด้วย บัตรกิจกรรม',
-    //       icon: 'bi bi-calendar',
-    //       class: '',
-    //       extralink: false,
-    //       submenu: [],
-    //     }
-
-    //   ],
-    // },
+      submenu: [
+        {
+          path: 'officer/activity',
+          title: 'จัดการกิจกรรม',
+          icon: 'bi bi-bell',
+          class: '',
+          extralink: false,
+          submenu: [], 
+        },
+      ]
+    }
 
   ];

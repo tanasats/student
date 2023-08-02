@@ -1,188 +1,45 @@
-<section class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5 class="card-title">ข้อมูลนิสิต</h5>
+<section>
+  <div class="container">
 
-
-          <!-- <h6 class="card-subtitle mb-2 text-muted fs-sm">Card subtitle</h6> -->
-          <div class="card-text">
-            <div class="row">
-            <div class="col-lg-5 col-12 order-lg-1">
-              <img
-              src="https://mdbcdn.b-cdn.net/img/new/avatars/3.webp"
-              class="rounded-circle mb-3"
-              style="width: 100%"
-              alt="Avatar"
-            />
-
-            </div>  
-            <div class="col-lg-7 col-12 order-lg-2">
-              <ul class="ms-3 list-unstyled">
-                <li><h3>{{userdata.fullname}}</h3></li>
-                <li><h5>{{userdata.studentcode}}</h5></li>
-                <li><span>คณะ : </span>{{userdata.faculty}}</li>
-                <li><span>สาขาวิชา : </span>{{userdata.program}}</li>
-                <li><span>ระดับการศึกษา : </span>ปริญญา{{userdata.level}}</li>
-              </ul>
-            </div>
-
+    <div class="row mb-3">
+      <div class="col-lg-4 col-12">
+        <!-- src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" -->
+        <img
+          src="assets/images/user0.jpg"
+          class="rounded-circle mb-3"
+          style="width: 200px"
+          alt="Avatar"
+        />
+        <!-- {{ currentuser | json }} -->
+        <h4 class="mb-2"><strong>{{userdata.fullname}}</strong></h4>
+        <div class="text-muted">
+          <!-- <div class="d-block">นิสิต <span class="badge bg-primary">student</span></div> -->
+          <div class="d-block h6">{{userdata.studentcode}}</div>
+          <div class="d-block"><i class="bi bi-envelope text-primary me-2"></i>{{userdata.email}}</div>
+          <div class="d-block"><i class="bi bi-buildings text-primary me-2"></i>{{userdata.faculty_name}}</div>
+        </div>
+      </div>
   
-            </div>
-</div>
-          <!-- <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a> -->
-
-
-        </div> 
-      </div>
+      <div class="col-lg-8 col-2"></div>
     </div>
-    <div class="col-md-6">
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5 class="card-title">สรุปการทำกิจกรรม</h5>
-          <h6 class="card-subtitle mb-2 text-muted fs-sm">จำนวนกิจกรรมทั้งหมดที่เจ้าหน้าที่อนุมัติแล้ว</h6>
-            <div class="card-text">
-              <ul class="my-1">
-                <li class="h6">สรุปกิจกรรม จำแนกตามระดับ</li>
-                <ul>
-                  <li>
-                    <div class="d-flex justify-content-between">
-                      <div>ระดับมหาวิทยาลัย</div>
-                      <div>2 กิจกรรม 12 ชั่วโมง</div>
-                    </div>                      
-                  </li>
-                  <li>
-                    <div class="d-flex justify-content-between">
-                      <div>ระดับคณะ/องค์กรนิสิต</div>
-                      <div>5 กิจกรรม 22 ชั่วโมง</div>
-                    </div>                      
-                  </li>  
-                  <div class="fst-italic text-muted">
-                    <div class="d-flex justify-content-between">
-                      <div>รวม</div>
-                      <div>7 กิจกรรม 34 ชั่วโมง</div>
-                    </div>
-                  </div>                                 
 
-                </ul>
-                <li class="h6">สรุปกิจกรรม จำแนกรายด้าน</li>
-                  <ul>
-                    <li>
-                      <div class="d-flex justify-content-between">
-                        <div>ด้านนิสิตสัมพันธ์และวิชาการ</div>
-                        <div>2 กิจกรรม 10 ชั่วโมง</div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="d-flex justify-content-between">
-                        <div>ด้านกีฬา</div>
-                        <div>1 กิจกรรม 6 ชั่วโมง</div>
-                      </div>                      
-                    </li>
-                    <li>
-                      <div class="d-flex justify-content-between">
-                        <div>ด้านบำเพ็ญประโยชน์</div>
-                        <div>3 กิจกรรม 14 ชั่วโมง</div>
-                      </div>                      
-                    </li>
-                    <li>
-                      <div class="d-flex justify-content-between">
-                        <div>ด้านศิลปวัฒนธรรม</div>
-                        <div>1 กิจกรรม 4 ชั่วโมง</div>
-                      </div>                      
-                    </li>     
-                    
-                      <div class="fst-italic text-muted">
-                        <div class="d-flex justify-content-between">
-                          <div>รวม</div>
-                          <div>7 กิจกรรม 34 ชั่วโมง</div>
-                        </div>
-                      </div>                  
-                                                          
-                  </ul>
-              </ul>
-            </div>
-          
-          <!-- <div class="d-flex justify-content-end"><a href="#" class="card-link">ตรวจสอบจบ</a></div> -->
+  </div>
+</section>
 
-        </div>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <activity-list  
+        [items]="items"
+        [title]="'กิจกรรของฉัน'" 
+        (_onTitleClick)="onView($event)"
+       
+        
+        ></activity-list>
       </div>
     </div>
   </div>
 </section>
 
-
-<section class="container">
-  <div class="row">
-    <div class="col">
-
-      <!-- <div class="row d-flex justify-content-between">
-        <div class="col-md-auto col-sm-12 order-md-1 order-sm-1">
-          <h5>รายการกิจกรรมของฉัน</h5>
-        </div>
-      </div> -->
-
-      <activity-list
-      [items]="activitys"
-      [title]="'กิจกรรมที่ลงทะเบียน'"
-      [is_onQRcode]="true"
-      (_onQRcode)="onQRcode($event)"
-      [is_onView]="true"
-      (_onView)="onView($event)"
-      ></activity-list>
-
-
-
-
-      <!-- <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th scope="col"style="width:1px">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table> -->
-
-    </div>
-  </div>
-</section>
-
-
-<!-- <section class="container">
-
-  <div class="more-option">
-    <i class="bi bi-three-dots-vertical cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
-    <ul class="dropdown-menu">
-        <li><a class="dropdown-item" ><i class="bi bi-eye"></i> ดูข้อมูลรายการ</a></li>
-        <li><a class="dropdown-item" ><i class="bi bi-paperclip"></i> ดูไฟล์หนังสือนำส่ง</a></li>
-        <li><a class="dropdown-item" ><i class="bi bi-geo-alt"></i> ติดตามหนังสือ</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" ><i class="bi bi-trash"></i> ลบข้อมูลรายการ</a></li>
-        <li><a class="dropdown-item" ><i class="bi bi-x-lg"></i> ยกเลิกรายการ</a></li>
-    </ul>
-  </div>
-
-</section> -->

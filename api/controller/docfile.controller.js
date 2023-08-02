@@ -1,5 +1,6 @@
 const docfileModel = require("../model/docfile.model");
-const uploadDocFile = require("../model/uploaddocfile.model");
+//const uploadDocFile = require("../model/uploaddocfile.model");
+const docfileUpload = require("../model/docfileupload.model");
 const fs = require("fs");
 
 exports.getall = async (req, res) => {
@@ -144,7 +145,7 @@ exports.create = async (req, res) => {
 exports.upload = async (req, res) => {
   console.log("uploaddocfile.controller");
   try {
-    await uploadDocFile(req, res);
+    await docfileUpload(req, res);
     //---After file Uploaded success----//
     //---get field in form
     console.log("req.files.file: ", req.files.file);
@@ -152,12 +153,13 @@ exports.upload = async (req, res) => {
       "req.body.docfile_title after uploadfle:",
       req.body.docfile_title
     );
+    console.log("req.files.file",req.files.file);
     const docfile_datas = {
       docfile_id: null,
       docfile_title: req.body.docfile_title,
       docfile_description: req.body.docfile_description,
       //docfile_filename: req.files.file[0].filename,
-      docfile_filename: req.body.docfile_filename,
+      docfile_filename: req.files.file[0].filename,
       docfile_filetype: req.files.file[0].mimetype,
       docfile_filesize: req.files.file[0].size,
       //docfile_ref_user_id: req.body.docfile_ref_user_id,

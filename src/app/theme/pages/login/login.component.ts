@@ -55,7 +55,7 @@ export class LoginComponent {
         }
       },
       error: (err) => {
-        console.log('auth.signin() err:', err);
+        console.log('auth.signin() return err:', err);
         switch (err) {
           case "0":
             //this.toaster.show('error', 'ผู้ใช้ยังไม่ได้สมัครสมาชิก !!!',7000);
@@ -86,7 +86,7 @@ export class LoginComponent {
                             case 'staff':
                               _roles=[{
                                 role_id:20,
-                                role_name:'officer',
+                                role_name:'staff',
                               }];
                               break;
                             default:
@@ -103,7 +103,8 @@ export class LoginComponent {
                               program: res.program,
                               level: res.level,
                               usertype: res.usertype,
-                              faculty: res.faculty||null,
+                              faculty_id: res.faculty_id,
+                              faculty_name: res.faculty||null,
                               roles: JSON.stringify(_roles),
                               email: res.mail||res.username+'@msu.ac.th'
                             }
@@ -141,7 +142,6 @@ export class LoginComponent {
                                       console.log("2 auth.signin err:",err);
                                     }
                                   })
-  
                                 }
                               },
                               error:(err)=>{
@@ -171,6 +171,79 @@ export class LoginComponent {
           case "1":
             this.toaster.show('error', 'username/password ไม่ถูกต้อง !');
             break;
+          case "2": // this case user has username and password=null
+              //this.toaster.show('error', 'password ไม่ถูกต้อง !'+form.value.password);
+            this.msuauth.signin(form.value).subscribe({
+              next: (res)=>{
+                if(res.access_token){
+                  localStorage.setItem("access-token",res.access_token);
+                  this.msuauth.me().subscribe({
+                    next: (res)=>{
+                      let userdata = {
+                        username: res.username,
+                        password: form.value.password,
+                        studentcode: res.studentcode,
+                        fullname: res.fullname,
+                        program: res.program,
+                        level: res.level,
+                        usertype: res.usertype,
+                        faculty_name: res.faculty||null,
+                        email: res.mail||res.username+'@msu.ac.th'
+                      }
+                      console.log("userdata:",userdata);
+                      this.userservice.update(userdata).subscribe({
+                        next: (res)=>{
+                          if(res.affectedRows===1){
+                            this.auth.signin(form.value).subscribe({
+                              next:(res)=>{
+                                console.log("2 auth.signin res:",res);
+                                if(res.access_token){
+                                  localStorage.setItem('access-token', res.access_token);
+                                  this.auth.me().subscribe({
+                                    next: ([res]) => {
+                                      console.log('auth.me() res:', res);
+                                      const userdata = res;
+                                      this.currentuser.login(userdata);
+                                      this.router.navigate(['/']);
+                                      this.toaster.show('success', 'ยินดีต้อนรับ เข้าใช้งานระบบ',7000);
+                                    },
+                                  });
+                                }
+                              },
+                              error:(err)=>{
+                                console.log("2 auth.signin err:",err);
+                              }
+                            })
+                          }
+                        },
+                        error: (err)=>{
+                            console.log(err)
+                        }
+                      })
+
+
+
+
+
+
+
+                    },
+                    error: (err)=>{
+                        console.log(err);
+                    }
+                  })
+                }else{
+                  console.log("msuauth.signin not success");
+                }
+                    
+
+
+              },
+              error: (err)=>{
+                this.toaster.show('error', 'username/password ไม่ถูกต้อง !');
+              }
+            })
+            break;            
           default:
             //this.toaster.show('error', err,7000);
             this.toaster.show('error', "เกิดข้อผิดพลาดใหการติดต่อ API Server",7000);

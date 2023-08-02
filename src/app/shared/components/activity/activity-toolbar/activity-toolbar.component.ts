@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'activity-toolbar',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./activity-toolbar.component.scss']
 })
 export class ActivityToolbarComponent {
-public title="_activity_toolbars_"
+@Input() title:string="_activity_toolbars_"
+@Output() onCreate = new EventEmitter<any>();
 }

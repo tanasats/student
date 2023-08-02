@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ICurrentuser } from 'src/app/core/interface/currentuser';
 import { CurrentUserService } from 'src/app/service/current-user.service';
 import { EnrollService } from 'src/app/service/enroll.service';
+import { OffcanvasService } from 'src/app/service/offcanvas.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
 import { DialogEnrollStudentConfirmComponent } from 'src/app/shared/components/dialogs/form/dialog-enroll-student-confirm/dialog-enroll-student-confirm.component';
 
@@ -25,7 +26,8 @@ export class ActivityDetailsComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private enrollservice: EnrollService,
-    private toaster: ToasterService
+    private toaster: ToasterService,
+    public offcanvas:OffcanvasService,
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +37,7 @@ export class ActivityDetailsComponent implements OnInit {
       console.log("refresh jobs");
     }
     this.item = history.state.datas;
+    this.item.activity_skill = JSON.parse(this.item.activity_skill);
     this.currentuser = this.currentuserservice.getdata;
     this.load_enroll();
   }
@@ -89,6 +92,8 @@ export class ActivityDetailsComponent implements OnInit {
                 this.toaster.show('error', 'ผิดพลาด! ' + err);
               },
             });
+          }else{
+            console.log("xxxx res:",res);
           }
         },
         error: (err) => {

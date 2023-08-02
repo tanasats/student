@@ -9,7 +9,7 @@ import { ActivityService } from 'src/app/service/activity.service';
 import { ImagefileService } from 'src/app/service/imagefile.service';
 
 @Component({
-  selector: 'form-input-image',
+  selector: 'unused-form-input-image',
   templateUrl: './form-input-image.component.html',
   styleUrls: ['./form-input-image.component.scss']
 })

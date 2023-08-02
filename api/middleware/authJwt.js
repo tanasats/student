@@ -21,8 +21,11 @@ const verifyToken = (req, res, next) => {
     if (err) {
       return catchError(err, res);
     }
-	  console.log("verfyToken decoded: ",decoded);
+    console.log("verifyToken decode:",decoded) 
     req.user_id = decoded.user_id;
+    req.user_type = decoded.user_type;
+    req.user_faculty_id = decoded.faculty_id;
+    req.user_faculty_name = decoded.faculty_name;
     next();
   });
 }; 

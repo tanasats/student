@@ -4,7 +4,7 @@ const config = require("../config/auth.config");
 const jwt = require("jsonwebtoken");
 
 exports.tokenizer = (req, res) => {
-  //var _token = req.body.token;
+  //var _token = req.body.token; 
   const token = req.headers["x-access-token"];
   console.log(token);
   const secret = config.appSecret;
@@ -38,30 +38,36 @@ exports.tokenizer = (req, res) => {
 // return 200:{username,access_token}
 // return 500:{}
 exports.signin = async (req, res) => {
+  console.log("auth signin()")
   let username = req.body.username;
   let password = req.body.password;
   authModel
     .findUsername(username)
     .then(([row]) => {
-      console.log("findusername", row);
+      
       if (row.length === 0) {
-        //return res.status(404).send({message: "Not found User!" });
-        return res.status(401).send({ message: "0" });
+        return res.status(401).send({ message: "0" });//return "Not found User!"
       }
 
       let [user] = row;
+      console.log("found user data :", user);
       if (user.password == null) {
         return res.status(401).send({ message: "2" });
       }
 
       let passwordIsValid = bcrypt.compareSync(password || "", user.password);
-      //console.log('password is valid:',passwordIsValid);
       if (!passwordIsValid) {
         return res.status(401).send({ message: "1" }); //has username but invalid password
       }
 
       //---Authorized----
-      let payload={username:user.username,user_id:user.user_id}
+      let payload={
+        username: user.username,
+        user_id: user.user_id,
+        user_type: user.user_type,
+        faculty_id: user.faculty_id,
+        faculty_name: user.faculty_name,
+      }
       let token = jwt.sign(payload, config.secret, {
         expiresIn: config.jwtExpiration,
       });

@@ -21,10 +21,10 @@ export class DialogEnrollStudentConfirmComponent {
     ) { 
       
     this.fg=fb.group({
-      user_id : data.user_id,
+      //user_id : data.user_id,
       activity_id: data.activity_id,
       studentcode: data.studentcode,
-      enroll_position: [null,[Validators.required]]
+      enroll_position: ["C",[Validators.required]]
       //file_description: [data.file_description||data.file_name,Validators.required]
     })
   }
@@ -33,11 +33,11 @@ export class DialogEnrollStudentConfirmComponent {
 
   }
 
-  _close(){
+  onClose(){
     this.dialogRef.close(false);
   }
 
-  _save(){
+  onSave(){
     console.log(this.fg.getRawValue());
     if (this.fg.valid) {
       this.dialogRef.close(this.fg.value);

@@ -24,18 +24,38 @@ class _class {
   }
 
   // extra method
-  filter({ page, limit, code, name }) {
+  filter({ user_id, user_type, user_faculty_id, user_faculty_name, page, limit, code, name ,publish ,status ,open }) {
     return new Promise((resolve, reject) => {
-      let where_code = code;
-      if (code.length>0)  {
-        where_code = "activity_code like '%"+code+"%' AND";
+      const admin_id=[1];
+      let where_text = "WHERE ";
+      if(!admin_id.includes(user_id)&&user_type=="staff") {
+        where_text = where_text+"cowner =  "+user_id+" AND ";
       }
+      if(!admin_id.includes(user_id)) {
+        where_text = where_text+"faculty_name =  '"+user_faculty_name+"' AND ";
+      }
+
+      if (code.length>0)  {
+        where_text = "activity_code like '%"+code+"%' AND ";
+      }
+      if (publish.length>0)  {
+        where_text = where_text+"activity_publish =  "+publish+" AND ";
+      }
+      if (status.length>0)  {
+        where_text = where_text+"activity_status =  '"+status+"' AND ";
+      }
+      if (open.length>0)  {
+        where_text = where_text+"activity_open =  "+open+" AND ";
+      }
+
+
       const sql = db.format(
-        "SELECT count(*) as rowcount FROM activity WHERE " +
-          where_code +
-          " activity_name like ? ",
+        "SELECT count(*) as rowcount FROM activity " +
+          where_text +
+          "activity_name like ? ORDER BY mdate",
         ["%" + name + "%"]
       );
+      console.log("filter sql:",sql);
       db.query(sql)
         .then(([rows]) => {
           let totalItems = parseInt(rows[0].rowcount);
@@ -48,7 +68,7 @@ class _class {
           }
           let offset = (currentPage - 1) * limit;
           const sql = db.format(
-            "SELECT * FROM activity WHERE "+where_code+" activity_name like ? LIMIT ?,?",
+            "SELECT * FROM activity "+where_text+" activity_name like ? LIMIT ?,?",
             [ "%" + name + "%", offset, limit]
           );
           console.log(sql);
@@ -70,6 +90,9 @@ class _class {
         });
     });
   } //paging
+
+
+
 
   // rowcount(){
   //   const sql = db.format("SELECT count(*) as rowcount FROM activity");

@@ -1,7 +1,7 @@
 <div class="container mt-3">
     <div class="row">
         <div class="col">
-            <h5>แผงควบคุมสำหรับ{{title}}</h5>
+            <h5>แผงควบคุมสำหรับผู้ดูแลระบบ{{title}}</h5>
         </div>
     </div>
     <div class="row">
@@ -9,7 +9,13 @@
         <div class="alert alert-info" >เมนูลัดที่จำเป็น</div>
       </div>
       <div class="col-md-8 col-12">
-        <div class="alert alert-warning">ข้อมูลสถิติกิจกรรม</div>
+        <div >
+          <div>จัดทำร่าง <span class="badge rounded-pill bg-info mx-2">{{items_draft.length}}</span>รายการ</div>
+          <div>ขออนุมัติ <span class="badge rounded-pill bg-info">{{items_approve.length}}</span> รายการ</div>
+          <div>ดำเนินการ <span class="badge rounded-pill bg-info">{{items_work.length}}</span> รายการ</div>
+          <div>ทั้งหมด <span class="badge rounded-pill bg-primary">{{items.length}}</span> รายการ</div>
+        </div>
+
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { IActivityFormGroup } from 'src/app/core/interface/activity';
@@ -12,6 +13,8 @@ import { DocfileService } from 'src/app/service/docfile.service';
 import { FacultyService } from 'src/app/service/faculty.service';
 import { OffcanvasService } from 'src/app/service/offcanvas.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
+import { DialogInfoConfirmComponent } from 'src/app/shared/components/dialogs/confirm/dialog-info-confirm/dialog-info-confirm.component';
+import { DialogWarningConfirmComponent } from 'src/app/shared/components/dialogs/confirm/dialog-warning-confirm/dialog-warning-confirm.component';
 import { APPCONST } from 'src/environments/environment';
 
 @Component({
@@ -30,6 +33,8 @@ export class ActivityEditComponent implements OnInit {
   public activitytype_ref: any;
   public docfile_list: any = [];
   public currentuser!: ICurrentuser;
+  public agency_text:string="";
+  public activitytype_text:string="";
 
   constructor(
     private route: ActivatedRoute,
@@ -43,7 +48,8 @@ export class ActivityEditComponent implements OnInit {
     private activitytypeservice: ActivitytypeService,
     private currentuserservice: CurrentUserService,
     private docfileservice: DocfileService,
-    private toaster: ToasterService
+    private toaster: ToasterService,
+    private dialog: MatDialog,
   ) {
     this.form = this.fb.group({
       activity_id: [null, []],
@@ -104,6 +110,8 @@ export class ActivityEditComponent implements OnInit {
         this.item = res;
         this.item.activity_faculty = JSON.parse(this.item.activity_faculty);
         this.faculty_ref = this.item.activity_faculty;
+        this.item.activity_skill = JSON.parse(this.item.activity_skill);
+        
         this.form.patchValue(this.item);
         console.log("xxx=",this.item);
       },
@@ -129,6 +137,7 @@ export class ActivityEditComponent implements OnInit {
           var obj: any = {};
           obj.id = item.agency_code;
           obj.name = item.agency_code + ' : ' + item.agency_name;
+          if(item.agency_code==this.item.agency_code) this.agency_text=item.agency_code+":"+item.agency_name;
           return obj;
         });
       },
@@ -136,12 +145,14 @@ export class ActivityEditComponent implements OnInit {
         console.log(err);
       },
     });
+
     this.activitytypeservice.getall().subscribe({
       next: (res) => {
         this.activitytype_ref = res.map((item: any) => {
           var obj: any = {};
           obj.id = item.activitytype_code;
           obj.name = item.activitytype_code + ' : ' + item.activitytype_name;
+          if(item.activitytype_code==this.item.activitytype_code) this.activitytype_text=item.activitytype_code+":"+item.activitytype_name;
           return obj;
         });
       },
@@ -200,7 +211,7 @@ export class ActivityEditComponent implements OnInit {
   }
 
   onImageSave(filename: any) {
-    console.log(filename);
+    console.log('onImageSave file: ',filename);
     const datas = {
       activity_id: this.form.controls['activity_id'].value,
       activity_picture: filename,
@@ -215,4 +226,65 @@ export class ActivityEditComponent implements OnInit {
       },
     });
   }
+
+
+  onSendApprove(item:any){
+    this.dialog
+    .open(DialogInfoConfirmComponent, {
+      data: {
+        title: 'ยืนยันส่งคำขออนุมัติ',
+        description: 'กิจกรรม: '+item.activity_name,
+      },
+    })
+    .afterClosed()
+    .subscribe((data) => {
+      if (data) {
+        console.log(data);
+        this.form.controls['activity_status'].setValue('a');
+        this._onSubmit();
+        this.router.navigate(['/admin/activity']);
+      }
+    });   
+  }
+
+  onApprove(item:any){
+    this.dialog
+    .open(DialogInfoConfirmComponent, {
+      data: {
+        title: 'ยืนยันอนุมัติ',
+        description: 'กิจกรรม: '+item.activity_name,
+      },
+    })
+    .afterClosed()
+    .subscribe((data) => {
+      if (data) {
+        console.log(data);
+        this.form.controls['activity_status'].setValue('w');
+        this._onSubmit();
+        this.router.navigate(['/admin/activity']);
+      }
+    });   
+  }
+
+  onCancelApprove(item:any){
+    this.dialog
+    .open(DialogWarningConfirmComponent, {
+      data: {
+        title: 'ยืนยันยกเลิกอนุมัติ',
+        description: 'กิจกรรม: '+item.activity_name,
+      },
+    })
+    .afterClosed()
+    .subscribe((data) => {
+      if (data) {
+        console.log(data);
+        this.form.controls['activity_status'].setValue('d');
+        this._onSubmit();
+        this.router.navigate(['/admin/activity']);
+      }
+    });   
+  }
+
+
+
 }

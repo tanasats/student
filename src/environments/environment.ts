@@ -13,10 +13,10 @@ export const environment = {
     //endpoint: "http://192.168.1.42:3000/api", // common setting
     msuauthapi: "https://data.msu.ac.th/api/v1.1/auth",
 
-    appFullName:"ระบบทรานสคริปกิจกรรมนิสิต มหาวิทยาลัยมหาสารคาม",
-    appFullName_en:"Student Activity Transcript System",
-    appShortName:"SATs",
-    appShortName_en:"SATs",
+    appFullName:"ระบบกิจกรรมนิสิต มหาวิทยาลัยมหาสารคาม",
+    appFullName_en:"Student Activity System",
+    appShortName:"Student Activity",
+    appShortName_en:"Student Activity",
     
     ROLE_NAME: {
         10: 'ผู้ใช้งานทั่วไป',
@@ -29,8 +29,7 @@ export const environment = {
         E: 'ผู้เข้าร่วมโครงการ',
         A: 'ผู้บริหาร'
     }
-
-
+    
   };
 
   export const APPLABEL={
@@ -41,8 +40,6 @@ export const environment = {
     UPDATE_SUCCESS:'แก้ไขข้อมูลเรียบร้อบ',
     UPDATE_ERROR:'เกิดข้อผิดพลาด! ',
 
-
-  
   }
 
   export const APPCONST={
@@ -63,5 +60,5 @@ export const environment = {
       {id:2,name:'วิทยาศาสตร์สุขภาพ'},
       {id:3,name:'มนุษยศาสตร์และสังคมศาสตร์'},
       {id:4,name:'สนันสนุนการเรียนการสอน'},
-    ]
+    ],
   }

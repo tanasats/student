@@ -53,6 +53,11 @@ import { FormInputSelectComponent } from './components/form/form-input-select/fo
 import { PaginationPipe } from './pipes/pagination.pipe';
 import { ActivitySkillFormInputComponent } from './components/activity/activity-skill-form-input/activity-skill-form-input.component';
 import { ActivityToolbarComponent } from './components/activity/activity-toolbar/activity-toolbar.component';
+import { FormInputPicfileComponent } from './components/form/form-input-picfile/form-input-picfile.component';
+import { ActivityItemToolbarComponent } from './components/activity/activity-item-toolbar/activity-item-toolbar.component';
+import { DialogInfoConfirmComponent } from './components/dialogs/confirm/dialog-info-confirm/dialog-info-confirm.component';
+import { OffcanvasTicketComponent } from './components/offcanvas/offcanvas-ticket/offcanvas-ticket.component';
+import { ActivityItemDetailComponent } from './components/activity/activity-item-detail/activity-item-detail.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +110,11 @@ import { ActivityToolbarComponent } from './components/activity/activity-toolbar
     PaginationPipe,
     ActivitySkillFormInputComponent,
     ActivityToolbarComponent,
+    FormInputPicfileComponent,
+    ActivityItemToolbarComponent,
+    DialogInfoConfirmComponent,
+    OffcanvasTicketComponent,
+    ActivityItemDetailComponent,
 
     
   ],
@@ -160,6 +170,11 @@ import { ActivityToolbarComponent } from './components/activity/activity-toolbar
     ToolsbarControlListComponent,
     FormInputSelectComponent,
     ActivitySkillFormInputComponent,
+    FormInputPicfileComponent,
+    ActivityItemToolbarComponent,
+    DialogInfoConfirmComponent,
+    OffcanvasTicketComponent,
+    ActivityItemDetailComponent,
   ]
 })
 export class SharedModule { }

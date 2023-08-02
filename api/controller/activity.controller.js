@@ -22,17 +22,29 @@ exports.getall = async (req, res) => {
 // }
 
 exports.filter = async (req, res) => {
-  console.log("userId:",req.userId)
+  console.log("user_id:",req.user_id) //<-- user_id from token
+  let user_id = req.user_id;
+  let user_type = req.user_type;
+  let user_faculty_id = req.user_faculty_id; 
+  let user_faculty_name = req.user_faculty_name; 
+  console.log("user_facluty_name:",req.user_faculty_name);
+
   let page = parseInt(req.query.page)||1;
-  let limit = parseInt(req.query.limit)||9999999;
+  let limit = parseInt(req.query.limit)||999999;
   let code = req.query.code||'';
   let name = req.query.name||'';
+  let publish = req.query.publish||'';
+  let status = req.query.status||'';
+  let open = req.query.open ||'';
+
   // let status = req.query.status||'';
   if(code.length<3) code='';
   if(name.length<3) name='';
 
   activityModel
-    .filter({ page:page, limit: limit, code:code, name:name})
+    .filter({ 
+      user_id:user_id, user_type:user_type, user_faculty_name:user_faculty_name, 
+      page:page, limit: limit, code:code, name:name, publish:publish, status:status, open:open})
     .then((rows) => {
       //console.log(rows);
       res.status(200).send(rows);
@@ -169,7 +181,7 @@ exports.update = async (req, res) => {
   }
   const owner = req.user_id;
 //  console.log("create owner:",owner)
-  datas.cowner = owner;
+  //datas.cowner = owner;
   datas.mowner = owner;  
 
   if (req.params.id) {
@@ -198,12 +210,20 @@ exports.create = async (req, res) => {
   console.log(req.body);
   const datas = req.body;
   const owner = req.user_id;
-  console.log("create owner:",owner)
+  const faculty_id = req.user_faculty_id;
+  const faculty_name = req.user_faculty_name;
+
   datas.cowner = owner;
   datas.mowner = owner;  
+  datas.faculty_id= faculty_id;
+  datas.faculty_name= faculty_name
 
   console.log("create activity owner:",owner)
-  if (req.body.activity_name) {
+  console.log("activity faculty owner:",faculty_name)
+
+
+  
+  if (req.body.activity_name) { 
     console.log("data:", datas);
     activityModel
       .create({ datas: datas })

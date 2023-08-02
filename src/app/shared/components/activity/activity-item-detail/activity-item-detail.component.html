@@ -1,0 +1,65 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5>{{item.activity_name}}</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+
+                <img class="img-fluid img-thumbnail" [src]="'http://localhost:3000/api/file/picture/'+item.activity_picture || '../assets/images/image_not_available.png'"/>
+                <div class="mt-3">
+                    <i class="bi bi-megaphone me-2 text-primary"></i>
+                    <p [innerHTML]="item.activity_description"></p>
+                </div>
+                <div class="mt-3">
+                    <i class="me-2 bi bi-geo-alt me-2 text-primary"></i>
+                    {{ item.activity_place }}
+                </div>
+                <div class="mt-3">                     
+                    <i class="bi bi-calendar4-week me-2  text-primary"></i>
+                    {{ item.activity_date_from | thaidate }}
+                </div>
+                <div class="mt-3">    
+                    <i class="bi bi-buildings me-2  text-primary"></i>
+                    <!-- <ng-container *ngFor="let fac of item.activity_faculty" >
+                    <span class="m-1 badge round-pill bg-white text-primary">{{fac.faculty_name}}</span>
+                    </ng-container> -->
+                </div>
+                <div class="mt-3">
+                    <i class="bi bi-gem me-2  text-primary"></i>ทักษะที่จะได้รับ
+                    <!--<ng-container *ngFor="let skill of item.activity_skill">
+                     <div *ngIf="skill.checked">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-check text-primary me-1"></i>
+                        <span class="badge round-pill bg-white text-primary">{{skill.skill_name}}</span>
+                    </div> 
+                    </ng-container> -->    
+                </div>
+
+            </div>
+
+
+            <div class="col-12 col-lg-6">
+             <div class="mt-3">
+                
+             </div>   
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+

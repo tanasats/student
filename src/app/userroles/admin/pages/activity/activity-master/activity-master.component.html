@@ -1,26 +1,36 @@
 <section class="container">
+  <activity-toolbar
+    [title]="'รายการกิจกรรม'"
+    (onCreate)="onCreate($event)"
+  ></activity-toolbar>
+</section>
 
-  <section class="container">
-    <ng-container >
-        <activity-list
-        [items]="items"
-        [totalItems]="totalItems"
-        [totalPages]="totalPages"
-        [currentPage]="currentPage"
-        
-        [title]="'ข้อมูลกิจกรรม'"
-        [is_onView] = false
-        (_onView)="onView($event)"
-        [is_onEdit]=true
-        (_onEdit)="onEdit($event)"
-        [is_onDelete]=true
-        (_onDelete)="onDelete($event)"   
-        [is_onGear]=true
-        (_onGear)="onGear($event)"         
-        [is_onCreate]=true
-        (_onCreate)="onCreate()"
-        (_onPageChange)="onPageChange($event)"
-        >
-        </activity-list>
-    </ng-container>
+<section class="container">
+  <activity-list
+    [title]="'ร่าง'"
+    (_onTitleClick)="onEdit($event)"
+    [items]="items_d"
+    [is_onEdit]="false"
+    (_onEdit)="onEdit($event)"
+    [is_onDelete]="true"
+    (_onDelete)="onDelete($event)"
+  ></activity-list>
+
+  <activity-list
+    [title]="'ขออนุมัติ'"
+    (_onTitleClick)="onEdit($event)"
+    [items]="items_a"
+    [is_onCancel]="false"
+    (_onCancel)="onCancelApprove($event)"
+  ></activity-list>
+
+  <activity-list
+    [title]="'ดำเนินการ'"
+    [items]="items_w"
+    (_onTitleClick)="onGear($event)"
+    [is_onGear]="false"
+    (_onGear)="onGear($event)"
+    [is_onCancel]="false"
+    (_onCancel)="onCancelWork($event)"
+  ></activity-list>
 </section>

@@ -4,7 +4,7 @@ $primary: #1c79cb; //3d74cd; //rgb(35, 100, 206); //rgb(0, 123, 255);
 $secondary: #9fa6b2;
 $success: #00c3a7; // #01855b;//#198754;//#14A44D;//rgb(19, 206, 102);
 $info: #31beff; //2fbfee;
-$warning: #e4a11b;
+$warning: #fbc035; //e4a11b
 $danger: #bf2c34; //DC3545;//#DC4C64;
 $light: #f8f8f8; //rgb(248, 249, 250);
 $dark: #332d2d;
@@ -40,7 +40,8 @@ a:hover {
   text-decoration: none;
 }
 .hover:hover {
-  background-color: var(--bs-gray-200) !important;
+  // background-color: var(--bs-gray-200) !important;
+  background-color: #f2f2f2 !important;
 }
 .link {
   color: var(--bs-primary);
@@ -230,6 +231,9 @@ h6.custom{
 @media (max-width: 768px) { 
   .btn-custom span{
     visibility: hidden;
+  }
+  .nav-link{
+    padding:2px 0;
   }
 }
 

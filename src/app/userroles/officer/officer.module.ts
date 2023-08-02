@@ -8,9 +8,11 @@ import { ActivityMasterComponent } from './pages/activity/activity-master/activi
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ActivityCreateComponent } from './pages/activity/activity-create/activity-create.component';
 import { ActivityEditComponent } from './pages/activity/activity-edit/activity-edit.component';
-import { ActivityManagerComponent } from './pages/activity/activity-manager/activity-manager.component';
 import { ActivityScannerComponent } from './pages/activity/activity-scanner/activity-scanner.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ActivityComponent } from './pages/activity/activity/activity.component';
+import { ActivityManageComponent } from './pages/activity/activity-manage/activity-manage.component';
+import { ActivityDetailComponent } from './pages/activity/activity-detail/activity-detail.component';
 
 
 @NgModule({
@@ -20,8 +22,10 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     ActivityMasterComponent,
     ActivityCreateComponent,
     ActivityEditComponent,
-    ActivityManagerComponent,
-    ActivityScannerComponent
+    ActivityScannerComponent,
+    ActivityComponent,
+    ActivityManageComponent,
+    ActivityDetailComponent
   ],
   imports: [
     CommonModule,

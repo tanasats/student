@@ -1,6 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['']">{{ logo }}</a>
+    <div class="me-4">
+      <a class="navbar-brand" [routerLink]="['']">
+        <div class="fw-bold fs-4">{{ logo }}</div>
+        <span style="position:relative;top:-8px;font-style: italic; font-weight:none;display:block;font-size:0.7em">Mahasarakham University</span>
+      </a>
+    </div>
     <button
       id="btnNavbarToggle"
       class="navbar-toggler"
@@ -14,7 +19,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div id="navbarStudentActivity" class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="line-height: 2rem">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="line-height: 2.5rem">
         <!-- <li class="nav-item">
           <a
             class="nav-link"
@@ -116,7 +121,7 @@
       <div class="mw-100">
         <ul
           class="navbar-nav me-auto mb-2 mb-lg-0 pull-right"
-          style="line-height: 2rem"
+          style="line-height: 2.5rem"
         >
           <li *ngIf="!currentuser?.is_login" class="nav-item">
             <a
@@ -142,7 +147,7 @@
             </a>
             <ul
               class="dropdown-menu"
-              style="left: -40px"
+              style="left: -10px"
               aria-labelledby="navbarDropdown"
             >
               <li>

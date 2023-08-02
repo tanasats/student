@@ -7,6 +7,6 @@ import { environment } from "src/environments/environment";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = environment.appFullName_en;
+  title = environment.appFullName;
   runmode = environment.environmentName;
 }

@@ -1,0 +1,31 @@
+<div [id]="id" class="offcanvas offcanvas-end" 
+data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" >
+<div class="offcanvas-header">
+<h5 class="offcanvas-title text-white">{{title}}</h5>
+<a type="button" class="text-reset" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-x-lg"></i></a>
+</div>
+<div class="offcanvas-body">
+
+  <div class="offcanvas-body">
+    <div class="fw-bold text-primary">ตัวอย่างบัตรกิจกรรม</div>
+    <img src="assets/images/ticket_example.png">
+    <div class="">กรอกข้อมูล Ticket Key ตามที่ปรากฎในบัตรกิจกรรม (Activity Ticket) ของนิสิต</div>
+    <div class="m-2">
+      <div class="mb-3">
+        <label class="form-label">กรอก Ticket Key ให้ถูกต้อง</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Ticket Key"
+        />
+      </div>
+
+      <button class="btn btn-success" (click)="_onSave()">
+        ตรวจสอบ และบันทึกข้อมูล
+      </button>
+    </div>
+  </div>
+
+</div>
+</div>

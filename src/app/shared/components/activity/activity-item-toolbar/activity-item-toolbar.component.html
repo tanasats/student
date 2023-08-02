@@ -1,0 +1,22 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="flex-shink-1">
+                    <i class="bi bi-pencil-square me-1"></i>{{title}}
+                </div>
+                <div class="align-items-end">
+                    <button *ngIf="is_onGoBack" class="btn btn-secondary btn-sm" (click)="onGoBack.emit(true)"><i class="bi bi-arrow-left me-1"></i>ย้อนกลับ</button>
+                    <button *ngIf="is_onSave" class="btn btn-success btn-sm" (click)="onSave.emit(true)"><i class="bi bi-save me-1"></i>บันทึก</button>
+                    <button *ngIf="is_onCancel" class="btn btn-secondary btn-sm" (click)="onCancel.emit(true)"><i class="bi bi-x-lg me-1"></i>ยกเลิก</button>
+                    <button *ngIf="is_onSendApprove" class="btn btn-primary btn-sm" (click)="onSendApprove.emit(true)"><i class="bi bi-clipboard2-check me-1"></i>ขออนุมัติ</button>
+                    <button *ngIf="is_onApprove" class="btn btn-primary btn-sm" (click)="onApprove.emit(true)"><i class="bi bi-check-lg me-1"></i>อนุมัติ</button>
+                    <button *ngIf="is_onCancelApprove" class="btn btn-danger btn-sm" (click)="onCancelApprove.emit(true)"><i class="bi bi-x-lg me-1"></i>ยกเลิกขออนุมัติ</button>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+</section>

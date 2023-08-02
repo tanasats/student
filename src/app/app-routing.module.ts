@@ -15,7 +15,7 @@ import { TestQrcodeComponent } from './theme/pages/test-qrcode/test-qrcode.compo
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},   
   {path:'home',component:HomeComponent,data: { breadcrumb: 'หน้าหลัก' }},
-  {path:'login',component:LoginComponent,data: { breadcrumb: 'Login' }},
+  {path:'login',component:LoginComponent,data: { breadcrumb: '' }},
   {path:'activity/:id',component:ActivityDetailComponent,data: { breadcrumb: 'รายละเอียดกิจกรรม' }},
   {path:'admin',
     // loadChildren: () => import('./features/admin/admin-routing.module').then(m => m.AdminRoutingModule),data:{title:'ผู้ดูแลระบบ'}

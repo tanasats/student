@@ -16,10 +16,10 @@ import { DialogTokenShowComponent } from 'src/app/shared/components/dialogs/info
 })
 export class DashboardComponent implements OnInit {
   public title?: string;
-  public activitys: any;
+  public items: any;
  // public me: any;
   public currentuser:ICurrentuser;
-  public userdata:any;
+  public userdata:any={};
 
   constructor(
     private router:Router,
@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
   ) {
     this.route.data.subscribe((data: any) => (this.title = data?.title));
     this.currentuser=this.currentuserservice.getdata;
+    
     console.log("currentuser:",this.currentuser);
   }
 
@@ -42,10 +43,29 @@ export class DashboardComponent implements OnInit {
       next: ([res]) => {
         console.log(res);
         this.userdata = res;
-        this.enrollservice.activitybyuser(this.userdata.user_id).subscribe({
+      },
+      error: (err) => {
+        console.log(err);
+        this.toaster.show('error', err);
+      },
+    });
+    this.currentuser = this.currentuserservice.getdata;
+    this.currentuserservice
+      .userDataEmitter()
+      .subscribe((userdata: ICurrentuser) => {
+        console.log('user-profile receive currentuser data');
+        this.currentuser = userdata;
+      });
+
+
+    this.auth.me().subscribe({
+      next: ([res]) => {
+        console.log(res);
+        this.userdata = res;
+        this.enrollservice.activitybyuser(this.userdata.username).subscribe({
           next: (res) => {
             console.log('activity enroll by user :', res);
-            this.activitys = res;
+            this.items = res;
           },
           error: (err) => {
             console.log('load init activity of user err:', err);
@@ -103,8 +123,16 @@ export class DashboardComponent implements OnInit {
   }
 
   onView(item:any){
-    this.router.navigate(["../activity/details",item.activity_id], {relativeTo: this.route, state: { datas: item } });
+    this.router.navigate(["../activity/view",item.activity_id], {relativeTo: this.route, state: { datas: item } });
   }
 
+  onManage(item:any){
+    console.log("current route:",this.route);
+    console.log('onView():', item);
+    this.router.navigate(['../activity/manage', item.activity_id], {
+      relativeTo: this.route,
+      state: { datas: item },
+    });
+  }
 
 }

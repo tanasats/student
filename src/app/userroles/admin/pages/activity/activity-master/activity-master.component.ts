@@ -13,16 +13,17 @@ import { DialogWarningConfirmComponent } from 'src/app/shared/components/dialogs
   styleUrls: ['./activity-master.component.scss'],
 })
 export class ActivityMasterComponent {
-  public items: any; 
+  public items: any=[]; 
+  public items_d:any=[];
+  public items_a:any=[];
+  public items_w:any=[];
+
   public totalItems: any;
   public totalPages: any;
 
-  //public pageitems:any; //totalItems: 24, totalPages: 5, currentPage: 1, items:[]
   public currentPage:any=1;
-  public pagelimit: number=10;
+  public pagelimit: number=99999;
   public keyword:string='';
-
-
 
   constructor(
     private router: Router,
@@ -36,19 +37,22 @@ export class ActivityMasterComponent {
     
   }
   ngOnInit(): void {
-   
     this._loadItem();  
   }
 
   _loadItem() {
-
     this.activityservice.filter({page:this.currentPage,limit:this.pagelimit}).subscribe({
       next: (res) => {
         console.log(res);
         this.totalItems = res.totalItems;
         this.totalPages = res.totalPages;
-        this.currentPage=res.currentPage;
+        this.currentPage=res.currentPage;        
         this.items = res.items;
+
+        this.items_d = res.items.filter((item:any)=>{return item.activity_status=='d'});
+        this.items_a = res.items.filter((item:any)=>{return item.activity_status=='a'});
+        this.items_w = res.items.filter((item:any)=>{return item.activity_status=='w'});
+
         //this.items = res;
       },
       error: (err) => {
@@ -57,7 +61,6 @@ export class ActivityMasterComponent {
       },
     });    
   }
-
 
   onPageChange(page:any){
     this.currentPage=page;
@@ -120,12 +123,20 @@ export class ActivityMasterComponent {
     });
   }
 
-  onCreate(){
+  onCreate(event:any){
     console.log("onCreate()")
     this.router.navigate(['create'], {
       relativeTo: this.route,
       state: { },
     });
+  }
+
+  onCancelApprove(event:any){
+
+  }
+  
+  onCancelWork(event:any){
+    
   }
 
 } // class

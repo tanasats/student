@@ -1,28 +1,40 @@
-<section class="container">
+  <section class="container">
+    <activity-toolbar
+    [title]="'รายการกิจกรรม'"
+    (onCreate)="onCreate($event)"
+    ></activity-toolbar>
+  </section>
+  
+  
+    <section class="container">
+  
+    <activity-list
+      [items]="items_d"
+      [title]="'ร่าง'"
+      (_onTitleClick)="onEdit($event)"
 
-<toolsbar-control-list
-[title]="'จัดการกิจกรรม'"
-(_onCreate)="onCreate($event)"
-></toolsbar-control-list>
-
-<activity-list
-[title]="'ร่าง'"
-[items]="items_d"
-[is_onDelete]="true"
-[is_onEdit]="true"
-></activity-list>
-
-<activity-list
-[title]="'ขออนุมัติ'"
-[items]="items_a"
-[is_onDelete]="true"
-[is_onEdit]="true"
-></activity-list>
-
-<activity-list
-[title]="'ดำเนินการ'"
-[items]="items_w"
-[is_onGear]="true"
-(_onGear)="onGear($event)"
-></activity-list>
-</section>
+      [is_onEdit]="false"
+      (_onEdit)="onEdit($event)"   
+      [is_onDelete]="true"
+      (_onDelete)="onDelete($event)"     
+    ></activity-list>
+  
+    <activity-list
+      [items]="items_a"
+      [title]="'ขออนุมัติ'"
+      (_onTitleClick)="onDetail($event)"
+    ></activity-list>
+  
+    <activity-list
+      [items]="items_w"
+      [title]="'ดำเนินการ'"
+      (_onTitleClick)="onGear($event)"
+      [is_onGear]="false"
+      (_onGear)="onGear($event)"
+    ></activity-list>
+  
+  
+  
+    </section>
+  
+  

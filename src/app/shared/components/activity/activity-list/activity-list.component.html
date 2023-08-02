@@ -1,5 +1,5 @@
-<div class="d-flex justify-content-between border-bottom p-2 bg-gray-300">
-  <div class="flex-grow-1">
+<div *ngIf="!isEmptyItems" class="d-flex justify-content-between border-bottom p-2 bg-gray-300">
+  <div  class="flex-grow-1">
     <div class="d-inline-block m-0 pe-3"><i class="bi bi-tag me-2"></i>{{ title }}</div>
     <button
       *ngIf="is_onCreate"
@@ -41,18 +41,26 @@
 <ng-container *ngFor="let item of items; let i = index">
   <activity-list-item
     [item]="item"
+    (_onTitleClick)="_onTitleClick.emit($event)"
 
     [is_onView]="is_onView"
     (_onView)="_onView.emit($event)"
+    
     [is_onEdit]="is_onEdit"
     (_onEdit)="_onEdit.emit($event)"
+
     [is_onDelete]="is_onDelete"
     (_onDelete)="_onDelete.emit($event)"
+    
     [is_onRegister]="is_onRegister"
     (_onRegister)="_onRegister.emit($event)"
-    [is_onGear]="is_onGear"
-    (_onGear)="_onGear.emit($event)"
 
+    [is_onGear]="is_onGear"
+     (_onGear)="_onGear.emit($event)"
+
+    [is_onCancel]="is_onCancel"
+    (_onCancel)="_onCancel.emit($event)"
+   
     [is_onQRcode]="is_onQRcode"
     (_onQRcode)="_onQRcode.emit($event)"
     [is_onQRScanner]="is_onQRScanner"
@@ -62,6 +70,7 @@
 </ng-container>
 
 <pagination-link
+  *ngIf="!isEmptyItems"
   [totalItems]="totalItems"
   [currentPage]="currentPage"
   [totalPages]="totalPages"

@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class ActivityAgencyFormInputComponent {
   @Input() items:any =[];
   @Input() fc:any;
+  @Input() readonly:boolean=false;
   @Input() label:string='หน่วยงานจัดกิจกรรม';
 
   get validateClass(): any {

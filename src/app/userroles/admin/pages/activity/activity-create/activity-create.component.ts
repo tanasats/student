@@ -13,7 +13,6 @@ import { CurrentUserService } from 'src/app/service/current-user.service';
 import { ICurrentuser } from 'src/app/core/interface/currentuser';
 import { DocfileService } from 'src/app/service/docfile.service';
 import { APPCONST } from 'src/environments/environment';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-activity-create',
@@ -362,9 +361,7 @@ export class ActivityCreateComponent implements OnInit {
     this.router.navigate(['/admin/activity']);
   }
 
-  onUpdate(datas: any) {}
-
-
+  
 
   onImageSave(filename: any) {
     console.log(filename);

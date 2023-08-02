@@ -1,0 +1,24 @@
+<div>
+    <!-- is has [fc] : {{!(fc.value===null)}} -->
+    <div><input #fileInput  hidden type="file" [id]="uniqueid" (change)="fileChangeEventHeader($event)" /></div> 
+    <label class="form-label d-block">{{ title }}</label>
+    <ng-container *ngIf="!(fc.value==null); else elseTemplate">
+  
+      <img class="img-thumbnail" [src]="'http://localhost:3000/api/file/picture/'+fc.value">
+      <div class="ps-3">แก้ไขหน้าปก <label class="cursor-pointer text-primary" [for]="uniqueid">คลิกที่นี่</label></div>
+      
+  
+  
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="alert alert-warning">
+        <i class="bi bi-image me-2"></i>
+        อัพโหลดภาพหน้าปก 990x500 (jpg,png) <label class="cursor-pointer text-primary"  [for]="uniqueid">คลิกที่นี่</label>
+      </div>
+    </ng-template>
+  
+      <img #newFileInput class="img-thumbnail"  [src]="newFileInputsrc" *ngIf="newFileInputsrc">
+      <button *ngIf="newFileInputsrc" class="d-block btn btn-success" (click)="onUploadImage()">ยืนยันแก้ไข</button>
+  
+  
+  </div>

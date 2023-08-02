@@ -12,6 +12,7 @@ export class ActivityListComponent {
   @Input() currentPage:any;
 
   @Input() title:any;
+  @Output() _onTitleClick = new EventEmitter<any>();
 
   @Input() is_onCreate:boolean=false;
   @Output() _onCreate = new EventEmitter<any>();
@@ -40,7 +41,12 @@ export class ActivityListComponent {
   @Input() is_onQRScanner:boolean=false; 
   @Output() _onQRScanner= new EventEmitter<any>();
 
+  @Input() is_onCancel:boolean=false; 
+  @Output() _onCancel= new EventEmitter<any>();
+
   @Output() _onPageChange = new EventEmitter<any>();
 
-
+  get isEmptyItems():boolean{
+    return Object.keys(this.items||{}).length === 0;
+  }
 }

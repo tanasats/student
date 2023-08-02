@@ -15,7 +15,7 @@ router.put("/enroll/:id", /*authJwt.verifyToken,*/ enrollController.update);
 router.delete("/enroll/:id", /*authJwt.verifyToken,*/ enrollController.delete);
 
 router.get("/enroll/useractivity/:user_id/:activity_id",enrollController.useractivity);
-router.get("/enroll/activity/:user_id",enrollController.activitybyuser);
+router.get("/enroll/activity/:studentcode",enrollController.activitybyuser);
 router.get("/enroll/registrant/:activity_id",enrollController.registrant)
 
 

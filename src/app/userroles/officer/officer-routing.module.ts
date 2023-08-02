@@ -5,35 +5,33 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserProfileComponent } from 'src/app/theme/pages/user-profile/user-profile.component';
 import { ActivityMasterComponent } from './pages/activity/activity-master/activity-master.component';
 import { ActivityCreateComponent } from './pages/activity/activity-create/activity-create.component';
-import { ActivityManagerComponent } from './pages/activity/activity-manager/activity-manager.component';
 import { ActivityScannerComponent } from './pages/activity/activity-scanner/activity-scanner.component';
+import { ActivityEditComponent } from './pages/activity/activity-edit/activity-edit.component';
+import { ActivityComponent } from './pages/activity/activity/activity.component';
+import { ActivityManageComponent } from './pages/activity/activity-manage/activity-manage.component';
+import { ActivityDetailComponent } from './pages/activity/activity-detail/activity-detail.component';
 
 const routes: Routes = [
-  { path:'',component:DefaultPageComponent,
-    children:[
-      {path:'dashboard', component:DashboardComponent,data:{breadcrumb:'เจ้าหน้าที่'}},
-      {path:'activity',component:ActivityMasterComponent,data:{breadcrumb:'กิจกรรม'}},
-      {path:'activity/create',component:ActivityCreateComponent,data:{breadcrumb:'สร้างกิจกรรม'}},
-      // {path:'activity/detail/:id',component:ActivityDetailComponent,data:{breadcrumb:'รายละเอียด'}},    
-      // {path:'activity/edit/:id',component:ActivityEditComponent,data:{breadcrumb:'แก้ไข'}},      
-      {path:'activity/manage/:id',component:ActivityManagerComponent,data:{breadcrumb:'จัดการกิจกรรม'}},
-      {path:'activity/scanner/:id',component:ActivityScannerComponent},
-      // {path:'agency',component:AgencyMasterComponent,data:{breadcrumb:'หน่วยงานผู้จัดกิจกรรม'}},
-      // {path:'activitytype',component:ActivitytypeMasterComponent,data:{breadcrumb:'ประเภทกิจกรรม'}},
-      // {path:'faculty',component:FacultyMasterComponent,data:{breadcrumb:'คณะหน่วยงาน'}},
-      // {path:'checkin',component:CheckinComponent,data:{breadcrumb:'ลงชื่อเข้าร่วมกิจกรรม'}},
-      // {path:'user',component:UserComponent,data:{bradcrumb:'จัดการผู้ใช้งาน'}},
-
-      {path:'user-profile',component:UserProfileComponent},
-
-  
-
-      {path:'',redirectTo:'dashboard',pathMatch:'full'}      
-    ]
-  }];
+  { path: '',component: DefaultPageComponent,data:{breadcrumb:'หน้าควบคุม'},
+      children: [
+        { path: 'dashboard',component: DashboardComponent,data: { breadcrumb: '' },},
+      ]},
+  { path: 'activity',component: ActivityComponent,data: {breadcrumb: 'กิจกรรม'},
+      children: [
+        { path: '',component: ActivityMasterComponent,data: { breadcrumb: '' }},
+        { path: 'create',component: ActivityCreateComponent,data: { breadcrumb: 'สร้างกิจกรรม' }},
+        { path: 'edit/:id',component: ActivityEditComponent,data: { breadcrumb: 'แก้ไขกิจกรรม' }},
+        { path: 'detail/:id',component: ActivityDetailComponent,data: { breadcrumb: 'รายละเอียดกิจกรรม' }},
+        { path: 'manage/:id',component: ActivityManageComponent,data: { breadcrumb: 'จัดการกิจกรรม' }},
+        { path: 'scanner/:id',component: ActivityScannerComponent,data: { breadcrumb: 'scanner' }},
+          ]
+        },
+  { path: 'user-profile', component: UserProfileComponent },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class OfficerRoutingModule { }
+export class OfficerRoutingModule {}

@@ -19,15 +19,19 @@ import { ActivityComponent } from './pages/activity/activity/activity.component'
 const routes: Routes = [
   { path:'',component:DefaultPageComponent,data:{breadcrumb:'หน้าควบคุม'},
     children:[
-      {path:'dashboard', component:DashboardComponent,data:{breadcrumb:''}},
-      {path:'activity',component:ActivityComponent,data:{breadcrumb:'กิจกรรม'},
+      { path:'dashboard', component:DashboardComponent,data:{breadcrumb:''}},
+    ]
+  },
+  { path:'activity',component:ActivityComponent,data:{breadcrumb:'กิจกรรม'},
        children:[
-          {path:'',component:ActivityMasterComponent,data:{breadcrumb:''}},
-          {path:'create',component:ActivityCreateComponent,data:{breadcrumb:'เพิ่มกิจกรรม'}},
-          {path:'manage/:id',component:ActivityManageComponent,data:{breadcrumb:'จัดการกิจกรรม'}},
-          {path:'detail/:id',component:ActivityDetailComponent,data:{breadcrumb:'รายละเอียดกิจกรรม'}},
-          {path:'edit/:id',component:ActivityEditComponent,data:{breadcrumb:'แก้ไขกิจกรรม'}},       
-       ]},
+          { path:'',component:ActivityMasterComponent,data:{breadcrumb:''}},
+          { path:'create',component:ActivityCreateComponent,data:{breadcrumb:'เพิ่มกิจกรรม'}},
+          { path:'manage/:id',component:ActivityManageComponent,data:{breadcrumb:'จัดการกิจกรรม'}},
+          { path:'detail/:id',component:ActivityDetailComponent,data:{breadcrumb:'รายละเอียดกิจกรรม'}},
+          { path:'edit/:id',component:ActivityEditComponent,data:{breadcrumb:'แก้ไขกิจกรรม'}},       
+       ]
+  },
+
       {path:'agency',component:AgencyMasterComponent,data:{breadcrumb:'หน่วยงานผู้จัดกิจกรรม'}},
       {path:'activitytype',component:ActivitytypeMasterComponent,data:{breadcrumb:'ประเภทกิจกรรม'}},
       {path:'faculty',component:FacultyMasterComponent,data:{breadcrumb:'คณะหน่วยงาน'}},
@@ -37,8 +41,8 @@ const routes: Routes = [
       {path:'user-profile',component:UserProfileComponent},
 
       {path:'',redirectTo:'dashboard',pathMatch:'full'}      
-    ]
-  }
+    
+  
 ];
 
 @NgModule({

@@ -79,7 +79,7 @@ exports.create = async (req, res) => {
   datas.mdate = new Date();
   datas.enroll_token = uuidv4();
 
-  if (datas.user_id&&datas.activity_id&&datas.enroll_position) {
+  if (datas.studentcode&&datas.activity_id&&datas.enroll_position) {
     console.log("data:", datas);
     enrollModel
       .create({ datas: datas })
@@ -115,10 +115,10 @@ exports.useractivity = async (req,res)=>{
 };
 
 exports.activitybyuser = async (req,res)=>{
-  const user_id = req.params.user_id;
-  if (user_id) {
+  const studentcode = req.params.studentcode;
+  if (studentcode) {
     enrollModel
-      .activitybyuser(user_id)
+      .activitybyuser(studentcode)
       .then(([row]) => {
         res.status(200).json(row);
       })
@@ -133,9 +133,15 @@ exports.activitybyuser = async (req,res)=>{
 
 exports.registrant = async (req,res)=>{
   const activity_id = req.params.activity_id;
+  const keyword = req.query.keyword ||'';
+  const page = parseInt(req.query.page) ||1;
+  const pagesize = parseInt(req.query.pagesize) ||10;
+
+
+
   if(activity_id){
     enrollModel
-    .registrant(activity_id)
+    .registrant(activity_id,keyword,page,pagesize)
     .then(([row])=>{
       res.status(200).json(row);
     })

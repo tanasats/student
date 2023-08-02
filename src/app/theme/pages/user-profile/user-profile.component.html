@@ -2,7 +2,17 @@
     <div class="row">
       <div class="col-xl-3 col-md-4 col-12">
         <div class="d-flex flex-column align-items-center">
-          <img src="https://picsum.photos/250/300" />
+          <!-- <img src="https://picsum.photos/250/300" /> -->
+
+          <img
+          src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+          class="rounded-circle mb-3"
+          style="width: 200px"
+          alt="Avatar"
+        />
+
+
+
         </div>
       </div>
       <div class="col-xl-9 col-md-8 col-12">
@@ -18,7 +28,7 @@
           <hr />
           <ul class="list-unstyled mb-0">
             <li>ประเภท: {{ userdata?.usertype }}</li>
-            <li>คณะ/หน่วยงาน: {{ userdata?.faculty }}</li>
+            <li>คณะ/หน่วยงาน: {{ userdata?.faculty_name }}</li>
             <li>หลักสูตร: {{ userdata?.program }}</li>
             <li>ระดับการศึกษา: {{ userdata?.level }}</li>
           </ul>

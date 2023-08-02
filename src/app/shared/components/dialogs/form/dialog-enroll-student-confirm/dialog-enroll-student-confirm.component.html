@@ -6,7 +6,7 @@
         type="button"
         class="btn-close"
         aria-label="Close"
-        (click)="_close()"
+        (click)="onClose()"
       ></div>
     </div>
     <div class="modal-body">
@@ -42,13 +42,14 @@
         </div>
       </div>
 
+
+
+     <!-- 
       <div class="py-1 mt-3 fw-bold">
         ตำแหน่งที่เข้าร่วม <span class="text-danger mx-1">*</span>
       </div>
-
-      <div class="" [formGroup]="fg">
+       <div class="" [formGroup]="fg">
         <div class="col-md-12 custom-form form-group">
-          <!-- <div class="form-label">เข้าร่วมในตำแหน่ง</div> -->
           <ng-select
             [items]="items"
             bindLabel="name"
@@ -56,38 +57,28 @@
             formControlName="enroll_position"
             tabindex="-1"
             ><ng-template ng-option-tmp let-item="item" let-search="searchTerm">
-              <!-- <div><span>Title: </span>{{item.name}}</div><small><b>Id:</b> {{item.id}} | <b>UserId:</b> {{item.name}}</small> -->
               {{ item.id }} : {{ item.name }}
             </ng-template>
           </ng-select>
-
-          <!-- <div class="form-control-wrap">
-            <input
-              type="text"
-              class="form-control"
-              formControlName="file_description"
-            />
-          </div> -->
         </div>
-      </div>
+      </div> 
+    -->
 
-      <!-- <div class="alert alert-info mt-2">
-            โปรดตรวจสอบข้อมูลให้ถูกต้อง ก่อนบันทึกการลงทะเบียน
-        </div>     -->
+
     </div>
 
     <div class="modal-footer">
       <button
         type="button"
         class="btn btn-secondary btn-sm me-1"
-        (click)="_close()"
+        (click)="onClose()"
       >
         <i class="bi bi-x-lg"></i> ยกเลิก
       </button>
       <button
         type="button"
         class="btn btn-success btn-sm me-1"
-        (click)="_save()"
+        (click)="onSave()"
       >
         <i class="bi bi-save"></i> บันทึก
       </button>

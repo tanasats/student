@@ -12,6 +12,7 @@ exports.getall = async (req,res) => {
 }
 
 exports.filter = async(req,res) => {
+  console.log("agency fillter req:",req.body)
   try{
     let page = parseInt( req.query.page )||1;
     let pagesize=parseInt( req.query.pagesize )||10;
@@ -23,7 +24,7 @@ exports.filter = async(req,res) => {
     return res.status(200).json(
       {
         currentpage:page,
-        totalpage:Math.ceil(_count.value/pagesize),
+        totalpage:Math.ceil(_count.value/pagesize), 
         pagesize:pagesize,
         itemscount:_count.value,
         items:_results

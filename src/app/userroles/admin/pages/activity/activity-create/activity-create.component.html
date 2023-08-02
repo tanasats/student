@@ -2,7 +2,7 @@
   <div class="mb-2">
     <div>
       <h4>ข้อมูลกิจกรรม</h4>
-    </div>
+    </div> 
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <button class="nav-link active" id="nav-tab1-tab" data-bs-toggle="tab" data-bs-target="#nav-tab1" type="button" role="tab" aria-controls="nav-tab1" aria-selected="true">
@@ -21,7 +21,11 @@
             <form-input-text [fc]="form.controls['activity_code']" [label]="'รหัสกิจกรรม'" [is_readonly]="true" [placeholder]="'อัตโนมัติ'"></form-input-text>
           </div> 
           <div class="col-md-2 col-12">
-            <activity-year-form-input [fc]="form.controls['activity_year']" [label]="'ปีการศึกษา'"></activity-year-form-input>
+            <activity-year-form-input 
+            [fc]="form.controls['activity_year']" 
+            [label]="'ปีการศึกษา'" 
+            [disabled]="form.controls['activity_seq_term'].value"
+            ></activity-year-form-input>
           </div>
           <div class="col-md-7 col-12">
             <activity-term-form-input [fc]="form.controls['activity_term']"></activity-term-form-input>
@@ -135,12 +139,12 @@
           </div>
         </div> -->
 
-        <form-input-image
+        <form-input-picfile
         [title]="'ภาพหน้าปก'"
         [fc]="form.controls['activity_picture']"
         (onImageSave)="onImageSave($event)"
         >
-        </form-input-image>
+        </form-input-picfile>
 
 
   
@@ -205,6 +209,7 @@
     </div>
   </div>
 </section> -->
+
 
 <!-- <app-offcanvas-test [id]="offcanvas_department"></app-offcanvas-test> -->
 <!-- <offcanvas-department-select [fc]="form.controls['activity_faculty']" [items]="department_ref"></offcanvas-department-select> -->

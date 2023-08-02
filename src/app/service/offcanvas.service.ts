@@ -7,11 +7,13 @@ export class OffcanvasService {
   constructor() {}
 
   toggle(id: string) {
-    let btnControl = document.querySelector('#offcanvas-toggle-'+id) as HTMLElement;
+    console.log("toggle()");
+    //let btnControl = document.querySelector('#offcanvas-toggle-'+id) as HTMLElement;
+    let btnControl = document.querySelector('#toggle-'+id) as HTMLElement;
     if(btnControl){ 
       btnControl.click();   
     }else{
-      console.log('#modal-toggle-'+id+' not found!')
+      console.log('#'+id+' not found!')
     }
   }
 

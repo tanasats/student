@@ -28,7 +28,10 @@
     </div> -->
     <div class="flex-grow-1 text-truncate">
       {{item.activity_code}} : 
-      <a href="">{{item.activity_name}}</a>
+      <a class="text-primary cursor-pointer" (click)="_onTitleClick.emit(item)">
+        <i *ngIf="item.activity_publish" class="text-success bi bi-cloud-arrow-up-fill"></i>
+        
+        {{item.activity_name}}</a>
     </div>
   
     <div class="d-flex flex-column flex-lg-row justify-content-between ">
@@ -54,7 +57,9 @@
           <span *ngIf="item.activity_status==='C'" class="badge rounded-pill bg-dark">ปิด</span>
           <span *ngIf="item.activity_status==='F'" class="badge rounded-pill bg-danger">เต็ม</span>
         </div>
-          <div class="d-flex flex-row">
+          <div class="d-flex flex-row align-items-center">
+
+            <div class="small text-muted">{{item.mdate | date:'short':'+0700'}}</div>
             <!-- <button *ngIf="is_onView" class="btn btn-success btn-block btn-sm" (click)="_onView.emit(item)">
               <span class="text-nowrap"><i class="bi bi-indent me-1"></i>เข้าร่วม</span>
             </button> -->
@@ -76,10 +81,15 @@
             <button *ngIf="is_onGear" class="btn btn-icon" matTooltip="จัดการ" (click)="_onGear.emit(item)">
               <span class="text-nowrap"><i class="bi bi-gear"></i></span>
             </button>
+            <button *ngIf="is_onCancel" class="btn btn-icon" matTooltip="ยกเลิก" (click)="_onCancel.emit(item)">
+              <span class="text-nowrap"><i class="bi bi-x-lg"></i></span>
+            </button>
   
             <button *ngIf="is_onRegister" class="btn btn-icon" (click)="_onRegister.emit(item)">
               <span class="text-nowrap"><i class="bi bi-box-arrow-in-down"></i><span class="d-none d-lg-block fs-sm">ลงทะเบียน</span></span>
             </button>
+
+
           </div>
       </div> 
       

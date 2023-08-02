@@ -5,6 +5,7 @@ import { CurrentUserService } from 'src/app/service/current-user.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
 import { UserService } from 'src/app/service/user.service';
 
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',

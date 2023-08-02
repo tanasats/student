@@ -31,14 +31,19 @@ class _class {
     let sql = db.format("SELECT * FROM enroll WHERE user_id = ? and activity_id = ?", [user_id,activity_id]);
     return db.execute(sql);
   }
-  activitybyuser(user_id){
-    let sql = db.format("SELECT activity.* FROM enroll left join activity on enroll.activity_id=activity.activity_id WHERE enroll.user_id = ?", [user_id]);
+  activitybyuser(studentcode){
+    let sql = db.format("SELECT activity.* FROM enroll left join activity on enroll.activity_id=activity.activity_id WHERE enroll.studentcode = ?", [studentcode]);
     return db.execute(sql);
   }
 
-  registrant(activity_id){
-    let query = "select * from enroll left join user on enroll.user_id=user.user_id where enroll.activity_id=?";
-    let sql = db.format(query,[activity_id]);
+  registrant(activity_id,keyword,page,pagesize){
+    let query = "select * from enroll left join student on enroll.studentcode=student.studentcode where enroll.activity_id=? and enroll.studentcode like ? limit ?,?";
+    let sql = db.format(query,[activity_id,'%'+keyword+'%',(page-1)*pagesize,pagesize]);
+    console.log("registrant sql=",sql);
+    return db.execute(sql);
+  }
+  countfilter({keyword}) {
+    let sql = db.format("SELECT count(*) as value FROM agency WHERE agency_name like ?",['%'+keyword+'%']);
     return db.execute(sql);
   }
 

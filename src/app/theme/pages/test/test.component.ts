@@ -60,7 +60,7 @@ export class TestComponent {
   }
 
   function_with_toggle_offcanvas(){
-    this.offcanvas.toggle('Example');
+    this.offcanvas.toggle('offcanvas-test');
   }
 
 }

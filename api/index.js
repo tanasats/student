@@ -53,12 +53,22 @@ const enrollRoute = require("./route/enroll.route");
 app.use("/api", enrollRoute);
 const fileRouter = require("./route/file.route");
 app.use("/api",fileRouter);
+
 const uploadImageRouter = require("./route/uploadimage.route");
 app.use("/api",uploadImageRouter);
 
 
+// const docfileRouter = require("./route/docfile.route");
+// app.use("/api",docfileRouter);
+
 const docfileRouter = require("./route/docfile.route");
 app.use("/api",docfileRouter);
+
+const picfileRouter = require("./route/picfile.route");
+app.use("/api",picfileRouter);
+
+const studentRoute = require("./route/student.route");
+app.use("/api", studentRoute);
 
 
 // app.post('/api/v1/upload',(req,res)=>{

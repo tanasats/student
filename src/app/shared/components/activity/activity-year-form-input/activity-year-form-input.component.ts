@@ -11,6 +11,7 @@ export class ActivityYearFormInputComponent {
   @Input() is_draft:boolean=false;
   @Input() label?:string="_LABEL_";
   @Input() value?:string;
+  @Input() disabled:boolean=false;
   @Input() placeholder:string="ปี พ.ศ.";
   @Input() maxlenght:number=4;
 

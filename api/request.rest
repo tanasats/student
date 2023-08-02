@@ -12,3 +12,6 @@ GET http://localhost:3000/api/activitys?page=1&limit=5&code=A00&name=dddd
 get http://localhost:3000/api/activitys
 ####
 get http://localhost:3000/api/enroll/useractivity/22/1
+
+####
+get http://localhost:3000/api/docs

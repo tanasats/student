@@ -6,7 +6,6 @@ const { authJwt } = require("../middleware/auth");
 // Read
 router.get("/docfiles",/*authJwt.verifyToken,*/docfileController.getall);
 router.get("/docfile/:name",/*authJwt.verifyToken,*/ docfileController.openfile);
-//router.get("/docfile/:id",/*authJwt.verifyToken,*/ docfileController.getbyId);
 router.get("/docfile/:tablename/:tableid/:userid",docfileController.getbyTable);
 
 // Create

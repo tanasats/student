@@ -1,46 +1,58 @@
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas{{ id }}">
-  <div id="offcanvas-header-{{ id }}" class="offcanvas-header">
-    <h5 class="offcanvas-title text-reset">{{ title }}</h5>
+<div
+  [id]="id"
+  class="offcanvas offcanvas-end"
+  data-bs-scroll="true"
+  data-bs-backdrop="false"
+  tabindex="-1"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title text-white">{{ title }}</h5>
     <a
       type="button"
+      class="text-reset"
       data-bs-dismiss="offcanvas"
       aria-label="Close"
-      class="text-reset"
       ><i class="bi bi-x-lg"></i
     ></a>
   </div>
   <div class="offcanvas-body">
+    <button class="btn btn-success" (click)="_onSave()"><i class="bi bi-save me-2"></i>บันทึก</button>
     <div class="my-3">
       <div class="w-100">
         <span class="cursor-pointer" (click)="onSelectall()"
-          ><i
-            class="me-2 bi cursor-pointer"
-            [ngClass]="{
+          ><i class="me-2 bi cursor-pointer" [ngClass]="{
               'bi-square': !is_select_all,
               'bi-check-square-fill text-primary': is_select_all
-            }"
-          ></i
-          ><span class="fw-bold">เลือกทั้งหมด</span></span
-        >
+            }"></i><span class="fw-bold">คณะทั้งหมด</span></span>
       </div>
       <div class="w-100" *ngFor="let item of facultys">
-        <span
-          class="fs-md ps-4 cursor-pointer me-2 mt-2"
-          (click)="item.selected = !item.selected"
-        >
-          <i
-            class="cursor-pointer bi"
-            [ngClass]="{
+        <span class="fs-md ps-4 cursor-pointer me-2 mt-2"
+          (click)="item.selected = !item.selected;onItemselect()">
+          <i class="cursor-pointer bi me-2" [ngClass]="{
               'bi-square': !item.selected,
               'bi-check-square-fill text-primary': item.selected
-            }"
-          ></i>
-          {{ item.faculty_name }}</span
-        >
+            }"></i>{{ item.faculty_name }}</span>
       </div>
     </div>
 
-    <button class="btn btn-success" (click)="_onSave()">บันทึก</button>
-    <!-- <div class="alert alert-warning">{{ facultys | json }}</div> -->
+    <div class="my-3">
+      <div class="w-100">
+        <span class="cursor-pointer" (click)="onSelectall_support()"
+          ><i class="me-2 bi cursor-pointer" [ngClass]="{
+              'bi-square': !is_select_all_support,
+              'bi-check-square-fill text-primary': is_select_all_support
+            }"></i><span class="fw-bold">หน่วยงานทั้งหมด</span></span>
+      </div>
+      <div class="w-100" *ngFor="let item of facultys_support">
+        <span class="fs-md ps-4 cursor-pointer me-2 mt-2"
+          (click)="item.selected = !item.selected;onItemselect()">
+          <i class="cursor-pointer bi me-2" [ngClass]="{
+              'bi-square': !item.selected,
+              'bi-check-square-fill text-primary': item.selected
+            }"></i>{{ item.faculty_name }}</span>
+      </div>
+    </div>
+
+
   </div>
 </div>

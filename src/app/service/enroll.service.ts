@@ -99,11 +99,13 @@ export class EnrollService {
       .pipe(catchError(this.handleError));
   }
 
-  registrant(activity_id: any): Observable<any> {
+  registrant(datas?: any): Observable<any> {
     return this.http
-      .get(this.endpoint + '/registrant/' + activity_id, this.httpOptions)
+      //.get(this.endpoint + '/registrant/' + datas.activity_id+"?keyword="+datas.keyword+"&page="+datas.page+"&pagesize="+datas.pagesize, this.httpOptions)
+      .get(this.endpoint + '/registrant/' + datas.activity_id , { headers: this.httpHeaders, params: datas })
       .pipe(catchError(this.handleError));
   }
 
 
 }
+ 

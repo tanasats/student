@@ -21,6 +21,9 @@ export class ActivityDetailComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get("id");
     this.state = history.state;
     this.item = history.state.datas;
+
+    this.item.activity_faculty = JSON.parse(this.item.activity_faculty);
+    this.item.activity_skill = JSON.parse(this.item.activity_skill);
   }
 
 

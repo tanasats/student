@@ -3,7 +3,9 @@ export interface ICurrentuser {
     user_id:number,
     username:string,
     studentcode:string,
-    fullname:string, 
+    fullname:string,
+    faculty_id:number,
+    faculty_name:string, 
     email:string,
     role:{
         role_id:number,

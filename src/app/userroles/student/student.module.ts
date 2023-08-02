@@ -8,6 +8,9 @@ import { ActivityMasterComponent } from './pages/activity/activity-master/activi
 import { ActivityDetailsComponent } from './pages/activity/activity-details/activity-details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CheckCreditComponent } from './pages/check-credit/check-credit.component';
+import { ActivityManageComponent } from './pages/activity/activity-manage/activity-manage.component';
+import { ActivityComponent } from './pages/activity/activity/activity.component';
+import { ActivityViewComponent } from './pages/activity/activity-view/activity-view.component';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { CheckCreditComponent } from './pages/check-credit/check-credit.componen
     DefaultPageComponent,
     ActivityMasterComponent,
     ActivityDetailsComponent,
-    CheckCreditComponent
+    CheckCreditComponent,
+    ActivityManageComponent,
+    ActivityComponent,
+    ActivityViewComponent
   ],
   imports: [
     CommonModule,
