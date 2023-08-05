@@ -58,6 +58,8 @@ import { ActivityItemToolbarComponent } from './components/activity/activity-ite
 import { DialogInfoConfirmComponent } from './components/dialogs/confirm/dialog-info-confirm/dialog-info-confirm.component';
 import { OffcanvasTicketComponent } from './components/offcanvas/offcanvas-ticket/offcanvas-ticket.component';
 import { ActivityItemDetailComponent } from './components/activity/activity-item-detail/activity-item-detail.component';
+import { EnroleListComponent } from './components/enrole/enrole-list/enrole-list.component';
+import { EnroleListItemComponent } from './components/enrole/enrole-list-item/enrole-list-item.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +117,8 @@ import { ActivityItemDetailComponent } from './components/activity/activity-item
     DialogInfoConfirmComponent,
     OffcanvasTicketComponent,
     ActivityItemDetailComponent,
+    EnroleListComponent,
+    EnroleListItemComponent,
 
     
   ],
@@ -175,6 +179,9 @@ import { ActivityItemDetailComponent } from './components/activity/activity-item
     DialogInfoConfirmComponent,
     OffcanvasTicketComponent,
     ActivityItemDetailComponent,
+    EnroleListComponent,
+    EnroleListItemComponent,
+
   ]
 })
 export class SharedModule { }

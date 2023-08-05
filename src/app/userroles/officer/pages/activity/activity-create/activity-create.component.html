@@ -1,10 +1,9 @@
 <activity-item-toolbar
-[title]="'ร่างกิจกรรม'" 
+[title]="'ร่างกิจกรรม'"
+[is_onGoBack]="true"
+(onGoBack)="onGoBack()" 
 [is_onSave]="true"
-(onSave)="_onSubmit()"
-[is_onCancel]="true"
-(onCancel)="_onCancel()"
-
+(onSave)="onSubmit()"
 ></activity-item-toolbar>
 
 <section>

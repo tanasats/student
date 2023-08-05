@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PicfileService {
 
-  private endpoint = environment.endpoint+'/pic';
+  private endpoint = environment.endpoint+'/picture';
   private get httpOptions() {
     let token = localStorage.getItem('access-token') || '';
     return {

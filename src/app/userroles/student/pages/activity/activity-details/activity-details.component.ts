@@ -7,6 +7,7 @@ import { EnrollService } from 'src/app/service/enroll.service';
 import { OffcanvasService } from 'src/app/service/offcanvas.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
 import { DialogEnrollStudentConfirmComponent } from 'src/app/shared/components/dialogs/form/dialog-enroll-student-confirm/dialog-enroll-student-confirm.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-activity-details',
@@ -19,6 +20,7 @@ export class ActivityDetailsComponent implements OnInit {
   public item: any;
   public currentuser!: ICurrentuser;
   public useractivity:any;
+  public fileuri=environment.fileuri;
 
   constructor(
     private route: ActivatedRoute,

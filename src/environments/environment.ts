@@ -8,11 +8,13 @@
 export const environment = {
     production: false,
     environmentName: "development",
-    version:'0.5',
+    version:'Developer', 
     endpoint: "http://localhost:3000/api", // common setting
+    fileuri:"http://localhost:3000/api/",
+    //endpoint: "https://activity.msu.ac.th/api/sas",
     //endpoint: "http://192.168.1.42:3000/api", // common setting
     msuauthapi: "https://data.msu.ac.th/api/v1.1/auth",
-
+  
     appFullName:"ระบบกิจกรรมนิสิต มหาวิทยาลัยมหาสารคาม",
     appFullName_en:"Student Activity System",
     appShortName:"Student Activity",
@@ -22,7 +24,7 @@ export const environment = {
         10: 'ผู้ใช้งานทั่วไป',
         20: 'เจ้าหน้าที่',
         30: 'ผู้บริหาร',
-        99: 'ผู้ดูแลระบบ',
+        99: 'ผู้ดูแลระบบ', 
       },
 
     ENROLL_POSITION: {

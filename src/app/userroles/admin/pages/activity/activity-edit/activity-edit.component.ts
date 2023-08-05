@@ -285,6 +285,9 @@ export class ActivityEditComponent implements OnInit {
     });   
   }
 
+  onGoBack(){
+    this.router.navigate(['/admin/activity']);
+  }
 
 
 }

@@ -139,6 +139,7 @@ export class ActivityCreateComponent implements OnInit {
   }
 
   _load_ref_data() {
+    console.log("load_ref_data()");
     this.agencyservice.getall().subscribe({
       next: (res) => {
         this.agency_ref = res.map((item: any) => {
@@ -165,9 +166,10 @@ export class ActivityCreateComponent implements OnInit {
         console.log(err);
       },
     });
+    this.form.controls['activity_skill'].setValue(APPCONST.SKILL);
   }
 
-  _onFileSave(event: any) {
+  onFileSave(event: any) {
     console.log('onfileSave event:', event);
     if (event) {
       this._load_docfile();
@@ -248,7 +250,35 @@ export class ActivityCreateComponent implements OnInit {
   //   }
   // }
 
-  _onSubmit() {
+  onSubmit(){
+    this.form.markAllAsTouched();
+    if (this.form.valid) {
+      let datas = this.form.getRawValue();
+      datas.activity_faculty = JSON.stringify(datas.activity_faculty);
+      datas.activity_skill = JSON.stringify(datas.activity_skill);
+      this.activityservice.update(datas).subscribe({
+        next: (res) => {
+          console.log('activity service update res:', res);
+          if (res.affectedRows) {
+            //affectedRows,insertId
+            this.toaster.show('success', 'บันทึกข้อมูลเรียบร้อย');
+            //this.router.navigate(['../../']);
+          } else {
+            this.toaster.show('error', 'การบันทึกข้อมูลผิดพลาด');
+          }
+        },
+        error: (err) => {
+          console.log('activity service err:', err);
+          this.toaster.show('error', err, 7000);
+        },
+      });      
+    }else{
+      this.toaster.show('error', 'กรุณากรอกข้อมูลให้ครบถ้วน');
+    }
+  }
+
+
+  xonSubmit() {
     //this.form.markAllAsTouched();
     if (this.form.controls['activity_id'].value === null) {
       if(this.form.controls['activity_code'].value===null){
@@ -361,7 +391,9 @@ export class ActivityCreateComponent implements OnInit {
     this.router.navigate(['/admin/activity']);
   }
 
-  
+  onGoBack(){
+    this.router.navigate(['/admin/activity']);
+  }
 
   onImageSave(filename: any) {
     console.log(filename);

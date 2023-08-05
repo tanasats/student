@@ -43,14 +43,6 @@ export const admin_menu_items: IMenuItem[] = [
     extralink: false,
     submenu: [
       {
-        path: 'admin/user',
-        title: 'ผู้ใช้งาน',
-        icon: 'bi bi-person',
-        class: '',
-        extralink: false,
-        submenu: [],
-      },
-      {
         path: 'admin/activitytype',
         title: 'ประเภทกิจกรรม',
         icon: 'bi bi-patch-check',
@@ -70,6 +62,14 @@ export const admin_menu_items: IMenuItem[] = [
         path: 'admin/faculty',
         title: 'คณะหน่วยงาน',
         icon: 'bi bi-patch-check',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
+      {
+        path: 'admin/user',
+        title: 'ผู้ใช้งาน',
+        icon: 'bi bi-person',
         class: '',
         extralink: false,
         submenu: [],

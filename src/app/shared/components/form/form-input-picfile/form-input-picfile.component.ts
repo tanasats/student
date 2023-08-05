@@ -9,6 +9,7 @@ import { ActivityService } from 'src/app/service/activity.service';
 import { ImagefileService } from 'src/app/service/imagefile.service';
 import { PicfileService } from 'src/app/service/picfile.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'form-input-picfile',
@@ -31,7 +32,7 @@ export class FormInputPicfileComponent {
 
   @ViewChild('newFileInput') newFileInput!:ElementRef;
   newFileInputsrc:string='';
-
+  public fileuri:string = environment.fileuri;
   
 
 

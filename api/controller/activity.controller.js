@@ -186,6 +186,7 @@ exports.update = async (req, res) => {
 
   if (req.params.id) {
     delete datas.cdate;
+    delete datas.cowner;
     datas.mdate = new Date();
     console.log("update activity datas:",datas);
     activityModel

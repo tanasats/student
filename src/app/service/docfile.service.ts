@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class DocfileService {
-  private endpoint = environment.endpoint+'/docfile';
+  private endpoint = environment.endpoint+'/document';
   private get httpOptions() {
     let token = localStorage.getItem('access-token') || '';
     return {

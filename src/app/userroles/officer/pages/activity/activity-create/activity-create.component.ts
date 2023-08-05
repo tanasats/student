@@ -249,7 +249,35 @@ export class ActivityCreateComponent {
   //   }
   // }
 
-  _onSubmit() {
+  onSubmit(){
+    this.form.markAllAsTouched();
+    if (this.form.valid) {
+      let datas = this.form.getRawValue();
+      datas.activity_faculty = JSON.stringify(datas.activity_faculty);
+      datas.activity_skill = JSON.stringify(datas.activity_skill);
+      this.activityservice.update(datas).subscribe({
+        next: (res) => {
+          console.log('activity service update res:', res);
+          if (res.affectedRows) {
+            //affectedRows,insertId
+            this.toaster.show('success', 'บันทึกข้อมูลเรียบร้อย');
+            //this.router.navigate(['../../']);
+          } else {
+            this.toaster.show('error', 'การบันทึกข้อมูลผิดพลาด');
+          }
+        },
+        error: (err) => {
+          console.log('activity service err:', err);
+          this.toaster.show('error', err, 7000);
+        },
+      });      
+    }else{
+      this.toaster.show('error', 'กรุณากรอกข้อมูลให้ครบถ้วน');
+    }
+  }
+
+
+  xxxxonSubmit() {
     //this.form.markAllAsTouched();
     if (this.form.controls['activity_id'].value === null) {
       if(this.form.controls['activity_code'].value===null){
@@ -358,6 +386,10 @@ export class ActivityCreateComponent {
 
 
   goBack() {
+    this.router.navigate(['/officer/activity']);
+  }
+
+  onGoBack(){
     this.router.navigate(['/officer/activity']);
   }
 

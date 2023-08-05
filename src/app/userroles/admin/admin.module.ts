@@ -28,6 +28,8 @@ import { TranscriptPreviewComponent } from './pages/transcript/transcript-previe
 import { ActivityComponent } from './pages/activity/activity/activity.component';
 import { FacultyCreateComponent } from './pages/faculty/faculty-create/faculty-create.component';
 import { FacultyEditComponent } from './pages/faculty/faculty-edit/faculty-edit.component';
+import { UserListComponent } from './pages/user/user-list/user-list.component';
+import { UserListItemComponent } from './pages/user/user-list-item/user-list-item.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { FacultyEditComponent } from './pages/faculty/faculty-edit/faculty-edit.
     ActivityComponent,
     FacultyCreateComponent,
     FacultyEditComponent,
+    UserListComponent,
+    UserListItemComponent,
   ],
   imports: [
     CommonModule,

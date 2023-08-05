@@ -4,7 +4,7 @@ import { ActivityService } from 'src/app/service/activity.service';
 import { EnrollService } from 'src/app/service/enroll.service';
 import { StudentService } from 'src/app/service/student.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
-import { APPCONST } from 'src/environments/environment';
+import { APPCONST, environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-activity-manage',
@@ -16,6 +16,8 @@ export class ActivityManageComponent implements OnInit {
   public state: any;
   public item: any;
   public registrant: any=[];
+  public fileuri:string = environment.fileuri;
+
 
   constructor(
     private route:ActivatedRoute,

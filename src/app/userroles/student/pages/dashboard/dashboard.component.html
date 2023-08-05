@@ -3,13 +3,24 @@
 
     <div class="row mb-3">
       <div class="col-lg-4 col-12">
-        <!-- src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" -->
-        <img
+        <!-- src="http://202.28.32.211/picture/student/{{userdata.studentcode|slice:0:2}}/{{userdata.studentcode}}.jpg" -->
+        <ng-container *ngIf="userdata.studentcode; else defaultpicture">
+          <img
           src="assets/images/user0.jpg"
           class="rounded-circle mb-3"
           style="width: 200px"
           alt="Avatar"
         />
+        </ng-container>
+        <ng-template #defaultpicture>
+          <img
+          src="assets/images/user0.jpg"
+          class="rounded-circle mb-3"
+          style="width: 200px"
+          alt="Avatar"
+        />
+        </ng-template>
+
         <!-- {{ currentuser | json }} -->
         <h4 class="mb-2"><strong>{{userdata.fullname}}</strong></h4>
         <div class="text-muted">

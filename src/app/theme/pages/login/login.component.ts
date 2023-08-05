@@ -24,12 +24,8 @@ export class LoginComponent {
     private toaster: ToasterService
   ) {}
   public frmLogin: FormGroup = this.fb.group({
-    // username: ['', [Validators.required, Validators.minLength(3)]],
-    // password: ['', Validators.required],
-    username: ['tanasat', [Validators.required, Validators.minLength(3)]],
-    password: ['tanasat71521150', Validators.required],
-    // username: ['6010180', [Validators.required, Validators.minLength(3)]],
-    // password: ['1449900754543', Validators.required],
+    username: ['', [Validators.required, Validators.minLength(3)]],
+    password: ['', Validators.required],
   });
 
   onSubmit(form: FormGroup) {

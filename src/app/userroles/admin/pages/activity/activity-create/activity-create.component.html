@@ -1,4 +1,14 @@
-<section class="container">
+<activity-item-toolbar
+[title]="'ร่างกิจกรรม'"
+[is_onGoBack]="true"
+(onGoBack)="onGoBack()" 
+[is_onSave]="true"
+(onSave)="onSubmit()"
+></activity-item-toolbar>
+
+
+ 
+<section class="container mb-5">
   <div class="mb-2">
     <div>
       <h4>ข้อมูลกิจกรรม</h4>
@@ -94,12 +104,9 @@
           </div>
         </div>
 
-
-
         <app-activity-skill-form-input
         [fc]="form.controls['activity_skill']"
         ></app-activity-skill-form-input>
-
 
         <div class="row">
           <div class="col">
@@ -118,11 +125,6 @@
             <form-input-float [fc]="form.controls['activity_budget_paid']" [label]="'งบประมาณที่จ่ายจริง'"></form-input-float> 
           </div>
       </div>
-
-
-
-
-
 
 
 
@@ -160,7 +162,7 @@
         [user_id]="currentuser.user_id"
         [table_name]="'activity'"
         [table_id]="form.controls['activity_id'].value"
-        (onFileSave)="_onFileSave($event)"
+        (onFileSave)="onFileSave($event)"
         
         ></form-input-files>
     
@@ -169,28 +171,16 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-    {{form.valid}}
-
-    <div class="row g-2 py-3">
+    <!-- <div class="row g-2 py-3">
         <form-button-submit  
         [btn_submit]="true" 
         [btn_submit_disabled]="form.controls['activity_sequence_term']!=null"
-        (onclick_bt_submit)="_onSubmit()"
+        (onclick_bt_submit)="onSubmit()"
 
         [btn_cancle]="true" 
         (onclick_btn_cancle)="_onCancel()"></form-button-submit>
-    </div>
+    </div> -->
+
   </div>
 
 <!-- <div class="alert alert-info">

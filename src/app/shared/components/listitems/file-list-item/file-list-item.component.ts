@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'file-list-item',
@@ -7,5 +8,6 @@ import { Component, Input } from '@angular/core';
 })
 export class FileListItemComponent {
 @Input() file:any;
+public fileuri=environment.fileuri;
 
 }

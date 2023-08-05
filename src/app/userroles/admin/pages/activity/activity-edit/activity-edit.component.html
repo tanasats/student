@@ -1,5 +1,7 @@
 <activity-item-toolbar
-[title]="'ร่างกิจกรรม'" 
+[title]="'แก้ไขร่างกิจกรรม'"
+[is_onGoBack]="true"
+(onGoBack)="onGoBack()" 
 [is_onSave]="true"
 (onSave)="_onSubmit()"
 [is_onSendApprove]="item.activity_status==='d'"
@@ -10,9 +12,9 @@
 (onCancelApprove)="onCancelApprove(item)"
 
 ></activity-item-toolbar>
-
 <section>
   <div class="container mb-5">
+    <div class="h4"> {{form.controls['activity_name'].value}}</div>
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <button class="nav-link active" id="nav-tab1-tab" data-bs-toggle="tab" data-bs-target="#nav-tab1" type="button" role="tab" aria-controls="nav-tab1" aria-selected="true">
@@ -179,9 +181,7 @@
         [table_name]="'activity'"
         [table_id]="form.controls['activity_id'].value"
         (onFileSave)="_onFileSave($event)"
-        
         ></form-input-files>
-    
 
       </div>
     </div>

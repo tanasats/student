@@ -88,30 +88,70 @@
         <div class="row mt-3">
           <div class="col-lg-6 col-12">
             <img
-              [src]="
-                'http://localhost:3000/api/file/picture/' +
-                item.activity_picture
-              "
+              [src]="fileuri + 'picture/' + item.activity_picture"
               class="img-fluid img-thumbnail"
             />
           </div>
           <div class="col-lg-6 col-12">
-            <div class="form-check form-switch">
-              <input
-                class="form-check-input cursor-pointer"
-                type="checkbox"
-                [checked]="item.activity_publish"
-                (click)="onPublish()"
-                role="switch"
-                id="flexSwitchCheckDefault"
-              />
-              <label class="form-check-label" for="flexSwitchCheckDefault"
-                >เผยแพร่<i
-                  class="bi bi-cloud-arrow-up-fill text-success ms-1"
-                ></i
-              ></label>
-              <!-- <button class="btn btn-primary btn-sm" (click)="onPublish()"><i class="bi bi-cloud-arrow-up me-1"></i>Publish</button> -->
+
+
+            <strong class="text-primary mb-0">ตั้งค่ากิจกรรม (Setting)</strong>
+            <p>Control your activity.</p>
+            <div class="list-group mb-5 shadow">
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="mb-0">เผยแพร่กิจกรรม (Publish) <i class="bi bi-cloud-arrow-up-fill text-success"></i></div>
+                            <p class="fst-italic text-muted mb-0">กิจกรรมจะถูกเผยแพร่ ให้นิสิตสามารถมองเห็นได้</p>
+                        </div>
+                        
+                        <div class="col-auto">
+                          <div class="form-check form-switch">
+                            <input
+                            class="form-check-input cursor-pointer"
+                            type="checkbox"
+                            [checked]="item.activity_publish"
+                            (click)="onPublish()"
+                            role="switch"
+                            id="flexSwitchCheckDefault"
+                          />
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="mb-0">การเข้าร่วม</div>
+                            <p class="fst-italic text-muted mb-0">
+                              กิจกรรมลงทะเบียน จะจำกัดจำนวนผู้ลงทะเบียน
+                              กิจกรรมเปิด นิสิตจะต้องได้รับบัตรกิจกรรมเพื่อยืนยันการเข้าร่วม
+                            </p>
+                        </div>
+                        <div class="col-auto">
+
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              กิจกรรมลงทะเบียน
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                              กิจกรรมเปิด
+                            </label>
+                          </div>
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
+
 
             <!-- {{item.activity_publish}}
                 <i class="bi" [ngClass]="item.activity_publish?'bi-toggle-on':'bi-toggle-off'"></i> -->

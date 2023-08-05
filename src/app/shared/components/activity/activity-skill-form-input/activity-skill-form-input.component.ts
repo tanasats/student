@@ -8,14 +8,13 @@ import { APPCONST } from 'src/environments/environment';
 })
 export class ActivitySkillFormInputComponent {
  @Input() fc:any;
-  //items:any;
 
-  // constructor(){ 
-  //  this.items = APPCONST.SKILL;
-  // }
+
+   constructor(){ 
+    //this.fc.setValue(APPCONST.SKILL);
+   }
 
   toggleChecked(event: any) {
-
     this.fc.value.find((obj:any)=>{ 
       if(obj.skill_code===event.target.value){
         obj.checked=event.target.checked;

@@ -2,6 +2,8 @@
 [title]="'ร่างกิจกรรม'" 
 [is_onSave]="true"
 (onSave)="_onSubmit()"
+[is_onGoBack]="true"
+(onGoBack)="onGoBack()"
 [is_onSendApprove]="item.activity_status==='d'"
 (onSendApprove)="onSendApprove(item)"
 

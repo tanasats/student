@@ -1,28 +1,45 @@
 <section class="container">
   <div class="row mb-3">
     <div class="col-lg-4 col-12">
-      <img
-        src="https://mdbcdn.b-cdn.net/img/new/avatars/4.webp"
+      <!-- src="http://202.28.32.211/picture/student/{{userdata.studentcode|slice:0:2}}/{{userdata.studentcode}}.jpg" -->
+      <ng-container *ngIf="userdata.studentcode; else defaultpicture">
+        <img
+        src="assets/images/user0.jpg"
         class="rounded-circle mb-3"
         style="width: 200px"
         alt="Avatar"
       />
+      </ng-container>
+      <ng-template #defaultpicture>
+        <img
+        src="assets/images/user0.jpg"
+        class="rounded-circle mb-3"
+        style="width: 200px"
+        alt="Avatar"
+      />
+      </ng-template>
 
-      <h5 class="mb-2"><strong>{{userdata.fullname}}</strong></h5>
+      <!-- {{ currentuser | json }} -->
+      <h4 class="mb-2"><strong>{{userdata.fullname}}</strong></h4>
       <div class="text-muted">
+        <!-- <div class="d-block">นิสิต <span class="badge bg-primary">student</span></div> -->
         <div class="d-block">เจ้าหน้าที่ส่วนคณะ <span class="badge bg-primary">Officer</span></div>
-        <div class="d-block">{{userdata.faculty}}</div>
+        <div class="d-block"><i class="bi bi-envelope text-primary me-2"></i>{{userdata.email}}</div>
+        <div class="d-block"><i class="bi bi-buildings text-primary me-2"></i>{{userdata.faculty_name}}</div>
       </div>
     </div>
 
+
+    
     <div class="col-lg-8 col-2"></div>
   </div>
 
   <div class="row">
     <activity-list
-    [title]="'อนุมัติ'"
-    [items]="items"
-    [is_onQRScanner]="true"
+    [items]="items_work"
+    [title]="'ดำเนินการ'"
+    (_onTitleClick)="onTitleClick($event)"
+    [is_onQRScanner]="false"
     (_onQRScanner)="onQRScanner($event)"
     ></activity-list>
   </div>

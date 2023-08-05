@@ -2,7 +2,7 @@ const studentModel = require("../model/student.model");
 const bcrypt = require("bcrypt");
 
 
-exports.filter = async(req,res) => {
+exports.filter = async(req,res) => { 
   try{
     let page = parseInt( req.query.page )||1;
     let pagesize=parseInt( req.query.pagesize )||10;

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IActivity } from 'src/app/core/interface/activity';
 import { ActivityService } from 'src/app/service/activity.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
+//import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { ToasterService } from 'src/app/service/toaster/toaster.service';
 })
 export class HomeComponent implements OnInit{
   public activitys:IActivity[] = [];
-  
+  //public fileuri = environment.fileuri;
+
   constructor(
     private toster:ToasterService,
     private router:Router,

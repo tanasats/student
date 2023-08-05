@@ -209,6 +209,10 @@ export class ActivityEditComponent implements OnInit {
     this.form.markAsUntouched();
     this.router.navigate(['/officer/activity']);
   }
+  onGoBack(){
+    this.form.markAsUntouched();
+    this.router.navigate(['/officer/activity']);
+  }
 
   onImageSave(filename: any) {
     console.log('onImageSave file: ',filename);

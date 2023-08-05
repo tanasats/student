@@ -11,7 +11,12 @@ import { ToasterService } from 'src/app/service/toaster/toaster.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  public items:any;
+
+  public items:any[]=[];
+  public items_draft:any[]=[];
+  public items_approve:any[]=[];
+  public items_work:any[]=[];
+
   public currentuser: any;
   public userdata:any;
 
@@ -25,7 +30,7 @@ export class DashboardComponent {
     ) {
     this.currentuser = this.currentuserservice.getdata;
     this.userdata=this.currentuser;
-    this.loadDate();
+    this.loadData();
   }
 
   ngOnInit(): void {
@@ -39,16 +44,18 @@ export class DashboardComponent {
         this.toaster.show('error', err);
       },
     });
-  
-  
-
   }
 
-  loadDate(){
-    this.activityservice.getall().subscribe({
+  loadData(){
+    this.activityservice.filter().subscribe({
       next:(res)=>{
         console.log("loadData() ",res);
         this.items=res.items;
+
+        this.items_draft = this.items.filter((item:any)=>{ return item.activity_status==="d"});
+        this.items_approve = this.items.filter((item:any)=>{ return item.activity_status==="a"});
+        this.items_work = this.items.filter((item:any)=>{ return item.activity_status==="w"});
+
       },
       error:(err)=>{
 
@@ -65,7 +72,13 @@ export class DashboardComponent {
     });
   }
 
-
+  onTitleClick(item:any){
+    console.log(item);
+    this.router.navigate(['../activity/manage', item.activity_id], {
+      relativeTo: this.route,
+      state: { datas: item },
+    });    
+  }
 
 
 }

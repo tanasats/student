@@ -41,7 +41,7 @@ const upload = async (req, res) => {
 };
 
 const getListFiles = (req, res) => {
-  const directoryPath = __basedir + "/uploads/";
+  const directoryPath = __upload_dir + "/picture/";
 
   fs.readdir(directoryPath, function (err, files) {
     if (err) {
@@ -63,11 +63,11 @@ const getListFiles = (req, res) => {
 
 const download = (req, res) => {
   const fileName = req.params.name;
-  const directoryPath = __basedir + "/uploads/";
+  const directoryPath = __upload_dir + "/picture/";
   res.download(directoryPath + fileName, fileName, (err) => {
     if (err) {
       res.status(500).send({
-        message: "Could not download the file. " + err,
+        message: "Could not download the file.",
       });
     }
   });
@@ -76,7 +76,7 @@ const download = (req, res) => {
 
 const picturefile = (req,res)=>{
   const filename = req.params.name;
-  const directory = __basedir + "/uploads/";
+  const directory = __upload_dir + "/uploads/";
   console.log(directory+filename);
   const r = fs.createReadStream(directory+filename);
   const ps = new stream.PassThrough();

@@ -207,7 +207,7 @@ exports.upload = async (req, res) => {
 
 exports.getbyFilename = (req, res) => {
   const fileName = req.params.name;
-  const directoryPath = __basedir + "/uploads/docfiles/";
+  const directoryPath = __upload_dir + "/document/";
   // res.download(directoryPath + fileName, fileName);
   res.download(directoryPath + fileName, fileName, (err) => {
     if (err) {
@@ -220,7 +220,7 @@ exports.getbyFilename = (req, res) => {
 
 exports.openfile = (req, res) => {
   const fileName = req.params.name;
-  const directoryPath = __basedir + "/uploads/docfiles/";
+  const directoryPath = __upload_dir + "/document/";
   fs.readFile(directoryPath + fileName, function (err, data) {
     if (err) {
       res.status(500).send({

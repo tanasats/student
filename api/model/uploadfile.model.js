@@ -6,7 +6,7 @@ const maxSize = 5 * 1024 * 1024;
 // Multer Storage
 let multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, __basedir + "/uploads/");
+    cb(null, __upload_dir + "/document/");
   },
   filename: (req, file, cb) => {
     console.log("doc-Upload:",file.originalname);

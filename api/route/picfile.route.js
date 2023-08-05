@@ -7,8 +7,8 @@ const picfileController = require("../controller/picfile.controller");
 const { authJwt } = require("../middleware/auth");
 
 // Get all user
-router.get("/pics",picfileController.getListFiles);
-router.get("/pic/:name",picfileController.download)
-router.post("/pic/upload",picfileController.upload);
+router.get("/pictures",picfileController.getListFiles);
+router.get("/picture/:name",picfileController.download)
+router.post("/picture/upload",picfileController.upload);
 
 module.exports = router;  

@@ -2,6 +2,15 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
+//----developer-----
+global.__upload_dir = 'c:/temp/uploads';
+global.__api_prefix = '/api';
+
+//----production----
+//global.__upload_dir = '/var/www/activity.msu.ac.th/uploads';
+//global.__api_prefix= '/api/sas';
+
+
 
 
 const bodyParser = require('body-parser');
@@ -25,8 +34,10 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
-global.__basedir = 'c:/temp';
-//global.__basedir = 'd:/ActivityTranscriptSystem/studentactivity/api'
+
+
+
+
 
 // trimmer MIDDLEWARE
 // const {trimmer,debugShowURL} = require('./middleware/utils')
@@ -38,37 +49,37 @@ app.get("/", (req, res) => {
 });
 
 const authRoute = require("./route/auth.route");
-app.use("/api", authRoute);
+app.use(__api_prefix, authRoute);
 const userRoute = require("./route/user.route");
-app.use("/api", userRoute);
+app.use(__api_prefix, userRoute);
 const facultyRoute = require("./route/faculty.route");
-app.use("/api", facultyRoute);
+app.use(__api_prefix, facultyRoute);
 const activityRoute = require("./route/activity.route");
-app.use("/api", activityRoute);
+app.use(__api_prefix, activityRoute);
 const agencyRoute = require("./route/agency.route");
-app.use("/api", agencyRoute);
+app.use(__api_prefix, agencyRoute);
 const activitytypeRoute = require("./route/activitytype.route");
-app.use("/api", activitytypeRoute);
+app.use(__api_prefix, activitytypeRoute);
 const enrollRoute = require("./route/enroll.route");
-app.use("/api", enrollRoute);
+app.use(__api_prefix, enrollRoute);
 const fileRouter = require("./route/file.route");
-app.use("/api",fileRouter);
+app.use(__api_prefix,fileRouter);
 
 const uploadImageRouter = require("./route/uploadimage.route");
-app.use("/api",uploadImageRouter);
+app.use(__api_prefix,uploadImageRouter);
 
 
 // const docfileRouter = require("./route/docfile.route");
-// app.use("/api",docfileRouter);
+// app.use(__api_prefix,docfileRouter);
 
 const docfileRouter = require("./route/docfile.route");
-app.use("/api",docfileRouter);
+app.use(__api_prefix,docfileRouter);
 
 const picfileRouter = require("./route/picfile.route");
-app.use("/api",picfileRouter);
+app.use(__api_prefix,picfileRouter);
 
 const studentRoute = require("./route/student.route");
-app.use("/api", studentRoute);
+app.use(__api_prefix, studentRoute);
 
 
 // app.post('/api/v1/upload',(req,res)=>{

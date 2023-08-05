@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -11,6 +12,7 @@ export class ActivityDetailComponent implements OnInit {
   public id:any;
   public state: any;
   public item:any;
+  public fileuri=environment.fileuri;
   
   constructor(
     private route:ActivatedRoute,
