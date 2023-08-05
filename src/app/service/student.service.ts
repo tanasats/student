@@ -88,9 +88,9 @@ export class StudentService {
       .pipe(catchError(this.handleError));
   }
   
-  getbyusername(username:string): Observable<any> {
+  getbyStudentcode(studentcode:string): Observable<any> {
     return this.http
-      .get(this.endpoint + '/'+username, this.httpOptions)
+      .get(this.endpoint + '/'+studentcode, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

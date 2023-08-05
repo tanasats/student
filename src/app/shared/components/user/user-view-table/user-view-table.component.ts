@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { APPLABEL } from 'src/environments/environment';
 
 @Component({
@@ -9,4 +9,6 @@ import { APPLABEL } from 'src/environments/environment';
 export class UserViewTableComponent {
   @Input() items: any;
   @Input() title: any;
+  @Input() is_onDelete:boolean=false;
+  @Output() onDelete = new EventEmitter<any>();
 }

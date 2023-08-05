@@ -166,6 +166,8 @@ export class ActivityCreateComponent implements OnInit {
         console.log(err);
       },
     });
+    
+    APPCONST.SKILL.forEach((item:any)=>{item.checked=false});
     this.form.controls['activity_skill'].setValue(APPCONST.SKILL);
   }
 

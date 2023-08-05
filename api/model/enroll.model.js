@@ -21,6 +21,7 @@ class _class {
   }
   delete({ id }) {
     let sql = db.format("DELETE FROM enroll WHERE enroll_id=?", [id]);
+    console.log("enroll delete sql: ",sql);
     return db.execute(sql);
   }
 

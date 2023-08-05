@@ -115,13 +115,18 @@ exports.create = async (req, res) => {
   }
 };
 
-exports.getbyusername = (req, res) =>{
-  const username = req.params.username;
-  studentModel.getbyusername(username)
+exports.getbyStudentcode = (req, res) =>{
+  const studentcode = req.params.studentcode;
+  if(studentcode.length>5){
+      studentModel.getbyStudentcode(studentcode)
     .then(([row]) => {
       res.status(200).json(row);
     })
     .catch((error) => {
       res.status(400).send(error);
     });
+  }else{
+    res.status(400).send("invalid parameter");
+  }
+
 }

@@ -11,17 +11,18 @@ const { authJwt } = require("../middleware/auth");
 // Get all user
 //router.get("/students",studentController.getall);
 router.get("/students",studentController.filter);
-
 //router.get("/students", /*authJwt.verifyToken,*/studentController.listallUser);
+
+// Get all user by user_name
+router.get("/student/:studentcode",/*authJwt.verifyToken,*/studentController.getbyStudentcode);
 
 // Create new user
 router.post("/student", /*authJwt.verifyToken,*/ studentController.create);
 // Update user
-router.put("/student/:username", /*authJwt.verifyToken,*/ studentController.update);
+router.put("/student/:studentcode", /*authJwt.verifyToken,*/ studentController.update);
 // Delete user
 router.delete("/student/:id", /*authJwt.verifyToken,*/ studentController.delete);
 
-// Get all user by user_name
-router.get("/student/:username",authJwt.verifyToken,studentController.getbyusername);
+
 
 module.exports = router;

@@ -183,37 +183,51 @@
         role="tabpanel"
         aria-labelledby="committee-tab"
       >
+      <div class="d-flex justify-content-between mt-1">
+        <div></div>
+        <div class="btn btn-primary" (click)="onStudentEnroll()"><i class="bi bi-plus-lg"></i></div>
+      </div>
+      
         <div class="row">
-          <div class="col-lg-8 col-12">
+          <div class="col">
             <user-view-table
-              [title]="'รายชื่อนิสิตที่ลงทะเบียนเข้าร่วมกิจกรรม'"
-              [items]="registrant"
+              [title]="'รายชื่อผู้จัดกิจกรรม'"
+              [items]="registrant_AB"
+              [is_onDelete]="true"        
+              (onDelete)="onDelete($event)"
             ></user-view-table>
           </div>
 
-          <div class="col-lg-4 col-12 mt-3">
+          <!-- <div class="col-lg-4 col-12 mt-3">
             <div class="card pb-3">
               <div class="card-body p-3">
-                <div class="h5">นำเข้ารายชื่อผู้จัดกิจกรรม</div>
+                <div class="h5">เพิ่มผู้จัดกิจกรรม
+                </div>
 
                 <div class="pt-1">
                   <div class="form-label">
                     ค้นหานิสิต<span class="text-muted"></span>
                   </div>
+
                   <div class="input-group mb-3">
                     <input
                       type="text"
                       class="form-control"
                       placeholder="รหัสนิสิต"
+                      [value]="student_search_keyword"
                     />
                     <button
                       class="btn btn-primary"
                       type="button"
                       id="button-addon2"
+                      (click)="onSearchStudent()"
                     >
                       <i class="bi bi-search"></i>
                     </button>
                   </div>
+
+
+
                 </div>
 
                 <div class="pt-1">
@@ -222,7 +236,8 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
+
         </div>
 
         <!-- ###########################   -->
@@ -237,8 +252,8 @@
         <div class="row">
           <div class="col-lg-8 col-12">
             <user-view-table
-              [title]="'รายชื่อผู้จัดกิจกรรม'"
-              [items]="registrant"
+              [title]="'รายชื่อผู้เข้าร่วมกิจกรรม'"
+              [items]="registrant_C"
             ></user-view-table>
           </div>
 
@@ -299,3 +314,8 @@
     </div>
   </div>
 </section>
+
+<offcanvas-student-enroll
+[title]="'เพิ่มชื่อนิสิต'"
+(onSubmit)="onStudentSelect($event)"
+></offcanvas-student-enroll>

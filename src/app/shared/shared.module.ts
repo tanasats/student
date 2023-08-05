@@ -60,6 +60,7 @@ import { OffcanvasTicketComponent } from './components/offcanvas/offcanvas-ticke
 import { ActivityItemDetailComponent } from './components/activity/activity-item-detail/activity-item-detail.component';
 import { EnroleListComponent } from './components/enrole/enrole-list/enrole-list.component';
 import { EnroleListItemComponent } from './components/enrole/enrole-list-item/enrole-list-item.component';
+import { OffcanvasStudentEnrollComponent } from './components/offcanvas/offcanvas-student-enroll/offcanvas-student-enroll.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { EnroleListItemComponent } from './components/enrole/enrole-list-item/en
     ActivityItemDetailComponent,
     EnroleListComponent,
     EnroleListItemComponent,
+    OffcanvasStudentEnrollComponent,
 
     
   ],
@@ -181,6 +183,7 @@ import { EnroleListItemComponent } from './components/enrole/enrole-list-item/en
     ActivityItemDetailComponent,
     EnroleListComponent,
     EnroleListItemComponent,
+    OffcanvasStudentEnrollComponent,
 
   ]
 })

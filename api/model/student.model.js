@@ -36,11 +36,10 @@ class _Class {
     return db.execute(sql);
   }
 
-  getbyusername(username = "") {
-    const sql = db.format("SELECT * FROM student WHERE user.username = ?", [
-      username,
-    ]);
-    return db.execute(sql);
+  getbyStudentcode(studentcode = "") {
+    const sql = db.format("SELECT * FROM student WHERE student.studentcode like ?", [studentcode+'%',]);
+    console.log("sql: ",sql)
+      return db.execute(sql);
   }
 } //class
 

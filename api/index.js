@@ -40,8 +40,8 @@ app.use(cors(corsOptions));
 
 
 // trimmer MIDDLEWARE
-// const {trimmer,debugShowURL} = require('./middleware/utils')
-// app.use(debugShowURL);
+ const {trimmer,debugShowURL} = require('./middleware/utils')
+ app.use(debugShowURL);
 // app.use(trimmer);
 
 app.get("/", (req, res) => {
