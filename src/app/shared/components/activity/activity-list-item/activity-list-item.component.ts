@@ -33,4 +33,6 @@ export class ActivityListItemComponent {
   @Input() is_onQRScanner:boolean=false; 
   @Output() _onQRScanner= new EventEmitter<any>();
 
+  @Input() is_onTicket:boolean=false; 
+  @Output() _onTicket= new EventEmitter<any>();
 }

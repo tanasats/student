@@ -84,6 +84,10 @@
             <button *ngIf="is_onCancel" class="btn btn-icon" matTooltip="ยกเลิก" (click)="_onCancel.emit(item)">
               <span class="text-nowrap"><i class="bi bi-x-lg"></i></span>
             </button>
+
+            <button *ngIf="is_onTicket&&item.activity_open" class="btn btn-icon" matTooltip="บัตรกิจกรรม" (click)="_onTicket.emit(item)">
+              <span class="text-nowrap"><i class="bi bi-ticket-perforated-fill"></i></span>
+            </button>
   
             <button *ngIf="is_onRegister" class="btn btn-icon" (click)="_onRegister.emit(item)">
               <span class="text-nowrap"><i class="bi bi-box-arrow-in-down"></i><span class="d-none d-lg-block fs-sm">ลงทะเบียน</span></span>

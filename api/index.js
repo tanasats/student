@@ -81,6 +81,9 @@ app.use(__api_prefix,picfileRouter);
 const studentRoute = require("./route/student.route");
 app.use(__api_prefix, studentRoute);
 
+const ticketRoute = require("./route/ticket.route");
+app.use(__api_prefix, ticketRoute);
+
 
 // app.post('/api/v1/upload',(req,res)=>{
 // 	console.log(req.body);

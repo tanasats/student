@@ -1,0 +1,27 @@
+<section>
+    <div class="container mb-5">
+        <div class="h4 pb-3">{{item.activity_code}} : {{item.activity_name}}</div>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-between">
+                    <div class="h6">จำนวนบัตรกิจกรรมทั้งหมด {{tickets.length}} ใบ</div>
+                    <button class="btn btn-sm btn-primary" (click)="onGenTicket()"><i class="bi bi-plus-lg"></i>เพิ่มบัตรกิจกรรม</button>
+                </div>           </div>
+        </div>
+        <div class="row">
+            <div class="col">
+
+                <ticket-list
+                [items]="tickets"
+                ></ticket-list>
+
+            </div>
+        </div>
+    </div>
+</section>
+<offcanvas-ticket-generate
+[activity_id]="item.activity_id"
+[activity_code]="item.activity_code"
+[activity_name]="item.activity_name"
+(onSave)="onSave_genTicket($event)"
+></offcanvas-ticket-generate>

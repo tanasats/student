@@ -139,4 +139,13 @@ export class ActivityMasterComponent {
     
   }
 
+  onTicket(item:any){
+    console.log('onTicket():', item);
+    this.router.navigate(['../activity/ticket', item.activity_id], {
+      relativeTo: this.route,
+      state: { datas: item },
+    });
+  }
+
+
 } // class

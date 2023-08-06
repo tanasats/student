@@ -1,0 +1,52 @@
+<div
+  [id]="id"
+  class="offcanvas offcanvas-end"
+  data-bs-scroll="true"
+  data-bs-backdrop="true"
+  tabindex="-1"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title text-white">{{ title }}</h5>
+    <a
+      type="button"
+      class="text-reset"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+      ><i class="bi bi-x-lg"></i
+    ></a>
+  </div>
+  <div class="offcanvas-body">
+    <div class="offcanvas-body">
+      <div class="h4">{{ activity_code }}</div>
+      <div class="h5">{{ activity_name }}</div>
+
+      <div class="m-2">
+        <div class="mb-3">
+          <label class="form-label">จำนวนบัตรที่ต้องการสร้าง (1-1000)</label>
+          <input
+            type="number"
+            min="1"
+            max="1000"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="1-1000"
+            [(ngModel)]="inputNumber"
+          />
+        </div>
+        <button
+          class="btn btn-success"
+          (click)="onGenTicket()"
+          [disabled]="inputNumber < 1"
+        >
+          สร้างบัตร
+        </button>
+        <button
+        class="btn btn-secondary"
+        (click)="_onClose()"
+      >
+        ปิด
+      </button>
+      </div>
+    </div>
+  </div>
+</div>

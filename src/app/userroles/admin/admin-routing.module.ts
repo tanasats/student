@@ -15,6 +15,7 @@ import { ActivitytypeMasterComponent } from './pages/activitytype/activitytype-m
 import { FacultyMasterComponent } from './pages/faculty/faculty-master/faculty-master.component';
 import { TranscriptPreviewComponent } from './pages/transcript/transcript-preview/transcript-preview.component';
 import { ActivityComponent } from './pages/activity/activity/activity.component';
+import { ActivityTicketComponent } from './pages/activity/activity-ticket/activity-ticket.component';
 
 const routes: Routes = [
   { path:'',component:DefaultPageComponent,data:{breadcrumb:'หน้าควบคุม'},
@@ -29,6 +30,7 @@ const routes: Routes = [
           { path:'manage/:id',component:ActivityManageComponent,data:{breadcrumb:'จัดการกิจกรรม'}},
           { path:'detail/:id',component:ActivityDetailComponent,data:{breadcrumb:'รายละเอียดกิจกรรม'}},
           { path:'edit/:id',component:ActivityEditComponent,data:{breadcrumb:'แก้ไขกิจกรรม'}},       
+          { path:'ticket/:id',component:ActivityTicketComponent,data:{breadcrumb:'จัดการบัตรกิจกรรม'}},       
        ]
   },
 

@@ -44,6 +44,9 @@ export class ActivityListComponent {
   @Input() is_onCancel:boolean=false; 
   @Output() _onCancel= new EventEmitter<any>();
 
+  @Input() is_onTicket:boolean=false; 
+  @Output() _onTicket= new EventEmitter<any>();
+
   @Output() _onPageChange = new EventEmitter<any>();
 
   get isEmptyItems():boolean{
