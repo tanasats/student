@@ -24,6 +24,10 @@ class _Class {
     const sql = db.format("SELECT * FROM user WHERE user.username = ?", [username]);
     return db.execute(sql);
   }
+  getbyid(id = "") {
+    const sql = db.format("SELECT * FROM user WHERE user.user_id = ?", [id]);
+    return db.execute(sql);
+  }
 
 
 } //class

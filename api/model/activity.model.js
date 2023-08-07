@@ -26,13 +26,13 @@ class _class {
   // extra method
   filter({ user_id, user_type, user_faculty_id, user_faculty_name, page, limit, code, name ,publish ,status ,open }) {
     return new Promise((resolve, reject) => {
-      const admin_id=[1,5];
+      const admin_id=[1,5,18];
       let where_text = "WHERE ";
       if(!admin_id.includes(user_id)&&user_type=="staff") {
         where_text = where_text+"cowner =  "+user_id+" AND ";
       }
       if(!admin_id.includes(user_id)) {
-        where_text = where_text+"faculty_name =  '"+user_faculty_name+"' AND ";
+        where_text = where_text+"activity_faculty like  '%"+user_faculty_name+"%' AND ";
       }
 
       if (code.length>0)  {

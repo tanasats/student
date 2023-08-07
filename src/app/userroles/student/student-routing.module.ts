@@ -12,7 +12,7 @@ import { ActivityViewComponent } from './pages/activity/activity-view/activity-v
 const routes: Routes = [
   {path:'',component:DefaultPageComponent,
 children:[
-  {path:'dashboard', component:DashboardComponent,data:{'title':'นิสิต', breadcrumb: 'แผงควบคุม' }},
+  {path:'dashboard', component:DashboardComponent,data:{'title':'นิสิต', breadcrumb: 'หน้าหลัก' }},
 
 
   {path:'activity',component:ActivityComponent,data:{breadcrumb:'รายการกิจกรรม'},

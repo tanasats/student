@@ -2,11 +2,11 @@
     <div class="modal-content">
       <div class="modal-body pb-0">
         <div class="modal-title">
-          {{ title }}
+          <div class="h5"><i class="bi me-1 h4 text-primary h4 me-2" [ngClass]="icon" ></i>{{ title }}</div>
         </div>
         <div class="d-flex">
-          <div class="p-2 flex-grow-1 text-primary modal-dialog-description">
-            <i class="bi me-1 h4" [ngClass]="icon" ></i><span [innerHTML]="description"></span>
+          <div class="p-2 flex-grow-1 modal-dialog-description">
+            <span [innerHTML]="description"></span>
           </div>
         </div>
       </div>

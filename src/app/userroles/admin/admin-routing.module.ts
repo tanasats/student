@@ -27,7 +27,7 @@ const routes: Routes = [
        children:[
           { path:'',component:ActivityMasterComponent,data:{breadcrumb:''}},
           { path:'create',component:ActivityCreateComponent,data:{breadcrumb:'เพิ่มกิจกรรม'}},
-          { path:'manage/:id',component:ActivityManageComponent,data:{breadcrumb:'จัดการกิจกรรม'}},
+          { path:'manage/:id',component:ActivityManageComponent,data:{breadcrumb:'ดำเนินการกิจกรรม'}},
           { path:'detail/:id',component:ActivityDetailComponent,data:{breadcrumb:'รายละเอียดกิจกรรม'}},
           { path:'edit/:id',component:ActivityEditComponent,data:{breadcrumb:'แก้ไขกิจกรรม'}},       
           { path:'ticket/:id',component:ActivityTicketComponent,data:{breadcrumb:'จัดการบัตรกิจกรรม'}},       

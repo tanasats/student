@@ -46,7 +46,7 @@ export class ActivityDetailsComponent implements OnInit {
 
   load_enroll(){
     console.log("load_enroll()")
-    this.enrollservice.useractivity(this.currentuser.user_id,this.item.activity_id).subscribe({
+    this.enrollservice.useractivity(this.currentuser.studentcode,this.item.activity_id).subscribe({
       next:([res])=>{
         console.log(res);
         if(res){

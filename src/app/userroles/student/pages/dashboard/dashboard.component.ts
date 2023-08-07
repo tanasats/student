@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
  // public me: any;
   public currentuser:ICurrentuser;
   public userdata:any={};
+  public activitys:any=[];
 
   constructor(
     private router:Router,
@@ -62,7 +63,7 @@ export class DashboardComponent implements OnInit {
       next: ([res]) => {
         console.log(res);
         this.userdata = res;
-        this.enrollservice.activitybyuser(this.userdata.username).subscribe({
+        this.enrollservice.activitybyuser(this.userdata.studentcode).subscribe({
           next: (res) => {
             console.log('activity enroll by user :', res);
             this.items = res;
@@ -78,13 +79,27 @@ export class DashboardComponent implements OnInit {
       },
     });
 
-
+    this.loadData();
   }
+
+  loadData(){
+    //activity
+    this.activityservice.filter({limit:4,publish:1}).subscribe({
+      next:(res)=>{
+        console.log("home res:",res);
+        this.activitys=res.items;
+      },
+      error:(err)=>{
+        console.log("home err:",err);
+      }
+    })
+  }
+
 
   onQRcode(item: any) {
     console.log('on QR code item:', item);
 
-    this.enrollservice.useractivity(this.currentuser.user_id,item.activity_id).subscribe({
+    this.enrollservice.useractivity(this.currentuser.studentcode,item.activity_id).subscribe({
       next:([res])=>{
         console.log("res:",res);
           this.dialog
@@ -122,8 +137,8 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  onView(item:any){
-    this.router.navigate(["../activity/view",item.activity_id], {relativeTo: this.route, state: { datas: item } });
+  onDetails(item:any){
+    this.router.navigate(["../activity/details",item.activity_id], {relativeTo: this.route, state: { datas: item } });
   }
 
   onManage(item:any){

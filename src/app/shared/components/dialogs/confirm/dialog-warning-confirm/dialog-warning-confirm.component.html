@@ -2,22 +2,19 @@
   <div class="modal-content">
     <div class="modal-body pb-0">
       <div class="modal-title">
-        <h5>{{ title }}</h5>
+        <div class="h5 text-danger"><i class="bi me-1 h4 text-danger h4 me-2" [ngClass]="icon" ></i>{{ title }}</div>
       </div>
       <div class="d-flex">
-        <div class="p-2 font-size-lg p-2 modal-dialog-icon text-danger h2">
-          <i class="bi bi-exclamation-triangle"></i>
-        </div>
         <div class="p-2 flex-grow-1 modal-dialog-description">
           <span [innerHTML]="description"></span>
         </div>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-cancel me-1" (click)="_close()">
+      <button type="button" class="btn btn-sm btn-cancel me-1" (click)="_close()">
         <i class="bi bi-x-lg"></i> {{ no }}
       </button>
-      <button type="button" class="btn btn-confirm me-1" (click)="_confirm()">
+      <button type="button" class="btn btn-sm btn-confirm me-1" (click)="_confirm()">
         <i class="bi bi-check-lg"></i> {{ yes }}
       </button>
     </div>

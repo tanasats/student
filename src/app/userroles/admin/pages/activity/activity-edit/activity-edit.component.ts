@@ -13,6 +13,7 @@ import { DocfileService } from 'src/app/service/docfile.service';
 import { FacultyService } from 'src/app/service/faculty.service';
 import { OffcanvasService } from 'src/app/service/offcanvas.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
+import { UserService } from 'src/app/service/user.service';
 import { DialogInfoConfirmComponent } from 'src/app/shared/components/dialogs/confirm/dialog-info-confirm/dialog-info-confirm.component';
 import { DialogWarningConfirmComponent } from 'src/app/shared/components/dialogs/confirm/dialog-warning-confirm/dialog-warning-confirm.component';
 import { APPCONST } from 'src/environments/environment';
@@ -36,12 +37,17 @@ export class ActivityEditComponent implements OnInit {
   public agency_text:string="";
   public activitytype_text:string="";
 
+  public cowner:any;
+  public cdate:any;
+  
+  public cowner_data?:any;
+  public mowner_data?:any;
+
   constructor(
     private route: ActivatedRoute,
     private router:Router,
     private fb: FormBuilder,
-    public offcanvas: OffcanvasService,
-
+    
     private activityservice: ActivityService,
     private facultyservice: FacultyService,
     private agencyservice: AgencyService,
@@ -50,6 +56,10 @@ export class ActivityEditComponent implements OnInit {
     private docfileservice: DocfileService,
     private toaster: ToasterService,
     private dialog: MatDialog,
+
+
+    public offcanvas: OffcanvasService,
+    public userservice:UserService,
   ) {
     this.form = this.fb.group({
       activity_id: [null, []],
@@ -74,8 +84,10 @@ export class ActivityEditComponent implements OnInit {
       activity_budget: [null, []],
       activity_budget_paid: [null, []],
       //activity_docfiles: [null, []],
-      cowner: [null, []],
+      //cowner: [null, []],
       mowner: [null, []],
+      mdate: [null,[]]
+      
     }) as unknown as IActivityFormGroup;
   } //constructor
 
@@ -88,6 +100,8 @@ export class ActivityEditComponent implements OnInit {
     this.item.activity_faculty = JSON.parse(this.item.activity_faculty);
     this.faculty_ref = this.item.activity_faculty;
     this.item.activity_skill = JSON.parse(this.item.activity_skill);
+    this.cowner=this.item.cowner;
+    this.cdate=this.item.cdate;
     this.form.patchValue(this.item);
 
     console.log('item:', this.item);
@@ -131,6 +145,7 @@ export class ActivityEditComponent implements OnInit {
         console.log('faculty api failed!!');
       },
     });
+
     this.agencyservice.getall().subscribe({
       next: (res) => {
         this.agency_ref = res.map((item: any) => {
@@ -160,6 +175,27 @@ export class ActivityEditComponent implements OnInit {
         console.log(err);
       },
     });
+
+    this.userservice.getbyid(this.item.cowner).subscribe({
+      next: ([res]) =>{
+        console.log("cowner:",res);
+        this.cowner_data=res;
+      },
+      error: (err) =>{
+        console.log("cowner:err:",err);
+      }
+    })
+
+    this.userservice.getbyid(this.item.mowner).subscribe({
+      next: ([res]) =>{
+        console.log("mowner:",res);
+        this.mowner_data=res;
+      },
+      error: (err) =>{
+        console.log("mowner:err:",err);
+      }
+    })
+
   }
 
   _onFileSave(event: any) {
@@ -251,7 +287,7 @@ export class ActivityEditComponent implements OnInit {
     this.dialog
     .open(DialogInfoConfirmComponent, {
       data: {
-        title: 'ยืนยันอนุมัติ',
+        title: 'อนุมัติกิจกรรม',
         description: 'กิจกรรม: '+item.activity_name,
       },
     })
@@ -270,7 +306,7 @@ export class ActivityEditComponent implements OnInit {
     this.dialog
     .open(DialogWarningConfirmComponent, {
       data: {
-        title: 'ยืนยันยกเลิกอนุมัติ',
+        title: 'ยกเลิกคำขออนุมัติ',
         description: 'กิจกรรม: '+item.activity_name,
       },
     })

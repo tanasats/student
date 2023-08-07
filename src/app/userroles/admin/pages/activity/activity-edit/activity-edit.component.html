@@ -10,11 +10,19 @@
 (onApprove)="onApprove(item)"
 [is_onCancelApprove]="item.activity_status=='a'"
 (onCancelApprove)="onCancelApprove(item)"
-
 ></activity-item-toolbar>
+
 <section>
   <div class="container mb-5">
-    <div class="h4"> {{form.controls['activity_name'].value}}</div>
+
+    <div class="row my-2">
+      <div class="h4"> {{item.activity_code}} : {{item.activity_name}}</div>
+      <div class="text-grey small">
+        ผู้บันทึก : {{cowner_data.fullname}} ({{item.cdate| thaidate:'short'}})<br>
+        แก้ไขโดย : {{cowner_data.fullname}} ({{item.mdate| thaidate:'short'}})
+      </div>
+    </div>
+
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <button class="nav-link active" id="nav-tab1-tab" data-bs-toggle="tab" data-bs-target="#nav-tab1" type="button" role="tab" aria-controls="nav-tab1" aria-selected="true">
@@ -187,16 +195,11 @@
     </div>
 
 
-
-
-
-
-
-
     <!-- <div class="row g-2 py-3">
         <form-button-submit [btn_submit]="true" (onclick_btn_submit)="_onSubmit()" [btn_cancle]="true" (onclick_btn_cancle)="_onCancel()"></form-button-submit>
     </div> -->
   </div>
+
 </section>
 
 <!-- <app-offcanvas-test [id]="offcanvas_department"></app-offcanvas-test> -->

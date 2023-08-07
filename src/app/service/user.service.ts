@@ -98,5 +98,10 @@ export class UserService {
       .pipe(catchError(this.handleError));
   }
 
+  getbyid(id:string): Observable<any> {
+    return this.http
+      .get(this.endpoint + '/id/'+id, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
 
 } //class

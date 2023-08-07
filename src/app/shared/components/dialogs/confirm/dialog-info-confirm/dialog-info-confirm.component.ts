@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DialogInfoConfirmComponent {
   public title:string="ยืนยัน";
   public yes:string = 'ยืนยัน';
-  public no:string = 'ยกเลิก';
+  public no:string = 'ปฎิเสธ';
   public description:string="คุณต้องการยืนยันการดำเนินการนี้ใช่หรือไม่";
   public icon:string='bi-clipboard2-check';
   constructor( private dialogRef:MatDialogRef<any>,

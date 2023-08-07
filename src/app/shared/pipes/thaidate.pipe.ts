@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ThaidatePipe implements PipeTransform {
 
-  transform(date: any, format: string='medium'): string {
+  transform(date: any, format: string='medium',time:boolean=false): string {
     let ThaiDay = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์']
     let shortThaiMonth = [
         'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.',
@@ -17,6 +17,8 @@ export class ThaidatePipe implements PipeTransform {
         ];
 
     let inputDate=new Date(date);
+    
+    let inputTime = [inputDate.getHours(),inputDate.getMinutes(),inputDate.toLocaleTimeString()].join(":"); //.toString()// +':'+inputDate.getMinutes().toString();
     let dataDate = [
         inputDate.getDay(),inputDate.getDate(),inputDate.getMonth(),inputDate.getFullYear()
         ];

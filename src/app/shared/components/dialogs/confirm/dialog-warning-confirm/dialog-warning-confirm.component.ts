@@ -9,8 +9,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DialogWarningConfirmComponent {
   public title:string="ยืนยัน";
   public yes:string = 'ยืนยัน';
-  public no:string = 'ยกเลิก';
-  public description:string="คุณต้องการยืนยันการดำเนินการนี้ใช่หรือไม่";
+  public no:string = 'ปฎิเสธ';
+  public description:string="คุณต้องการยืนยัน เพื่อดำเนินการนี้ใช่หรือไม่";
+  public icon:string='bi-exclamation-triangle';
+
   constructor( private dialogRef:MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA)public data: any) { 
       if(data?.title)this.title=data.title;

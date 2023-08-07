@@ -92,6 +92,19 @@ exports.getbyusername = (req, res) =>{
   const username = req.params.username;
   userModel.getbyusername(username)
     .then(([row]) => {
+      delete row[0].password;
+      res.status(200).json(row);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    });
+}
+
+exports.getbyid = (req, res) =>{
+  const id = req.params.id;
+  userModel.getbyid(id)
+    .then(([row]) => {
+      delete row[0].password;
       res.status(200).json(row);
     })
     .catch((error) => {

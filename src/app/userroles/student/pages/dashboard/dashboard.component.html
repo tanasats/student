@@ -1,56 +1,72 @@
 <section>
   <div class="container">
-
     <div class="row mb-3">
       <div class="col-lg-4 col-12">
         <!-- src="http://202.28.32.211/picture/student/{{userdata.studentcode|slice:0:2}}/{{userdata.studentcode}}.jpg" -->
         <ng-container *ngIf="userdata.studentcode; else defaultpicture">
           <img
-          src="assets/images/user0.jpg"
-          class="rounded-circle mb-3"
-          style="width: 200px"
-          alt="Avatar"
-        />
+          src="http://202.28.32.211/picture/student/{{userdata.studentcode|slice:0:2}}/{{userdata.studentcode}}.jpg"
+            class="rounded-circle mb-3"
+            style="width: 200px"
+            alt="Avatar"
+          />
         </ng-container>
         <ng-template #defaultpicture>
           <img
-          src="assets/images/user0.jpg"
-          class="rounded-circle mb-3"
-          style="width: 200px"
-          alt="Avatar"
-        />
+            src="assets/images/user0.jpg"
+            class="rounded-circle mb-3"
+            style="width: 200px"
+            alt="Avatar"
+          />
         </ng-template>
 
         <!-- {{ currentuser | json }} -->
-        <h4 class="mb-2"><strong>{{userdata.fullname}}</strong></h4>
+        <h4 class="mb-2">
+          <strong>{{ userdata.fullname }}</strong>
+        </h4>
         <div class="text-muted">
           <!-- <div class="d-block">นิสิต <span class="badge bg-primary">student</span></div> -->
-          <div class="d-block h6">{{userdata.studentcode}}</div>
-          <div class="d-block"><i class="bi bi-envelope text-primary me-2"></i>{{userdata.email}}</div>
-          <div class="d-block"><i class="bi bi-buildings text-primary me-2"></i>{{userdata.faculty_name}}</div>
+          <div class="d-block h6">{{ userdata.studentcode }}</div>
+          <div class="d-block">
+            <i class="bi bi-envelope text-primary me-2"></i>{{ userdata.email }}
+          </div>
+          <div class="d-block">
+            <i class="bi bi-buildings text-primary me-2"></i
+            >{{ userdata.faculty_name }}
+          </div>
         </div>
       </div>
-  
+
       <div class="col-lg-8 col-2"></div>
     </div>
-
   </div>
 </section>
 
-<section>
+<section class="bg-white pt-5 pb-2">
   <div class="container">
     <div class="row">
       <div class="col">
-
-        <activity-list  
-        [items]="items"
-        [title]="'กิจกรรของฉัน'" 
-        (_onTitleClick)="onView($event)"
-       
-        
+        <activity-list
+          [items]="items"
+          [title]="'กิจกรรมของฉัน'"
+          (_onTitleClick)="onDetails($event)"
+          [is_onQRcode]="true"
+          (_onQRcode)="onQRcode($event)"
         ></activity-list>
       </div>
     </div>
   </div>
 </section>
 
+<section>
+  <div class="container">
+    <div class="row">
+      <h3>กิจกรรมเปิดใหม่</h3>
+    </div>
+    <div class="row">
+      <div class="col">
+        <app-activity-card-list [items]="activitys"></app-activity-card-list>
+      </div>
+    </div>
+  </div>
+</section>

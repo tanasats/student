@@ -20,6 +20,7 @@ router.put("/user/:username", /*authJwt.verifyToken,*/ userController.update);
 router.delete("/user/:id", /*authJwt.verifyToken,*/ userController.delete);
 
 // Get all user by user_name
+router.get("/user/id/:id",authJwt.verifyToken,userController.getbyid)
 router.get("/user/:username",authJwt.verifyToken,userController.getbyusername);
 
 module.exports = router;

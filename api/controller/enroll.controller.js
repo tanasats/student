@@ -97,11 +97,11 @@ exports.create = async (req, res) => {
 };
 
 exports.useractivity = async (req,res)=>{
-  const user_id = req.params.user_id;
+  const studentcode = req.params.studentcode;
   const activity_id = req.params.activity_id;
-  if (user_id&&activity_id) {
+  if (studentcode&&activity_id) {
     enrollModel
-      .useractivity(user_id,activity_id)
+      .useractivity(studentcode,activity_id)
       .then(([row]) => {
         res.status(200).json(row);
       })

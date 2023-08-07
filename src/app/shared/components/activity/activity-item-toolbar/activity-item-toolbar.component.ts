@@ -25,4 +25,9 @@ export class ActivityItemToolbarComponent {
 
 @Input() is_onCancelApprove:boolean=false;
 @Output() onCancelApprove = new EventEmitter<any>();
+
+@Input() is_onCancelWork:boolean=false;
+@Output() onCancelWork= new EventEmitter<any>();
+
+
 }

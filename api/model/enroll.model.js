@@ -28,8 +28,8 @@ class _class {
 
   
 
-  useractivity(user_id,activity_id){
-    let sql = db.format("SELECT * FROM enroll WHERE user_id = ? and activity_id = ?", [user_id,activity_id]);
+  useractivity(studentcode,activity_id){
+    let sql = db.format("SELECT * FROM enroll WHERE studentcode = ? and activity_id = ?", [studentcode,activity_id]);
     return db.execute(sql);
   }
   activitybyuser(studentcode){

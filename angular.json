@@ -19,7 +19,10 @@
           "options": {
             "allowedCommonJsDependencies": [
               "angularx-qrcode",
-              "qrcode"
+              "qrcode",
+              "html2canvas",
+              "rgbcolor",
+              "raf"
            ],
             "outputPath": "dist/data",
             "index": "src/index.html",
