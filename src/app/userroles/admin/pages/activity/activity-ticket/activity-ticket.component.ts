@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ExcelService } from 'src/app/service/excel.service';
 import { OffcanvasService } from 'src/app/service/offcanvas.service';
 import { TicketService } from 'src/app/service/ticket.service';
+
 
 @Component({
   selector: 'app-activity-ticket',
@@ -18,6 +20,7 @@ export class ActivityTicketComponent implements OnInit {
   private activeroute:ActivatedRoute,
   private ticketservice:TicketService,
   private offcanvas:OffcanvasService,
+  private excelservice:ExcelService,
   ){}
   ngOnInit(): void {
     this.id = this.activeroute.snapshot.paramMap.get('id');
@@ -48,6 +51,11 @@ export class ActivityTicketComponent implements OnInit {
     if(success){
       this.loadData();  
     }
+  }
+
+  onExportExcel(){
+    const datas = this.tickets;
+    this.excelservice.exportToExcel(datas,"Ticket-"+this.item.activity_code);
   }
 
 }

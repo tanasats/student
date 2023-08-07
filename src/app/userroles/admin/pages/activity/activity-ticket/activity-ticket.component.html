@@ -17,6 +17,11 @@
 
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+               <button class="btn btn-success btn-sm" (click)="onExportExcel()">export</button> 
+            </div>
+        </div>
     </div>
 </section>
 <offcanvas-ticket-generate
@@ -25,3 +30,4 @@
 [activity_name]="item.activity_name"
 (onSave)="onSave_genTicket($event)"
 ></offcanvas-ticket-generate>
+
