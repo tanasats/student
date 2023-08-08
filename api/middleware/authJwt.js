@@ -24,6 +24,7 @@ const verifyToken = (req, res, next) => {
     console.log("verifyToken decode:",decoded) 
     req.user_id = decoded.user_id;
     req.user_type = decoded.user_type;
+    req.role_max = decoded.role_max;
     req.user_faculty_id = decoded.faculty_id;
     req.user_faculty_name = decoded.faculty_name;
     next();

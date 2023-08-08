@@ -179,16 +179,24 @@
             <!-- {{item.activity_publish}}
                 <i class="bi" [ngClass]="item.activity_publish?'bi-toggle-on':'bi-toggle-off'"></i> -->
 
+
+
+
             <label class="form-label text-primary"><i class="bi bi-calendar4-event me-2"></i>วันที่เริ่มกิจกรรม</label>
-            <div>
-              {{ item.activity_date_from | thaidate }} -
-              {{ item.activity_date_to | thaidate }}
-            </div>
+              <div>
+                {{ item.activity_date_from | thaidate }} -
+                {{ item.activity_date_to | thaidate }}
+              </div>
+
             <label class="form-label text-primary pt-3"><i class="bi bi-megaphone me-2"></i>รายละเอียดกิจกรรม</label>
             <div [innerHTML]="item.activity_description"></div>
+            
             <label class="form-label text-primary pt-3"><i class="bi bi-geo-alt me-2"></i>สถานที่จัด</label>
             <div>{{ item.activity_place }}</div>
 
+
+
+            
             <div>    
               <div [innerHTML]="item.activity_description"></div>
               <label class="form-label text-primary pt-3"><i class="bi bi-buildings me-2"></i>เปิดสำหรับคณะ</label>              
@@ -197,6 +205,7 @@
                 <span class="m-1 badge round-pill bg-light text-body">{{fac.faculty_name}}</span>
               </ng-container>
             </div>
+
           </div>
 
           <div>
@@ -243,11 +252,17 @@
         aria-labelledby="student-tab"
       >
         <div class="row">
-          <div class="col-lg-8 col-12">
-            <user-view-table
+          <div class="col">
+            <!-- <user-view-table
               [title]="'รายชื่อผู้เข้าร่วม'"
               [items]="registrant_C"
-            ></user-view-table>
+            ></user-view-table> -->
+
+            <enroll-list
+            [title]="'รายชื่อผู้เข้าร่วมกิจกรรม'"
+            [items]="registrant_C"
+            ></enroll-list>
+
           </div>
 
         </div>

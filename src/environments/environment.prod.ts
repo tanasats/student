@@ -2,7 +2,7 @@
 export const environment = {
     production: true,
     environmentName: "production",
-    version:'0.99 beta 1',
+    version:'1.0.1',
     endpoint: "https://activity.msu.ac.th/api/sas",
     fileuri: "https://activity.msu.ac.th/api/sas/",
     msuauthapi: "https://data.msu.ac.th/api/v1.1/auth",

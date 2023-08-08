@@ -8,37 +8,27 @@
       ></zxing-scanner>
     </div>
     <div class="col-md-6 col-12">
-      <div>
-        <span class="me-2">Result:</span>
-        <strong class="text-primary">{{ qrResultString }}</strong>
+      <div class="my-3 alert alert-info text-center ">
+        <!-- <span class="me-2">QR:</span> -->
+        <div class="w-100">&nbsp;{{ qrResultString }}&nbsp;</div>
       </div>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">รหัส</th>
+            <th scope="col">วันเวลา</th>
           </tr>
         </thead>
         <tbody>
+          <ng-container *ngFor="let item of checkinlist; let i=index;">
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.studentcode}}</td>
+            <td>{{item.activity_checkin_date|thaidate:"short"}}</td>
+
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          </ng-container>
         </tbody>
       </table>
     </div>

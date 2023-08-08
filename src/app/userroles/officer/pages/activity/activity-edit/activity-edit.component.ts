@@ -113,7 +113,6 @@ export class ActivityEditComponent implements OnInit {
         this.item.activity_skill = JSON.parse(this.item.activity_skill);
         
         this.form.patchValue(this.item);
-        console.log("xxx=",this.item);
       },
       error: (err) => {
         console.log('activity-edit loadData() err:', err);
@@ -192,6 +191,7 @@ export class ActivityEditComponent implements OnInit {
     let datas = this.form.getRawValue();
     datas.activity_faculty = JSON.stringify(datas.activity_faculty);
     datas.activity_skill = JSON.stringify(datas.activity_skill);
+    datas.mowner = this.currentuser.user_id;
 
     this.activityservice.update(datas).subscribe({
       next: (res) => {

@@ -24,17 +24,17 @@ class _class {
   }
 
   // extra method
-  filter({ user_id, user_type, user_faculty_id, user_faculty_name, page, limit, code, name ,publish ,status ,open }) {
+  filter({ user_id, user_type, role_max, user_faculty_id, user_faculty_name, page, limit, code, name ,publish ,status ,open }) {
     return new Promise((resolve, reject) => {
       const admin_id=[1,5,18];
       let where_text = "WHERE ";
-      if(!admin_id.includes(user_id)&&user_type=="staff") {
+      console.log("role_max:",role_max);
+      if(role_max=='officer'){ 
         where_text = where_text+"cowner =  "+user_id+" AND ";
       }
-      if(!admin_id.includes(user_id)) {
+      if(role_max=='student') {
         where_text = where_text+"activity_faculty like  '%"+user_faculty_name+"%' AND ";
       }
-
       if (code.length>0)  {
         where_text = "activity_code like '%"+code+"%' AND ";
       }
@@ -47,7 +47,6 @@ class _class {
       if (open.length>0)  {
         where_text = where_text+"activity_open =  "+open+" AND ";
       }
-
 
       const sql = db.format(
         "SELECT count(*) as rowcount FROM activity " +
@@ -71,7 +70,7 @@ class _class {
             "SELECT * FROM activity "+where_text+" activity_name like ? LIMIT ?,?",
             [ "%" + name + "%", offset, limit]
           );
-          console.log(sql);
+          console.log("filter2 sql ",sql);
           db.query(sql)
             .then(([rows]) => {
               resolve({
@@ -248,6 +247,17 @@ class _class {
     console.log(sql);
     return db.execute(sql);
   }
+
+  updateregostercounter({activity_id}){
+    const sql = db.format(
+      "UPDATE activity set activity_register=activity_register+1 where activity_id=?",
+      [activity_id]
+    );
+    console.log(sql);
+    return db.execute(sql);
+  }
+
+
 } //class
 
 const ClassModel = new _class();

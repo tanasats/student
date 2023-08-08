@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col">
+
+      <!-- <img class="img-fluid img-thumbnail" [src]="fileuri + 'picture/' + item.activity_picture ||'../assets/images/image_not_available.png'"/> -->
+
+        <div class="mt-2">
+            <i class="bi bi-megaphone me-2 text-primary"></i>
+            <ng-container *ngIf="item?.activity_description; else no_activity_description">
+                <p
+                [innerHTML]="item.activity_description"
+                [style]="'text-indent:2em;'"
+                ></p>
+            </ng-container>
+            <ng-template #no_activity_description>
+                -
+            </ng-template>
+        </div>
+
+        <div class="mt-2">
+          <i class="me-2 bi bi-geo-alt me-2 text-primary"></i>
+          {{ item.activity_place }}
+        </div>
+
+        <div class="mt-2">
+          <i class="bi bi-calendar4-week me-2 text-primary"></i>
+          {{ item.activity_date_from | thaidate }}
+        </div>
+
+        <div class="mt-2">
+            <i class="bi bi-buildings me-2 text-primary"></i>เปิดสำหรับนิสิตคณะ
+            <ng-container *ngFor="let fac of item.activity_faculty">
+              <span class="m-1 badge round-pill bg-white text-primary">{{
+                fac.faculty_name
+              }}</span>
+            </ng-container>
+        </div>
+
+        <div class="mt-2">
+          <i class="bi bi-gem me-2 text-primary"></i>ทักษะที่จะได้รับ
+          <ng-container *ngFor="let skill of item.activity_skill">
+            <div *ngIf="skill.checked">
+              &nbsp;&nbsp;&nbsp;&nbsp;<i
+                class="bi bi-check text-primary me-1"
+              ></i>
+              <span class="badge round-pill bg-white text-primary">{{
+                skill.skill_name
+              }}</span>
+            </div>
+          </ng-container>
+        </div>
+
+
+
+
+
+    </div>
+
+ <!-- 
+    <div class="col-md-4 col-12">
+      <ng-container *ngIf="item.activity_open; else activity_register">
+        <h5>
+          กิจกรรมเปิด Activity Ticket<i
+            class="bi bi-ticket-perforated ms-2"
+          ></i>
+        </h5>
+        <p>
+          <small>นิสิตจะต้องขอรับ Activity Ticket
+            <i class="bi bi-ticket-perforated m-1"></i>ในบริเวณสถานที่จัดงานทันทีหลังเสร็จสิ้นกิจกรรม เพื่อนำมาบันทึกเข้าร่วมกิจกรรม และรับชั่วโมงกิจกรรม</small>
+        </p>
+        <button class="btn btn-success">บันทึกเข้าร่วมกิจกรรม</button>
+      </ng-container>
+
+      <ng-template #activity_register>
+        <h5>กิจกรรมลงทะเบียน <i class="bi bi-people ms-2"></i></h5>
+        <ul class="list-unstyled">
+          <li>
+            <i class="bi bi-person me-2 text-primary"></i>จำนวนที่ลงทะเบียน:
+            {{ item.activity_register }}
+          </li>
+          <li>
+            <i class="bi bi-person me-2 text-primary"></i>จำนวนที่รับ:
+            {{ item.activity_receive }}
+          </li>
+        </ul>
+      </ng-template>
+
+    </div> -->
+
+</div>
+
+
+

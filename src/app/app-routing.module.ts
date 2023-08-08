@@ -14,7 +14,7 @@ import { TestQrcodeComponent } from './theme/pages/test-qrcode/test-qrcode.compo
 
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},   
-  {path:'home',component:HomeComponent,data: { breadcrumb: 'หน้าหลัก' }},
+  {path:'home',component:HomeComponent,data: { breadcrumb: '' }},
   {path:'login',component:LoginComponent,data: { breadcrumb: '' }},
   {path:'activity/:id',component:ActivityDetailComponent,data: { breadcrumb: 'รายละเอียดกิจกรรม' }},
   {path:'admin',

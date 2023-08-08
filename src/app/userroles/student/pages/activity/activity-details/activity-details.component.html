@@ -18,26 +18,17 @@
           }"
         ></div> -->
         <div class="mt-3">
-            <p [innerHTML]="item.activity_description" [style]="'text-indent:0em;'"></p>
-          <div>
-            <i class="me-2 bi bi-geo-alt me-2 text-primary"></i>สถานที่
-            {{ item.activity_place }}
-          </div>
-          <div>
-            <i class="bi bi-calendar4-week me-2  text-primary"></i>วันที่
-            {{ item.activity_date_from | thaidate:'short' }}
-          </div>
-          <div>
-            <i class="bi bi-gem me-2  text-primary"></i>ทักษะที่ได้รับ
-            <ng-container *ngFor="let skill of item.activity_skill">
-              <div *ngIf="skill.checked" style="text-indent:1em;" class=""><i class="bi bi-check-lg me-1"></i>{{skill.skill_name}}</div>
-            </ng-container>            
-          </div>
+          <p [innerHTML]="item.activity_description" [style]="'text-indent:0em;'"></p>
 
-
+          <activity-info-item
+          [item]="item"
+          ></activity-info-item>
 
         </div>
       </div>
+
+
+
       <div class="col-md-4 col-12">
         <ng-container *ngIf="!item.activity_open">
           <h5>กิจกรรมลงทะเบียน</h5>
@@ -57,19 +48,31 @@
             </p>
             <button class="btn btn-success" (click)="offcanvas.toggle('offcanvas-ticket')">บันทึกเข้าร่วมกิจกรรม</button>
           </div>
+
+        <button *ngIf="!item.activity_open &&! useractivity" class="btn btn-success w-100" [disabled]="useractivity"  (click)="onRegister()">ลงทะเบียนเข้าร่วม</button>
         
+        <div *ngIf="useractivity && !useractivity?.activity_checkin" class="alert alert-success my-2"><i class="bi bi-bookmark-check me-2 h3"></i>คุณได้ลงทะเบียนแล้ว เมื่อวันที่ {{useractivity.cdate|thaidate}}</div>
+        
+        <div *ngIf="useractivity?.activity_checkin" class="alert alert-success my-2"><i class="bi bi-trophy me-2 h3"></i>คุณได้ยืนยันเข้าร่วกิจกรรมแล้ว เมื่อวันที่ {{useractivity.cdate|thaidate}}</div>
 
+        <ng-container *ngIf="useractivity && !useractivity?.activity_checkin">
+          <div class="text-center">
+            <ng-container *ngIf="useractivity">
+            <qrcode [qrdata]="useractivity.enroll_token" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+            โปรดแสดง QR Code กับผู้จัดกิจกรรม เพื่อยืนยันการเข้าร่วมกิจกรรมนี้
+            </ng-container>
+          </div>
+        </ng-container>
 
-        <button *ngIf="!item.activity_open" class="btn btn-success w-100" [disabled]="useractivity"  (click)="onRegister()">ลงทะเบียนเข้าร่วม</button>
-        <div *ngIf="useractivity" class="alert alert-success"><i class="bi bi-check-circle me-2 h5"></i>คุณได้ลงทะเบียนแล้ว เมื่อวันที่ {{useractivity.cdate}}</div>
-         <!-- {{useractivity|json}} -->
       </div>
     </div>
   </section>
   
 
   <section class="container">
-    <div class="row"></div>
+    <div class="row">
+
+    </div>
   </section>
   
   <offcanvas-ticket></offcanvas-ticket>

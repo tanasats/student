@@ -1,0 +1,46 @@
+<!-- <div class="p-2 hover">
+  <div class="d-flex justify-content-between align-items-center">
+
+    <div class="row g-0">
+      <div style="width: 180px">
+        <div style="display: inline-block; width: 30px">{{ itemnumber }}</div>
+        <input class="form-check-input me-2" type="checkbox" value="" />
+        {{ item.studentcode }}
+      </div>
+      <div class="col">
+        {{ item.STUDENTNAME }}&nbsp;{{ item.STUDENTSURNAME }}
+      </div>
+      <div class="col">
+        {{ item.FACULTYNAME }}
+      </div>
+      <div class="col">One of three columns</div>
+      <div style="width: 80px">
+        <div class="small fst-italic text-muted">
+          <i class="bi bi-x-lg"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div> -->
+
+
+
+<div class="row p-2 g-0 align-items-start">
+    <div style="width:180px">
+        <div style="display: inline-block; width: 30px">{{ itemnumber }}</div>
+        <input class="form-check-input me-2" type="checkbox" value="" />
+        {{ item.studentcode }}
+    </div>
+    <div class="col">
+        {{ item.STUDENTNAME }}&nbsp;{{ item.STUDENTSURNAME }}
+    </div>
+    <div class="col">
+        {{ item.FACULTYNAME }}
+    </div>
+    <div style="width:80px;text-align: end;">
+        <i class="bi bi-x-lg cursor-pointer"></i>
+    </div>
+</div>
+
+

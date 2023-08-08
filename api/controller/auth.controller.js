@@ -60,10 +60,17 @@ exports.signin = async (req, res) => {
         return res.status(401).send({ message: "1" }); //has username but invalid password
       }
 
+      user.role = JSON.parse(user.roles);
+      max_role = user.role.reduce((prev,curr)=>{
+        return (prev.role_id > curr.orle_id)?prev:curr;
+      })
+      console.log("max role_name = ",max_role.role_name)
       //---Authorized----
       let payload={
         username: user.username,
         user_id: user.user_id,
+        studentcode:user.studentcode,
+        role_max:max_role.role_name,
         user_type: user.user_type,
         faculty_id: user.faculty_id,
         faculty_name: user.faculty_name,

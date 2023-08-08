@@ -24,6 +24,7 @@ export class DialogEnrollStudentConfirmComponent {
       //user_id : data.user_id,
       activity_id: data.activity_id,
       studentcode: data.studentcode,
+      studentname: data.fullname,
       enroll_position: ["C",[Validators.required]]
       //file_description: [data.file_description||data.file_name,Validators.required]
     })

@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const enrollModel = require("../model/enroll.model");
+const activityModel = require("../model/activity.model");
 
 exports.getall = async (req,res) => {
   enrollModel.getall()
@@ -85,6 +86,13 @@ exports.create = async (req, res) => {
       .create({ datas: datas })
       .then(([row]) => {
         console.log("create()->result:", row);
+        if(row.affectedRows==1){
+          console.log("add register counter");
+          activityModel.updateregostercounter({activity_id:datas.activity_id})
+            .then(([row]) => {
+               console.log("update register counter:",row); 
+            })
+        }
         res.status(200).json(row);
       })
       .catch((error) => {
@@ -136,9 +144,6 @@ exports.registrant = async (req,res)=>{
   const keyword = req.query.keyword ||'';
   const page = parseInt(req.query.page) ||1;
   const pagesize = parseInt(req.query.pagesize) ||10;
-
-
-
   if(activity_id){
     enrollModel
     .registrant(activity_id,keyword,page,pagesize)

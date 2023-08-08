@@ -22,12 +22,17 @@ exports.getall = async (req, res) => {
 // }
 
 exports.filter = async (req, res) => {
-  console.log("user_id:",req.user_id) //<-- user_id from token
+  
   let user_id = req.user_id;
   let user_type = req.user_type;
+  let role_max = req.role_max;
+  let studentcode = req.studentcode;
   let user_faculty_id = req.user_faculty_id; 
-  let user_faculty_name = req.user_faculty_name; 
+  let user_faculty_name = req.user_faculty_name;
+  
+  console.log("user_id:",req.user_id) //<-- user_id from token 
   console.log("user_facluty_name:",req.user_faculty_name);
+  console.log("role_max:",req.role_max);
 
   let page = parseInt(req.query.page)||1;
   let limit = parseInt(req.query.limit)||999999;
@@ -43,7 +48,10 @@ exports.filter = async (req, res) => {
 
   activityModel
     .filter({ 
-      user_id:user_id, user_type:user_type, user_faculty_name:user_faculty_name, 
+      user_id: user_id, 
+      user_type: user_type, 
+      role_max: role_max, 
+      user_faculty_name: user_faculty_name, 
       page:page, limit: limit, code:code, name:name, publish:publish, status:status, open:open})
     .then((rows) => {
       //console.log(rows);

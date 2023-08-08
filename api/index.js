@@ -84,6 +84,8 @@ app.use(__api_prefix, studentRoute);
 const ticketRoute = require("./route/ticket.route");
 app.use(__api_prefix, ticketRoute);
 
+const checkinRoute = require("./route/checkin.route");
+app.use(__api_prefix, checkinRoute);
 
 // app.post('/api/v1/upload',(req,res)=>{
 // 	console.log(req.body);

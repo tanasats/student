@@ -150,4 +150,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  onCardSelect(item:any){
+    if(item){
+      this.router.navigate(["../activity/details",item.activity_id], {relativeTo: this.route, state: { datas: item } });
+    }
+  }
+
 }

@@ -11,6 +11,7 @@ import { CheckCreditComponent } from './pages/check-credit/check-credit.componen
 import { ActivityManageComponent } from './pages/activity/activity-manage/activity-manage.component';
 import { ActivityComponent } from './pages/activity/activity/activity.component';
 import { ActivityViewComponent } from './pages/activity/activity-view/activity-view.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ActivityViewComponent } from './pages/activity/activity-view/activity-v
     CommonModule,
     StudentRoutingModule,
     SharedModule,
+    QRCodeModule,
   ]
 })
 export class StudentModule { }

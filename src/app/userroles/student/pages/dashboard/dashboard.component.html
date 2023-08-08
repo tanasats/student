@@ -3,7 +3,7 @@
     <div class="row mb-3">
       <div class="col-lg-4 col-12">
         <!-- src="http://202.28.32.211/picture/student/{{userdata.studentcode|slice:0:2}}/{{userdata.studentcode}}.jpg" -->
-        <ng-container *ngIf="userdata.studentcode; else defaultpicture">
+        <!-- <ng-container *ngIf="userdata.studentcode; else defaultpicture">
           <img
           src="http://202.28.32.211/picture/student/{{userdata.studentcode|slice:0:2}}/{{userdata.studentcode}}.jpg"
             class="rounded-circle mb-3"
@@ -18,7 +18,7 @@
             style="width: 200px"
             alt="Avatar"
           />
-        </ng-template>
+        </ng-template> -->
 
         <!-- {{ currentuser | json }} -->
         <h4 class="mb-2">
@@ -42,7 +42,8 @@
   </div>
 </section>
 
-<section class="bg-white pt-5 pb-2">
+
+<section class="bg-white pt-4 pb-1">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -51,7 +52,7 @@
           [title]="'กิจกรรมของฉัน'"
           (_onTitleClick)="onDetails($event)"
           [is_onQRcode]="true"
-          (_onQRcode)="onQRcode($event)"
+          (_onQRcode)="onQRcode($event)"  
         ></activity-list>
       </div>
     </div>
@@ -61,11 +62,13 @@
 <section>
   <div class="container">
     <div class="row">
-      <h3>กิจกรรมเปิดใหม่</h3>
+      <h4>กิจกรรมเปิดใหม่</h4>
     </div>
     <div class="row">
       <div class="col">
-        <app-activity-card-list [items]="activitys"></app-activity-card-list>
+        <app-activity-card-list 
+        [items]="activitys"
+        (onSelect)="onCardSelect($event)"></app-activity-card-list>
       </div>
     </div>
   </div>

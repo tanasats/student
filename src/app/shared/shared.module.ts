@@ -64,6 +64,9 @@ import { OffcanvasStudentEnrollComponent } from './components/offcanvas/offcanva
 import { TicketListComponent } from './components/ticket/ticket-list/ticket-list.component';
 import { TicketListItemComponent } from './components/ticket/ticket-list-item/ticket-list-item.component';
 import { OffcanvasTicketGenerateComponent } from './components/offcanvas/offcanvas-ticket-generate/offcanvas-ticket-generate.component';
+import { EnrollListComponent } from './components/enroll/enroll-list/enroll-list.component';
+import { EnrollListItemComponent } from './components/enroll/enroll-list-item/enroll-list-item.component';
+import { ActivityInfoItemComponent } from './components/activity/activity-info-item/activity-info-item.component';
 
 @NgModule({
   declarations: [
@@ -127,6 +130,9 @@ import { OffcanvasTicketGenerateComponent } from './components/offcanvas/offcanv
     TicketListComponent,
     TicketListItemComponent,
     OffcanvasTicketGenerateComponent,
+    EnrollListComponent,
+    EnrollListItemComponent,
+    ActivityInfoItemComponent,
 
     
   ],
@@ -193,6 +199,9 @@ import { OffcanvasTicketGenerateComponent } from './components/offcanvas/offcanv
     TicketListComponent,
     TicketListItemComponent,
     OffcanvasTicketGenerateComponent,
+    EnrollListComponent,
+    EnrollListItemComponent,
+    ActivityInfoItemComponent,
   ]
 })
 export class SharedModule { }

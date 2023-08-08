@@ -1,0 +1,42 @@
+<ng-container *ngIf="items; else showLoading">
+    <div class="flex-grow-1 h6 mt-3">
+        {{title}} จำนวน {{items.length}} คน
+    </div>
+        <div class="row g-0 pt-2 align-items-start text-primary small">
+            <div style="width:180px">
+            </div>
+            <div class="col">
+              ชื่อ-สกุล
+            </div>
+            <div class="col">
+              คณะ
+            </div>
+            <div style="width:80px;text-align: end;">
+                
+            </div>
+        </div>
+    <ng-container *ngFor="let item of items | pagination:page_number:page_limit;let i=index">
+
+        <enroll-list-item
+         [item]="item"
+         [itemnumber]="(i+1)+(page_number*page_limit)"
+         (_onEdit)="_onEdit.emit($event)"
+         (_onDelete)="_onDelete.emit($event)"
+        ></enroll-list-item>
+    </ng-container>
+    <div class="pt-3 d-flex justify-content-between">
+        <div class="text-muted pagination-description">รายการที่ {{ first_index }} - {{ last_index }} จาก {{ items?.length }}</div>
+        <div>
+            <a class="btn btn-primary btn-sm pagination-icon-prev" [ngClass]="{'disabled': isPrevDisabled}"
+                (click)="(!isPrevDisabled)?(page_number=page_number-1):''" matTooltip="หน้าก่อนหนัา"><em
+                    class="bi bi-chevron-left"></em></a>
+            หน้าที่ {{page_number+1}}/{{page_total}}
+            <a class="btn btn-primary btn-sm pagination-icon-next" [ngClass]="{'disabled': isNextDisabled}"
+                (click)="(!isNextDisabled)?(page_number = page_number + 1):''" matTooltip="หน้าถัดไป"><em
+                    class="bi bi-chevron-right"></em></a>
+        </div>
+    </div>
+
+</ng-container>
+
+<ng-template #showLoading> Loading..... </ng-template>
