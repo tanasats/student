@@ -37,7 +37,7 @@ export class CheckinComponent {
       this.qrResultString = resultString;
       this.checkinservice.checkin(this.qrResultString).subscribe({
         next: ([row]) => {
-          this.checkinlist.unshift({studentcode:row.studentcode, activity_checkin_date:row.activity_checkin_date})
+          this.checkinlist.unshift({studentcode:row.studentcode, studentname:row.studentname, activity_checkin_date:row.activity_checkin_date})
           this.toaster.show("success",row.studentcode+" เข้าร่วม")
         },
         error: (err) => {

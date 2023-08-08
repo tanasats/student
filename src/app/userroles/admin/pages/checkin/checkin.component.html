@@ -17,6 +17,7 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">รหัส</th>
+            <th scope="col">ชื่อ-สกุล</th>
             <th scope="col">วันเวลา</th>
           </tr>
         </thead>
@@ -25,6 +26,7 @@
           <tr>
             <th scope="row">{{i+1}}</th>
             <td>{{item.studentcode}}</td>
+            <td>{{item.studentname}}</td>
             <td>{{item.activity_checkin_date|thaidate:"short"}}</td>
 
           </tr>

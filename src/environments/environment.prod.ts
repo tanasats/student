@@ -19,12 +19,12 @@ export const environment = {
         99: 'ผู้ดูแลระบบ', 
       },
 
-      ENROLL_POSITION: {
+    ENROLL_POSITION: {
         E: 'ผู้เข้าร่วมโครงการ',
         A: 'ผู้บริหาร'
     }
     
-  };
+};
 
   export const APPLABEL={
     SAVE_SUCCESS:'บันทึกข้อมูลเรียบร้อย',
