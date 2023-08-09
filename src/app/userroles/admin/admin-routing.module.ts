@@ -18,7 +18,7 @@ import { ActivityComponent } from './pages/activity/activity/activity.component'
 import { ActivityTicketComponent } from './pages/activity/activity-ticket/activity-ticket.component';
 
 const routes: Routes = [
-  { path:'',component:DefaultPageComponent,data:{breadcrumb:'หน้าควบคุม'},
+  { path:'',component:DefaultPageComponent,data:{breadcrumb:'หน้าหลัก'},
     children:[
       { path:'dashboard', component:DashboardComponent,data:{breadcrumb:''}},
       { path:'activity',component:ActivityComponent,data:{breadcrumb:'กิจกรรม'},

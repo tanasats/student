@@ -6,16 +6,16 @@ const jwt = require("jsonwebtoken");
 exports.tokenizer = (req, res) => {
   //var _token = req.body.token; 
   const token = req.headers["x-access-token"];
-  console.log(token);
+  //console.log(token);
   const secret = config.appSecret;
 
   jwt.verify(token, secret, function (err, decoded) {
     if (err) {
-      console.log(err.name);
+      //console.log(err.name);
       return res.status(401).send(err.name);
     }
     let _decode = jwt.decode(token);
-    console.log("tokenizer decode:", _decode);
+    //console.log("tokenizer decode:", _decode);
     //---Authorized----
     let app_token = jwt.sign({ username: _decode.username }, config.secret, {
       expiresIn: config.jwtExpiration,
@@ -38,7 +38,7 @@ exports.tokenizer = (req, res) => {
 // return 200:{username,access_token}
 // return 500:{}
 exports.signin = async (req, res) => {
-  console.log("auth signin()")
+  //console.log("auth signin()")
   let username = req.body.username;
   let password = req.body.password;
   authModel
@@ -50,7 +50,7 @@ exports.signin = async (req, res) => {
       }
 
       let [user] = row;
-      console.log("found user data :", user);
+      //console.log("found user data :", user);
       if (user.password == null) {
         return res.status(401).send({ message: "2" });
       }
@@ -64,7 +64,7 @@ exports.signin = async (req, res) => {
       max_role = user.role.reduce((prev,curr)=>{
         return (prev.role_id > curr.orle_id)?prev:curr;
       })
-      console.log("max role_name = ",max_role.role_name)
+      //console.log("max role_name = ",max_role.role_name)
       //---Authorized----
       let payload={
         username: user.username,
@@ -88,7 +88,7 @@ exports.signin = async (req, res) => {
       });
     })
     .catch((error) => {
-      console.log(error);
+      //console.log(error);
       res.status(500).send({ message: error });
     });
 }; //signin
@@ -97,12 +97,12 @@ exports.me = (req, res) => {
   var token = req.headers["x-access-token"];
   try {
     const _decode = jwt.verify(token, config.secret);
-    console.log("access_token_decode:", _decode);
+    //console.log("access_token_decode:", _decode);
     authModel
       .findUsername(_decode.username)
       .then(([row]) => {
-        //console.log("numrow:", row.length);
-        //console.log("app_user_info:",row);
+        ////console.log("numrow:", row.length);
+        ////console.log("app_user_info:",row);
         if (!row.length) {
           return res
             .status(401)
@@ -120,7 +120,7 @@ exports.me = (req, res) => {
 
 // ทำการลงทะเบียน โดยรับข้อมูล user จาก AD พร้อมทั้งกำหนด role
 // exports.register = async (req, res) => {
-//   //console.log(req.body);
+//   ////console.log(req.body);
 //   var datas = {
 //     username: req.body.username,
 //     password: req.body.password,
@@ -141,30 +141,30 @@ exports.me = (req, res) => {
 //     datas.password = await bcrypt.hash(datas.password, salt);
 //   }
 //   await authModel.get_faculty_id(req.body.faculty).then(([[row]]) => {
-//     console.log("faculty:", row || "no faculty_id in database");
+//     //console.log("faculty:", row || "no faculty_id in database");
 //     if (row == undefined) {
-//       console.log("Unknow faculty_id");
+//       //console.log("Unknow faculty_id");
 //       //return res.status(500).json({message:"Unknow faculty_id"});
 //     }
 //     datas.faculty_id = row.faculty_id;
 //   });
-//   //console.log('userinfo:',datas);
+//   ////console.log('userinfo:',datas);
 //   authModel
 //     .register({ datas })
 //     .then(([row]) => {
-//       //console.log("register:", row);
-//       //console.log("insertId:", row.insertId);
+//       ////console.log("register:", row);
+//       ////console.log("insertId:", row.insertId);
 
 //       if (datas.usertype == "student") {
-//         console.log("try to add stuent role");
+//         //console.log("try to add stuent role");
 //         authModel
 //           .addRole(row.insertId, 1)
 //           .then(([row]) => {
-//             console.log("addrole response:", row);
+//             //console.log("addrole response:", row);
 //             return res.status(200).send({ message: "User registered" });
 //           })
 //           .catch((err) => {
-//             console.log(err);
+//             //console.log(err);
 //             return res
 //               .status(401)
 //               .send({ message: "add student role error :" + err });
@@ -172,7 +172,7 @@ exports.me = (req, res) => {
 //       }
 //     })
 //     .catch((err) => {
-//       console.log("err register:", err);
+//       //console.log("err register:", err);
 //       return res.status(401).send(err);
 //     });
 //   //res.status(200).send("test");
@@ -185,14 +185,14 @@ exports.register = (req, res) => {
     fullname: req.body.fullname,
     usertype: req.body.usertype,
   };
-  console.log(datas);
+  //console.log(datas);
   authModel
     .register(datas)
     .then(([res]) => {
       res.status(200).json(row);
     })
     .catch((err) => {
-      console.log("err:",err);
+      //console.log("err:",err);
       res.status(500).json(err);
     }); 
 };
@@ -200,7 +200,7 @@ exports.register = (req, res) => {
 exports.changerole = (req,res)=>{
   const userId = req.body.userId;
   const role_id = req.params.role_id;
-  console.log("userId:",userId," role_id:",role_id);
+  //console.log("userId:",userId," role_id:",role_id);
 }
 
 
@@ -211,15 +211,15 @@ exports.setpassword = async (req, res) => {
     const salt = await bcrypt.genSalt(saltRound);
     datas.password = await bcrypt.hash(datas.password, salt);
   }
-  console.log(datas);
+  //console.log(datas);
   await authModel
     .setpassword(datas.password, datas.username)
     .then(([row]) => {
-      console.log(row);
+      //console.log(row);
       res.status(200).json(row);
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
       res.status(500).json({ message: err });
     });
 };

@@ -7,7 +7,7 @@ exports.getall = async (req, res) => {
       res.status(200).json(row);
     })
     .catch((error) => {
-      console.log(error);
+      //--console.log(error);
       res.status(200).json(row);
     });
 };
@@ -16,7 +16,7 @@ exports.getall = async (req, res) => {
 //   activityModel.rowcount().then((rows)=>{
 //     res.status(200).json(rows);
 //   }).catch((err)=>{
-//     console.log(err);
+//     //--console.log(err);
 //     res.status(400).send(err)
 //   })
 // }
@@ -30,9 +30,9 @@ exports.filter = async (req, res) => {
   let user_faculty_id = req.user_faculty_id; 
   let user_faculty_name = req.user_faculty_name;
   
-  console.log("user_id:",req.user_id) //<-- user_id from token 
-  console.log("user_facluty_name:",req.user_faculty_name);
-  console.log("role_max:",req.role_max);
+  //--console.log("user_id:",req.user_id) //<-- user_id from token 
+  //--console.log("user_facluty_name:",req.user_faculty_name);
+  //--console.log("role_max:",req.role_max);
 
   let page = parseInt(req.query.page)||1;
   let limit = parseInt(req.query.limit)||999999;
@@ -54,11 +54,11 @@ exports.filter = async (req, res) => {
       user_faculty_name: user_faculty_name, 
       page:page, limit: limit, code:code, name:name, publish:publish, status:status, open:open})
     .then((rows) => {
-      //console.log(rows);
+      ////--console.log(rows);
       res.status(200).send(rows);
     })
     .catch((err) => {
-      console.log(err);
+      //--console.log(err);
       res.status(400).send(err);
     });
 };
@@ -84,7 +84,7 @@ exports.oldfilter = async (req, res) => {
       items: _results,
     });
   } catch (error) {
-    console.log(error);
+    //--console.log(error);
     res.status(400).json(error);
   }
 };
@@ -108,7 +108,7 @@ exports.current = async (req, res) => {
       items: _results,
     });
   } catch (error) {
-    console.log(error);
+    //--console.log(error);
     res.status(400).json(error);
   }
 };
@@ -120,7 +120,7 @@ exports.getById = (req, res) => {
       res.status(200).json(row);
     })
     .catch((error) => {
-      console.log(error);
+      //--console.log(error);
       res.status(400).send(error);
     });
 };
@@ -133,7 +133,7 @@ exports.delete = (req, res) => {
         res.status(200).json(row);
       })
       .catch((error) => {
-        console.log(error);
+        //--console.log(error);
         res.status(400).send(error);
       });
   } else {
@@ -158,11 +158,11 @@ exports.getUserActivity = (req, res) => {
   activityModel
     .getuseractivity({ id: id })
     .then(([row]) => {
-      console.log(row);
+      //--console.log(row);
       res.status(200).json(row);
     })
     .catch((error) => {
-      console.log(row);
+      //--console.log(row);
       res.status(400).send(error);
     });
 };
@@ -188,7 +188,7 @@ exports.update = async (req, res) => {
     return res.status(400).send({ message: "Invalid request parameter" });
   }
   const owner = req.user_id;
-//  console.log("create owner:",owner)
+//  //--console.log("create owner:",owner)
   //datas.cowner = owner;
   datas.mowner = owner;  
 
@@ -196,14 +196,14 @@ exports.update = async (req, res) => {
     delete datas.cdate;
     delete datas.cowner;
     datas.mdate = new Date();
-    console.log("update activity datas:",datas);
+    //--console.log("update activity datas:",datas);
     activityModel
       .update({ id: id, datas: datas })
       .then(([row]) => {
         res.status(200).json(row);
       })
       .catch((error) => {
-        console.log(error);
+        //--console.log(error);
         // if (error.message) {
         //   return res.status(400).send({ message: error.message });
         // }
@@ -216,7 +216,7 @@ exports.update = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  console.log(req.body);
+  //--console.log(req.body);
   const datas = req.body;
   const owner = req.user_id;
   const faculty_id = req.user_faculty_id;
@@ -227,21 +227,21 @@ exports.create = async (req, res) => {
   datas.faculty_id= faculty_id;
   datas.faculty_name= faculty_name
 
-  console.log("create activity owner:",owner)
-  console.log("activity faculty owner:",faculty_name)
+  //--console.log("create activity owner:",owner)
+  //--console.log("activity faculty owner:",faculty_name)
 
 
   
   if (req.body.activity_name) { 
-    console.log("data:", datas);
+    //--console.log("data:", datas);
     activityModel
       .create({ datas: datas })
       .then(([row]) => {
-        console.log("create()->result:", row);
+        //--console.log("create()->result:", row);
         res.status(200).json(row);
       })
       .catch((error) => {
-        console.log(error);
+        //--console.log(error);
         res.status(400).send(error);
       });
   } else {
@@ -252,13 +252,13 @@ exports.create = async (req, res) => {
 const uploadFile = require("../middleware/upload");
 const { subscribe } = require("../route/faculty.route");
 exports.upload = async (req, res) => {
-  console.log("upload()");
-  console.log(req.body);
-  console.log(req.files);
+  //--console.log("upload()");
+  //--console.log(req.body);
+  //--console.log(req.files);
   try {
     uploadFile(req, res, function (err) {
       if (err) {
-        console.log(err);
+        //--console.log(err);
         res.status(400).send(err);
         //res.status(401).send("Upload failed!");// เขียน DB ไม่ได้ ต้องกลับไปลบ ไฟล์ออกด้วย
       } else {
@@ -269,7 +269,7 @@ exports.upload = async (req, res) => {
             caption: req.body.caption,
           })
           .then(([row]) => {
-            console.log("updatePoster()->result:", row);
+            //--console.log("updatePoster()->result:", row);
             if (row.affectedRows == 1) {
               res.status(200).send({
                 message:
@@ -280,7 +280,7 @@ exports.upload = async (req, res) => {
             }
           })
           .catch((error) => {
-            console.log(error);
+            //--console.log(error);
             res.status(400).send(error);
           });
       }
@@ -292,7 +292,7 @@ exports.upload = async (req, res) => {
     // }
     // activityModel.updatePoster({id:req.body.id,filename:req.file.originalname,caption:req.body.caption})
     // .then(([row])=>{
-    //   console.log("updatePoster()->result:", row);
+    //   //--console.log("updatePoster()->result:", row);
     //   if(row.affectedRows==1){
     //     res.status(200).send({ message: "Uploaded the file successfully: " + req.file.originalname,  });
     //   }else{
@@ -300,11 +300,11 @@ exports.upload = async (req, res) => {
     //   }
     // })
     // .catch((error)=>{
-    //   console.log(error);
+    //   //--console.log(error);
     //   res.status(400).send(error);
     // })
   } catch (err) {
-    console.log(`${err}`);
+    //--console.log(`${err}`);
     res.status(500).send({
       message: `${err}`,
     });

@@ -1,33 +1,69 @@
-<div class="container mt-3">
-    <div class="row">
-        <div class="col">
-            <h5>แผงควบคุมสำหรับผู้ดูแลระบบ{{title}}</h5>
+
+<section>
+  <div class="container my-3">
+
+      <div class="row">
+        <div class="col-md-4 col-12">
+          <div class="alert alert-info" >เมนูลัดที่จำเป็น</div>
         </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 col-12">
-        <div class="alert alert-info" >เมนูลัดที่จำเป็น</div>
-      </div>
-      <div class="col-md-8 col-12">
-        <div >
-          <div>จัดทำร่าง <span class="badge rounded-pill bg-info mx-2">{{items_draft.length}}</span>รายการ</div>
-          <div>ขออนุมัติ <span class="badge rounded-pill bg-info">{{items_approve.length}}</span> รายการ</div>
-          <div>ดำเนินการ <span class="badge rounded-pill bg-info">{{items_work.length}}</span> รายการ</div>
-          <div>ทั้งหมด <span class="badge rounded-pill bg-primary">{{items.length}}</span> รายการ</div>
+  
+        <div class="col-md-8 col-12">
+  
+            <div class="row g-3">
+              <div class="col-3">
+                <div class="card shadow-sm text-center">
+                  <h2 class="mt-1 mb-0">{{items_draft.length}}</h2>
+                  <span class="form-label small text-muted mt-0 mb-2">จัดทำร่าง</span>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card shadow-sm text-center">
+                  <h2 class="mt-1 mb-0">{{items_approve.length}}</h2>
+                  <span class="form-label small text-muted mt-0 mb-2">ขออนุมัติ</span>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card shadow-sm text-center">
+                  <h2 class="mt-1 mb-0">{{items_work.length}}</h2>
+                  <span class="form-label small text-muted mt-0 mb-2">ดำเนินการ</span>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card shadow-sm text-center">
+                  <h2 class="mt-1 mb-0">{{items.length}}</h2>
+                  <span class="form-label small text-muted mt-0 mb-2">ทั้งหมด</span>
+                </div>
+              </div>
+            </div>
+
         </div>
 
       </div>
     </div>
-  </div>
-  
+
+</section>
+ 
+<section>
   <div class="container">
+    <activity-list
+    [items]="items"
+    [title]="'กิจกรรมทั้งหมด'"
+    >
+    </activity-list>
+  </div>
+</section>
+
+<div class="container">
     <div class="row">
       <div class="col-md-4 col-sm-12 order-md-2 order-sm-1"  >
          <div class="alert alert-info" >เนื้อหารอง</div>
+
+
+
      </div>
      <div class="col-md-8 col-sm-12 order-md-1 order-sm-2 ">
         <div class="alert alert-warning" > การแจ้งเตือนสำหรับ เจ้าหน้าที่คณะ/ผู้ดูแลระบบ</div>
      </div>
     </div>
-  </div>
+</div>
 
