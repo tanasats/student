@@ -179,7 +179,10 @@
             <!-- {{item.activity_publish}}
                 <i class="bi" [ngClass]="item.activity_publish?'bi-toggle-on':'bi-toggle-off'"></i> -->
 
-
+            <label class="form-label text-primary"><i class="bi bi-calendar4-event me-2"></i>จำนวนผู้สมัคร</label>
+              <div>
+                {{ item.activity_register }} / {{ item.activity_receive }}
+              </div>
 
 
             <label class="form-label text-primary"><i class="bi bi-calendar4-event me-2"></i>วันที่เริ่มกิจกรรม</label>
@@ -189,10 +192,10 @@
               </div>
 
             <label class="form-label text-primary pt-3"><i class="bi bi-megaphone me-2"></i>รายละเอียดกิจกรรม</label>
-            <div [innerHTML]="item.activity_description"></div>
+              <div [innerHTML]="item.activity_description"></div>
             
             <label class="form-label text-primary pt-3"><i class="bi bi-geo-alt me-2"></i>สถานที่จัด</label>
-            <div>{{ item.activity_place }}</div>
+              <div>{{ item.activity_place }}</div>
 
 
 
@@ -251,6 +254,15 @@
         role="tabpanel"
         aria-labelledby="student-tab"
       >
+
+        <div class="row">
+          <div class="col mt-2">
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-success btn-sm" (click)="onExportExcel()"><i class="bi bi-download me-1"></i>Export to Excel</button>
+            </div> 
+          </div>
+        </div>
+
         <div class="row">
           <div class="col">
             <!-- <user-view-table

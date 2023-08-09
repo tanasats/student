@@ -10,17 +10,17 @@ import { ActivityComponent } from './pages/activity/activity/activity.component'
 import { ActivityViewComponent } from './pages/activity/activity-view/activity-view.component';
 
 const routes: Routes = [
-  {path:'',component:DefaultPageComponent,
+  {path:'',component:DefaultPageComponent,data:{breadcrumb:'หน้าหลัก'},
 children:[
-  {path:'dashboard', component:DashboardComponent,data:{'title':'นิสิต', breadcrumb: 'หน้าหลัก' }},
+  {path:'dashboard', component:DashboardComponent,data:{ breadcrumb: '' }},
   {path:'activity',component:ActivityComponent,data:{breadcrumb:'รายการกิจกรรม'},
     children:[
-       {path:'', component:ActivityMasterComponent,data:{'title':'นิสิต', breadcrumb: '' }},
-       {path:'details/:id', component:ActivityDetailsComponent,data:{'title':'นิสิต', breadcrumb: 'รายละเอียดกิจกรรม' }},
-       {path:'manage/:id', component:ActivityManageComponent,data:{'title':'นิสิต', breadcrumb: 'กิจกรรมของฉัน' }},
-       {path:'view/:id', component:ActivityViewComponent,data:{'title':'นิสิต', breadcrumb:'ผลการร่วมกิจกรรม'}}
+       {path:'', component:ActivityMasterComponent,data:{ breadcrumb: '' }},
+       {path:'details/:id', component:ActivityDetailsComponent,data:{ breadcrumb: 'รายละเอียดกิจกรรม' }},
+       {path:'manage/:id', component:ActivityManageComponent,data:{ breadcrumb: 'กิจกรรมของฉัน' }},
+       {path:'view/:id', component:ActivityViewComponent,data:{ breadcrumb:'ผลการร่วมกิจกรรม'}}
     ]}, 
-    {path:'checkcredit', component:CheckCreditComponent,data:{'title':'นิสิต', breadcrumb: 'ตรวจสอบจบ' }},
+    {path:'checkcredit', component:CheckCreditComponent,data:{ breadcrumb: 'ตรวจสอบจบ' }},
     {path:'',redirectTo:'dashboard',pathMatch:'full'}
 ]}
 ]; //Routes

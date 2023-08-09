@@ -3,7 +3,7 @@ import { IMenuItem } from "src/app/core/interface/menuitem";
 export const admin_menu_items: IMenuItem[] = [
   {
     path: 'admin/dashboard',
-    title: 'หน้าควบคุม',
+    title: 'หน้าหลัก',
     icon: 'bi bi-speedometer2',
     class: '',
     extralink: false,
@@ -11,7 +11,7 @@ export const admin_menu_items: IMenuItem[] = [
   },
   {
     path: '',
-    title: 'กิจกรรม',
+    title: 'รายการกิจกรรม',
     icon: 'bi bi-bell',
     class: '',
     extralink: false,

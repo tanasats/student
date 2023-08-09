@@ -33,6 +33,8 @@ export class HomeComponent implements OnInit{
     this._load_init_data();    
   }
 
+
+
 	_load_init_data(){
 		// this.activityservice.getall()
 		// .subscribe({
@@ -59,6 +61,9 @@ export class HomeComponent implements OnInit{
 
   onActivitySelect(item:any){
     this.router.navigate(["/activity",item.activity_id], { state: { datas: item } });
+  }
+  onLogin(){
+    this.router.navigate(["/login"]);
   }
 
 } //class

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ActivityService } from 'src/app/service/activity.service';
 import { EnrollService } from 'src/app/service/enroll.service';
+import { ExcelService } from 'src/app/service/excel.service';
 import { StudentService } from 'src/app/service/student.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
 import { DialogWarningConfirmComponent } from 'src/app/shared/components/dialogs/confirm/dialog-warning-confirm/dialog-warning-confirm.component';
@@ -31,6 +32,7 @@ export class ActivityManageComponent implements OnInit {
     private toaster: ToasterService,
     private studentService: StudentService,
     private dialog: MatDialog,
+    private excelservice:ExcelService,
   ) {}
   ngOnInit(): void {
     this.id = this.activeroute.snapshot.paramMap.get('id');
@@ -40,16 +42,31 @@ export class ActivityManageComponent implements OnInit {
     this.item.activity_faculty = JSON.parse(this.item.activity_faculty);
     this.item.activity_skill = JSON.parse(this.item.activity_skill);
 
+    this.refreshData();
     this.load_registrant();
 
-    this.studentService.getall({}).subscribe({
-      next: (res) => {
-        console.log(res);
+    // this.studentService.getall({}).subscribe({
+    //   next: (res) => {
+    //     console.log(res);
+    //   },
+    //   error: (err) => {
+    //     console.log(err);
+    //   },
+    // });
+  }
+
+  refreshData(){
+    this.activityService.getbyid(this.id).subscribe({
+      next: ([res])=>{
+        console.log("loaddata() res:",res);
+        this.item = res;
+        this.item.activity_faculty = JSON.parse(this.item.activity_faculty);
+        this.item.activity_skill = JSON.parse(this.item.activity_skill);
       },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+      error: (err)=>{
+        console.log("loaddata() err:",err);
+      }
+    })
   }
 
   load_registrant() {
@@ -136,4 +153,12 @@ export class ActivityManageComponent implements OnInit {
         }
       });
   }
+
+  onExportExcel() {
+    const datas = this.registrant_C;
+    this.excelservice.exportToExcel(datas, 'รายชื่อผู้ลงทะเบียน-' + this.item.activity_code);
+  }
+
+
+
 }

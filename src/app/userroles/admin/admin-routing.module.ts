@@ -21,7 +21,7 @@ const routes: Routes = [
   { path:'',component:DefaultPageComponent,data:{breadcrumb:'หน้าหลัก'},
     children:[
       { path:'dashboard', component:DashboardComponent,data:{breadcrumb:''}},
-      { path:'activity',component:ActivityComponent,data:{breadcrumb:'กิจกรรม'},
+      { path:'activity',component:ActivityComponent,data:{breadcrumb:'รายการกิจกรรม'},
            children:[
               { path:'',component:ActivityMasterComponent,data:{breadcrumb:''}},
               { path:'create',component:ActivityCreateComponent,data:{breadcrumb:'เพิ่มกิจกรรม'}},
