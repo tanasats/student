@@ -8,8 +8,12 @@ $warning: #fbc035; //e4a11b
 $danger: #bf2c34; //DC3545;//#DC4C64;
 $light: #f8f8f8; //rgb(248, 249, 250);
 $dark: #332d2d;
+$gold: #ffd700;
+
+
 $body-bg: #f8f8f8;
 $body-text-color: #111111;
+
 // variable overrides
 $input-placeholder-color: #a8a8a8;
 //// Import Bootstrap
@@ -21,6 +25,8 @@ $input-placeholder-color: #a8a8a8;
   --bs-modal-padding: 1em;
   --bs-modal-footer-gap: 1em;
   --bs-modal-header-padding: 1em;
+
+  --custom-color-gold: $gold;
 }
 
 html,
@@ -198,7 +204,9 @@ h6.custom{
   padding-left:4rem;
 }
 
-
+.text-gold{
+  color: #FFC800;
+}
 
 
 // Small devices (landscape phones, less than 768px)

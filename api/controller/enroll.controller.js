@@ -156,3 +156,16 @@ exports.registrant = async (req,res)=>{
     })
   }
 }
+
+exports.myenroll = async (req,res) => {
+  let studentcode = req.user_studentcode;
+  console.log("myenroll("+studentcode+")");
+  enrollModel.myenroll(studentcode)
+  .then(([row])=>{
+    res.status(200).json(row);
+  })
+  .catch((error)=>{
+    console.log(error);
+    res.status(400).send(error);
+  })
+};

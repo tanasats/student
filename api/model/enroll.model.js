@@ -48,6 +48,17 @@ class _class {
     return db.execute(sql);
   }
 
+
+  myenroll(studentcode){
+    let sql = db.format("SELECT * FROM enroll LEFT JOIN activity ON enroll.activity_id=activity.activity_id WHERE enroll.studentcode=?",[studentcode])
+    console.log(sql)
+    return db.execute(sql);
+  }
+
+
+
+
+
 }//class
 
 let ClassModel = new _class();

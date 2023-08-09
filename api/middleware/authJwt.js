@@ -12,18 +12,17 @@ const catchError = (err, res) => {
 
 const verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
-
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
   }
-
   jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
       return catchError(err, res);
     }
-    console.log("verifyToken decode:",decoded) 
+    console.log("## -- verifyToken decode:",decoded) 
     req.user_id = decoded.user_id;
     req.user_type = decoded.user_type;
+    req.user_studentcode = decoded.studentcode;
     req.role_max = decoded.role_max;
     req.user_faculty_id = decoded.faculty_id;
     req.user_faculty_name = decoded.faculty_name;

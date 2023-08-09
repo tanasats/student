@@ -105,6 +105,12 @@ export class EnrollService {
       .get(this.endpoint + '/registrant/' + datas.activity_id , { headers: this.httpHeaders, params: datas })
       .pipe(catchError(this.handleError));
   }
+  
+  myenroll(): Observable<any> {
+    return this.http
+      .get(this.endpoint + '/myenroll', this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
 
 
 }

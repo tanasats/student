@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   public currentuser:ICurrentuser;
   public userdata:any={};
   public activitys:any=[];
+  public mytrophy:any=[];
 
   constructor(
     private router:Router,
@@ -93,6 +94,17 @@ export class DashboardComponent implements OnInit {
         console.log("home err:",err);
       }
     })
+  
+    this.enrollservice.myenroll().subscribe({
+      next: (res)=>{
+        console.log("myenroll() res:",res);
+        this.mytrophy=res;
+      },
+      error: (err)=>{
+        console.log("myenroll() err:",err);
+      }
+    });
+    
   }
 
 

@@ -16,9 +16,10 @@
 
   <div class="d-flex justify-content-between align-items-end">
     <div style="font-size: 0.85em">
-      <div><i class="bi bi-people me-2"></i>{{item.activity_register}}/{{item.activity_receive}}</div>
-      <div><i class="bi bi-geo-alt me-2"></i><span class="d-inline-block">{{item.activity_place}}</span></div>
-      <div><i class="bi bi-calendar4-week me-2"></i>วันที่ {{item.activity_date_from|thaidate}}</div>
+      <div><i class="bi bi-calendar4-week text-primary me-2"></i>วันที่ {{item.activity_date_from|thaidate}}</div>
+      <div><i class="bi bi-geo-alt text-primary me-2"></i><span class="d-inline-block">{{item.activity_place}}</span></div>
+      <div><i class="bi bi-stopwatch text-primary me-2"></i><span class="d-inline-block">{{item.activity_hour}}</span>&nbsp;ชั่วโมง</div>
+      <div><i class="bi bi-people text-primary me-2"></i>{{item.activity_register}}/{{item.activity_receive}}</div>
     </div>
     <div>
       <div class="btn btn-sm btn-success text-nowrap" (click)="_onSelect()">รายละเอียด</div>

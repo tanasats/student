@@ -26,7 +26,7 @@ class _class {
   // extra method
   filter({ user_id, user_type, role_max, user_faculty_id, user_faculty_name, page, limit, code, name ,publish ,status ,open }) {
     return new Promise((resolve, reject) => {
-      const admin_id=[1,5,18];
+      const admin_id=[1,5,18,21];
       let where_text = "WHERE ";
       console.log("role_max:",role_max);
       if(role_max=='officer'){ 
