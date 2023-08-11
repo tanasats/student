@@ -80,9 +80,14 @@ exports.create = async (req, res) => {
   datas.mdate = new Date();
   datas.enroll_token = uuidv4();
 
+  // await activityModel.isregisterfull(datas.activity_id).then( ([row]) =>{
+  //   console.log("isregisterfull:",row[0]);
+  // })
+  // console.log("afterthat-----");
+
   if (datas.studentcode&&datas.activity_id&&datas.enroll_position) {
     console.log("data:", datas);
-    enrollModel
+    enrollModel 
       .create({ datas: datas })
       .then(([row]) => {
         console.log("create()->result:", row);
@@ -103,6 +108,9 @@ exports.create = async (req, res) => {
     res.status(400).send({ message: "Invalid request parameter" });
   }
 };
+
+
+
 
 exports.useractivity = async (req,res)=>{
   const studentcode = req.params.studentcode;

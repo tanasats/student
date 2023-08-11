@@ -90,7 +90,6 @@ export class ActivityManageComponent implements OnInit {
         this.registrant_C = this.registrant.filter((item:any)=>{return item.enroll_position=='C'});
         console.log("Registant_AB: ",this.registrant_AB);
         console.log("Registant_C: ",this.registrant_C);
-        
       },
       error:(err)=>{
         console.log("enroll.registrant err:",err);
@@ -159,6 +158,8 @@ export class ActivityManageComponent implements OnInit {
     this.excelservice.exportToExcel(datas, 'รายชื่อผู้ลงทะเบียน-' + this.item.activity_code);
   }
 
-
+  onFilter(){
+    
+  }
 
 }

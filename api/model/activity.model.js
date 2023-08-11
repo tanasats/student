@@ -257,6 +257,11 @@ class _class {
     return db.execute(sql);
   }
 
+  isregisterfull(activity_id){
+    const sql = db.format("select activity_register>=activity_receive as isfull from activity where activity_id=? ",[activity_id]);
+    console.log(sql);
+    return db.execute(sql);
+  }
 
 } //class
 

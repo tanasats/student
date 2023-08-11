@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { APPLABEL } from 'src/environments/environment';
 
 @Component({
@@ -6,9 +6,19 @@ import { APPLABEL } from 'src/environments/environment';
   templateUrl: './user-view-table.component.html',
   styleUrls: ['./user-view-table.component.scss'],
 })
-export class UserViewTableComponent {
-  @Input() items: any;
+export class UserViewTableComponent implements OnInit{
+
+  @Input() items: any[]=[];
   @Input() title: any;
   @Input() is_onDelete:boolean=false;
   @Output() onDelete = new EventEmitter<any>();
+  public registercount:any;
+
+  
+  ngOnInit(): void {
+
+  }
+
+  
+
 }

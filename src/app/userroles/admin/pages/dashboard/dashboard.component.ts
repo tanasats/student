@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ActivityService } from 'src/app/service/activity.service';
 
 @Component({
@@ -15,10 +15,11 @@ export class DashboardComponent implements OnInit {
   public items_work:any[]=[];
   
   constructor(
-    private route: ActivatedRoute,
+    private activeroute: ActivatedRoute,
+    private router: Router,
     private activityService: ActivityService
   ) {
-    this.route.data.subscribe((data: any) => {
+    this.activeroute.data.subscribe((data: any) => {
       this.title = data.title;
     });
   }
@@ -50,6 +51,12 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+onTitleClick(item:any){
+  this.router.navigate(['../activity/manage', item.activity_id], {
+    relativeTo: this.activeroute,
+    state: { datas: item },
+  });
+}
 
 loadData(){
   // this.activityService.getall().subscribe({

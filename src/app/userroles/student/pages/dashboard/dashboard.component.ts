@@ -96,9 +96,9 @@ export class DashboardComponent implements OnInit {
     })
   
     this.enrollservice.myenroll().subscribe({
-      next: (res)=>{
+      next: (res:any[])=>{
         console.log("myenroll() res:",res);
-        this.mytrophy=res;
+        this.mytrophy=res.filter((item)=>{return item.activity_checkin===1});
       },
       error: (err)=>{
         console.log("myenroll() err:",err);
