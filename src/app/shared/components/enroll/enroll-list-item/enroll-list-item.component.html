@@ -1,48 +1,28 @@
-<!-- <div class="p-2 hover">
-  <div class="d-flex justify-content-between align-items-center">
-
-    <div class="row g-0">
-      <div style="width: 180px">
-        <div style="display: inline-block; width: 30px">{{ itemnumber }}</div>
-        <input class="form-check-input me-2" type="checkbox" value="" />
-        {{ item.studentcode }}
-      </div>
-      <div class="col">
-        {{ item.STUDENTNAME }}&nbsp;{{ item.STUDENTSURNAME }}
-      </div>
-      <div class="col">
-        {{ item.FACULTYNAME }}
-      </div>
-      <div class="col">One of three columns</div>
-      <div style="width: 80px">
-        <div class="small fst-italic text-muted">
-          <i class="bi bi-x-lg"></i>
-        </div>
-      </div>
+<div class="row p-1 border-bottom g-0 align-items-center flex-row">
+  <div class="col-auto me-2">
+    <div style="display: inline-block">
+      <span class="me-1">{{ itemnumber }}.</span>
+      <input class="form-check-input" type="checkbox" value="" />
     </div>
-
   </div>
-</div> -->
+  <div class="col-auto me-2">
+    {{ item.studentcode }}
+  </div>
 
+  <div class="col">
+    {{ item.studentname }}
+    <span *ngIf="item.activity_checkin" class="text-gold"
+      ><i class="bi bi-trophy ms-1"></i
+    ></span>
+  </div>
+  <div class="col d-none d-md-block">
+    {{ item.faculty_name }}
+  </div>
+  <div class="col d-none d-lg-block">
+    {{ item.program }}
+  </div>
 
-
-<div class="row p-1 border-bottom g-0 align-items-center">
-
-    <div style="width:180px">
-        <div style="display: inline-block; width: 30px">{{ itemnumber }}</div>
-        <input class="form-check-input me-2" type="checkbox" value="" />
-        {{ item.studentcode }}
-    </div>
-    <div class="col">
-        {{ item.studentname }}
-        <span *ngIf="item.activity_checkin" class="text-gold"><i class="bi bi-trophy ms-1"></i></span>
-    </div>
-    <div class="col">
-        {{ item.faculty_name }}
-    </div>
-    <div style="width:80px;text-align:end;">
-        <i class="bi bi-x-lg cursor-pointer"></i>
-    </div>
+  <div class="col-auto">
+    <i class="bi bi-x-lg cursor-pointer"></i>
+  </div>
 </div>
-
-

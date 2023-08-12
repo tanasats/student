@@ -154,9 +154,21 @@ export class ActivityManageComponent implements OnInit {
   }
 
   onExportExcel() {
-    const datas = this.registrant_C;
-    this.excelservice.exportToExcel(datas, 'รายชื่อผู้ลงทะเบียน-' + this.item.activity_code);
+    const exportdata = this.registrant_C.map((item:any)=>{ return {
+      "รหัสนิสิต": item.studentcode,
+      "ชื่อนิสิต": item.studentname,
+      "คณะ": item.faculty_name,
+      "สาขา": item.program,
+      "สถานภาพ":"ผู้เข้าร่วมกิจกรรม",
+      "วันที่ลงทะเบียน": item.cdate?new Date(item.cdate).toLocaleString():"-",
+      "วันที่ยืนยันเข้าร่วม": item.activity_checkin_date?new Date(item.activity_checkin_date).toLocaleString():"-",
+      "ผู้ยืนยันเข้าร่วม": item.mowner_name?item.mowner_name:"-"
+    }});
+    this.excelservice.exportToExcel(exportdata, 'รายชื่อผู้ลงทะเบียนเข้าร่วมกิจกรรม-' + this.item.activity_code);
   }
+
+
+
 
   onFilter(){
     

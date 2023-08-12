@@ -27,7 +27,8 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        data: { breadcrumb: '' },
+        canActivate:[AuthGuard],
+        data: { activateroles: ['admin'], breadcrumb: '' },
       },
       {
         path: 'activity',
@@ -109,7 +110,6 @@ const routes: Routes = [
         data: { activateroles: ['admin'], bradcrumb: 'จัดการผู้ใช้งาน' },
       },
       { path: 'user-profile', component: UserProfileComponent },
-
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
   },
