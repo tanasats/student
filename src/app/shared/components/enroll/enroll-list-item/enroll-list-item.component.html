@@ -34,16 +34,15 @@
         {{ item.studentcode }}
     </div>
     <div class="col">
-        {{ item.STUDENTNAME }}&nbsp;{{ item.STUDENTSURNAME }}
+        {{ item.studentname }}
         <span *ngIf="item.activity_checkin" class="text-gold"><i class="bi bi-trophy ms-1"></i></span>
     </div>
     <div class="col">
-        {{ item.FACULTYNAME }}
+        {{ item.faculty_name }}
     </div>
     <div style="width:80px;text-align:end;">
         <i class="bi bi-x-lg cursor-pointer"></i>
     </div>
-    
 </div>
 
 

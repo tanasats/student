@@ -38,11 +38,13 @@ class _class {
   }
 
   registrant(activity_id,keyword,page,pagesize){
-    let query = "select * from enroll left join student on enroll.studentcode=student.studentcode where enroll.activity_id=? and enroll.studentcode like ? limit ?,?";
+    //let query = "select * from enroll left join student on enroll.studentcode=student.studentcode where enroll.activity_id=? and enroll.studentcode like ? limit ?,?";
+    let query = "select enroll.*,u2.fullname as mowner_name,u1.faculty_name,u1.program,u1.email,u1.mobilephone from enroll left join user u1 on enroll.studentcode=u1.studentcode left join user u2 on enroll.mowner=u2.user_id where enroll.activity_id=? and enroll.studentcode like ? limit ?,?";
     let sql = db.format(query,[activity_id,'%'+keyword+'%',(page-1)*pagesize,pagesize]);
     console.log("registrant sql=",sql);
     return db.execute(sql);
   }
+
   countfilter({keyword}) {
     let sql = db.format("SELECT count(*) as value FROM agency WHERE agency_name like ?",['%'+keyword+'%']);
     return db.execute(sql);

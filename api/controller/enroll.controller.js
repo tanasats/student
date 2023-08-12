@@ -151,7 +151,7 @@ exports.registrant = async (req,res)=>{
   const activity_id = req.params.activity_id;
   const keyword = req.query.keyword ||'';
   const page = parseInt(req.query.page) ||1;
-  const pagesize = parseInt(req.query.pagesize) ||10000;
+  const pagesize = parseInt(req.query.pagesize) ||10000; 
   if(activity_id){
     enrollModel
     .registrant(activity_id,keyword,page,pagesize)
