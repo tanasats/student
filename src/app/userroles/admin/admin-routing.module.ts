@@ -16,34 +16,107 @@ import { FacultyMasterComponent } from './pages/faculty/faculty-master/faculty-m
 import { TranscriptPreviewComponent } from './pages/transcript/transcript-preview/transcript-preview.component';
 import { ActivityComponent } from './pages/activity/activity/activity.component';
 import { ActivityTicketComponent } from './pages/activity/activity-ticket/activity-ticket.component';
+import { AuthGuard } from 'src/app/service/auth.guard';
 
 const routes: Routes = [
-  { path:'',component:DefaultPageComponent,data:{breadcrumb:'หน้าหลัก'},
-    children:[
-      { path:'dashboard', component:DashboardComponent,data:{breadcrumb:''}},
-      { path:'activity',component:ActivityComponent,data:{breadcrumb:'รายการกิจกรรม'},
-           children:[
-              { path:'',component:ActivityMasterComponent,data:{breadcrumb:''}},
-              { path:'create',component:ActivityCreateComponent,data:{breadcrumb:'เพิ่มกิจกรรม'}},
-              { path:'manage/:id',component:ActivityManageComponent,data:{breadcrumb:'ดำเนินการกิจกรรม'}},
-              { path:'detail/:id',component:ActivityDetailComponent,data:{breadcrumb:'รายละเอียดกิจกรรม'}},
-              { path:'edit/:id',component:ActivityEditComponent,data:{breadcrumb:'แก้ไขกิจกรรม'}},       
-              { path:'ticket/:id',component:ActivityTicketComponent,data:{breadcrumb:'จัดการบัตรกิจกรรม'}},       
-           ]},
-      {path:'agency',component:AgencyMasterComponent,data:{breadcrumb:'หน่วยงานผู้จัดกิจกรรม'}},
-      {path:'activitytype',component:ActivitytypeMasterComponent,data:{breadcrumb:'ประเภทกิจกรรม'}},
-      {path:'faculty',component:FacultyMasterComponent,data:{breadcrumb:'คณะหน่วยงาน'}},
-      {path:'checkin',component:CheckinComponent,data:{breadcrumb:'ลงชื่อเข้าร่วมกิจกรรม'}},
-      {path:'transcript/preview',component:TranscriptPreviewComponent},
-      {path:'user',component:UserComponent,data:{bradcrumb:'จัดการผู้ใช้งาน'}},
-      {path:'user-profile',component:UserProfileComponent},
+  {
+    path: '',
+    component: DefaultPageComponent,
+    data: { breadcrumb: 'หน้าหลัก' },
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        data: { breadcrumb: '' },
+      },
+      {
+        path: 'activity',
+        component: ActivityComponent,
+        canActivate: [AuthGuard],
+        data: { activateroles: ['admin'], breadcrumb: 'รายการกิจกรรม' },
+        children: [
+          {
+            path: '',
+            component: ActivityMasterComponent,
+            data: { breadcrumb: '' },
+          },
+          {
+            path: 'create',
+            component: ActivityCreateComponent,
+            canActivate: [AuthGuard],
+            data: { activateroles: ['admin'], breadcrumb: 'เพิ่มกิจกรรม' },
+          },
+          {
+            path: 'manage/:id',
+            component: ActivityManageComponent,
+            canActivate: [AuthGuard],
+            data: { activateroles: ['admin'], breadcrumb: 'ดำเนินการกิจกรรม' },
+          },
+          {
+            path: 'detail/:id',
+            component: ActivityDetailComponent,
+            canActivate: [AuthGuard],
+            data: { activateroles: ['admin'], breadcrumb: 'รายละเอียดกิจกรรม' },
+          },
+          {
+            path: 'edit/:id',
+            component: ActivityEditComponent,
+            canActivate: [AuthGuard],
+            data: { activateroles: ['admin'], breadcrumb: 'แก้ไขกิจกรรม' },
+          },
+          {
+            path: 'ticket/:id',
+            component: ActivityTicketComponent,
+            canActivate: [AuthGuard],
+            data: { activateroles: ['admin'], breadcrumb: 'จัดการบัตรกิจกรรม' },
+          },
+        ],
+      },
+      {
+        path: 'agency',
+        component: AgencyMasterComponent,
+        canActivate: [AuthGuard],
+        data: { activateroles: ['admin'], breadcrumb: 'หน่วยงานผู้จัดกิจกรรม' },
+      },
+      {
+        path: 'activitytype',
+        component: ActivitytypeMasterComponent,
+        canActivate: [AuthGuard],
+        data: { activateroles: ['admin'], breadcrumb: 'ประเภทกิจกรรม' },
+      },
+      {
+        path: 'faculty',
+        component: FacultyMasterComponent,
+        canActivate: [AuthGuard],
+        data: { activateroles: ['admin'], breadcrumb: 'คณะหน่วยงาน' },
+      },
+      {
+        path: 'checkin',
+        component: CheckinComponent,
+        canActivate: [AuthGuard],
+        data: { activateroles: ['admin'], breadcrumb: 'ลงชื่อเข้าร่วมกิจกรรม' },
+      },
+      {
+        path: 'transcript/preview',
+        component: TranscriptPreviewComponent,
+        canActivate: [AuthGuard],
+        data: { activateroles: ['admin'] },
+      },
+      {
+        path: 'user',
+        component: UserComponent,
+        canActivate: [AuthGuard],
+        data: { activateroles: ['admin'], bradcrumb: 'จัดการผู้ใช้งาน' },
+      },
+      { path: 'user-profile', component: UserProfileComponent },
 
-      {path:'',redirectTo:'dashboard',pathMatch:'full'}   
-   ]},      
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    ],
+  },
 ]; //Routes
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}
