@@ -121,6 +121,29 @@ export class ActivityManageComponent implements OnInit {
     });
   }
 
+  onSwitchTicket(){
+    this.item.activity_ticket=!this.item.activity_ticket;
+    let datas = {
+      activity_id: this.item.activity_id,
+      activity_ticket: this.item.activity_ticket,
+    };
+    this.activityService.update(datas).subscribe({
+      next: (res) => {
+        console.log('res:', res);
+        if (res.affectedRows) {
+          if (this.item.activity_ticket) {
+            this.toaster.show('success', 'เข้าร่วมด้วยบัตรกิจกรรม');
+          } else {
+            this.toaster.show('success', 'เข้าร่วมด้วย QR Code');
+          }
+        }
+      },
+      error: (err) => {
+        console.log('err', err);
+      },
+    });
+  }
+
   onCancelWork(item: any) {
     this.dialog
       .open(DialogWarningConfirmComponent, {

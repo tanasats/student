@@ -12,7 +12,6 @@ exports.getall = async (req,res) => {
 }
 
 exports.filter = async(req,res) => {
-  console.log("agency fillter req:",req.body)
   try{
     let page = parseInt( req.query.page )||1;
     let pagesize=parseInt( req.query.pagesize )||10;
@@ -97,16 +96,13 @@ exports.update = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  console.log(req.body);
   const datas = req.body;
   // datas.cdate = new Date();
   // datas.mdate = new Date();
   if (req.body.agency_name) {
-    console.log("data:", datas);
     agencyModel
       .create({ datas: datas })
       .then(([row]) => {
-        console.log("create()->result:", row);
         res.status(200).json(row);
       })
       .catch((error) => {

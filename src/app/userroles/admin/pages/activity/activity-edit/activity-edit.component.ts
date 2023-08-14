@@ -73,6 +73,8 @@ export class ActivityEditComponent implements OnInit {
       activity_description: [null, []],
       activity_date_from: [null, []],
       activity_date_to: [null, []],
+      activity_register_from: [null, []],
+      activity_register_to: [null, []],      
       activity_place: [null, []],
       activity_hour: [null, []],
       activity_receive: [null, []],
@@ -120,14 +122,12 @@ export class ActivityEditComponent implements OnInit {
     
     this.activityservice.getbyid(this.id).subscribe({
       next: ([res]) => {
-        console.log("res:",res);
         this.item = res;
         this.item.activity_faculty = JSON.parse(this.item.activity_faculty);
         this.faculty_ref = this.item.activity_faculty;
         this.item.activity_skill = JSON.parse(this.item.activity_skill);
         
         this.form.patchValue(this.item);
-        console.log("xxx=",this.item);
       },
       error: (err) => {
         console.log('activity-edit loadData() err:', err);
@@ -224,7 +224,7 @@ export class ActivityEditComponent implements OnInit {
       });
   }
 
-  _onSubmit() {
+  onSubmit() {
     let datas = this.form.getRawValue();
     datas.activity_faculty = JSON.stringify(datas.activity_faculty);
     datas.activity_skill = JSON.stringify(datas.activity_skill);
@@ -241,7 +241,7 @@ export class ActivityEditComponent implements OnInit {
     });
   }
 
-  _onCancel() {
+  onCancel() {
     this.form.markAsUntouched();
     this.router.navigate(['/admin/activity']);
   }
@@ -277,7 +277,7 @@ export class ActivityEditComponent implements OnInit {
       if (data) {
         console.log(data);
         this.form.controls['activity_status'].setValue('a');
-        this._onSubmit();
+        this.onSubmit();
         this.router.navigate(['/admin/activity']);
       }
     });   
@@ -296,7 +296,7 @@ export class ActivityEditComponent implements OnInit {
       if (data) {
         console.log(data);
         this.form.controls['activity_status'].setValue('w');
-        this._onSubmit();
+        this.onSubmit();
         this.router.navigate(['/admin/activity']);
       }
     });   
@@ -315,7 +315,7 @@ export class ActivityEditComponent implements OnInit {
       if (data) {
         console.log(data);
         this.form.controls['activity_status'].setValue('d');
-        this._onSubmit();
+        this.onSubmit();
         this.router.navigate(['/admin/activity']);
       }
     });   

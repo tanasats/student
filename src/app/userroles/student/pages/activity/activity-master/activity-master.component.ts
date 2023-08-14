@@ -10,7 +10,7 @@ import { ToasterService } from 'src/app/service/toaster/toaster.service';
 })
 export class ActivityMasterComponent implements OnInit {
   public items:any;
-  public activity_open:any;
+  public activity_ticket:any;
   public activity_regis:any;
 
   constructor(
@@ -26,12 +26,12 @@ export class ActivityMasterComponent implements OnInit {
 
   _loadItems() {
     console.log("_loadItems()")
-    this.activityservice.filter({status:'w'}).subscribe({
+    this.activityservice.filter({publish:1}).subscribe({
       next: (res) => {
         console.log("res:",res)
         this.items = res.items;
-        this.activity_open = res.items.filter((item:any)=>{return item.activity_open});
-        this.activity_regis = res.items.filter((item:any)=>{return !item.activity_open});
+        this.activity_ticket = res.items.filter((item:any)=>{return item.activity_ticket});
+        this.activity_regis = res.items.filter((item:any)=>{return !item.activity_ticket});
 
       },
       error: (err) => {

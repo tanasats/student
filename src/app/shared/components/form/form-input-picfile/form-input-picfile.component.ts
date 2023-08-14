@@ -118,7 +118,6 @@ onUploadImage(){
   formData.append("file",file,file.name);
   this.picfileService.upload(formData).subscribe({
     next:(res)=>{
-      console.log("Upload image res:",res);
       // ส่ง emit ออกไปทำที่ parent component
       this.newFileInputsrc='';
       this.onImageSave.emit(res.file.filename);

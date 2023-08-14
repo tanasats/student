@@ -57,7 +57,6 @@ export class LoginComponent {
             //this.toaster.show('error', 'ผู้ใช้ยังไม่ได้สมัครสมาชิก !!!',7000);
             this.msuauth.signin(form.value).subscribe({
               next:(res)=>{
-                  console.log("msuauth res:",res);
                   if(res.access_token){
                     localStorage.setItem("access-token",res.access_token);
                     this.msuauth.me().subscribe({

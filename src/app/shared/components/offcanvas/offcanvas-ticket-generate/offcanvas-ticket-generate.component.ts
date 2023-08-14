@@ -67,7 +67,6 @@ export class OffcanvasTicketGenerateComponent {
       };
       this.ticketservie.genTicket(datas).subscribe({
         next: (res) => {
-          console.log("ticket service res:",res);
           if(res.affectedRows>0){
             this.onSave.emit(true);
           }else{

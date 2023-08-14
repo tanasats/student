@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TodayService } from 'src/app/service/today.service';
 
 @Component({
   selector: 'activity-list-item',
@@ -35,4 +36,18 @@ export class ActivityListItemComponent {
 
   @Input() is_onTicket:boolean=false; 
   @Output() _onTicket= new EventEmitter<any>();
+
+  constructor(
+    private todayservice:TodayService
+  ){}
+
+  // get isRegisterExpired():boolean{
+  //   return this.todayservice.isExpired(this.item.activity_register_to);
+  // }
+  // get isRegisterBegin():boolean{
+  //   return this.todayservice.isBegin(this.item.activity_register_from);
+  // }
+  get isBetween():number{
+    return this.todayservice.isBetween(this.item.activity_register_from,this.item.activity_register_to);
+  }
 }

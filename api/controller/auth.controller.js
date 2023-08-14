@@ -6,16 +6,13 @@ const jwt = require("jsonwebtoken");
 exports.tokenizer = (req, res) => {
   //var _token = req.body.token; 
   const token = req.headers["x-access-token"];
-  //console.log(token);
   const secret = config.appSecret;
 
   jwt.verify(token, secret, function (err, decoded) {
     if (err) {
-      //console.log(err.name);
       return res.status(401).send(err.name);
     }
     let _decode = jwt.decode(token);
-    //console.log("tokenizer decode:", _decode);
     //---Authorized----
     let app_token = jwt.sign({ username: _decode.username }, config.secret, {
       expiresIn: config.jwtExpiration,
@@ -50,7 +47,6 @@ exports.signin = async (req, res) => {
       }
 
       let [user] = row;
-      //console.log("found user data :", user);
       if (user.password == null) {
         return res.status(401).send({ message: "2" });
       }

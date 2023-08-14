@@ -141,7 +141,6 @@ selectedCityId?: number;
       datas.activity_faculty=JSON.stringify(datas.activity_faculty);
       this.activityservice.create(datas).subscribe({
         next:(res)=>{
-          console.log("activity service res:",res);
           if(res.affectedRows){ //affectedRows,insertId
             this.toaster.show("success","ยันทึกข้อมูลเรียบร้อย");
             this.router.navigate(['../../']);

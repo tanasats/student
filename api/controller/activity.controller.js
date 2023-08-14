@@ -12,6 +12,25 @@ exports.getall = async (req, res) => {
     });
 };
 
+exports.getallpublish = async (req,res)=>{
+  const activity_year = parseInt(req.params.year)||0;
+  
+  activityModel
+  .getallpublish({activity_year:activity_year})
+  .then(([rows]) => {
+    let datas = rows.map((item)=>{
+      delete item.activity_budget;
+      delete item.activity_budget_source;
+      delete item.activity_budget_paid;
+      return item;
+    })
+    res.status(200).json(datas);
+  })
+  .catch((error) => {
+    res.status(200).json(rows);
+  });
+}
+
 // exports.paging = async (req,res) => {
 //   activityModel.rowcount().then((rows)=>{
 //     res.status(200).json(rows);
@@ -40,7 +59,7 @@ exports.filter = async (req, res) => {
   let name = req.query.name||'';
   let publish = req.query.publish||'';
   let status = req.query.status||'';
-  let open = req.query.open ||'';
+  let ticket = req.query.ticket ||'';
 
   // let status = req.query.status||'';
   if(code.length<3) code='';
@@ -52,13 +71,17 @@ exports.filter = async (req, res) => {
       user_type: user_type, 
       role_max: role_max, 
       user_faculty_name: user_faculty_name, 
-      page:page, limit: limit, code:code, name:name, publish:publish, status:status, open:open})
+      page:page, limit: limit, code:code, name:name, publish:publish, status:status, ticket:ticket})
     .then((rows) => {
-      ////--console.log(rows);
+      rows.items = rows.items.map((item)=>{
+          delete item.activity_budget;
+          delete item.activity_budget_paid;
+          delete item.activity_budget_source;
+        return item;
+      })
       res.status(200).send(rows);
     })
     .catch((err) => {
-      //--console.log(err);
       res.status(400).send(err);
     });
 };

@@ -74,7 +74,6 @@
         </div>
   
         
-
         <div class="row">
           <div class="col">
             <form-input-text [fc]="form.controls['activity_place']" [label]="'สถานที่จัด'"></form-input-text>
@@ -95,6 +94,20 @@
           </form-input-date>
           </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <form-input-date
+              [fc]="form.controls['activity_register_from']"
+              [label]="'วันที่เปิดรับสมัคร'">
+            </form-input-date>
+          </div>
+          <div class="col">
+            <form-input-date
+            [fc]="form.controls['activity_register_to']"
+            [label]="'วันที่ปิดรับสมัคร'">
+          </form-input-date>
+          </div>
+        </div>     
         <div class="row">
           <div class="col-md-3">
             <form-input-number [fc]="form.controls['activity_hour']" [label]="'จำนวนชั่วโมง'"></form-input-number>

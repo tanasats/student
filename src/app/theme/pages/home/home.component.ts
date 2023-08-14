@@ -39,7 +39,6 @@ export class HomeComponent implements OnInit{
 		// this.activityservice.getall()
 		// .subscribe({
 		// 	next:(res) =>{
-		// 		console.log("home:",res);
     //     this.activitys=res.items;
 		// 	},
 		// 	error:(err) =>{
@@ -49,7 +48,6 @@ export class HomeComponent implements OnInit{
 	
   this.activityservice.filter({limit:4,publish:1}).subscribe({
     next:(res)=>{
-      console.log("home res:",res);
       this.activitys=res.items;
     },
     error:(err)=>{

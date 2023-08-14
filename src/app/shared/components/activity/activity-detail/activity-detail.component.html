@@ -46,7 +46,7 @@
 
     <div class="col-md-4 col-12">
 
-      <ng-container *ngIf="item.activity_open; else activity_register">
+      <ng-container *ngIf="item.activity_ticket; else activity_register">
         <h5>กิจกรรมเปิด Activity Ticket<i class="bi bi-ticket-perforated ms-2"></i></h5>
         <p>
           <small>นิสิตจะต้องขอรับ Activity Ticket <i class="bi bi-ticket-perforated m-1"></i> ในบริเวณสถานที่จัดงานทันทีหลังเสร็จสิ้นกิจกรรม เพื่อนำมาบันทึกเข้าร่วมกิจกรรม และรับชั่วโมงกิจกรรม</small>
@@ -64,7 +64,7 @@
 
 
 <!-- 
-      <ng-container *ngIf="!item.activity_open">
+      <ng-container *ngIf="!item.activity_ticket">
         <h5>กิจกรรมลงทะเบียน</h5>
               <ul class="list-unstyled">
         <li><i class="bi bi-person me-2 text-primary"></i>จำนวนที่ลงทะเบียน: {{ item.activity_register }}</li>
@@ -73,7 +73,7 @@
         <button class="btn btn-success w-100">สมัครเข้าร่วมกิจกรรม</button>
       </ng-container>
 
-      <ng-container *ngIf="item.activity_open">
+      <ng-container *ngIf="item.activity_ticket">
           <div class="d-flex align-items-center">
             <div class="h5 ">กิจกรรมเปิด Activity Ticket <i class="bi bi-ticket-perforated ms-1"></i></div>
           </div>

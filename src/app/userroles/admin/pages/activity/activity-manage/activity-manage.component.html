@@ -95,6 +95,7 @@
           <div class="col-lg-6 col-12 mt-3">
             <label class="form-label text-primary"><i class="bi bi-gear me-2"></i>ตั้งค่ากิจกรรม (Setting)</label>
             <div class="list-group mb-5 shadow">
+              
               <div class="list-group-item">
                 <div class="row align-items-center">
                   <div class="col">
@@ -106,6 +107,7 @@
                       กิจกรรมจะถูกเผยแพร่ ให้นิสิตสามารถมองเห็นได้
                     </p>
                   </div>
+
                   <div class="col-auto">
                     <div class="form-check form-switch">
                       <input
@@ -118,8 +120,83 @@
                       />
                     </div>
                   </div>
+
                 </div>
               </div>
+
+
+              <div class="list-group-item">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="mb-0">
+                      การบันทึกเข้าร่วมกิจกรรม
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="mb-0">
+                      <i class="bi bi-qr-code me-2"></i>แสดง QR Code
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="form-check form-switch">
+                      <input
+                        class="form-check-input cursor-pointer"
+                        type="checkbox"
+                        [checked]="!item.activity_ticket"
+                        (click)="onSwitchTicket()"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="mb-0">
+                      <i class="bi bi-ticket-perforated me-2"></i>รับบัตรกิจกรรม
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="form-check form-switch">
+                      <input
+                        class="form-check-input cursor-pointer"
+                        type="checkbox"
+                        [checked]="item.activity_ticket"
+                        (click)="onSwitchTicket()"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+
+                
+              </div>
+
+
+
+
+
+
+
+              <!-- <div class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>การรับสมัคร</div>
+                  <div>
+                    <input
+                      style="width: 100px"
+                      class="form-control"
+                      type="number"
+                      [(ngModel)]="item.activity_receive"
+                      (change)="(null)"
+                    />
+                  </div>
+                </div>
+              </div> -->
 
               <div class="list-group-item">
                 <div class="d-flex justify-content-between align-items-center">
@@ -136,42 +213,7 @@
                 </div>
               </div>
 
-              <!-- <div class="list-group-item">
-                <div class="row align-items-center">
-                  <div class="col-auto">
-                    <div class="mb-0">การเข้าร่วม</div>
-                    <p class="fst-italic text-muted mb-0">
-                      กิจกรรมลงทะเบียน จะจำกัดจำนวนผู้ลงทะเบียน กิจกรรมเปิด
-                      นิสิตจะต้องได้รับบัตรกิจกรรมเพื่อยืนยันการเข้าร่วม
-                    </p>
-                  </div>
-                  <div class="col-auto">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
-                      />
-                      <label class="form-check-label" for="flexRadioDefault1">
-                        กิจกรรมลงทะเบียน
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault2"
-                        checked
-                      />
-                      <label class="form-check-label" for="flexRadioDefault2">
-                        กิจกรรมเปิด
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
+
 
 
             </div>
@@ -197,12 +239,11 @@
             <label class="form-label text-primary pt-3"><i class="bi bi-geo-alt me-2"></i>สถานที่จัด</label>
               <div>{{ item.activity_place }}</div>
 
-
-
+            <label class="form-label text-primary pt-3"><i class="bi bi-geo-alt me-2"></i>ชั่วโมงกิจกรรม</label>
+              <div>{{item.activity_hour}}&nbsp;ชั่วโมง</div>
             
-            <div>    
-              <div [innerHTML]="item.activity_description"></div>
-              <label class="form-label text-primary pt-3"><i class="bi bi-buildings me-2"></i>เปิดสำหรับคณะ</label>              
+          <div>    
+            <label class="form-label text-primary pt-3"><i class="bi bi-buildings me-2"></i>เปิดสำหรับคณะ</label>              
             <div>
               <ng-container *ngFor="let fac of item.activity_faculty" >
                 <span class="m-1 badge round-pill bg-light text-body">{{fac.faculty_name}}</span>
@@ -210,6 +251,10 @@
             </div>
 
           </div>
+
+
+
+
 
           <div>
             <label class="form-label text-primary pt-3"><i class="bi bi-gem me-2  text-primary"></i>ทักษะที่จะได้รับ</label>

@@ -1,7 +1,16 @@
 
 <div class="fst-italic text-muted py-2">กิจกรรมที่ได้เข้าร่วม 2566/1</div >
 <ng-container *ngFor="let item of items">
-    <span>
+    <!-- <span>
         <i class="bi bi-trophy-fill text-gold fs-1" matTooltip="{{item.activity_name}}" ></i>
+    </span> -->
+
+    <span class="position-relative " matTooltip="{{item.activity_name}}">
+        <i class="bi bi-trophy-fill text-gold fs-1"></i>
+        <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill">
+          {{item.activity_hour}}
+          <span class="visually-hidden">unread messages</span>
+        </span>
     </span>
+    
 </ng-container>

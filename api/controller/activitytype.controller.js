@@ -96,16 +96,13 @@ exports.update = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  console.log(req.body);
   const datas = req.body;
   datas.cdate = new Date();
   datas.mdate = new Date();
   if (req.body.activitytype_name) {
-    console.log("data:", datas);
     activitytypeModel
       .create({ datas: datas })
       .then(([row]) => {
-        console.log("create()->result:", row);
         res.status(200).json(row);
       })
       .catch((error) => {

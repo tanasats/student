@@ -12,26 +12,26 @@
             <div class="row g-3">
               <div class="col-3">
                 <div class="card shadow-sm text-center">
-                  <h2 class="mt-1 mb-0">{{items_draft.length}}</h2>
+                  <h2 class="mt-1 mb-0 text-h4 text-primary">{{items_draft.length}}</h2>
                   <span class="form-label small text-muted mt-0 mb-2">จัดทำร่าง</span>
                 </div>
               </div>
               <div class="col-3">
                 <div class="card shadow-sm text-center">
-                  <h2 class="mt-1 mb-0">{{items_approve.length}}</h2>
+                  <h2 class="mt-1 mb-0 text-h4 text-primary">{{items_approve.length}}</h2>
                   <span class="form-label small text-muted mt-0 mb-2">ขออนุมัติ</span>
                 </div>
               </div>
               <div class="col-3">
                 <div class="card shadow-sm text-center">
-                  <h2 class="mt-1 mb-0">{{items_work.length}}</h2>
+                  <h2 class="mt-1 mb-0 text-h4 text-primary">{{items_work.length}}</h2>
                   <span class="form-label small text-muted mt-0 mb-2">ดำเนินการ</span>
                 </div>
               </div>
               <div class="col-3">
                 <div class="card shadow-sm text-center">
-                  <h2 class="mt-1 mb-0">{{items.length}}</h2>
-                  <span class="form-label small text-muted mt-0 mb-2">ทั้งหมด</span>
+                  <h2 class="mt-1 mb-0 text-h4 text-primary">{{items_publish.length}}</h2>
+                  <span class="form-label small text-muted mt-0 mb-2">เผยแพร่</span>
                 </div>
               </div>
             </div>
@@ -47,7 +47,7 @@
   <div class="container">
     <activity-list
     [items]="items"
-    [title]="'กิจกรรมทั้งหมด'"
+    [title]="'กิจกรรมทั้งหมด 1/2566'"
     (_onTitleClick)="onTitleClick($event)"
     >
     </activity-list>

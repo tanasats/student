@@ -35,19 +35,14 @@ export class DashboardComponent implements OnInit {
   ) {
     this.route.data.subscribe((data: any) => (this.title = data?.title));
     this.currentuser=this.currentuserservice.getdata;
-    
-    console.log("currentuser:",this.currentuser);
   }
 
   ngOnInit(): void {
-    console.log('student dashboard()');
     this.auth.me().subscribe({
       next: ([res]) => {
-        console.log(res);
         this.userdata = res;
       },
       error: (err) => {
-        console.log(err);
         this.toaster.show('error', err);
       },
     });
@@ -55,18 +50,15 @@ export class DashboardComponent implements OnInit {
     this.currentuserservice
       .userDataEmitter()
       .subscribe((userdata: ICurrentuser) => {
-        console.log('user-profile receive currentuser data');
         this.currentuser = userdata;
       });
 
 
     this.auth.me().subscribe({
       next: ([res]) => {
-        console.log(res);
         this.userdata = res;
         this.enrollservice.activitybyuser(this.userdata.studentcode).subscribe({
           next: (res) => {
-            console.log('activity enroll by user :', res);
             this.items = res;
           },
           error: (err) => {
@@ -81,13 +73,13 @@ export class DashboardComponent implements OnInit {
     });
 
     this.loadData();
+    
   }
 
   loadData(){
     //activity
     this.activityservice.filter({limit:4,publish:1}).subscribe({
       next:(res)=>{
-        console.log("home res:",res);
         this.activitys=res.items;
       },
       error:(err)=>{
@@ -97,7 +89,6 @@ export class DashboardComponent implements OnInit {
   
     this.enrollservice.myenroll().subscribe({
       next: (res:any[])=>{
-        console.log("myenroll() res:",res);
         this.mytrophy=res.filter((item)=>{return item.activity_checkin===1});
       },
       error: (err)=>{
@@ -109,8 +100,6 @@ export class DashboardComponent implements OnInit {
 
 
   onQRcode(item: any) {
-    console.log('on QR code item:', item);
-
     this.enrollservice.useractivity(this.currentuser.studentcode,item.activity_id).subscribe({
       next:([res])=>{
         console.log("res:",res);
@@ -126,7 +115,6 @@ export class DashboardComponent implements OnInit {
           .afterClosed()
           .subscribe({
             next: (res) => {
-              console.log("res:",res);
               if (res.affectedRows === 1) {
                 //this.toaster.show('success', 'ลงทะเบียนเรียบร้อยแล้ว');
               }
@@ -154,8 +142,6 @@ export class DashboardComponent implements OnInit {
   }
 
   onManage(item:any){
-    console.log("current route:",this.route);
-    console.log('onView():', item);
     this.router.navigate(['../activity/manage', item.activity_id], {
       relativeTo: this.route,
       state: { datas: item },

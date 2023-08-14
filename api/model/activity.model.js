@@ -6,6 +6,10 @@ class _class {
     const sql = db.format("SELECT * FROM activity");
     return db.execute(sql);
   }
+  getallpublish({activity_year}) {
+    const sql = db.format("SELECT * FROM activity where activity_year=? and activity_publish=1",[activity_year]);
+    return db.execute(sql);
+  }
   create({ datas }) {
     const sql = db.format("INSERT INTO activity SET ?", [datas]);
     console.log("api create:",sql);
@@ -24,7 +28,7 @@ class _class {
   }
 
   // extra method
-  filter({ user_id, user_type, role_max, user_faculty_id, user_faculty_name, page, limit, code, name ,publish ,status ,open }) {
+  filter({ user_id, user_type, role_max, user_faculty_id, user_faculty_name, page, limit, code, name ,publish ,status ,ticket }) {
     return new Promise((resolve, reject) => {
       const admin_id=[1,5,18,19,21];
       let where_text = "WHERE ";
@@ -44,8 +48,8 @@ class _class {
       if (status.length>0)  {
         where_text = where_text+"activity_status =  '"+status+"' AND ";
       }
-      if (open.length>0)  {
-        where_text = where_text+"activity_open =  "+open+" AND ";
+      if (ticket.length>0)  {
+        where_text = where_text+"activity_ticket =  "+ticket+" AND ";
       }
 
       const sql = db.format(

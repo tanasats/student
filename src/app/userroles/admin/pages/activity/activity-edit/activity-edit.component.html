@@ -3,7 +3,7 @@
 [is_onGoBack]="true"
 (onGoBack)="onGoBack()" 
 [is_onSave]="true"
-(onSave)="_onSubmit()"
+(onSave)="onSubmit()"
 [is_onSendApprove]="item.activity_status==='d'"
 (onSendApprove)="onSendApprove(item)"
 [is_onApprove]="item.activity_status=='a'"
@@ -113,6 +113,23 @@
           </form-input-date>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col">
+            <form-input-date
+              [fc]="form.controls['activity_register_from']"
+              [label]="'วันที่เปิดรับสมัคร'">
+            </form-input-date>
+          </div> 
+          <div class="col">
+            <form-input-date
+            [fc]="form.controls['activity_register_to']"
+            [label]="'วันที่ปิดรับสม้คร'">
+          </form-input-date>
+          </div>
+        </div>
+
+
         <div class="row">
           <div class="col-md-3">
             <form-input-number [fc]="form.controls['activity_hour']" [label]="'จำนวนชั่วโมง'"></form-input-number>
@@ -196,7 +213,7 @@
 
 
     <!-- <div class="row g-2 py-3">
-        <form-button-submit [btn_submit]="true" (onclick_btn_submit)="_onSubmit()" [btn_cancle]="true" (onclick_btn_cancle)="_onCancel()"></form-button-submit>
+        <form-button-submit [btn_submit]="true" (onclick_btn_submit)="onSubmit()" [btn_cancle]="true" (onclick_btn_cancle)="_onCancel()"></form-button-submit>
     </div> -->
   </div>
 

@@ -28,7 +28,6 @@ export class OffcanvasFacultySelectComponent {
     //this.facultys = this.items;
     this.facultyservice.getall().subscribe({
       next: (res) => {
-        // console.log("facluty: ",res);
         //this.facultys = res;
         this.facultys = res.filter((item:any)=>{ return item.faculty_group<4});
         this.facultys_support = res.filter((item:any)=>{ return item.faculty_group==4});

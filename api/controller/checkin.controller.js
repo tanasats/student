@@ -8,7 +8,6 @@ exports.checkin = async (req, res) => {
     checkinModel
       .checkin({ enroll_token: enroll_token,mowner:mowner })
       .then(([row]) => {
-        console.log(row);
         if(row.affectedRows==1){
           checkinModel.getbytoken({ enroll_token: enroll_token })
           .then(([row]) =>{

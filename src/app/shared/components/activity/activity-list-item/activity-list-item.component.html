@@ -15,8 +15,9 @@
     </div>
   </div>
 </div> -->
+
 <div class="d-flex flex-column flex-lg-row py-2 px-2 border-bottom hover">
-    <div class="d-block d-lg-none" style="line-height:1em">&nbsp;</div>
+
     <!-- <div class="flex-grow-1">
       <i class="bi bi-journal-bookmark-fill me-2 text-primary"></i>
         {{item.activity_code}} : {{ item.activity_name }}
@@ -30,10 +31,23 @@
       {{item.activity_code}} : 
       <a class="text-primary cursor-pointer" (click)="_onTitleClick.emit(item)">
         <i *ngIf="item.activity_publish" class="text-success bi bi-cloud-arrow-up-fill"></i>
-        {{item.activity_name}}</a>
-        <span class="ms-1 small text-black-50">
-          <i class="bi bi-people me-1"></i>{{item.activity_register}}/{{item.activity_receive}}
-        </span>
+        {{item.activity_name}}
+      </a>
+      <span class="ms-1 small text-muted fst-italic">
+        <i class=" bi bi-people me-1"></i>{{item.activity_register}}/{{item.activity_receive}}
+      </span>
+
+      <ng-container  *ngIf="!(item.activity_register<item.activity_receive); else ifRegisterNotFull">
+          <span class="badge bg-danger">เต็ม</span>
+      </ng-container>
+      <ng-template #ifRegisterNotFull>
+          <span *ngIf="isBetween==0" class="badge bg-success">เปิดรับ</span>
+          <span *ngIf="isBetween==1" class="badge bg-danger">ปิด</span>
+      </ng-template>
+     
+      <!-- <span *ngIf="isRegisterExpired" class="badge bg-danger">ปิดรับ</span> -->
+      <!-- <span *ngIf="isBetween==-1" class="badge bg-info">เตรียมเปิด</span> -->
+
     </div>
   
     <div class="d-flex flex-column flex-lg-row justify-content-between ">
@@ -54,11 +68,7 @@
       </div> -->
   
       <div class="d-flex justify-content-between align-items-center">
-        <div *ngIf="!is_onQRcode" class="d-flex align-items-center justify-content-start" style="width:50px;">
-          <span *ngIf="item.activity_status==='O'" class="badge rounded-pill bg-success">เปิด</span>
-          <span *ngIf="item.activity_status==='C'" class="badge rounded-pill bg-dark">ปิด</span>
-          <span *ngIf="item.activity_status==='F'" class="badge rounded-pill bg-danger">เต็ม</span>
-        </div>
+
           <div class="d-flex flex-row align-items-center">
 
             <div class="small text-muted">{{item.mdate | date:'short':'+0700'}}</div>
@@ -86,8 +96,7 @@
             <button *ngIf="is_onCancel" class="btn btn-icon" matTooltip="ยกเลิก" (click)="_onCancel.emit(item)">
               <span class="text-nowrap"><i class="bi bi-x-lg"></i></span>
             </button>
-
-            <button *ngIf="is_onTicket&&item.activity_open" class="btn btn-icon" matTooltip="บัตรกิจกรรม" (click)="_onTicket.emit(item)">
+            <button *ngIf="is_onTicket&&item.activity_ticket" class="btn btn-icon" matTooltip="บัตรกิจกรรม" (click)="_onTicket.emit(item)">
               <span class="text-nowrap"><i class="bi bi-ticket-perforated-fill"></i></span>
             </button>
   
@@ -116,6 +125,10 @@
   
           
     </div>
+
+
+
+
+
   </div>
-  
   

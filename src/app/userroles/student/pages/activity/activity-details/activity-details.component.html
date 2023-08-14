@@ -32,7 +32,7 @@
 
 
       <div class="col-md-4 col-12">
-        <ng-container *ngIf="!item.activity_open">
+        <ng-container *ngIf="!item.activity_ticket">
           <h5>กิจกรรมลงทะเบียน</h5>
           <hr />
           <ul class="list-unstyled">
@@ -41,7 +41,7 @@
           </ul>
           <hr />
           </ng-container>
-          <div *ngIf="item.activity_open">
+          <div *ngIf="item.activity_ticket">
             <div class="d-flex align-items-center">
               <div class="h5 ">กิจกรรมเปิด Activity Ticket <i class="bi bi-ticket-perforated ms-1"></i></div>
             </div>
@@ -53,24 +53,32 @@
 
         
         <ng-container *ngIf="item.activity_register<item.activity_receive; else registerfull">
-          <button *ngIf="!item.activity_open &&! useractivity" class="btn btn-success w-100" [disabled]="useractivity"  (click)="onRegister()">ลงทะเบียนเข้าร่วม</button>
+          <button *ngIf="!item.activity_ticket &&! useractivity" class="btn btn-success w-100" [disabled]="useractivity"  (click)="onRegister()">ลงทะเบียนเข้าร่วม</button>
         </ng-container>
         <ng-template #registerfull>
-          <div class="alert alert-danger">มีผู้ลงทะเบียนเต็มจำนวนแล้ว</div>
+          <div class="alert alert-danger text-center">มีผู้ลงทะเบียนเต็มจำนวนแล้ว</div>
         </ng-template>
 
 
-        <div *ngIf="useractivity && !useractivity?.activity_checkin" class="alert alert-success my-2"><i class="bi bi-bookmark-check me-2 h3"></i>คุณได้ลงทะเบียนแล้ว เมื่อวันที่ {{useractivity.cdate|thaidate}}</div>
         
         <div *ngIf="useractivity?.activity_checkin" class="alert alert-success my-2"><i class="bi bi-trophy-fill text-gold me-2 h3"></i>คุณได้ยืนยันเข้าร่วมกิจกรรมแล้ว เมื่อวันที่ {{useractivity.cdate|thaidate}}</div>
-
-        <ng-container *ngIf="useractivity && !useractivity?.activity_checkin">
-          <div class="text-center">
-            <ng-container *ngIf="useractivity">
-            <qrcode [qrdata]="useractivity.enroll_token" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-            โปรดแสดง QR Code กับผู้จัดกิจกรรม เพื่อยืนยันการเข้าร่วมกิจกรรมนี้
-            </ng-container>
-          </div>
+        
+        <ng-container *ngIf="!item.activity_ticket">
+          <div *ngIf="useractivity && !useractivity?.activity_checkin" class="alert alert-success my-2"><i class="bi bi-bookmark-check me-2 h3"></i>คุณได้ลงทะเบียนแล้ว เมื่อวันที่ {{useractivity.cdate|thaidate}}</div>
+          <ng-container *ngIf="useractivity && !useractivity?.activity_checkin">
+            <div class="text-center">
+              <ng-container *ngIf="useractivity">
+              <div class="card">
+                <qrcode [qrdata]="useractivity.enroll_token" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                <div class="mb-3 text-primary">
+                  <div>รหัสกิจกรรม : {{item.activity_code}}</div>
+                  <div>{{currentuser.studentcode}} {{currentuser.fullname}}</div>
+                </div>
+              </div>
+              <div class="alert alert-warning my-2">โปรดแสดง QR Code กับผู้จัดกิจกรรม เพื่อยืนยันการเข้าร่วมกิจกรรมนี้</div>
+              </ng-container>
+            </div>
+          </ng-container>
         </ng-container>
 
       </div>
