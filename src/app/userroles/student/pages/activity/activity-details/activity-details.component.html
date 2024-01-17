@@ -1,7 +1,7 @@
 <section class="container">
     <div class="row">
-      <h4>{{ item.activity_name }}
-        <div class="text-muted fs-sm fst-italic">ประกาศ:{{item.cdate|thaidate}} ปรับปรุง:{{item.mdate|thaidate}} อ่านแล้ว:100 คน </div>
+      <h4>{{item.activity_code}} : {{ item.activity_name }}
+        <div class="text-muted fs-sm fst-italic mt-1">ประกาศ:{{item.cdate|thaidate}} ปรับปรุง:{{item.mdate|thaidate}} อ่านแล้ว:100 คน </div>
       </h4>
     </div>
   </section>
@@ -51,16 +51,28 @@
             <button class="btn btn-success" (click)="offcanvas.toggle('offcanvas-ticket')">บันทึกเข้าร่วมกิจกรรม</button>
           </div>
 
-        
+      
         <ng-container *ngIf="item.activity_register<item.activity_receive; else registerfull">
-          <button *ngIf="!item.activity_ticket &&! useractivity" class="btn btn-success w-100" [disabled]="useractivity"  (click)="onRegister()">ลงทะเบียนเข้าร่วม</button>
+          <button *ngIf="isBetween==0 && (!item.activity_ticket &&! useractivity)" 
+            class="btn btn-success w-100" 
+            [disabled]="useractivity"  
+            (click)="onRegister()">
+              ลงทะเบียนเข้าร่วม
+          </button>
         </ng-container>
         <ng-template #registerfull>
           <div class="alert alert-danger text-center">มีผู้ลงทะเบียนเต็มจำนวนแล้ว</div>
         </ng-template>
-
-
         
+        <ng-container *ngIf="isBetween!=0">
+          <div class="alert alert-warning text-center mt-0">ช่วงเวลาลงทะเบียน
+            <div class="small">
+              {{item.activity_register_from|thaidate}} - 
+              {{item.activity_register_to|thaidate}}
+            </div>
+        </div>
+        </ng-container>
+
         <div *ngIf="useractivity?.activity_checkin" class="alert alert-success my-2"><i class="bi bi-trophy-fill text-gold me-2 h3"></i>คุณได้ยืนยันเข้าร่วมกิจกรรมแล้ว เมื่อวันที่ {{useractivity.cdate|thaidate}}</div>
         
         <ng-container *ngIf="!item.activity_ticket">

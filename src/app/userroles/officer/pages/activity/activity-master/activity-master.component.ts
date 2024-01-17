@@ -54,11 +54,9 @@ export class ActivityMasterComponent {
         this.currentPage=res.currentPage;        
         this.items = res.items;
         
-
         this.items_d = res.items.filter((item:any)=>{return item.activity_status=='d'});
         this.items_a = res.items.filter((item:any)=>{return item.activity_status=='a'});
         this.items_w = res.items.filter((item:any)=>{return item.activity_status=='w'});
-
 
         //this.items = res;
       },

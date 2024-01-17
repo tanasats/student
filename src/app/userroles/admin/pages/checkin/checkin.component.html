@@ -1,5 +1,14 @@
 <section class="container mb-3">
   <div class="row">
+    <div class="col">
+      <button
+        class="btn btn-primary"
+        (click)="scannerEnabled = !scannerEnabled" >
+        เปิด/ปิด กล้อง
+      </button>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-6 col-12">
       <zxing-scanner
         [enable]="scannerEnabled"
@@ -8,7 +17,7 @@
       ></zxing-scanner>
     </div>
     <div class="col-md-6 col-12">
-      <div class="my-3 alert alert-info text-center ">
+      <div class="my-3 alert alert-info text-center">
         <!-- <span class="me-2">QR:</span> -->
         <div class="w-100">&nbsp;{{ qrResultString }}&nbsp;</div>
       </div>
@@ -22,14 +31,13 @@
           </tr>
         </thead>
         <tbody>
-          <ng-container *ngFor="let item of checkinlist; let i=index;">
-          <tr>
-            <th scope="row">{{i+1}}</th>
-            <td>{{item.studentcode}}</td>
-            <td>{{item.studentname}}</td>
-            <td>{{item.activity_checkin_date|thaidate:"short"}}</td>
-
-          </tr>
+          <ng-container *ngFor="let item of checkinlist; let i = index">
+            <tr>
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ item.studentcode }}</td>
+              <td>{{ item.studentname }}</td>
+              <td>{{ item.activity_checkin_date | thaidate : "short" }}</td>
+            </tr>
           </ng-container>
         </tbody>
       </table>

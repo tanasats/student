@@ -4,7 +4,7 @@
       <!-- <img class="img-fluid img-thumbnail" [src]="fileuri + 'picture/' + item.activity_picture ||'../assets/images/image_not_available.png'"/> -->
 
         <div class="mt-2">
-            <i class="bi bi-megaphone me-2 text-primary"></i>
+            <i class="bi bi-megaphone me-2 text-primary"  [matTooltip]="'รายละเอียดกิจกรรม'"></i>
             <ng-container *ngIf="item?.activity_description; else no_activity_description">
                 <div class="d-inline"
                 [innerHTML]="item.activity_description"
@@ -16,12 +16,15 @@
         </div>
 
         <div class="mt-2">
-          <i class="bi bi-calendar4-week me-2 text-primary"></i>
-          {{ item.activity_date_from | thaidate }}
-        </div>
-        
+          <i class="bi bi-calendar4-week me-2 text-primary" [matTooltip]="'วันที่จัดกิจกรรม'"></i>
+          {{ item.activity_date_from | thaidate }} - {{item.activity_date_to|thaidate}}
+        </div> 
         <div class="mt-2">
-          <i class="me-2 bi bi-geo-alt me-2 text-primary"></i>
+          <i class="bi bi-cart4 me-2 text-primary" [matTooltip]="'วันที่รับลงทะเบียน'"></i>
+          {{ item.activity_register_from | thaidate }} - {{item.activity_register_to|thaidate}}
+        </div>         
+        <div class="mt-2">
+          <i class="me-2 bi bi-geo-alt me-2 text-primary" [matTooltip]="'สถานที่จัดกิจกรรม'"></i>
           {{ item.activity_place }}
         </div>
 

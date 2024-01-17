@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ActivityService } from 'src/app/service/activity.service';
 import { EnrollService } from 'src/app/service/enroll.service';
 import { OffcanvasService } from 'src/app/service/offcanvas.service';
+import { ExcelService } from 'src/app/service/excel.service';
 import { StudentService } from 'src/app/service/student.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
 import { DialogWarningConfirmComponent } from 'src/app/shared/components/dialogs/confirm/dialog-warning-confirm/dialog-warning-confirm.component';
@@ -29,6 +30,7 @@ export class ActivityManageComponent {
   public fileuri=environment.fileuri;
 
   constructor(
+    private router: Router,
     private route:ActivatedRoute,
     private enrollservice:EnrollService,
     private activityService:ActivityService,
@@ -36,11 +38,16 @@ export class ActivityManageComponent {
     private studentService:StudentService,
     private offcanvas:OffcanvasService,
     private dialog: MatDialog,
+    private excelservice:ExcelService,
   ){}
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.state = history.state;
     this.item = history.state.datas;
+
+    this.item.activity_faculty = JSON.parse(this.item.activity_faculty);
+    this.item.activity_skill = JSON.parse(this.item.activity_skill);
+
     this.load_enroll();
     
     this.studentService.getall({}).subscribe({
@@ -177,9 +184,80 @@ export class ActivityManageComponent {
 
 
 
+  onSwitchTicket(){
+    this.item.activity_ticket=!this.item.activity_ticket;
+    let datas = {
+      activity_id: this.item.activity_id,
+      activity_ticket: this.item.activity_ticket,
+    };
+    this.activityService.update(datas).subscribe({
+      next: (res) => {
+        console.log('res:', res);
+        if (res.affectedRows) {
+          if (this.item.activity_ticket) {
+            this.toaster.show('success', 'เข้าร่วมด้วยบัตรกิจกรรม');
+          } else {
+            this.toaster.show('success', 'เข้าร่วมด้วย QR Code');
+          }
+        }
+      },
+      error: (err) => {
+        console.log('err', err);
+      },
+    });
+  }
 
+  onExportExcel() {
+    const exportdata = this.registrant_C.map((item:any)=>{ return {
+      "รหัสนิสิต": item.studentcode,
+      "ชื่อนิสิต": item.studentname,
+      "คณะ": item.faculty_name,
+      "สาขา": item.program,
+      "สถานภาพ":"ผู้เข้าร่วมกิจกรรม",
+      "วันที่ลงทะเบียน": item.cdate?new Date(item.cdate).toLocaleString():"-",
+      "วันที่ยืนยันเข้าร่วม": item.activity_checkin_date?new Date(item.activity_checkin_date).toLocaleString():"-",
+      "ผู้ยืนยันเข้าร่วม": item.mowner_name?item.mowner_name:"-"
+    }});
+    this.excelservice.exportToExcel(exportdata, 'รายชื่อผู้ลงทะเบียนเข้าร่วมกิจกรรม-' + this.item.activity_code);
+  }
 
+  onCancelWork(item: any) {
+    this.dialog
+      .open(DialogWarningConfirmComponent, {
+        data: {
+          title: 'ยกเลิก สถานะดำเนินการ',
+          description: 'กิจกรรม: ' + this.item.activity_name,
+        },
+      })
+      .afterClosed()
+      .subscribe((isclick) => {
+        if (isclick) {
+          let datas = {
+            activity_id: this.item.activity_id,
+            activity_publish: 0,
+            activity_status: 'a',
+          };
+          this.activityService.update(datas).subscribe({
+            next: (res) => {
+              console.log('res:', res);
+              if (res.affectedRows) {
+                this.toaster.show("success","ดำเนินการยกเลิก สถานะดำเนินการแล้ว")
+                this.router.navigate(['/officer/activity']);
+              }
+            },
+            error: (err) => {
+              console.log('err', err);
+            },
+          });
+        }
+      });
+  }
 
-
+  onScanner(event: any) {
+    this.router.navigate(['/officer/activity/scanner/', this.item.activity_id], {
+      //relativeTo: this.route,
+      state: { datas: this.item },
+    });
+  }
 
 }//class

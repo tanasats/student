@@ -63,6 +63,8 @@ export class ActivityEditComponent implements OnInit {
       activity_description: [null, []],
       activity_date_from: [null, []],
       activity_date_to: [null, []],
+      activity_register_from: [null, []],
+      activity_register_to: [null, []],
       activity_place: [null, []],
       activity_hour: [null, []],
       activity_receive: [null, []],

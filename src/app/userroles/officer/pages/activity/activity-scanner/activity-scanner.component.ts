@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BarcodeFormat } from '@zxing/library';
+import { CheckinService } from 'src/app/service/checkin.service';
+import { ToasterService } from 'src/app/service/toaster/toaster.service';
 
 @Component({
   selector: 'app-activity-scanner',
@@ -13,11 +15,19 @@ export class ActivityScannerComponent {
   public item: any;
   public checkinlist:any[]=[];
 
+
   scannerEnabled = true;
   allowedFormats = [BarcodeFormat.QR_CODE];
   qrResultString: any;
 
-  constructor(private route: ActivatedRoute) {}
+ 
+
+  constructor(
+    private route: ActivatedRoute,
+    private checkinservice:CheckinService,
+    private toaster:ToasterService,
+    //private activityservice:ActivityService,
+    ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -30,9 +40,21 @@ export class ActivityScannerComponent {
   }
 
   onCodeResult(resultString: string) {
-    this.qrResultString = resultString;
-    this.checkinlist.push({qrcode:this.qrResultString});
-    this.qrResultString = null;
-  }
+    
+    if(this.qrResultString != resultString){
+      
+      this.qrResultString = resultString;
+      this.checkinservice.checkin(this.id,this.qrResultString).subscribe({
+        next: ([row]) => {
+          this.checkinlist.unshift({studentcode:row.studentcode, studentname:row.studentname, activity_checkin_date:row.activity_checkin_date})
+          this.toaster.show("success",row.studentcode+" เข้าร่วม")
+        },
+        error: (err) => {
+          console.log(err);
+          this.toaster.show("error","เกิดข้อผิดพลาด !");
+        }
+      })
+    }
 
+  }
 }

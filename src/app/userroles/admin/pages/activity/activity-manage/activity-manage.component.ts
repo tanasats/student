@@ -42,7 +42,7 @@ export class ActivityManageComponent implements OnInit {
     this.item.activity_faculty = JSON.parse(this.item.activity_faculty);
     this.item.activity_skill = JSON.parse(this.item.activity_skill);
 
-    this.refreshData();
+    this.refreshData(); 
     this.load_registrant();
 
     // this.studentService.getall({}).subscribe({
@@ -190,7 +190,12 @@ export class ActivityManageComponent implements OnInit {
     this.excelservice.exportToExcel(exportdata, 'รายชื่อผู้ลงทะเบียนเข้าร่วมกิจกรรม-' + this.item.activity_code);
   }
 
-
+  onScanner(event: any) {
+    this.router.navigate(['/officer/activity/scanner/', this.item.activity_id], {
+      //relativeTo: this.route,
+      state: { datas: this.item },
+    });
+  }
 
 
   onFilter(){

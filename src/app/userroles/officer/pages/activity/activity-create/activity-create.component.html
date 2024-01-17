@@ -94,6 +94,7 @@
             </form-input-date>
             </div>
           </div>
+
           <div class="row">
             <div class="col-md-3">
               <form-input-number [fc]="form.controls['activity_hour']" [label]="'จำนวนชั่วโมง'"></form-input-number>
@@ -103,7 +104,20 @@
             </div>
           </div>
   
-  
+          <div class="row">
+            <div class="col">
+              <form-input-date
+                [fc]="form.controls['activity_register_from']"
+                [label]="'เปิดรับลงทะเบียน'">
+              </form-input-date>
+            </div>
+            <div class="col">
+              <form-input-date
+              [fc]="form.controls['activity_register_to']"
+              [label]="'ปิดรับลงทะเบียน'">
+            </form-input-date>
+            </div>
+          </div>  
   
           <app-activity-skill-form-input
           [fc]="form.controls['activity_skill']"

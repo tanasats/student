@@ -1,0 +1,63 @@
+<section class="container mb-3">
+<div class="row">
+  บันทึกการเข้าร่วมกิจกรรม {{activity_id}}
+</div>
+  <div class="row">
+    <div class="col">
+      <button
+        class="btn btn-primary"
+        (click)="scannerEnabled = !scannerEnabled"
+      >
+        เปิด/ปิด กล้อง
+      </button>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <zxing-scanner
+        [enable]="scannerEnabled"
+        [formats]="allowedFormats"
+        (scanSuccess)="onCodeResult($event)"
+      ></zxing-scanner>
+    </div>
+    <div class="col-md-6 col-12">
+      <div class="my-3 alert alert-info text-center">
+        <!-- <span class="me-2">QR:</span> -->
+        <div class="w-100">&nbsp;{{ qrResultString }}&nbsp;</div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">รหัส</th>
+            <th scope="col">ชื่อ-สกุล</th>
+            <th scope="col">วันเวลา</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of checkinlist; let i = index">
+            <tr>
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ item.studentcode }}</td>
+              <td>{{ item.studentname }}</td>
+              <td>{{ item.activity_checkin_date | thaidate : "short" }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <ng-container *ngFor="let item of items">
+        <div>
+          {{ item.activity_id }} - {{ item.activity_code }}:{{ item.activity_name }}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>

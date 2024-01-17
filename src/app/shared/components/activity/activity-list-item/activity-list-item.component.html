@@ -37,14 +37,15 @@
         <i class=" bi bi-people me-1"></i>{{item.activity_register}}/{{item.activity_receive}}
       </span>
 
-      <ng-container  *ngIf="!(item.activity_register<item.activity_receive); else ifRegisterNotFull">
-          <span class="badge bg-danger">เต็ม</span>
-      </ng-container>
-      <ng-template #ifRegisterNotFull>
-          <span *ngIf="isBetween==0" class="badge bg-success">เปิดรับ</span>
-          <span *ngIf="isBetween==1" class="badge bg-danger">ปิด</span>
-      </ng-template>
-     
+      <ng-container *ngIf="item.activity_status=='w'">
+        <ng-container  *ngIf="!(item.activity_register<item.activity_receive); else ifRegisterNotFull">
+            <span class="badge bg-danger">เต็ม</span>
+        </ng-container>
+        <ng-template #ifRegisterNotFull>
+            <span *ngIf="isBetween==0" class="badge bg-success">เปิดรับ</span>
+            <span *ngIf="isBetween==1" class="badge bg-danger">ปิด</span>
+        </ng-template>
+     </ng-container>
       <!-- <span *ngIf="isRegisterExpired" class="badge bg-danger">ปิดรับ</span> -->
       <!-- <span *ngIf="isBetween==-1" class="badge bg-info">เตรียมเปิด</span> -->
 

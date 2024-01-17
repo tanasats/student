@@ -30,9 +30,9 @@
          (_onEdit)="_onEdit.emit($event)"
          (_onDelete)="_onDelete.emit($event)"
         ></enroll-list-item>
-    </ng-container>
+    </ng-container> 
     <div class="pt-3 d-flex justify-content-between">
-        <div class="text-muted pagination-description">รายการที่ {{ first_index }} - {{ last_index }} จาก {{ items?.length }}</div>
+        <div class="text-muted pagination-description">รายการที่ {{ first_index }} - {{ last_index }} จาก {{ items.length }}</div>
         <div>
             <a class="btn btn-primary btn-sm pagination-icon-prev" [ngClass]="{'disabled': isPrevDisabled}"
                 (click)="(!isPrevDisabled)?(page_number=page_number-1):''" matTooltip="หน้าก่อนหนัา"><em

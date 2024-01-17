@@ -10,24 +10,29 @@ import { ActivityEditComponent } from './pages/activity/activity-edit/activity-e
 import { ActivityComponent } from './pages/activity/activity/activity.component';
 import { ActivityManageComponent } from './pages/activity/activity-manage/activity-manage.component';
 import { ActivityDetailComponent } from './pages/activity/activity-detail/activity-detail.component';
+import { CheckinComponent } from './pages/checkin/checkin.component';
 
 const routes: Routes = [
-  { path: '',component: DefaultPageComponent,data:{breadcrumb:'หน้าควบคุม'},
+  { path: '',component: DefaultPageComponent,data:{breadcrumb:'หน้าหลัก'},
       children: [
-        { path: 'dashboard',component: DashboardComponent,data: { breadcrumb: '' },},
-      ]},
-  { path: 'activity',component: ActivityComponent,data: {breadcrumb: 'กิจกรรม'},
-      children: [
+      { path: 'dashboard',component: DashboardComponent,data: { breadcrumb: '' },},
+      { path: 'activity',component: ActivityComponent,data: {breadcrumb: 'กิจกรรม'},
+        children: [
         { path: '',component: ActivityMasterComponent,data: { breadcrumb: '' }},
         { path: 'create',component: ActivityCreateComponent,data: { breadcrumb: 'สร้างกิจกรรม' }},
         { path: 'edit/:id',component: ActivityEditComponent,data: { breadcrumb: 'แก้ไขกิจกรรม' }},
         { path: 'detail/:id',component: ActivityDetailComponent,data: { breadcrumb: 'รายละเอียดกิจกรรม' }},
         { path: 'manage/:id',component: ActivityManageComponent,data: { breadcrumb: 'จัดการกิจกรรม' }},
-        { path: 'scanner/:id',component: ActivityScannerComponent,data: { breadcrumb: 'scanner' }},
-          ]
+        { path: 'scanner/:id',component: ActivityScannerComponent,data: { breadcrumb: 'บันทึกเข้าร่วมกิจกรรมด้วย' }},
+            ]
         },
-  { path: 'user-profile', component: UserProfileComponent },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+
+      { path: 'checkin',component: CheckinComponent,data: { activateroles: ['admin'], breadcrumb: 'บันทึกเข้าร่วมกิจกรรม' }},
+      { path: 'user-profile', component: UserProfileComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+]},
+
+
 ];
 
 @NgModule({

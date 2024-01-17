@@ -7,9 +7,14 @@ data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" >
 <div class="offcanvas-body">
 <label class="form-label">รหัสนิสิต</label>
 <input class="form-control" [(ngModel)]="studentcode" >
+
+ 
+
+
 {{studentcode}}
+
 <hr>
-<button class="btn btn-primary" (click)="_onSubmit()">save</button>
-<button class="btn btn-primary" (click)="_onClose()">cancel</button>
+<button class="btn btn-primary" (click)="_onSubmit()">บันทึก</button>
+<button class="btn btn-secondary" (click)="_onClose()">ยกเลิก</button>
 </div>
 </div>

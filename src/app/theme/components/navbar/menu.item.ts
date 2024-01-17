@@ -223,6 +223,14 @@ export const student_menu_items: IMenuItem[] = [
           extralink: false,
           submenu: [], 
         },
+        // {
+        //   path: 'officer/checkin',
+        //   title: 'บันทึกเข้าร่วม ด้วย QR Code',
+        //   icon: 'bi bi-qr-code',
+        //   class: '',
+        //   extralink: false,
+        //   submenu: [], 
+        // },        
       ]
     }
 

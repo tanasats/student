@@ -7,13 +7,42 @@
                     <i class="bi bi-pencil-square me-1"></i>{{title}}
                 </div>
                 <div class="align-items-end">
-                    <button *ngIf="is_onGoBack" class="btn btn-secondary btn-sm" (click)="onGoBack.emit(true)"><i class="bi bi-arrow-left me-1"></i>ย้อนกลับ</button>
-                    <button *ngIf="is_onSave" class="btn btn-success btn-sm" (click)="onSave.emit(true)"><i class="bi bi-save me-1"></i>บันทึก</button>
-                    <button *ngIf="is_onCancel" class="btn btn-secondary btn-sm" (click)="onCancel.emit(true)"><i class="bi bi-x-lg me-1"></i>ยกเลิก</button>
-                    <button *ngIf="is_onSendApprove" class="btn btn-primary btn-sm" (click)="onSendApprove.emit(true)"><i class="bi bi-clipboard2-check me-1"></i>ขออนุมัติ</button>
-                    <button *ngIf="is_onApprove" class="btn btn-primary btn-sm" (click)="onApprove.emit(true)"><i class="bi bi-check-lg me-1"></i>อนุมัติ</button>
-                    <button *ngIf="is_onCancelApprove" class="btn btn-danger btn-sm" (click)="onCancelApprove.emit(true)"><i class="bi bi-x-lg me-1"></i>ยกเลิกขออนุมัติ</button>
-                    <button *ngIf="is_onCancelWork" class="btn btn-danger btn-sm" (click)="onCancelWork.emit(true)"><i class="bi bi-x-lg me-1"></i>ยกเลิกดำเนินการ</button>
+                    <button *ngIf="is_onScanner" class="btn btn-success btn-sm" (click)="onScanner.emit(true)">
+                        <i class="bi bi-qr-code-scan p-1"></i>
+                        <span class="d-none d-sm-inline ms-1">บันทึกเข้าร่วมกิจกรรม</span>
+                    </button>
+                    <button *ngIf="is_onGoBack" class="btn btn-secondary btn-sm" (click)="onGoBack.emit(true)">
+                        <i class="bi bi-arrow-left p-1"></i>
+                        <span class="d-none d-sm-inline ms-1">ย้อนกลับ</span>
+                    </button>
+                    <button *ngIf="is_onSave" class="btn btn-success btn-sm" (click)="onSave.emit(true)">
+                        <i class="bi bi-save p-1"></i>
+                        <span class="d-none d-sm-inline ms-21">บันทึก</span>
+                    </button>
+                    <button *ngIf="is_onCancel" class="btn btn-secondary btn-sm" (click)="onCancel.emit(true)">
+                        <i class="bi bi-x-lg p-1"></i>
+                        <span class="d-none d-sm-inline ms-1">ยกเลิก</span>
+                    </button>
+                    <button *ngIf="is_onSendApprove" class="btn btn-primary btn-sm" (click)="onSendApprove.emit(true)">
+                        <i class="bi bi-clipboard2-check p-1"></i>
+                        <span class="d-none d-sm-inline ms-1">ขออนุมัติ</span>
+                    </button>
+                    <button *ngIf="is_onApprove" class="btn btn-primary btn-sm" (click)="onApprove.emit(true)">
+                        <i class="bi bi-check-lg p-1"></i>
+                        <span class="d-none d-sm-inline ms-1">อนุมัติ</span>
+                    </button>
+                    <button *ngIf="is_onCancelApprove" class="btn btn-danger btn-sm" (click)="onCancelApprove.emit(true)">
+                        <i class="bi bi-x-lg p-1"></i>
+                        <span class="d-none d-sm-inline ms-1">ยกเลิกขออนุมัติ</span>
+                    </button>
+                    <button *ngIf="is_onCancelWork" class="btn btn-danger btn-sm" (click)="onCancelWork.emit(true)">
+                        <i class="bi bi-x-lg p-1"></i>
+                        <span class="d-none d-sm-inline ms-1">ยกเลิกดำเนินการ</span>
+                    </button>
+                
+
+                
+                
                 </div>
             </div>
             </div>

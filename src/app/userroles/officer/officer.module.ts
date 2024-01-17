@@ -14,6 +14,9 @@ import { ActivityComponent } from './pages/activity/activity/activity.component'
 import { ActivityManageComponent } from './pages/activity/activity-manage/activity-manage.component';
 import { ActivityDetailComponent } from './pages/activity/activity-detail/activity-detail.component';
 
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckinComponent } from './pages/checkin/checkin.component';
+
 
 @NgModule({
   declarations: [
@@ -25,10 +28,12 @@ import { ActivityDetailComponent } from './pages/activity/activity-detail/activi
     ActivityScannerComponent,
     ActivityComponent,
     ActivityManageComponent,
-    ActivityDetailComponent
+    ActivityDetailComponent,
+    CheckinComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     OfficerRoutingModule,
     SharedModule,
     ZXingScannerModule

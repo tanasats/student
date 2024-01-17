@@ -10,9 +10,10 @@ import { ToasterService } from 'src/app/service/toaster/toaster.service';
   styleUrls: ['./checkin.component.scss']
 })
 export class CheckinComponent {
-  scannerEnabled = true
+  scannerEnabled = false;
   allowedFormats = [ BarcodeFormat.QR_CODE ];
   qrResultString: any;
+  activity_id:number=-1;
 
 
   checkinlist:any[]=[];
@@ -35,7 +36,7 @@ export class CheckinComponent {
     if(this.qrResultString != resultString){
       
       this.qrResultString = resultString;
-      this.checkinservice.checkin(this.qrResultString).subscribe({
+      this.checkinservice.checkin(this.activity_id,this.qrResultString).subscribe({
         next: ([row]) => {
           this.checkinlist.unshift({studentcode:row.studentcode, studentname:row.studentname, activity_checkin_date:row.activity_checkin_date})
           this.toaster.show("success",row.studentcode+" เข้าร่วม")

@@ -4,7 +4,7 @@ const checkinController = require("../controller/checkin.controller");
 const { authJwt } = require("../middleware/auth");
 
 // Update
-router.put("/checkin/:enroll_token",authJwt.verifyToken, checkinController.checkin);
+router.put("/checkin/:activity_id/:enroll_token",authJwt.verifyToken, checkinController.checkin);
 
 module.exports = router;
  

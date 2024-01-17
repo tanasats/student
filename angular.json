@@ -22,6 +22,7 @@
               "qrcode",
               "html2canvas",
               "rgbcolor",
+              "core-js",
               "raf"
            ],
             "outputPath": "dist/data",

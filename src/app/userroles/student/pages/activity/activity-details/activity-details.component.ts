@@ -8,6 +8,7 @@ import { CurrentUserService } from 'src/app/service/current-user.service';
 import { EnrollService } from 'src/app/service/enroll.service';
 import { OffcanvasService } from 'src/app/service/offcanvas.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
+import { TodayService } from 'src/app/service/today.service';
 import { DialogEnrollStudentConfirmComponent } from 'src/app/shared/components/dialogs/form/dialog-enroll-student-confirm/dialog-enroll-student-confirm.component';
 import { environment } from 'src/environments/environment';
 
@@ -34,6 +35,7 @@ export class ActivityDetailsComponent implements OnInit {
     private enrollservice: EnrollService,
     private toaster: ToasterService,
     public offcanvas:OffcanvasService,
+    public todayservice:TodayService,
   ) {
     // this.currentuser = this.currentuserservice.getdata;
     // this.state= location.getState();
@@ -139,6 +141,11 @@ export class ActivityDetailsComponent implements OnInit {
         },
       });
   }
+
+  get isBetween():number{
+    return this.todayservice.isBetween(this.item.activity_register_from,this.item.activity_register_to);
+  }
+
 
   goback() {
     this.router.navigate(["../../"], {relativeTo: this.route});

@@ -63,9 +63,9 @@ export class CheckinService {
   }
 
   //--- Service Methode ---
-  checkin(enroll_token:string): Observable<any> {
+  checkin(activity_id:number,enroll_token:string): Observable<any> {
     return this.http
-      .put(this.endpoint + '/' + enroll_token,[], this.httpOptions)
+      .put(this.endpoint + '/' + activity_id + '/' + enroll_token,[], this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
