@@ -68,6 +68,9 @@ import { EnrollListComponent } from './components/enroll/enroll-list/enroll-list
 import { EnrollListItemComponent } from './components/enroll/enroll-list-item/enroll-list-item.component';
 import { ActivityInfoItemComponent } from './components/activity/activity-info-item/activity-info-item.component';
 import { ActivityTrophyComponent } from './components/activity/activity-trophy/activity-trophy.component';
+import { ActivityCard1ListComponent } from './components/activity/activity-card1-list/activity-card1-list.component';
+import { ActivityCard1ItemComponent } from './components/activity/activity-card1-item/activity-card1-item.component';
+
 
 @NgModule({
   declarations: [
@@ -135,6 +138,9 @@ import { ActivityTrophyComponent } from './components/activity/activity-trophy/a
     EnrollListItemComponent,
     ActivityInfoItemComponent,
     ActivityTrophyComponent,
+    ActivityCard1ListComponent,
+    ActivityCard1ItemComponent,
+
 
     
   ],
@@ -205,6 +211,8 @@ import { ActivityTrophyComponent } from './components/activity/activity-trophy/a
     EnrollListItemComponent,
     ActivityInfoItemComponent,
     ActivityTrophyComponent,
+    ActivityCard1ListComponent,
+    ActivityCard1ItemComponent,
   ]
 })
 export class SharedModule { }

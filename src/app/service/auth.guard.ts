@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CurrentUserService } from './current-user.service';
+import { ToasterService } from './toaster/toaster.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { CurrentUserService } from './current-user.service';
 export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private currentusersercice:CurrentUserService,
+    private toaster:ToasterService,
   ){}
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -38,8 +40,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     // console.log("checkAllowRole() current user rules is ",currentUserRole);
     // let result = ExpectedRole.some(r=> currentUserRole.includes(r))
     // console.log('checkAllowRole()=',result);
+    console.log(ExpectedRole)
     let result = ExpectedRole.some(r=>userdata.role.role_name==r);
     console.log("check allow role:",result)
+    if(!result) { 
+      this.toaster.show("error",'สิทธิ์การใช้งานไม่เพียงพอ !') 
+    }
     return result;
   }
   

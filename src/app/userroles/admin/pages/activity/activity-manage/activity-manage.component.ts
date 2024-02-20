@@ -192,7 +192,6 @@ export class ActivityManageComponent implements OnInit {
 
   onScanner(event: any) {
     this.router.navigate(['/officer/activity/scanner/', this.item.activity_id], {
-      //relativeTo: this.route,
       state: { datas: this.item },
     });
   }

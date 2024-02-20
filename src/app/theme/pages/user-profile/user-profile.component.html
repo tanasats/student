@@ -4,13 +4,19 @@
         <div class="d-flex flex-column align-items-center">
           <!-- <img src="https://picsum.photos/250/300" /> -->
 
-          <ng-container *ngIf="userdata?.studentcode; else defaultpicture">
-            <img
-            src="http://202.28.32.211/picture/student/{{userdata?.studentcode|slice:0:2}}/{{userdata?.studentcode}}.jpg"
+          <ng-container *ngIf="userdata?.studentcode||userdata?.staffid; else defaultpicture">
+            <img *ngIf="userdata?.studentcode"
+            src="https://reg.msu.ac.th/registrar/picture/student/{{userdata?.studentcode|slice:0:2}}/{{userdata?.studentcode}}.jpg"
             class="rounded-circle mb-3"
             style="width: 200px"
             alt="Avatar"
           />
+          <img  *ngIf="userdata?.staffid"
+          src="https://pd.msu.ac.th/staff/picture/{{userdata?.staffid}}.jpg"
+          class="rounded-circle mb-3"
+          style="width: 200px"
+          alt="Avatar"
+        />
           </ng-container>
           <ng-template #defaultpicture>
             <img

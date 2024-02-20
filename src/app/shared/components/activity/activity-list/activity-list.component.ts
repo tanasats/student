@@ -7,9 +7,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ActivityListComponent {
   @Input() items:any;
-  @Input() totalItems:any;
-  @Input() totalPages:any;
-  @Input() currentPage:any;
+  @Input() totalItems:any=0;
+  @Input() totalPages:any=1;
+  @Input() currentPage:any=1;
 
   @Input() title:any;
   @Output() _onTitleClick = new EventEmitter<any>();

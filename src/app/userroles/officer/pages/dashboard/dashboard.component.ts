@@ -55,7 +55,7 @@ export class DashboardComponent {
         this.items_draft = this.items.filter((item:any)=>{ return item.activity_status==="d"});
         this.items_approve = this.items.filter((item:any)=>{ return item.activity_status==="a"});
         this.items_work = this.items.filter((item:any)=>{ return item.activity_status==="w"});
-
+        
       },
       error:(err)=>{
 

@@ -55,11 +55,14 @@ export class DashboardComponent implements OnInit {
   }
 
 onTitleClick(item:any){
-  //this.router.navigate(['../activity/manage', item.activity_id], {
-  this.router.navigate(['../activity'], {  
+  this.router.navigate(['../activity/manage', item.activity_id], {
     relativeTo: this.activeroute,
-    //state: { datas: item },
+    state:{datas:item}
   });
+  //this.router.navigate(['../activity'], {  
+  //  relativeTo: this.activeroute,
+  //  //state: { datas: item },
+  //});
 }
 
 loadData(){

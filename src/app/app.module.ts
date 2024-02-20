@@ -26,6 +26,7 @@ import { StudentModule } from './userroles/student/student.module';
 import { OfficerModule } from './userroles/officer/officer.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { CookieConcentComponent } from './core/component/cookie-concent/cookie-concent.component';
+import { GuestModule } from './userroles/guest/guest.module';
 
 
 
@@ -59,6 +60,7 @@ import { CookieConcentComponent } from './core/component/cookie-concent/cookie-c
     AdminModule,
     OfficerModule,
     StudentModule,
+    GuestModule,
   ],
 
   providers: [],

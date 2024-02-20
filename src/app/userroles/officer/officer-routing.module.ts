@@ -11,6 +11,7 @@ import { ActivityComponent } from './pages/activity/activity/activity.component'
 import { ActivityManageComponent } from './pages/activity/activity-manage/activity-manage.component';
 import { ActivityDetailComponent } from './pages/activity/activity-detail/activity-detail.component';
 import { CheckinComponent } from './pages/checkin/checkin.component';
+import { AuthGuard } from 'src/app/service/auth.guard';
 
 const routes: Routes = [
   { path: '',component: DefaultPageComponent,data:{breadcrumb:'หน้าหลัก'},
@@ -23,11 +24,11 @@ const routes: Routes = [
         { path: 'edit/:id',component: ActivityEditComponent,data: { breadcrumb: 'แก้ไขกิจกรรม' }},
         { path: 'detail/:id',component: ActivityDetailComponent,data: { breadcrumb: 'รายละเอียดกิจกรรม' }},
         { path: 'manage/:id',component: ActivityManageComponent,data: { breadcrumb: 'จัดการกิจกรรม' }},
-        { path: 'scanner/:id',component: ActivityScannerComponent,data: { breadcrumb: 'บันทึกเข้าร่วมกิจกรรมด้วย' }},
+        { path: 'scanner/:id',component: ActivityScannerComponent,data: { activateroles: ['officer'] ,breadcrumb: 'บันทึกเข้าร่วมกิจกรรมด้วย' }},
             ]
         },
 
-      { path: 'checkin',component: CheckinComponent,data: { activateroles: ['admin'], breadcrumb: 'บันทึกเข้าร่วมกิจกรรม' }},
+      { path: 'checkin',component: CheckinComponent,data: {  breadcrumb: 'บันทึกเข้าร่วมกิจกรรม' }},
       { path: 'user-profile', component: UserProfileComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ]},

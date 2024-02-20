@@ -24,14 +24,14 @@ export const admin_menu_items: IMenuItem[] = [
         extralink: false,
         submenu: [], 
       },
-      {
-        path: 'admin/checkin',
-        title: 'บันทึกเข้าร่วม ด้วย QR Code',
-        icon: 'bi bi-qr-code',
-        class: '',
-        extralink: false,
-        submenu: [], 
-      },
+      // {
+      //   path: 'admin/checkin',
+      //   title: 'บันทึกเข้าร่วม ด้วย QR Code',
+      //   icon: 'bi bi-qr-code',
+      //   class: '',
+      //   extralink: false,
+      //   submenu: [], 
+      // },
 
     ], 
   },

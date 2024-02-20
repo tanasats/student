@@ -51,7 +51,7 @@ export class ActivityScannerComponent {
         },
         error: (err) => {
           console.log(err);
-          this.toaster.show("error","เกิดข้อผิดพลาด !");
+          this.toaster.show("error","QR Code ของนิสิตไม่ถูกต้อง");
         }
       })
     }

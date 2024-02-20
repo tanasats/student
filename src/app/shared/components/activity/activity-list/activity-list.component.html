@@ -1,6 +1,6 @@
 <div *ngIf="!isEmptyItems" class="d-flex justify-content-between border-bottom p-2 bg-gray-300">
   <div  class="flex-grow-1">
-    <div class="d-inline-block m-0 pe-3"><i class="bi bi-tag me-2"></i>{{ title }}</div>
+    <div class="d-inline-block m-0 pe-3"><i class="bi bi-tag me-2"></i>{{ title }} <span class="badge bg-info ms-1">{{items.length}}</span></div>
     <button
       *ngIf="is_onCreate"
       class="d-inline-block btn btn-primary btn-sm"
@@ -37,7 +37,6 @@
   </div> -->
 
 </div>
-
 <ng-container *ngFor="let item of items; let i = index">
   <activity-list-item
     [item]="item"
@@ -75,7 +74,7 @@
 
 <pagination-link
   *ngIf="!isEmptyItems"
-  [totalItems]="totalItems"
+  [totalItems]="items.length"
   [currentPage]="currentPage"
   [totalPages]="totalPages"
   (_onPageChange)="_onPageChange.emit($event)"

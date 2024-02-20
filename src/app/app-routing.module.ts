@@ -10,22 +10,27 @@ import { ActivityDetailComponent } from './shared/components/activity/activity-d
 import { UserProfileComponent } from './theme/pages/user-profile/user-profile.component';
 import { TestUploadComponent } from './theme/pages/test-upload/test-upload.component';
 import { TestQrcodeComponent } from './theme/pages/test-qrcode/test-qrcode.component';
+import { AuthGuard } from './service/auth.guard';
 
 
 const routes: Routes = [
-  {path:'',redirectTo:'home',pathMatch:'full'},   
-  {path:'home',component:HomeComponent,data: { breadcrumb: '' }},
+  {path:'',redirectTo:'guest',pathMatch:'full'},   
+  //{path:'home',component:HomeComponent,data: { breadcrumb: '' }},
+
   {path:'login',component:LoginComponent,data: { breadcrumb: '' }},
   {path:'activity/:id',component:ActivityDetailComponent,data: { breadcrumb: 'รายละเอียดกิจกรรม' }},
+  {path:'guest',
+    loadChildren: () => import('./userroles/guest/guest-routing.module').then(m=> m.GuestRoutingModule),data:{title:'ผู้ใช้ทั่วไป'}
+  },
   {path:'admin',
     // loadChildren: () => import('./features/admin/admin-routing.module').then(m => m.AdminRoutingModule),data:{title:'ผู้ดูแลระบบ'}
-    loadChildren: () => import('./userroles/admin/admin-routing.module').then(m => m.AdminRoutingModule),data:{title:'ผู้ดูแลระบบ'}
+    loadChildren: () => import('./userroles/admin/admin-routing.module').then(m => m.AdminRoutingModule),canActivate:[AuthGuard],data:{activateroles: ['admin'],title:'ผู้ดูแลระบบ'}
   },  
   {path:'student',
-    loadChildren: () => import('./userroles/student/student-routing.module').then(m=>m.StudentRoutingModule),data:{title:'นิสิต'}
+    loadChildren: () => import('./userroles/student/student-routing.module').then(m=>m.StudentRoutingModule),canActivate:[AuthGuard],data:{activateroles: ['student'],title:'นิสิต'}
   },
   {path:'officer',
-    loadChildren: () => import('./userroles/officer/officer-routing.module').then(m=>m.OfficerRoutingModule),data:{title:'เจ้าหน้าที่'}
+    loadChildren: () => import('./userroles/officer/officer-routing.module').then(m=>m.OfficerRoutingModule),canActivate:[AuthGuard],data:{activateroles: ['officer','admin'],title:'เจ้าหน้าที่'}
   },
 
   //test-------------

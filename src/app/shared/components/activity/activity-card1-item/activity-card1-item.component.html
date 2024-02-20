@@ -1,0 +1,33 @@
+<div class="col">
+  <div class="card">
+    <img
+      class="img-fluid"
+      [src]="
+        fileuri + 'picture/' + item.activity_picture || '../assets/images/image_not_available.png'"/>
+       
+    <div class="card-body">
+      <h5 class="card-title">{{ item.activity_name }}</h5>
+      <div class="small text-mute fst-italic">
+        <i class="bi bi-calendar4-event me-1 text-primary"></i
+        >{{ item.activity_date_from | thaidate }}
+      </div>
+      <p class="card-text">
+        {{ item.activity_description }}
+      </p>
+      <div class="d-flex justify-content-between">
+ 
+            <ng-container *ngIf="item.activity_register<item.activity_receive;else showFullLabel">
+                <button class="btn btn-sm btn-success"  (click)="onJoin.emit(item)" >เข้าร่วม</button>
+            </ng-container>
+            <ng-template #showFullLabel>
+                <!-- <a class="btn btn-sm btn-danger">เต็ม</a> -->
+                <div class="small text-white bg-danger px-2 py-1 m-1">เต็ม</div>
+                <!-- <div *ngIf="item.activity_register>=item.activity_receive" class="position-absolute badge bg-danger  p-2 m-2">เต็ม</div> -->
+            </ng-template>
+            <div class="small text-mute fst-italic"><i class="bi bi-people me-1"></i>{{item.activity_receive}}/{{item.activity_register}}</div>
+
+        </div>
+
+    </div>
+  </div>
+</div>

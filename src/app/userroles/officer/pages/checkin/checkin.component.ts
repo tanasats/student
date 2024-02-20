@@ -25,7 +25,7 @@ export class CheckinComponent {
   public currentPage:any=1;
   public pagelimit: number=10;
   public keyword:string='';
-  public activity_id:number=14;
+  public activity_id:number=98;
 
 
   scannerEnabled = false;
@@ -60,7 +60,7 @@ export class CheckinComponent {
     if(this.qrResultString != resultString){
       
       this.qrResultString = resultString;
-      this.checkinservice.checkin(this.activity_id,this.qrResultString).subscribe({
+      this.checkinservice.checkin(98,this.qrResultString).subscribe({
         next: ([row]) => {
           this.checkinlist.unshift({studentcode:row.studentcode, studentname:row.studentname, activity_checkin_date:row.activity_checkin_date})
           this.toaster.show("success",row.studentcode+" เข้าร่วม")

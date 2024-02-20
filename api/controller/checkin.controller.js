@@ -6,7 +6,7 @@ exports.checkin = async (req, res) => {
   const enroll_token = req.params.enroll_token;
   const mowner = req.user_id;
 
-  console.log(req.params);
+
 
   if (activity_id && enroll_token && mowner) {
     checkinModel
@@ -21,7 +21,7 @@ exports.checkin = async (req, res) => {
             res.status(400).send(error);
           })
         }else{
-          res.status(400).send('ไม่พบ QR Code');
+          res.status(400).send('ไม่พบ QR Code'); 
         }
       })
       .catch((error) => {

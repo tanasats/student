@@ -39,7 +39,9 @@ export class ActivityMasterComponent {
   ngOnInit(): void {
     this._loadItem();  
   }
-
+   compareActivityDate(a:any,b:any){
+    return a.activity_date_from - b.activity_date_from;
+  }
   _loadItem() {
     this.activityservice.filter({page:this.currentPage,limit:this.pagelimit}).subscribe({
       next: (res) => {
@@ -52,7 +54,15 @@ export class ActivityMasterComponent {
         this.items_d = res.items.filter((item:any)=>{return item.activity_status=='d'});
         this.items_a = res.items.filter((item:any)=>{return item.activity_status=='a'});
         this.items_w = res.items.filter((item:any)=>{return item.activity_status=='w'});
-
+        
+        this.items.sort((a:any, b:any) => {  
+          return a.activity_date_from <= b.activity_date_from
+            ? 1
+            : -1
+        })
+        
+        console.log(this.items_w)
+ 
         //this.items = res;
       },
       error: (err) => {

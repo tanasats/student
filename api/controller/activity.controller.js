@@ -54,7 +54,7 @@ exports.filter = async (req, res) => {
   //--console.log("role_max:",req.role_max);
 
   let page = parseInt(req.query.page)||1;
-  let limit = parseInt(req.query.limit)||999999;
+  let limit = parseInt(req.query.limit)||9999999; //pagesize
   let code = req.query.code||'';
   let name = req.query.name||'';
   let publish = req.query.publish||'';

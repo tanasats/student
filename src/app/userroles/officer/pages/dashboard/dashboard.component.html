@@ -33,7 +33,24 @@
     
     <div class="col-lg-8 col-2"></div>
   </div>
-
+  <div class="row">
+    <activity-list
+    [items]="items_draft"
+    [title]="'ร่างโครงการ/กิจกรรม'"
+    (_onTitleClick)="onTitleClick($event)"
+    [is_onQRScanner]="false"
+    (_onQRScanner)="onQRScanner($event)"
+    ></activity-list>
+  </div>
+  <div class="row">
+    <activity-list
+    [items]="items_approve"
+    [title]="'รอพิจารณาอนุมัติ'"
+    (_onTitleClick)="onTitleClick($event)"
+    [is_onQRScanner]="false"
+    (_onQRScanner)="onQRScanner($event)"
+    ></activity-list>
+  </div>
   <div class="row">
     <activity-list
     [items]="items_work"

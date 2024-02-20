@@ -1,0 +1,33 @@
+
+
+
+
+
+<div class="container mt-5">
+    <!-- <div class="row mb-5">
+        <div class="col">
+            <activity-list
+            [items]="items"
+            [title]="'กิจกรรมที่เปิด'"
+            >
+            </activity-list>
+        </div>
+    </div> -->
+<div class="row">
+    <h5 class="text-head">
+        <div class="col"><i class="bi bi-star-fill text-warning me-2"></i>กิจกรรมที่กำลังเผยแพร่</div>
+    </h5>
+</div>
+<div class="row mb-5">
+    <div class="col">
+        <app-activity-card1-list
+        [items]="items"
+        (onJoin)="onJoin($event)"
+        ></app-activity-card1-list>
+    </div>
+</div>
+
+
+
+</div>
+
