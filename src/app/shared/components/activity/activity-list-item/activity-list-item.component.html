@@ -33,8 +33,11 @@
         <i *ngIf="item.activity_publish" class="text-success bi bi-cloud-arrow-up-fill"></i>
         {{item.activity_name}}
       </a>
+      <!-- <span class="ms-1 small text-muted fst-italic">
+        <i class=" bi bi-calendar4-event text-primary me-1"></i>{{item.activity_date_from}}-{{item.activity_date_to}}
+      </span> -->
       <span class="ms-1 small text-muted fst-italic">
-        <i class=" bi bi-people me-1"></i>{{item.activity_register}}/{{item.activity_receive}}
+        <i class=" bi bi-people text-primary me-1 pointer" data-bs-toggle="tooltip" title="{{item.activity_register}}/{{item.activity_receive}}"></i>{{item.activity_register}}/{{item.activity_receive}}
       </span>
 
       <ng-container *ngIf="item.activity_status=='w'">
@@ -42,10 +45,20 @@
             <span class="badge bg-danger">เต็ม</span>
         </ng-container>
         <ng-template #ifRegisterNotFull>
+            <span *ngIf="isBetween==-1" class="badge bg-warning">ยังไม่เปิดรับ</span>          
             <span *ngIf="isBetween==0" class="badge bg-success">เปิดรับ</span>
-            <span *ngIf="isBetween==1" class="badge bg-danger">ปิด</span>
+            <span *ngIf="isBetween==1" class="badge bg-danger">หมดเวลารับ</span>
         </ng-template>
      </ng-container>
+
+      <!-- <ng-container>
+        <ng-container *ngIf="item.activity_register_to|isExpiredDate; else notExpired">
+          <div class="badge bg-danger">หมดเขตรับสมัคร</div>
+        </ng-container>
+        <ng-template #notExpired>
+
+        </ng-template>
+      </ng-container> -->
       <!-- <span *ngIf="isRegisterExpired" class="badge bg-danger">ปิดรับ</span> -->
       <!-- <span *ngIf="isBetween==-1" class="badge bg-info">เตรียมเปิด</span> -->
 
@@ -72,7 +85,11 @@
 
           <div class="d-flex flex-row align-items-center">
 
-            <div class="small text-muted">{{item.mdate | date:'short':'+0700'}}</div>
+            <!-- <div class="small text-muted">{{item.mdate | date:'short':'+0700'}}</div> -->
+            <i class="bi bi-calendar4-event me-1 text-primary"></i><div class="small text-muted">{{item.activity_date_from | thaidate:'short'}}</div>
+
+
+
             <!-- <button *ngIf="is_onView" class="btn btn-success btn-block btn-sm" (click)="_onView.emit(item)">
               <span class="text-nowrap"><i class="bi bi-indent me-1"></i>เข้าร่วม</span>
             </button> -->

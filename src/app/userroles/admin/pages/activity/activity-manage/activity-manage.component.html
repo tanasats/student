@@ -151,6 +151,7 @@
                         (click)="onSwitchTicket()"
                         role="switch"
                         id="flexSwitchCheckDefault"
+                        disabled
                       />
                     </div>
                   </div>
@@ -170,6 +171,7 @@
                         (click)="onSwitchTicket()"
                         role="switch"
                         id="flexSwitchCheckDefault"
+                        disabled
                       />
                     </div>
                   </div>
@@ -235,6 +237,11 @@
                 {{ item.activity_date_to | thaidate }}
               </div>
 
+              <label class="form-label text-primary"><i class="bi bi-calendar4-event me-2"></i>วันที่รับสมัคร</label>
+              <div>
+                {{ item.activity_register_from | thaidate }} -
+                {{ item.activity_register_to | thaidate }}
+              </div>
             <label class="form-label text-primary pt-3"><i class="bi bi-megaphone me-2"></i>รายละเอียดกิจกรรม</label>
               <div [innerHTML]="item.activity_description"></div>
             

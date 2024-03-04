@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DatasetController } from 'chart.js';
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +26,23 @@ export class TodayService {
   }
 
   isBetween(inputDateStringFrom:string,inputDateStringTo:string):number{
-    if(this.todayDateString<inputDateStringFrom){
+    let dateFrom = new Date(inputDateStringFrom);
+    let dateTo = new Date(inputDateStringTo);
+    //return this.todayDate>dateTo
+    // if(this.todayDate>dateTo){
+    //   return 1;
+    // }else if(this.todayDate<dateFrom){
+    //   return -1;
+    // }else{
+    //   return 0;
+    // }
+
+    if(this.todayDate<dateFrom) 
       return -1;
-    }else if(this.todayDateString>inputDateStringTo){
+    else if(this.todayDate>dateTo)
       return 1;
-    }else{
+    else 
       return 0;
-    }
   }
 
 }

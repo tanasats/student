@@ -70,6 +70,7 @@ import { ActivityInfoItemComponent } from './components/activity/activity-info-i
 import { ActivityTrophyComponent } from './components/activity/activity-trophy/activity-trophy.component';
 import { ActivityCard1ListComponent } from './components/activity/activity-card1-list/activity-card1-list.component';
 import { ActivityCard1ItemComponent } from './components/activity/activity-card1-item/activity-card1-item.component';
+import { IsExpiredDatePipe } from './pipes/is-expired-date.pipe';
 
 
 @NgModule({
@@ -140,6 +141,7 @@ import { ActivityCard1ItemComponent } from './components/activity/activity-card1
     ActivityTrophyComponent,
     ActivityCard1ListComponent,
     ActivityCard1ItemComponent,
+    IsExpiredDatePipe,
 
 
     
@@ -213,6 +215,7 @@ import { ActivityCard1ItemComponent } from './components/activity/activity-card1
     ActivityTrophyComponent,
     ActivityCard1ListComponent,
     ActivityCard1ItemComponent,
+    IsExpiredDatePipe,
   ]
 })
 export class SharedModule { }

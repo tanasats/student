@@ -47,7 +47,7 @@ export class ActivityListItemComponent {
   // get isRegisterBegin():boolean{
   //   return this.todayservice.isBegin(this.item.activity_register_from);
   // }
-  get isBetween():number{
+  get isBetween():any{
     return this.todayservice.isBetween(this.item.activity_register_from,this.item.activity_register_to);
   }
 }

@@ -55,10 +55,14 @@ export class ActivityMasterComponent {
         this.items_a = res.items.filter((item:any)=>{return item.activity_status=='a'});
         this.items_w = res.items.filter((item:any)=>{return item.activity_status=='w'});
         
-        this.items.sort((a:any, b:any) => {  
-          return a.activity_date_from <= b.activity_date_from
-            ? 1
-            : -1
+        this.items_d.sort((a:any, b:any) => {  
+          return (a.activity_date_from < b.activity_date_from?1:-1)
+        })
+        this.items_a.sort((a:any, b:any) => {  
+          return (a.activity_date_from < b.activity_date_from?1:-1)
+        })
+        this.items_w.sort((a:any, b:any) => {  
+          return (a.activity_date_from < b.activity_date_from?1:-1)
         })
         
         console.log(this.items_w)

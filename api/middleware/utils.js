@@ -9,6 +9,7 @@ exports.trimmer = function (req, res, next) {
   }
   next();
 };
+
 exports.debugShowURL = function (req, res, next) {
   console.log(req.method.toUpperCase() +' '+req.protocol + "://" + req.get("host") + req.originalUrl);
   next();
