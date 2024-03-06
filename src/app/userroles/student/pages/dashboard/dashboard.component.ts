@@ -78,8 +78,9 @@ export class DashboardComponent implements OnInit {
 
   loadData(){
     //activity
-    this.activityservice.filter({limit:4,publish:1}).subscribe({
+    this.activityservice.filter({limit:10,publish:1}).subscribe({
       next:(res)=>{
+        console.log(res);
         this.activitys=res.items;
       },
       error:(err)=>{

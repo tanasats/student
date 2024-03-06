@@ -6,7 +6,8 @@ export const environment = {
     builddate:'2023-08-14T22:03:11Z',
     endpoint: "https://activity.msu.ac.th/api/sas",
     fileuri: "https://activity.msu.ac.th/api/sas/",
-    msuauthapi: "https://data.msu.ac.th/api/v1.1/auth",
+    //msuauthapi: "https://data.msu.ac.th/api/v1.1/auth",
+    msuauthapi: "https://data.msu.ac.th/api/v1/auth",
 
     appFullName:"ระบบกิจกรรมนิสิต มหาวิทยาลัยมหาสารคาม",
     appFullName_en:"Student Activity System",

@@ -18,6 +18,18 @@ constructor(
 ) {} 
 
 ngOnInit(): void {
+
+  const currentuser = this.currentuser.getdata;
+  if (currentuser.is_login) {
+  //   // this.router.navigateByUrl('/login')
+  //   // console.log("redirect to login page")
+  // }else {
+    // this.router.navigateByUrl(currentuser.role.role_name+"/activity/details/"+event.activity_id);
+    // this.router.navigate(["../"+currentuser.role.role_name+"/activity/details",item.activity_id], {relativeTo: this.route, state: { datas: item } });
+    this.router.navigate(["../"+currentuser.role.role_name+"/dashboard"], {relativeTo: this.route});
+    console.log("goto register activity")
+  }
+
   this.guestService.activity().subscribe({
     next: (res) =>{
       console.log(res);
@@ -26,8 +38,8 @@ ngOnInit(): void {
     error: (err) =>{
       console.log(err);
     }
-
   })
+
 }
 
 onJoin(event:any):void{
