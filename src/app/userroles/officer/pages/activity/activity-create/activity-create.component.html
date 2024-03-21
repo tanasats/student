@@ -10,7 +10,7 @@
   <div class="container">
     <div class="mb-5">
       <div>
-        <h4>ข้อมูลกิจกรรม</h4>
+        <h4>ข้อมูลกิจกรรมใหม่</h4>
       </div>
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -83,6 +83,21 @@
           <div class="row">
             <div class="col">
               <form-input-date
+                [fc]="form.controls['activity_register_from']"
+                [label]="'เปิดรับลงทะเบียน'">
+              </form-input-date>
+            </div>
+            <div class="col">
+              <form-input-date
+              [fc]="form.controls['activity_register_to']"
+              [label]="'ปิดรับลงทะเบียน'">
+            </form-input-date>
+            </div>
+          </div> 
+            
+          <div class="row">
+            <div class="col">
+              <form-input-date
                 [fc]="form.controls['activity_date_from']"
                 [label]="'วันที่เริ่มกิจกรรม'">
               </form-input-date>
@@ -102,22 +117,7 @@
             <div class="col-md-3">
               <form-input-number [fc]="form.controls['activity_receive']" [label]="'จำนวนที่รับ (คน)'"></form-input-number>
             </div>
-          </div>
-  
-          <div class="row">
-            <div class="col">
-              <form-input-date
-                [fc]="form.controls['activity_register_from']"
-                [label]="'เปิดรับลงทะเบียน'">
-              </form-input-date>
-            </div>
-            <div class="col">
-              <form-input-date
-              [fc]="form.controls['activity_register_to']"
-              [label]="'ปิดรับลงทะเบียน'">
-            </form-input-date>
-            </div>
-          </div>  
+          </div> 
   
           <app-activity-skill-form-input
           [fc]="form.controls['activity_skill']"

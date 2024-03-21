@@ -31,7 +31,7 @@ export class FormInputPicfileComponent {
   fileToUpload!: File;
 
   @ViewChild('newFileInput') newFileInput!:ElementRef;
-  newFileInputsrc:string='';
+  public newFileInputsrc:string='';
   public fileuri:string = environment.fileuri;
   
 
@@ -46,7 +46,7 @@ export class FormInputPicfileComponent {
   ) {
     let randid = (Math.random() + 1).toString(36).substring(2);
     this.uniqueid = randid;
-    
+
   }
 
   // onFileChange(event:any) {
@@ -84,8 +84,6 @@ export class FormInputPicfileComponent {
       tempimage.onload = function () {
         console.log(`width : ${tempimage.width} px`, `height: ${tempimage.height} px`);
         
-
-
       };
     };
   }
@@ -111,17 +109,14 @@ export class FormInputPicfileComponent {
 
 
 onUploadImage(){
-  console.log("on upload image");
-  console.log("event",event);
   const file: File = this.fileToUpload;
   const formData: FormData = new FormData();
   formData.append("file",file,file.name);
   this.picfileService.upload(formData).subscribe({
     next:(res)=>{
-      // ส่ง emit ออกไปทำที่ parent component
-      this.newFileInputsrc='';
+      // ส่ง emit ออกไปทำที่ parent component      
       this.onImageSave.emit(res.file.filename);
-      
+      this.newFileInputsrc='';
     },
     error:(err)=>{
       console.log("upload image err:",err);
@@ -130,6 +125,8 @@ onUploadImage(){
   })
 }
 
-
+onCancel(){
+  this.newFileInputsrc='';
+}
 
 }

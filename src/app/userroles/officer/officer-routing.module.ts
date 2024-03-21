@@ -12,6 +12,8 @@ import { ActivityManageComponent } from './pages/activity/activity-manage/activi
 import { ActivityDetailComponent } from './pages/activity/activity-detail/activity-detail.component';
 import { CheckinComponent } from './pages/checkin/checkin.component';
 import { AuthGuard } from 'src/app/service/auth.guard';
+import { ImportStudentComponent } from './pages/import-student/import-student.component';
+import { ActivityImportStudentComponent } from './pages/activity/activity-import-student/activity-import-student.component';
 
 const routes: Routes = [
   { path: '',component: DefaultPageComponent,data:{breadcrumb:'หน้าหลัก'},
@@ -25,11 +27,13 @@ const routes: Routes = [
         { path: 'detail/:id',component: ActivityDetailComponent,data: { breadcrumb: 'รายละเอียดกิจกรรม' }},
         { path: 'manage/:id',component: ActivityManageComponent,data: { breadcrumb: 'จัดการกิจกรรม' }},
         { path: 'scanner/:id',component: ActivityScannerComponent,data: { activateroles: ['officer'] ,breadcrumb: 'บันทึกเข้าร่วมกิจกรรมด้วย' }},
+        { path: 'import/:id',component:ActivityImportStudentComponent,data:{ activeroles: ['officer'],breadcrumb:'นำเข้ารายชื่อนิสิต'}},
             ]
         },
 
       { path: 'checkin',component: CheckinComponent,data: {  breadcrumb: 'บันทึกเข้าร่วมกิจกรรม' }},
       { path: 'user-profile', component: UserProfileComponent },
+      { path: 'import',component:ImportStudentComponent,data:{bradcrumb:'นำเข้ารายชื่อนิสิต'}},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ]},
 

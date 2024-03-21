@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'form-input-date',
@@ -11,6 +11,8 @@ export class FormInputDateComponent {
   @Input() is_requisite:boolean=false;
   @Input() is_draft:boolean=false;
   @Input() label?:string = "_LABEL_";
+  
+  @Output() onChange = new EventEmitter<any>();
 
   constructor() {}
   ngOnInit(): void {
@@ -31,4 +33,5 @@ export class FormInputDateComponent {
       'form-requisite':this.is_requisite
     }
   }
+
 }

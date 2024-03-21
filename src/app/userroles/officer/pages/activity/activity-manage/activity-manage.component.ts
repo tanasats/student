@@ -9,6 +9,8 @@ import { StudentService } from 'src/app/service/student.service';
 import { ToasterService } from 'src/app/service/toaster/toaster.service';
 import { DialogWarningConfirmComponent } from 'src/app/shared/components/dialogs/confirm/dialog-warning-confirm/dialog-warning-confirm.component';
 import { APPCONST, environment } from 'src/environments/environment';
+import { DialogInfoConfirmComponent } from 'src/app/shared/components/dialogs/confirm/dialog-info-confirm/dialog-info-confirm.component';
+import { CheckinService } from 'src/app/service/checkin.service';
  
 @Component({
   selector: 'app-activity-manage',
@@ -31,7 +33,7 @@ export class ActivityManageComponent {
 
   constructor(
     private router: Router,
-    private route:ActivatedRoute,
+    private activeroute:ActivatedRoute,
     private enrollservice:EnrollService,
     private activityService:ActivityService,
     private toaster:ToasterService,
@@ -39,16 +41,24 @@ export class ActivityManageComponent {
     private offcanvas:OffcanvasService,
     private dialog: MatDialog,
     private excelservice:ExcelService,
-  ){}
+    private checkinservice:CheckinService,
+  ){
+    activeroute.params.subscribe((params)=>{
+      console.log(params);
+      console.log("invoke with url /:id =",params['id']);
+      this.id=params['id'];
+      this.load_enroll(params['id']);
+    })
+  }
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
+    //this.id = this.activeroute.snapshot.paramMap.get('id');
     this.state = history.state;
     this.item = history.state.datas;
 
     this.item.activity_faculty = JSON.parse(this.item.activity_faculty);
     this.item.activity_skill = JSON.parse(this.item.activity_skill);
 
-    this.load_enroll();
+    //this.load_enroll();
     
     this.studentService.getall({}).subscribe({
       next: (res) => {
@@ -60,9 +70,9 @@ export class ActivityManageComponent {
     })
   }
  
-  load_enroll(){
+  load_enroll(activity_id:any){
     const datas = {
-      activity_id:this.item.activity_id,
+      activity_id:activity_id,
       keyword:'',
       page:1,
       //pagesize:1 //if this line comment the result use pagesize=10 by default
@@ -141,7 +151,7 @@ export class ActivityManageComponent {
         next: (res) => {
           if (res.affectedRows === 1) {
             this.toaster.show('success', 'ลงทะเบียนเรียบร้อยแล้ว');
-            this.load_enroll();
+            this.load_enroll(this.id);
           }
         },
         error: (err) => {
@@ -158,8 +168,11 @@ export class ActivityManageComponent {
     this.dialog
       .open(DialogWarningConfirmComponent, {
         data: {
-          title: 'โปรดยืนยันการลบรายการ',
-          description: 'รหัสนิสิต: '+item.studentcode,
+          icon: 'bi-trash',
+          title: 'ต้องการลบรายการนี้ ใช่ หรือ ไม่',
+          yes: 'ใช่',
+          no: 'ยกเลิก',
+          description: 'รหัสนิสิต: <span class="text-primary">'+item.studentcode+'</span> <br>ชื่อ: <span class="text-primary">'+item.studentname+'</span>',
         },
       })
       .afterClosed()
@@ -170,8 +183,8 @@ export class ActivityManageComponent {
             next: (res) => {
               console.log(res);
               if (res.affectedRows === 1) {
-                this.toaster.show('success', 'ลยรายการเรียบร้อยแล้ว');
-				        this.load_enroll();
+                this.toaster.show('success', 'ลบรายการเรียบร้อยแล้ว');
+				        this.load_enroll(this.id);
               }
             },
             error: (err) => {
@@ -260,4 +273,63 @@ export class ActivityManageComponent {
     });
   }
 
+  onImport(event:any){
+    //console.log(event);
+    this.router.navigate(['/officer/activity/import/',this.item.activity_id],{
+      state: { datas: this.item },
+    })
+  }
+
+
+
+  onCheckin(item:any){
+    console.log('onCheckin()');
+    this.dialog
+      .open(DialogInfoConfirmComponent, {
+        data: {
+          icon: 'bi-cardboard2-check',
+          title: 'ต้องการบันทึกการเข้าร่วมกิจกรรม',
+          yes: 'ใช่',
+          no: 'ยกเลิก',
+          description: 'อนุมัติการเข้าร่วมกิจกรรม ของ'+item.studentname,
+        },
+      })
+      .afterClosed()
+      .subscribe((data) => {  
+        if (data) {
+          console.log(item);
+          this.checkinservice.checkin(item.activity_id,item.enroll_token).subscribe({
+            next: ([row]) => {
+              console.log('checkin for :'+row)
+              this.toaster.show("success",row.studentcode+" บันทึกการเข้าร่วมแล้ว")
+              this.load_enroll(this.id);
+            },
+            error: (err) => {
+              console.log(err);
+              this.toaster.show("error","QR Code ของนิสิตไม่ถูกต้อง");
+            }
+          })
+
+          // this.enrollservice.update(item.enroll_id).subscribe({
+          //   next: (res) => {
+          //     console.log(res);
+          //     if (res.affectedRows === 1) {
+          //       this.toaster.show('success', 'บันทึกการเข้าร่วมกิจกรรมแล้ว');
+				  //       this.load_enroll(this.id);
+          //     }
+          //   },
+          //   error: (err) => {
+          //     this.toaster.show('error', 'ผิดพลาด: ' + err);
+          //   },
+          // });
+
+        }
+      });
+  }
+
+
+
+  test(){
+    console.log("test()");
+  }
 }//class

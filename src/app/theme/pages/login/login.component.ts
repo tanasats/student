@@ -165,6 +165,7 @@ export class LoginComponent {
 
             break;
           case "1":
+            console.log(form.value);
             this.toaster.show('error', 'username/password ไม่ถูกต้อง !');
             break;
           case "2": // this case user has username and password=null

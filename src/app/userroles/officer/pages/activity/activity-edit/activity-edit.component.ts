@@ -292,5 +292,13 @@ export class ActivityEditComponent implements OnInit {
   }
 
 
+  register_from_change(data:any){
+    if(this.item.activity_register_to===null || data.target.value > this.item.activity_register_to){
+      this.item.activity_register_to=data.target.value;
+      this.form.patchValue({'activity_register_to':data.target.value})
+    }
+  }
+
+
 
 }

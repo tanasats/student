@@ -14,6 +14,7 @@ export const environment = {
     //endpoint: "https://activity.msu.ac.th/api/sas",
     //endpoint: "http://192.168.1.42:3000/api", // common setting
     msuauthapi: "https://data.msu.ac.th/api/v1/auth",
+    regdataapi: "https://data.msu.ac.th/api/reg",
   
     appFullName:"ระบบกิจกรรมนิสิต มหาวิทยาลัยมหาสารคาม",
     appFullName_en:"Student Activity System",

@@ -39,7 +39,7 @@
       <span class="ms-1 small text-muted fst-italic">
         <i class=" bi bi-people text-primary me-1 pointer" data-bs-toggle="tooltip" title="{{item.activity_register}}/{{item.activity_receive}}"></i>{{item.activity_register}}/{{item.activity_receive}}
       </span>
-
+ 
       <ng-container *ngIf="item.activity_status=='w'">
         <ng-container  *ngIf="!(item.activity_register<item.activity_receive); else ifRegisterNotFull">
             <span class="badge bg-danger">เต็ม</span>

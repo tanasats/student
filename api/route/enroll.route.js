@@ -4,12 +4,10 @@ const enrollController = require("../controller/enroll.controller");
 const { authJwt } = require("../middleware/auth");
 
 // Read
-//router.get("/enrolls",/*authJwt.verifyToken,*/enrollController.filter);
 router.get("/enrolls",/*authJwt.verifyToken,*/enrollController.getall);
-
-
 // Create
-router.post("/enroll", /*authJwt.verifyToken,*/ enrollController.create);
+router.post("/enroll",/* authJwt.verifyToken,*/ enrollController.create);
+router.post("/enroll/import",/* authJwt.verifyToken,*/ enrollController.enrollimport);
 // Update
 router.put("/enroll/:id", /*authJwt.verifyToken,*/ enrollController.update);
 // Delete

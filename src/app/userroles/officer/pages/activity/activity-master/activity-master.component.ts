@@ -41,10 +41,10 @@ export class ActivityMasterComponent {
   }
   ngOnInit(): void {
    
-    this._loadItem();  
+    this.loadData();  
   }
 
-  _loadItem() {
+  loadData() {
 
     this.activityservice.filter({page:this.currentPage,limit:this.pagelimit}).subscribe({
       next: (res) => {
@@ -78,7 +78,7 @@ export class ActivityMasterComponent {
 
   onPageChange(page:any){
     this.currentPage=page;
-    this._loadItem();
+    this.loadData();
   }
 
   onDetail(item: any) {
@@ -117,7 +117,7 @@ export class ActivityMasterComponent {
               console.log(res);
               if (res.affectedRows === 1) {
                 this.toaster.show('success', 'ลยรายการเรียบร้อยแล้ว');
-				this._loadItem();
+				this.loadData();
               }
             },
             error: (err) => {
@@ -128,7 +128,7 @@ export class ActivityMasterComponent {
       });
   }
 
-  onGear(item: any) {
+  onWork(item: any) {
     console.log("current route:",this.route);
     console.log('onDetail():', item);
     this.router.navigate(['../activity/manage', item.activity_id], {

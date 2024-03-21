@@ -16,6 +16,8 @@ import { ActivityDetailComponent } from './pages/activity/activity-detail/activi
 
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckinComponent } from './pages/checkin/checkin.component';
+import { ImportStudentComponent } from './pages/import-student/import-student.component';
+import { ActivityImportStudentComponent } from './pages/activity/activity-import-student/activity-import-student.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { CheckinComponent } from './pages/checkin/checkin.component';
     ActivityComponent,
     ActivityManageComponent,
     ActivityDetailComponent,
-    CheckinComponent
+    CheckinComponent,
+    ImportStudentComponent,
+    ActivityImportStudentComponent
   ],
   imports: [
     CommonModule,

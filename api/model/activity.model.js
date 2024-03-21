@@ -20,6 +20,7 @@ class _class {
       datas,
       id,
     ]);
+    console.log(sql);
     return db.query(sql);
   }
   delete({ id }) {

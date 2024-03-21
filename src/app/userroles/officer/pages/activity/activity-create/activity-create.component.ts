@@ -196,8 +196,6 @@ export class ActivityCreateComponent {
       });
   }
 
-
-
   genActivityCode() {
     let agency = this.form.controls['agency_code'].value || 'xxxx';
     let year = this.form.controls['activity_year'].value.toString();
@@ -217,39 +215,14 @@ export class ActivityCreateComponent {
     return (String(padChar).repeat(size) + text).substr(size * -1, size);
   }
 
-  // _onCancle() {
-  //   this.router.navigate(['admin/activity']);
-  // }
   _onCancel() {
     this.form.markAsUntouched();
     this.router.navigate(['/officer/activity']);
   }
+
   _onfacultySelectSave(items: any) {
     this.form.controls['activity_faculty'].setValue(items);
   }
-
-  // _submit(){
-  //   this.form.markAllAsTouched();
-  //   if(this.form.valid){
-  //     let datas = this.form.getRawValue();
-  //     datas.activity_faculty=JSON.stringify(datas.activity_faculty);
-  //     this.activityservice.create(datas).subscribe({
-  //       next:(res)=>{
-  //         console.log("activity service res:",res);
-  //         if(res.affectedRows){ //affectedRows,insertId
-  //           this.toaster.show("success","บันทึกข้อมูลเรียบร้อย");
-  //           this.router.navigate(['../../']);
-  //         }
-  //       },
-  //       error:(err)=>{
-  //         console.log("activity service err:",err);
-  //         this.toaster.show("error",err,7000)
-  //       }
-  //     });
-  //   }else{
-  //     this.toaster.show("error","กรุณากรอกข้อมูลให้ครบถ้วน")
-  //   }
-  // }
 
   onSubmit(){
     this.form.markAllAsTouched();
@@ -277,7 +250,6 @@ export class ActivityCreateComponent {
       this.toaster.show('error', 'กรุณากรอกข้อมูลให้ครบถ้วน');
     }
   }
-
 
   xxxxonSubmit() {
     //this.form.markAllAsTouched();
@@ -396,8 +368,6 @@ export class ActivityCreateComponent {
   }
 
   onUpdate(datas: any) {}
-
-
 
   onImageSave(filename: any) {
     console.log(filename);

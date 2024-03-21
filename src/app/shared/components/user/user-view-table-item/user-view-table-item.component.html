@@ -1,4 +1,5 @@
 <div class="d-flex justify-content-between border-bottom hover p-2">
+
  <div>
     <span class="me-2">{{index}}.</span>
     <span class="me-2">{{item.studentcode}}</span>
@@ -7,11 +8,8 @@
     <span class="badge bg-info me-2">{{item.enroll_position_name}}</span>
  </div>
 
-
-
  <div class="d-flex">
-
-     <button *ngIf="false" class="btn btn-icon" matTooltip="อนุม้ติ" (click)="null">
+    <button *ngIf="false" class="btn btn-icon" matTooltip="อนุม้ติ" (click)="null">
         <span class="text-nowrap"><i class="bi bi-clipboard2-check"></i></span>
     </button>
     <button *ngIf="is_onDelete" class="btn btn-icon" matTooltip="ลบ" (click)="onDelete.emit(item)">
@@ -21,5 +19,6 @@
         <span class="text-nowrap"><i class="bi bi-gear"></i></span>
     </button>
  </div>
+ 
 </div>
 <!-- {{ENROLL_POSITION[`$item.enroll_position`]}} -->

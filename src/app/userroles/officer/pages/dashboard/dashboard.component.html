@@ -2,7 +2,7 @@
   <div class="row mb-3">
     <div class="col-lg-4 col-12">
       <!-- src="http://202.28.32.211/picture/student/{{userdata.studentcode|slice:0:2}}/{{userdata.studentcode}}.jpg" -->
-      <ng-container *ngIf="userdata.studentcode; else defaultpicture">
+      <!-- <ng-container *ngIf="userdata.studentcode; else defaultpicture">
         <img
         src="assets/images/user0.jpg"
         class="rounded-circle mb-3"
@@ -17,27 +17,38 @@
         style="width: 200px"
         alt="Avatar"
       />
-      </ng-template>
+      </ng-template> -->
 
       <!-- {{ currentuser | json }} -->
       <h4 class="mb-2"><strong>{{userdata.fullname}}</strong></h4>
-      <div class="text-muted">
+      <div class="">
         <!-- <div class="d-block">นิสิต <span class="badge bg-primary">student</span></div> -->
-        <div class="d-block">เจ้าหน้าที่ส่วนคณะ <span class="badge bg-primary">Officer</span></div>
+        <div class="d-block"><i class="bi bi-shield-check text-primary me-2"></i>เจ้าหน้าที่<span class="badge bg-primary ms-2">Officer</span></div>
         <div class="d-block"><i class="bi bi-envelope text-primary me-2"></i>{{userdata.email}}</div>
         <div class="d-block"><i class="bi bi-buildings text-primary me-2"></i>{{userdata.faculty_name}}</div>
       </div>
     </div>
 
+    <div class="col-lg-8 col-12">
+      <div class="d-flex justify-content-end">
+        <div class="box-score">
+          <label>จำนวนกิจกรรม</label><span>{{score_activity}}</span>
+        </div>
+        <div class="box-score">
+          <label>จำนวนนิสิต</label><span>{{score_student}}</span>
+        </div>
+      </div>
+    </div>
 
-    
-    <div class="col-lg-8 col-2"></div>
   </div>
+
   <div class="row">
     <activity-list
     [items]="items_draft"
     [title]="'ร่างโครงการ/กิจกรรม'"
-    (_onTitleClick)="onTitleClick($event)"
+    (_onTitleClick)="onEdit($event)"
+    [is_onDelete]="true"
+    (_onDelete)="onDelete($event)"
     [is_onQRScanner]="false"
     (_onQRScanner)="onQRScanner($event)"
     ></activity-list>
@@ -45,8 +56,8 @@
   <div class="row">
     <activity-list
     [items]="items_approve"
-    [title]="'รอพิจารณาอนุมัติ'"
-    (_onTitleClick)="onTitleClick($event)"
+    [title]="'รออนุมัติ'"
+    (_onTitleClick)="onDetail($event)"
     [is_onQRScanner]="false"
     (_onQRScanner)="onQRScanner($event)"
     ></activity-list>
@@ -55,7 +66,7 @@
     <activity-list
     [items]="items_work"
     [title]="'ดำเนินการ'"
-    (_onTitleClick)="onTitleClick($event)"
+    (_onTitleClick)="onWork($event)"
     [is_onQRScanner]="false"
     (_onQRScanner)="onQRScanner($event)"
     ></activity-list>

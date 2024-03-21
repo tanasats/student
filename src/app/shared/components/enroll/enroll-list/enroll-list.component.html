@@ -1,44 +1,99 @@
 <ng-container *ngIf="items; else showLoading">
-        <div class="d-flex flex-column">
-            <div class="d-block"><i class="bi bi-people text-primary me-2"></i>
-                ลงทะเบียน <span class="mx-3 text-primary strong">{{items.length}}</span>คน
-            </div>
-            <div class="d-block"><i class="bi bi-people text-primary me-2"></i>
-                ลงชื่อเข้าร่วม<span class="mx-3 text-primary strong">{{registeredcount}}</span>คน 
-                <span class="text-black-50 small">({{registeredcount/items.length*100| number : '1.2'}}%)</span>
+
+    <div class="d-flex flex-column mb-3">
+        <div class="d-inline-block"><i class="bi bi-people text-primary me-2"></i>
+            ลงทะเบียนทั้งหมด <span class="badge bg-primary mx-3 strong">{{items.length}}</span>คน
+        </div>
+        <div class="d-inline-block"><i class="bi bi-person-check text-primary me-2"></i>
+            จำนวนที่เข้าร่วม<span class="badge bg-warning mx-3 strong">{{registeredcount}}</span>คน 
+            <span class="text-black-50 small me-2">({{registeredcount/items.length*100| number : '1.2'}}%)</span>
+        </div>
+    </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                      <!-- <div class="card-title"><i class="bi bi-funnel me-2"></i>กรองข้อมูล(Filter data)</div> -->
+                      <!-- <h6 class="card-subtitle mb-2 text-muted small">Card subtitle</h6> -->
+                            <form [formGroup]="formfilter" class="mb-0">
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <label [attr.for]="'inputFilterStudentcode'+_id" class="form-label">รหัสนิสิต</label>
+                                    <input formControlName="studentcode" type="text" class="form-control" [id]="'inputFilterStudentcode'+_id" >
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label [attr.for]="'inputFilterStudentname'+_id" class="form-label">ชื่อ-สกุล</label>
+                                    <input formControlName="studentname" type="text" class="form-control" [id]="'inputFilterStudentname'+_id">
+                                  </div>   
+                            </div>
+
+                            <div class="row my-2">
+                                <div class="col form-group">
+                                    <div class="form-check form-switch">
+                                        <input formControlName="activity_checkin" class="form-check-input" type="checkbox" [id]="'checkinStatus'+_id">
+                                        <label class="form-check-label" [attr.for]="'checkinStatus'+_id">แสดงเฉพาะยังไม่เข้าร่วม</label>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-12">
+                                <button  class="btn btn-success btn-sm" (click)="onFilter()"><i class="bi bi-funnel me-2"></i>กรองข้อมูล</button>
+                                <button  class="btn btn-secondary btn-sm" (click)="clearfilter()"><i class="bi bi-x me-1"></i>ล้างตัวกรอง</button>
+                            </div> 
+                        </form>
+                    </div>
+                    
+
+                  </div>
             </div>
         </div>
-    
-        <div class="row g-0 pt-2 align-items-start text-primary small border-bottom">
-            <div style="width:180px">
+
+
+
+
+
+
+
+
+        <div class="row g-0 p-2 align-items-start text-primary border-bottom">
+            <div class="d-block" style="width:50px">
+                <input class="form-check-input me-2" type="checkbox" value="" (change)="selectAllItems($event);"/>
+            </div>
+            <div style="width:110px">
+                รหัสนิสิต
             </div>
             <div class="col">
               ชื่อ-สกุล
             </div>
-            <div class="col">
+            <div class="col d-none d-lg-inline">
               คณะ
             </div>
-            <div style="width:80px;text-align: end;">
-                
+            <div style="width:80px;text-align:right;">
+              #
             </div>
         </div>
-    <ng-container *ngFor="let item of items | pagination:page_number:page_limit;let i=index">
+    <ng-container *ngFor="let item of itemsFilter | pagination:page_number:page_limit;let i=index">
 
         <enroll-list-item
          [item]="item"
-         [itemnumber]="(i+1)+(page_number*page_limit)"
-         (_onEdit)="_onEdit.emit($event)"
-         (_onDelete)="_onDelete.emit($event)"
+         [index]="i+1"
+         [is_onCheckin]="is_onCheckin"
+         (onCheckin)="onCheckin.emit($event)"
+         [is_onDelete]="is_onDelete"
+         (onDelete)="onDelete.emit($event)"
         ></enroll-list-item>
+
     </ng-container> 
+
     <div class="pt-3 d-flex justify-content-between">
-        <div class="text-muted pagination-description">รายการที่ {{ first_index }} - {{ last_index }} จาก {{ items.length }}</div>
+        <div class=" pagination-description">แสดงรายการ {{ first_index }} - {{ last_index }} จาก {{ itemsFilter.length }}</div>
         <div>
-            <a class="btn btn-primary btn-sm pagination-icon-prev" [ngClass]="{'disabled': isPrevDisabled}"
+            <a class="btn btn-primary btn-sm pagination-icon-prev" [ngClass]="{'d-none': isPrevDisabled}"
                 (click)="(!isPrevDisabled)?(page_number=page_number-1):''" matTooltip="หน้าก่อนหนัา"><em
                     class="bi bi-chevron-left"></em></a>
             หน้าที่ {{page_number+1}}/{{page_total}}
-            <a class="btn btn-primary btn-sm pagination-icon-next" [ngClass]="{'disabled': isNextDisabled}"
+            <a class="btn btn-primary btn-sm pagination-icon-next" [ngClass]="{'d-none': isNextDisabled}"
                 (click)="(!isNextDisabled)?(page_number = page_number + 1):''" matTooltip="หน้าถัดไป"><em
                     class="bi bi-chevron-right"></em></a>
         </div>

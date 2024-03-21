@@ -7,14 +7,16 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./dialog-warning-confirm.component.scss']
 })
 export class DialogWarningConfirmComponent {
-  public title:string="ยืนยัน";
+  public icon:string='bi-exclamation-triangle';
+  public title:string="แจ้งเตือนให้ยืนยัน";
   public yes:string = 'ยืนยัน';
   public no:string = 'ปฎิเสธ';
   public description:string="คุณต้องการยืนยัน เพื่อดำเนินการนี้ใช่หรือไม่";
-  public icon:string='bi-exclamation-triangle';
+ 
 
   constructor( private dialogRef:MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA)public data: any) { 
+      if(data?.icon)this.icon=data.icon;
       if(data?.title)this.title=data.title;
       if(data?.description)this.description=data.description;
       if(data?.yes)this.yes=data.yes;

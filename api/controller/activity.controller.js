@@ -73,12 +73,12 @@ exports.filter = async (req, res) => {
       user_faculty_name: user_faculty_name, 
       page:page, limit: limit, code:code, name:name, publish:publish, status:status, ticket:ticket})
     .then((rows) => {
-      rows.items = rows.items.map((item)=>{
-          delete item.activity_budget;
-          delete item.activity_budget_paid;
-          delete item.activity_budget_source;
-        return item;
-      })
+      // rows.items = rows.items.map((item)=>{
+      //     delete item.activity_budget;
+      //     delete item.activity_budget_paid;
+      //     delete item.activity_budget_source;
+      //   return item;
+      // })
       res.status(200).send(rows);
     })
     .catch((err) => {

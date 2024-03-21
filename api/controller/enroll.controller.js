@@ -177,3 +177,17 @@ exports.myenroll = async (req,res) => {
     res.status(400).send(error);
   })
 };
+
+exports.enrollimport = async (req,res) => {
+  const students = req.body;
+  enrollModel.enrollimport(students)
+  .then((row) =>{
+    console.log('Data imported success.',row);
+    res.status(200).send(row)
+  })
+  .catch((error) =>{
+    console.error(error);
+    res.status(400).send(error);
+  })
+  
+}

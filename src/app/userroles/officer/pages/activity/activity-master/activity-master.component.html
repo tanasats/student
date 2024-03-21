@@ -5,35 +5,27 @@
     ></activity-toolbar>
   </section>
   
-  
     <section class="container">
-  
+   
     <activity-list
       [items]="items_d"
-      [title]="'ร่าง'"
+      [title]="'ร่างโครงการ/กิจกรรม'"
       (_onTitleClick)="onEdit($event)"
-
-      [is_onEdit]="false"
-      (_onEdit)="onEdit($event)"   
       [is_onDelete]="true"
       (_onDelete)="onDelete($event)"     
     ></activity-list>
   
     <activity-list
       [items]="items_a"
-      [title]="'ขออนุมัติ'"
+      [title]="'รออนุมัติ'"
       (_onTitleClick)="onDetail($event)"
     ></activity-list>
   
     <activity-list
       [items]="items_w"
       [title]="'ดำเนินการ'"
-      (_onTitleClick)="onGear($event)"
-      [is_onGear]="false"
-      (_onGear)="onGear($event)"
+      (_onTitleClick)="onWork($event)"
     ></activity-list>
-  
-  
   
     </section>
   

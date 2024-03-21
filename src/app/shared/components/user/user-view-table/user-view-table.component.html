@@ -11,7 +11,7 @@
     </div> -->
 </div>
 
-<ng-container *ngFor="let item of items;let i=index;">
+<ng-container *ngFor="let item of items | pagination:page_number:page_limit;let i=index">
 
   <user-view-table-item
   [item]="item"
@@ -21,6 +21,11 @@
   > </user-view-table-item>
 
 </ng-container>
+
+
+
+
+
 
 <div class="d-flex justify-content-between mt-2"><!-- align-items-center -->
     <div class="fst-italic fs-sm text-muted">แสดงข้อมูล 10 รายการ จากทั้งหมด 100 รายการ</div>

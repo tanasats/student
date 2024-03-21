@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'enroll-list-item',
@@ -7,6 +7,15 @@ import { Component, Input } from '@angular/core';
 })
 export class EnrollListItemComponent {
   @Input() item:any={};
-  @Input() itemnumber:number=0;
-   
+  @Input() index:any;
+
+  @Input() is_onCheckin:boolean=false;
+  @Output() onCheckin = new EventEmitter<any>();
+  
+  @Input() is_onDelete:boolean=false;
+  @Output() onDelete = new EventEmitter<any>();
+  
+  @Input() is_onGear:boolean=false;
+  @Output() onGear = new EventEmitter<any>();
+
 }

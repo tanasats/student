@@ -12,9 +12,12 @@ export class UserViewTableComponent implements OnInit{
   @Input() title: any;
   @Input() is_onDelete:boolean=false;
   @Output() onDelete = new EventEmitter<any>();
-  public registercount:any;
 
-  
+  public page_number = 0;
+  public page_limit = 20;
+
+  public registeredcount:number=0;
+
   ngOnInit(): void {
 
   }

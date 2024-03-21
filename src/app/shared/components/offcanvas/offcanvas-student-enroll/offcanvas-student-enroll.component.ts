@@ -27,6 +27,7 @@ export class OffcanvasStudentEnrollComponent {
     button.setAttribute('data-bs-target', '#' + this.id);
     button.setAttribute('hidden', 'hidden');
     parentEl.appendChild(button);
+    this.studentcode='';
   }
   _toggleMe() {
     //--close offcanvas--

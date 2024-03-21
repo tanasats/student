@@ -112,6 +112,11 @@ export class EnrollService {
       .pipe(catchError(this.handleError));
   }
 
+  enrollimport(datas:any): Observable<any>{
+    return this.http
+      .post(this.endpoint+'/import', datas, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
 
 }
  

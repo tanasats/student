@@ -1,9 +1,17 @@
 <div [ngClass]="{'custom-item-draft':(fc||is_draft),'custom-item':!(fc)}">
-    <div class="form-label" [ngClass]="customItemLabelClass">{{label}}</div>
+    <div class="form-label" [ngClass]="customItemLabelClass">{{label}}
+        <span *ngIf="fc.value" class="badge bg-primary d-inline-block ms-1">{{fc.value|thaidate}}</span>
+    </div>
+
         <ng-container *ngIf="fc; else elseTemplate">
-            <input type="date" onkeydown="return false" class="form-control" [formControl]="fc" [ngClass]="validateClass" >
+            <input type="date" onkeydown="return false" class="form-control" 
+            [formControl]="fc" 
+            [ngClass]="validateClass"
+            (change)="onChange.emit($event)"
+            >
         </ng-container>
         <ng-template #elseTemplate>
             <span class="document-sign-date" >{{value}}</span>
         </ng-template>
+
 </div>

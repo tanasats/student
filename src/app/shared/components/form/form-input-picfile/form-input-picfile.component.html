@@ -1,24 +1,26 @@
 <div>
-    <!-- is has [fc] : {{!(fc.value===null)}} -->
-    <div><input #fileInput  hidden type="file" [id]="uniqueid" (change)="fileChangeEventHeader($event)" /></div> 
-    <label class="form-label d-block">{{ title }}</label>
+    <input #fileInput type="file" [id]="uniqueid" (change)="fileChangeEventHeader($event)" hidden/>
     <ng-container *ngIf="!(fc.value==null); else elseTemplate">
-  
-      <img class="img-thumbnail" [src]="fileuri+'picture/'+fc.value">
-      <div class="ps-3">แก้ไขหน้าปก <label class="cursor-pointer text-primary" [for]="uniqueid">คลิกที่นี่</label></div>
-      
-  
-  
+      <div class="py-3"><i class="bi bi-image me-2"></i>
+        เปลี่ยนภาพหน้าปกประชาสัมพนธ์<label class="cursor-pointer text-primary ms-3" [for]="uniqueid">คลิกที่นี่</label></div>
     </ng-container>
     <ng-template #elseTemplate>
       <div class="alert alert-warning">
         <i class="bi bi-image me-2"></i>
-        อัพโหลดภาพหน้าปก 990x500 (jpg,png) <label class="cursor-pointer text-primary"  [for]="uniqueid">คลิกที่นี่</label>
+        อัพโหลดภาพประชาสัมพันธ์ (jpg,png) <label class="cursor-pointer text-primary"  [for]="uniqueid">คลิกที่นี่</label>
       </div>
     </ng-template>
-  
-      <img #newFileInput class="img-thumbnail"  [src]="newFileInputsrc" *ngIf="newFileInputsrc">
-      <button *ngIf="newFileInputsrc" class="d-block btn btn-success" (click)="onUploadImage()">ยืนยันแก้ไข</button>
-  
-  
+
+<ng-container *ngIf="newFileInputsrc; else noNewFileInputsrc">
+  <div class="d-block">
+    <button class="d-inline-block btn btn-success btn-sm me-2" (click)="onUploadImage()">ยืนยันภาพใหม่</button>
+    <button class="d-inline-block btn btn-danger btn-sm" (click)="onCancel()">ยกเลิก</button>            
   </div>
+    <img #newFileInput class="img-thumbnail my-2"  [src]="newFileInputsrc" >    
+</ng-container>
+<ng-template #noNewFileInputsrc>
+  <img class="img-thumbnail" [src]="fileuri+'picture/'+fc.value">
+</ng-template>
+      
+
+</div>

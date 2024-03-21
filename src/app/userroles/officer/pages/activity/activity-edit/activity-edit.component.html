@@ -71,7 +71,6 @@
           </div>
         </div>
   
-  
         <div class="row">
           <div class="col-12">
             <form-input-text [fc]="form.controls['activity_name']" [label]="'ชื่อกิจกรรม'" [is_required]="true"></form-input-text>
@@ -93,6 +92,23 @@
         <div class="row">
           <div class="col">
             <form-input-date
+              [fc]="form.controls['activity_register_from']"
+              [label]="'เปิดรับลงทะเบียน'"
+              (onChange)="register_from_change($event)"
+              >
+            </form-input-date>
+          </div>
+          <div class="col">
+            <form-input-date
+            [fc]="form.controls['activity_register_to']"
+            [label]="'ปิดรับลงทะเบียน'">
+          </form-input-date>
+          </div>
+        </div> 
+
+        <div class="row">
+          <div class="col">
+            <form-input-date
               [fc]="form.controls['activity_date_from']"
               [label]="'วันที่เริ่มกิจกรรม'">
             </form-input-date>
@@ -104,6 +120,7 @@
           </form-input-date>
           </div>
         </div>
+
         <div class="row">
           <div class="col-md-3">
             <form-input-number [fc]="form.controls['activity_hour']" [label]="'จำนวนชั่วโมง'"></form-input-number>
@@ -112,21 +129,6 @@
             <form-input-number [fc]="form.controls['activity_receive']" [label]="'จำนวนที่รับ (คน)'"></form-input-number>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col">
-            <form-input-date
-              [fc]="form.controls['activity_register_from']"
-              [label]="'เปิดรับลงทะเบียน'">
-            </form-input-date>
-          </div>
-          <div class="col">
-            <form-input-date
-            [fc]="form.controls['activity_register_to']"
-            [label]="'ปิดรับลงทะเบียน'">
-          </form-input-date>
-          </div>
-        </div> 
 
         <app-activity-skill-form-input
         [fc]="form.controls['activity_skill']"
@@ -212,6 +214,7 @@
     </div> -->
   </div>
 </section>
+
 
 <!-- <app-offcanvas-test [id]="offcanvas_department"></app-offcanvas-test> -->
 <!-- <offcanvas-department-select [fc]="form.controls['activity_faculty']" [items]="department_ref"></offcanvas-department-select> -->

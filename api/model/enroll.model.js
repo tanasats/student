@@ -1,4 +1,5 @@
 const db = require("../config/db");
+const { v4: uuidv4 } = require('uuid');
 
 class _class { 
 
@@ -58,7 +59,27 @@ class _class {
   }
 
 
-
+  async enrollimport(datas){
+    console.log('datas:',datas);
+    try{
+      const importQuerys = datas.map((item)=>{
+        item.enroll_token = uuidv4();
+        console.log('item:',item);       
+        return db.query('INSERT INTO enroll SET activity_id=?,studentcode=?,studentname=?,enroll_position=?,enroll_token=?',[item.activity_id,item.studentcode,item.studentname,'C',item.enroll_token])
+        //const values = Object.entries(item);
+        //console.log('insert value:',values);
+        //return db.query('INSERT INTO enroll SET ?',values);
+      });
+      await Promise.all(importQuerys);
+      console.log('Data import successfully!');
+      return {success:true,message:'ok'};
+    }catch(error){
+      console.log('Error importing data:',error);
+    }finally{
+      console.log('finally import');
+      //close db connection
+    }
+  }
 
 
 }//class
