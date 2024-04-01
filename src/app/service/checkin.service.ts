@@ -69,4 +69,33 @@ export class CheckinService {
       .pipe(catchError(this.handleError));
   }
 
+  cancelcheckin(activity_id:number,enroll_token:string): Observable<any> {
+    return this.http
+      .delete(this.endpoint + '/' + activity_id + '/' + enroll_token, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  checkinlist(datas:any):Observable<any>{
+    console.log(datas);
+    const shinkdatas = datas.map((item:any)=>{
+      return {'studentcode':item.studentcode,'enroll_token':item.enroll_token}
+    })
+
+    return this.http
+    .put(this.endpoint + '/list', shinkdatas, this.httpOptions)
+    .pipe(catchError(this.handleError));
+  }
+ 
+  cancelcheckinlist(datas:any):Observable<any>{
+    console.log(datas);
+    const shinkdatas = datas.map((item:any)=>{
+      return {'studentcode':item.studentcode,'enroll_token':item.enroll_token}
+    })
+
+    return this.http
+    .put(this.endpoint + '/cancel', shinkdatas, this.httpOptions)
+    .pipe(catchError(this.handleError));
+  }
+
+
 }

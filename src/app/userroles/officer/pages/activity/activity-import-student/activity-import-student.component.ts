@@ -16,6 +16,8 @@ export class ActivityImportStudentComponent implements OnInit{
   public state: any;
   public item: any;
   public students:any[]=[];
+  public importcount:number=0;
+  public progress:number=0.0;
 
   constructor(private regdata:RegdataService,
     private activeroute:ActivatedRoute,
@@ -38,6 +40,8 @@ export class ActivityImportStudentComponent implements OnInit{
     this.regdata.studentinfo(studentcode).subscribe({
       next: ([res])=>{
         console.log("res: ",res);
+        this.importcount+=1;
+        this.progress = (this.importcount/this.students.length)*100;
         const student = this.students.find(student => student.studentcode===studentcode);
         student.studentname = res.STUDENTNAME+" "+res.STUDENTSURNAME;
         student.faculty = res.FACULTYNAME;
@@ -51,6 +55,7 @@ export class ActivityImportStudentComponent implements OnInit{
   }
 
   async  studentVerify (datas:any[]){
+    this.importcount=0;
     datas.forEach(async (item) =>{
        item.selected=false;
        this.studentinfo(item.studentcode);
@@ -90,7 +95,13 @@ public get studentSelected(){
 }
 
 public onImport(){
-  const datas = this.students.filter((item)=> item.selected===true);
+  //const datas = this.students.filter((item)=> item.selected===true);
+  const datas = this.students.map((item)=>{
+    if(item.selected){
+      return {'activity_id':item.activity_id,'studentcode':item.studentcode,'studentname':item.studentname}
+    }
+    return null;
+  })
   console.log('datas:',datas);
   this.enroll.enrollimport(datas).subscribe({
     next: (res) => {
@@ -98,7 +109,7 @@ public onImport(){
         this.router.navigate(['/officer/activity/manage/',this.item.activity_id],{//relativeTo: this.route,
           state: { datas: this.item }, 
         });
-        this.toaster.show("success","นำเข้าข้อมูลแล้ว");
+        this.toaster.show("success","นำเข้าข้อมูลสำเร็จ "+res.affectedRows+" รายการ");
     },
     error: (err) => {
         console.log("error :",err);

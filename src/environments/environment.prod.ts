@@ -2,7 +2,7 @@
 export const environment = {
     production: true,
     environmentName: "production",
-    version:'1.0.1',
+    version:'1.1.0 build 04.01.2024',
     builddate:'2023-08-14T22:03:11Z',
     endpoint: "https://activity.msu.ac.th/api/sas",
     fileuri: "https://activity.msu.ac.th/api/sas/",

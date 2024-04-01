@@ -11,11 +11,16 @@ export class EnrollListItemComponent {
 
   @Input() is_onCheckin:boolean=false;
   @Output() onCheckin = new EventEmitter<any>();
-  
+  @Output() onCancelCheckin = new EventEmitter<any>();
+
   @Input() is_onDelete:boolean=false;
   @Output() onDelete = new EventEmitter<any>();
   
   @Input() is_onGear:boolean=false;
   @Output() onGear = new EventEmitter<any>();
+  @Output() onItemCheckboxChange = new EventEmitter<any>();
 
+  onCheckboxChange(event:any){
+    this.onItemCheckboxChange.emit(true);
+  }
 }

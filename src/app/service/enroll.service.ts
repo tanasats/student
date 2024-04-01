@@ -68,9 +68,9 @@ export class EnrollService {
       .pipe(catchError(this.handleError));
   }
 
-  delete(id: any): Observable<any> {
+  delete(id: any,activity_id:any): Observable<any> {
     return this.http
-      .delete(this.endpoint + '/' + id, this.httpOptions)
+      .delete(this.endpoint + '/' + id +'/'+activity_id, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

@@ -19,6 +19,10 @@ export class EnrollListComponent implements OnChanges {
 
   @Input() is_onCheckin:boolean=false;
   @Output() onCheckin = new EventEmitter<any>();
+  @Output() onCancelCheckin = new EventEmitter<any>();
+
+  @Output() onCheckinList = new EventEmitter<any>();
+  @Output() onCancelCheckinList = new EventEmitter<any>();
   
 
   public itemsFilter: any[] =[];
@@ -29,6 +33,10 @@ export class EnrollListComponent implements OnChanges {
   public _id:any;
 
   public formfilter: FormGroup;
+  public selectcount:number=0;
+
+  public selectMaster:boolean=false;
+  public isHasFilter:boolean=false;
 
   constructor(
     private fb:FormBuilder
@@ -49,6 +57,8 @@ export class EnrollListComponent implements OnChanges {
       this.items.forEach((item)=>{ item.selected=false;  });
       this.registeredcount = this.items.reduce((count,item)=>{ return item.activity_checkin==1?count+1:count;},0);
       console.log(this.registeredcount);
+      this.formfilter.reset();
+      this.isHasFilter=false;
     }
   }
 
@@ -77,29 +87,78 @@ export class EnrollListComponent implements OnChanges {
   }
 
 
-  public selectAllItems(event:any){
+  public selectAllPage(event:any){
     if(event.currentTarget.checked===true){
-      console.log('select all');
-      this.itemsFilter.forEach((item)=>{ item.selected=true; })
+      
+      this.itemsFilter.forEach((item)=>{ item.selected=false; })
+      this.selectcount=0;
+      this.itemsFilter.reduce((acc,curr)=>{
+        acc+=1;
+        if(acc>(this.page_number*this.page_limit) && acc<=(this.page_number*this.page_limit)+this.page_limit){
+          curr.selected=true;
+          this.selectcount+=1;
+        }
+        return acc;
+      },0)
+      console.log('select page has '+this.selectcount+' rows');
     }else{
       this.itemsFilter.forEach((item)=>{ item.selected=false; })
+      this.selectcount=0;
     }
   }
+
+  public selectAllItems(){
+      this.itemsFilter.forEach((item)=>{ item.selected=true; });
+      this.selectcount=this.itemsFilter.length;
+  }  
 
   onFilter(){
     let keyword=this.formfilter.value;
     this.itemsFilter = this.items.filter((item)=>{
-      return (item.activity_checkin===(keyword.activity_checkin?1:-1) || keyword.activity_checkin===null) 
+      return (item.activity_checkin!==(keyword.activity_checkin?1:-1) || keyword.activity_checkin===null) 
               && (item.studentcode.startsWith(keyword.studentcode) || keyword.studentcode===null)
               && (item.studentname.includes(keyword.studentname) || keyword.studentname===null)
     })
     console.log(this.itemsFilter);
+    this.isHasFilter=true;
   }
 
   clearfilter(){
     this.itemsFilter=this.items;
     this.formfilter.reset();
+    this.isHasFilter=false;
   }
 
+  onClickCheckinList(){
+    //console.log("onClickCheckinGroup()");
+    let itemlist = this.itemsFilter.filter((item)=>{ return item.selected===true})
+    //console.log("select: ",itemlist);
+    this.onCheckinList.emit(itemlist);
+    this.selectcount=0;
+    this.selectMaster=false;
+  }
+  onClickCancelCheckinList(){
+    //console.log("onClickCheckinGroup()");
+    let itemlist = this.itemsFilter.filter((item)=>{ return item.selected===true})
+    //console.log("select: ",itemlist);
+    this.onCancelCheckinList.emit(itemlist);
+    this.selectcount=0;
+    this.selectMaster=false;    
+  }
+
+  onClickDeleteList(){
+    console.log("onClickDeleteList()")
+  }
+
+  onItemCheckboxChange(event:boolean){
+    if(event){
+      const rowscount = this.itemsFilter.reduce((acc,cur)=>{
+        if(cur.selected) acc++;
+        return acc;
+      },0)
+      this.selectcount=rowscount;
+      console.log("has select "+rowscount + " rows")
+    }
+  }
 
 }

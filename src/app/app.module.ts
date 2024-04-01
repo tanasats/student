@@ -27,6 +27,7 @@ import { OfficerModule } from './userroles/officer/officer.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { CookieConcentComponent } from './core/component/cookie-concent/cookie-concent.component';
 import { GuestModule } from './userroles/guest/guest.module';
+import { ActivityComponent } from './pages/activity/activity.component';
 
 
 
@@ -41,6 +42,7 @@ import { GuestModule } from './userroles/guest/guest.module';
     ToasterContainerComponent,
     HomeComponent,
     CookieConcentComponent,
+    ActivityComponent,
   ],
   imports: [
     BrowserModule,

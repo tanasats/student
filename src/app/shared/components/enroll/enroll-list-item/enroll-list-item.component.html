@@ -66,12 +66,13 @@
 </div> -->
 
 <div class="row g-0 align-items-start border-bottom hover p-2">
-  <div style="width:50px">
-    <input class="form-check-input me-2" type="checkbox" [(ngModel)]="item.selected" />{{index}}.
+  <div style="width:65px">
+    <input class="form-check-input me-2" type="checkbox" [(ngModel)]="item.selected" (change)="onCheckboxChange($event)"/>{{index}}.
   </div>
-  <div style="width:120px">
+  <div style="width:125px">
     {{ item.studentcode }}
     <span *ngIf="item.activity_checkin" class="d-inline text-gold"><i class="bi bi-trophy"></i></span>
+    <!-- <div class="d-block small fst-italic">{{item.cdate|thaidate:'short'}}</div> -->
   </div>
   <div class="col text-truncate">
     {{ item.studentname }}
@@ -82,14 +83,23 @@
   <div style="width:80px;text-align:center;">
 
     <div class="d-flex justify-content-end">
-
+      
       <button
-        *ngIf="is_onCheckin"
+        *ngIf="is_onCheckin && !item.activity_checkin"
         class="btn btn-icon"
-        matTooltip="อนุม้ติ"
+        matTooltip="บันทึกเข้าร่วม"
         (click)="this.onCheckin.emit(item)"
       >
         <span class="text-nowrap"><i class="bi bi-clipboard2-check"></i></span>
+      </button>
+
+      <button
+        *ngIf="is_onCheckin && item.activity_checkin"
+        class="btn btn-icon"
+        matTooltip="ยกเลิกบันทึกเข้าร่วม"
+        (click)="this.onCancelCheckin.emit(item)"
+      >
+        <span class="text-nowrap"><i class="bi bi-clipboard2-x text-danger"></i></span>
       </button>
 
       <button

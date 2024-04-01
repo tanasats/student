@@ -1,0 +1,124 @@
+<section>
+    <div class="container mb-5">
+        <div class="row mb-3">
+            <div class="col">
+              <h5 class="card-title"><i class="bi bi-journal-bookmark-fill me-2"></i>{{ item.activity_name }}</h5>  
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-7 col-12">
+                <div class="card">
+                    <img class="img-fluid" src={{poster}} />
+                </div>
+            </div>
+
+            <div class="col-lg-5 col-12">
+                <span class="text-primary fst-italic">รายละเอียด</span>
+                <div class="card-text mt-1 mb-3">
+                    {{ item.activity_description }}
+                  </div>   
+
+                  <div class="text-mute fst-italic">
+                    <i class="bi bi-calendar4-event me-1 text-primary"></i
+                    >วันที่จัดกิจกรรม 
+                    {{ item.activity_date_from | thaidate:'short' }} ถึง {{ item.activity_date_to | thaidate:'short' }}
+                  </div>
+
+                  <div class="text-mute fst-italic">
+                    <i class="bi bi-geo-alt me-1 text-primary"></i> 
+                    {{ item.activity_place||'-'}}
+                  </div>     
+
+                  <div class=" fst-italic"><i class="bi bi-trophy-fill text-gold me-1"></i>ชั่วโมงกิจกรรม
+                    {{item.activity_hour}}
+                    <span *ngIf="item.activity_hour_loan>0" class="badge bg-purple ms-1">กยศ.<i class="bi bi-plus"></i>{{item.activity_hour_loan}}</span>
+                  </div>
+
+                  <!-- <div class="text-mute fst-italic">
+                    <i class="bi bi-award text-primary"></i>โดย {{item.faculty_name}}
+                  </div> -->
+            
+                  <div class="fst-italic">
+                    <!-- <ng-container *ngIf="item.activity_register_to | isExpiredDate; else openregister">
+                      <div class="badge bg-danger">ปิดรับสมัคร</div>
+                    </ng-container>
+                    <ng-template #openregister>
+                      <i class="bi bi-ticket-perforated me-1 text-primary me-1"></i>รับสมัคร
+                      {{ item.activity_register_from | thaidate : "short" }} ถึง
+                      {{ item.activity_register_to | thaidate : "short" }}
+                    </ng-template> -->
+            
+                      <i class="bi bi-ticket-perforated me-1 text-primary me-1"></i>รับสมัคร
+                      {{ item.activity_register_from | thaidate : "short" }} ถึง
+                      {{ item.activity_register_to | thaidate : "short" }}
+            
+            
+                    <!-- <ng-container *ngIf="item.activity_status=='w'">
+                      <ng-container  *ngIf="!(item.activity_register<item.activity_receive); else ifRegisterNotFull">
+                          <span class="badge bg-danger">เต็ม</span>
+                      </ng-container>
+                      <ng-template #ifRegisterNotFull>
+                          <span *ngIf="isBetween==-1" class="badge bg-warning">ยังไม่เปิดรับ</span>          
+                          <span *ngIf="isBetween==0" class="badge bg-success">เปิดรับ</span>
+                          <span *ngIf="isBetween==1" class="badge bg-danger">หมดเวลารับ</span>
+                      </ng-template>
+                   </ng-container> -->
+            
+            
+            
+                  </div>
+            
+                  <div class="fst-italic">
+                      <i class="bi bi-people text-primary me-1"></i>จำนวนที่รับ {{ item.activity_receive }} ลงทะเบียนแล้ว {{
+                        item.activity_register
+                      }}
+                  </div>
+            
+            
+                  <div *ngIf="item.activity_faculty.length===1;else morefac" class="fst-italic">
+                    <div class="" *ngFor="let fac of item.activity_faculty">
+                      <i class="bi bi-bookmark-star me-1 text-danger me-1"></i><span class="text-danger me-1">รับเฉพาะ</span>{{fac.faculty_name}}
+                    </div>       
+                  </div>
+                  <ng-template #morefac >
+                    <i class="bi bi-bookmark-star me-1 text-primary"></i>
+                    <div class="d-inline-block" *ngFor="let fac of item.activity_faculty">
+                        <span class="m-1 badge round-pill bg-white text-primary">{{fac.faculty_name}}</span>
+                    </div>   
+                  </ng-template>
+
+
+                  <div class="d-flex justify-content-between mt-3 align-items-center">
+ 
+                    <ng-container *ngIf="isBetween==0">
+                      <button class="btn btn-sm btn-success" (click)="onSubmit()" >
+                        สมัครเข้าร่วม
+                      </button>
+                    </ng-container>
+
+                    <ng-container *ngIf="isBetween==-1">
+                      <div class="badge bg-warning">จะเปิดรับสมัคร ในวันที่ {{item.activity_register_from|thaidate:'short'}}</div>
+                    </ng-container>
+
+                    <ng-container *ngIf="isBetween==1">
+                      <div class="badge bg-danger">ปิดรับสมัคร</div>
+                    </ng-container>
+
+
+
+                    <div class="text-mute fst-italic">
+                      <button class="btn btn-sm btn-secondary" (click)="onCancel()" >
+                        ย้อนกลับ
+                      </button>
+                    </div>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+

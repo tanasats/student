@@ -15,6 +15,7 @@ class _class {
     "activity_date_from",
     "activity_date_to",
     "activity_hour",
+    "activity_hour_loan",
     "activity_place",
     "activity_receive",
     "activity_register",
@@ -43,7 +44,7 @@ class _class {
   ];
 
   activity() {
-    let sql = db.format("SELECT "+this.activity_field_guest.join()+" FROM activity where activity_publish=1");
+    let sql = db.format("SELECT "+this.activity_field_guest.join()+" FROM activity where activity_publish=1 ORDER BY activity_date_from desc");
     console.log(sql)
     return db.execute(sql);
   }

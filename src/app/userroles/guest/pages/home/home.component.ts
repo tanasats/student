@@ -32,7 +32,10 @@ ngOnInit(): void {
 
   this.guestService.activity().subscribe({
     next: (res) =>{
-      console.log(res);
+      console.log(res); 
+      res.sort((a:any, b:any) => {  
+        return (a.activity_date_from > b.activity_date_from)
+      })
       this.items=res;
     },
     error: (err) =>{

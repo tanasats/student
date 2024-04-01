@@ -28,9 +28,12 @@ exports.getById = (req, res) => {
 exports.delete = (req, res) => {
   if (req.params.id) {
     enrollModel
-      .delete({ id: req.params.id })
+      .delete({ id: req.params.id})
       .then(([row]) => {
+        //console.log(row);
+        enrollModel.decRegister({activity_id:req.params.activity_id,val:1}); // decresing registered number
         res.status(200).json(row);
+        
       })
       .catch((error) => {
         console.log(error);
@@ -74,11 +77,13 @@ exports.update = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   const datas = req.body;
+  datas.cowner = req.user_id;
   datas.cdate = new Date();
   datas.mdate = new Date();
   datas.enroll_token = uuidv4();
+  
 
   // await activityModel.isregisterfull(datas.activity_id).then( ([row]) =>{
   //   console.log("isregisterfull:",row[0]);
@@ -93,8 +98,8 @@ exports.create = async (req, res) => {
         console.log("create()->result:", row);
         if(row.affectedRows==1){
           console.log("add register counter");
-          activityModel.updateregostercounter({activity_id:datas.activity_id})
-            .then(([row]) => {
+          enrollModel.incRegister({activity_id:datas.activity_id,val:1})
+          .then(([row]) => {
                console.log("update register counter:",row); 
             })
         }
@@ -182,7 +187,7 @@ exports.enrollimport = async (req,res) => {
   const students = req.body;
   enrollModel.enrollimport(students)
   .then((row) =>{
-    console.log('Data imported success.',row);
+    console.log('Data List imported success.',row);
     res.status(200).send(row)
   })
   .catch((error) =>{

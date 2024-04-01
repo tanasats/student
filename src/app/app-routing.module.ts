@@ -11,14 +11,20 @@ import { UserProfileComponent } from './theme/pages/user-profile/user-profile.co
 import { TestUploadComponent } from './theme/pages/test-upload/test-upload.component';
 import { TestQrcodeComponent } from './theme/pages/test-qrcode/test-qrcode.component';
 import { AuthGuard } from './service/auth.guard';
+import { ActivityComponent } from './pages/activity/activity.component';
 
 
 const routes: Routes = [
+
   {path:'',redirectTo:'guest',pathMatch:'full'},   
   //{path:'home',component:HomeComponent,data: { breadcrumb: '' }},
-
+  
+  {path:'activity',component:ActivityComponent},
+  
+  
+  
   {path:'login',component:LoginComponent,data: { breadcrumb: '' }},
-  {path:'activity/:id',component:ActivityDetailComponent,data: { breadcrumb: 'รายละเอียดกิจกรรม' }},
+  //{path:'activity/:id',component:ActivityDetailComponent,pathMatch:'full',data: { breadcrumb: 'รายละเอียดกิจกรรม' }},
   {path:'guest',
     loadChildren: () => import('./userroles/guest/guest-routing.module').then(m=> m.GuestRoutingModule),data:{title:'ผู้ใช้ทั่วไป'}
   },
@@ -41,6 +47,10 @@ const routes: Routes = [
   {path:'page-not-found',component:PageNotFoundComponent,data: { breadcrumb: 'page not found !!' }},
   {path:'user-profile',component:UserProfileComponent},
   {path:'**',redirectTo:'/page-not-found'}
+
+
+
+
 ];
  
 @NgModule({

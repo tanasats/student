@@ -8,7 +8,7 @@
 export const environment = {
     production: false,
     environmentName: "development",
-    version:'Developer', 
+    version:'Developer version', 
     endpoint: "http://localhost:3000/api", // common setting
     fileuri:"http://localhost:3000/api/",
     //endpoint: "https://activity.msu.ac.th/api/sas",

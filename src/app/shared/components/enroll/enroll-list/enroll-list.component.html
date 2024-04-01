@@ -1,104 +1,163 @@
 <ng-container *ngIf="items; else showLoading">
+  <div class="d-flex flex-column mb-3">
+    <div class="d-inline-block">
+      <i class="bi bi-people text-primary me-2"></i> ลงทะเบียนทั้งหมด
+      <span class="badge bg-primary mx-3 strong">{{ items.length }}</span>คน
+    </div>
+    <div class="d-inline-block">
+      <i class="bi bi-person-check text-primary me-2"></i> จำนวนที่เข้าร่วม<span
+        class="badge bg-warning mx-3 strong"
+        >{{ registeredcount }}</span>คน
+      <span class="text-black-50 small me-2"
+        >({{ (registeredcount / items.length) * 100 | number : "1.2" }}%)</span>
+    </div>
+  </div>
 
-    <div class="d-flex flex-column mb-3">
-        <div class="d-inline-block"><i class="bi bi-people text-primary me-2"></i>
-            ลงทะเบียนทั้งหมด <span class="badge bg-primary mx-3 strong">{{items.length}}</span>คน
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <!-- <div class="card-title"><i class="bi bi-funnel me-2"></i>กรองข้อมูล(Filter data)</div> -->
+          <!-- <h6 class="card-subtitle mb-2 text-muted small">Card subtitle</h6> -->
+          <form [formGroup]="formfilter" class="mb-0">
+            <div class="row form-group">
+              <div class="col-md-6">
+                <label
+                  [attr.for]="'inputFilterStudentcode' + _id"
+                  class="form-label">รหัสนิสิต</label>
+                <input
+                  formControlName="studentcode"
+                  type="text"
+                  class="form-control"
+                  [id]="'inputFilterStudentcode' + _id"/>
+              </div>
+              <div class="col-md-6">
+                <label
+                  [attr.for]="'inputFilterStudentname' + _id"
+                  class="form-label">ชื่อ-สกุล</label>
+                <input
+                  formControlName="studentname"
+                  type="text"
+                  class="form-control"
+                  [id]="'inputFilterStudentname' + _id"
+                />
+              </div>
+            </div>
+
+            <div class="row my-2">
+              <div class="col form-group">
+                <div class="form-check form-switch">
+                  <input formControlName="activity_checkin" class="form-check-input" type="checkbox" [id]="'checkinStatus' + _id"/>
+                  <label class="form-check-label" [attr.for]="'checkinStatus' + _id">แสดงเฉพาะคนที่ยังไม่บันทึกเข้าร่วม</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button class="btn btn-success btn-sm" [ngClass]="{'disabled':!formfilter.dirty}" (click)="onFilter()">
+                <i class="bi bi-funnel me-2"></i>กรองข้อมูล
+              </button>
+              <button *ngIf="formfilter.dirty" class="btn btn-secondary btn-sm" (click)="clearfilter()">
+                <i class="bi bi-x me-1"></i>ล้างตัวกรอง
+              </button>
+              <!-- <div class="d-inline-block ">
+                <span class="badge bg-info">{{formfilter.controls['studentcode'].value}}</span>
+              </div> -->
+            </div>
+            <div *ngIf="isHasFilter" class="col-12">
+              <span class="small fst-italic">กรองข้อมูลแล้วพบ {{itemsFilter.length}} รายการ</span>
+            </div>
+          </form>
         </div>
-        <div class="d-inline-block"><i class="bi bi-person-check text-primary me-2"></i>
-            จำนวนที่เข้าร่วม<span class="badge bg-warning mx-3 strong">{{registeredcount}}</span>คน 
-            <span class="text-black-50 small me-2">({{registeredcount/items.length*100| number : '1.2'}}%)</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectcount>1" class="row">
+    <div class="col-12">
+        <div class="alert alert-info d-flex justify-content-between align-items-center">
+            <div>
+            เลือกแล้ว {{selectcount}} รายการจาก {{itemsFilter.length }} รายการ,<span class="small fst-italic"> หากต้องการเลือกทั้งหมด <span class="text-primary pointer" (click)="selectAllItems()">คลิกที่นี่</span></span>
+            </div>
+            <div class="">
+            <!-- <button class="btn btn-success btn-sm" (click)="onClickCheckinGroup()"><i class="bi bi-clipboard2-check me-2"></i>บันทึกการเข้าร่วม</button> -->
+            <div class="more-option">
+              <!-- <i class="bi bi-three-dots-vertical cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false"></i> -->
+           <button class="btn btn-success btn-sm text-white" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-gear me-1"></i>ดำเนินการ</button>
+              <ul class="dropdown-menu">
+                  <!-- <li><a class="dropdown-item" ><i class="bi bi-eye me-2"></i>แสดงรายละเอียด</a></li>
+                  <li><a class="dropdown-item" ><i class="bi bi-paperclip me-2"></i>QR Code</a></li>
+                  <li><a class="dropdown-item"  ><i class="bi bi-qr-code me-2"></i>แสดง QR Code</a></li> 
+                  <li><a class="dropdown-item" ><i class="bi bi-geo-alt me-2"></i> อื่น ๆ </a></li>
+                  <li><hr class="dropdown-divider"></li> -->
+                  <li><a class="dropdown-item" (click)="onClickCheckinList()"><i class="bi bi-clipboard2-check me-2 text-success"></i> บันทึกเข้าร่วมกิจกรรม</a></li>
+                  <li><a class="dropdown-item" (click)="onClickCancelCheckinList()"><i class="bi bi-clipboard2-x me-2 text-danger"></i> ยกเลิกบันทึกเข้าร่วมกิจกรรม</a></li>
+                  <li><a class="dropdown-item" (click)="onClickDeleteList()" ><i class="bi bi-trash me-2 text-danger"></i> ลบรายการ</a></li>
+                  <!-- <li><a class="dropdown-item" ><i class="bi bi-x-lg me-2"></i> ยกเลิกการลงทะเบียน</a></li> -->
+              </ul>
+          </div>
+            </div>
+            
+            
         </div>
     </div>
+  </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                      <!-- <div class="card-title"><i class="bi bi-funnel me-2"></i>กรองข้อมูล(Filter data)</div> -->
-                      <!-- <h6 class="card-subtitle mb-2 text-muted small">Card subtitle</h6> -->
-                            <form [formGroup]="formfilter" class="mb-0">
-                            <div class="row form-group">
-                                <div class="col-md-6">
-                                    <label [attr.for]="'inputFilterStudentcode'+_id" class="form-label">รหัสนิสิต</label>
-                                    <input formControlName="studentcode" type="text" class="form-control" [id]="'inputFilterStudentcode'+_id" >
-                                  </div>
-                                  <div class="col-md-6">
-                                    <label [attr.for]="'inputFilterStudentname'+_id" class="form-label">ชื่อ-สกุล</label>
-                                    <input formControlName="studentname" type="text" class="form-control" [id]="'inputFilterStudentname'+_id">
-                                  </div>   
-                            </div>
-
-                            <div class="row my-2">
-                                <div class="col form-group">
-                                    <div class="form-check form-switch">
-                                        <input formControlName="activity_checkin" class="form-check-input" type="checkbox" [id]="'checkinStatus'+_id">
-                                        <label class="form-check-label" [attr.for]="'checkinStatus'+_id">แสดงเฉพาะยังไม่เข้าร่วม</label>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <div class="col-12">
-                                <button  class="btn btn-success btn-sm" (click)="onFilter()"><i class="bi bi-funnel me-2"></i>กรองข้อมูล</button>
-                                <button  class="btn btn-secondary btn-sm" (click)="clearfilter()"><i class="bi bi-x me-1"></i>ล้างตัวกรอง</button>
-                            </div> 
-                        </form>
-                    </div>
-                    
-
-                  </div>
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-        <div class="row g-0 p-2 align-items-start text-primary border-bottom">
-            <div class="d-block" style="width:50px">
-                <input class="form-check-input me-2" type="checkbox" value="" (change)="selectAllItems($event);"/>
-            </div>
-            <div style="width:110px">
-                รหัสนิสิต
-            </div>
-            <div class="col">
-              ชื่อ-สกุล
-            </div>
-            <div class="col d-none d-lg-inline">
-              คณะ
-            </div>
-            <div style="width:80px;text-align:right;">
-              #
-            </div>
-        </div>
-    <ng-container *ngFor="let item of itemsFilter | pagination:page_number:page_limit;let i=index">
-
-        <enroll-list-item
-         [item]="item"
-         [index]="i+1"
-         [is_onCheckin]="is_onCheckin"
-         (onCheckin)="onCheckin.emit($event)"
-         [is_onDelete]="is_onDelete"
-         (onDelete)="onDelete.emit($event)"
-        ></enroll-list-item>
-
-    </ng-container> 
-
-    <div class="pt-3 d-flex justify-content-between">
-        <div class=" pagination-description">แสดงรายการ {{ first_index }} - {{ last_index }} จาก {{ itemsFilter.length }}</div>
-        <div>
-            <a class="btn btn-primary btn-sm pagination-icon-prev" [ngClass]="{'d-none': isPrevDisabled}"
-                (click)="(!isPrevDisabled)?(page_number=page_number-1):''" matTooltip="หน้าก่อนหนัา"><em
-                    class="bi bi-chevron-left"></em></a>
-            หน้าที่ {{page_number+1}}/{{page_total}}
-            <a class="btn btn-primary btn-sm pagination-icon-next" [ngClass]="{'d-none': isNextDisabled}"
-                (click)="(!isNextDisabled)?(page_number = page_number + 1):''" matTooltip="หน้าถัดไป"><em
-                    class="bi bi-chevron-right"></em></a>
-        </div>
+  <div class="row g-0 p-2 align-items-start text-primary border-bottom">
+    <div class="d-block" style="width: 50px">
+      <input
+        class="form-check-input me-2"
+        type="checkbox"
+        [(ngModel)]="selectMaster"
+        (change)="selectAllPage($event)"
+      />
     </div>
+    <div style="width: 110px">รหัสนิสิต</div>
+    <div class="col">ชื่อ-สกุล</div>
+    <div class="col d-none d-lg-inline">คณะ</div>
+    <div style="width: 80px; text-align: right">#</div>
+  </div>
+  <ng-container
+    *ngFor="
+      let item of itemsFilter | pagination : page_number : page_limit;
+      let i = index
+    "
+  >
+    <enroll-list-item
+      [item]="item"
+      [index]="page_number * page_limit + i + 1"
+      [is_onCheckin]="is_onCheckin"
+      (onCheckin)="onCheckin.emit($event)"
+      (onCancelCheckin)="onCancelCheckin.emit($event)"
+      [is_onDelete]="is_onDelete"
+      (onDelete)="onDelete.emit($event)"
+      (onItemCheckboxChange)="onItemCheckboxChange($event)"
+    ></enroll-list-item>
+  </ng-container>
 
+  <div class="pt-3 d-flex justify-content-between">
+    <div class="pagination-description">
+      แสดงรายการ {{ first_index }} - {{ last_index }} จาก
+      {{ itemsFilter.length }}
+    </div>
+    <div>
+      <a
+        class="btn btn-primary btn-sm pagination-icon-prev"
+        [ngClass]="{ 'd-none': isPrevDisabled }"
+        (click)="!isPrevDisabled ? (page_number = page_number - 1) : ''"
+        matTooltip="หน้าก่อนหนัา"
+        ><em class="bi bi-chevron-left"></em
+      ></a>
+      หน้าที่ {{ page_number + 1 }}/{{ page_total }}
+      <a
+        class="btn btn-primary btn-sm pagination-icon-next"
+        [ngClass]="{ 'd-none': isNextDisabled }"
+        (click)="!isNextDisabled ? (page_number = page_number + 1) : ''"
+        matTooltip="หน้าถัดไป"
+        ><em class="bi bi-chevron-right"></em
+      ></a>
+    </div>
+  </div>
 </ng-container>
 
 <ng-template #showLoading> Loading..... </ng-template>

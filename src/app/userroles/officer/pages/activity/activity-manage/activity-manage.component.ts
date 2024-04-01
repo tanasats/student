@@ -80,17 +80,20 @@ export class ActivityManageComponent {
     this.enrollservice.registrant(datas).subscribe({
       next:(res)=>{
         this.registrant=res.map((item:any)=>{
-          const found = APPCONST.ENROLL_POSITION.find(obj=>{return obj.id==item.enroll_position})
-          if(found) { item.enroll_position_name=found.name}
-          else { item.enroll_position_name="*"}
-          return item;
-        });
+            const found = APPCONST.ENROLL_POSITION.find(obj=>{return obj.id==item.enroll_position})
+            if(found) { item.enroll_position_name=found.name}
+            else { item.enroll_position_name="*"}
+            return item;
+          });
         console.log("Registant: ",this.registrant);
         this.registrant_AB = this.registrant.filter((item:any)=>{return item.enroll_position=='A'||item.enroll_position=='B'});
         this.registrant_C = this.registrant.filter((item:any)=>{return item.enroll_position=='C'});
         console.log("Registant_AB: ",this.registrant_AB);
         console.log("Registant_C: ",this.registrant_C);
-        
+        // Sort ------
+        this.registrant_C.sort((a:any, b:any) => {  
+            return (a.cdate < b.cdate?1:-1)
+        })
       },
       error:(err)=>{
         console.log("enroll.registrant err:",err);
@@ -171,7 +174,7 @@ export class ActivityManageComponent {
           icon: 'bi-trash',
           title: 'ต้องการลบรายการนี้ ใช่ หรือ ไม่',
           yes: 'ใช่',
-          no: 'ยกเลิก',
+          no: 'ไม่ใช่',
           description: 'รหัสนิสิต: <span class="text-primary">'+item.studentcode+'</span> <br>ชื่อ: <span class="text-primary">'+item.studentname+'</span>',
         },
       })
@@ -179,7 +182,7 @@ export class ActivityManageComponent {
       .subscribe((data) => {
         if (data) {
           console.log(item);
-          this.enrollservice.delete(item.enroll_id).subscribe({
+          this.enrollservice.delete(item.enroll_id,item.activity_id).subscribe({
             next: (res) => {
               console.log(res);
               if (res.affectedRows === 1) {
@@ -280,18 +283,16 @@ export class ActivityManageComponent {
     })
   }
 
-
-
   onCheckin(item:any){
     console.log('onCheckin()');
     this.dialog
       .open(DialogInfoConfirmComponent, {
         data: {
-          icon: 'bi-cardboard2-check',
-          title: 'ต้องการบันทึกการเข้าร่วมกิจกรรม',
+          icon: 'bi-clipboard2-check',
+          title: 'บันทึกการเข้าร่วมกิจกรรม',
           yes: 'ใช่',
-          no: 'ยกเลิก',
-          description: 'อนุมัติการเข้าร่วมกิจกรรม ของ'+item.studentname,
+          no: 'ไม่ใช่',
+          description: 'บันทึกการเข้าร่วมกิจกรรม '+item.studentcode+' '+item.studentname,
         },
       })
       .afterClosed()
@@ -306,22 +307,102 @@ export class ActivityManageComponent {
             },
             error: (err) => {
               console.log(err);
-              this.toaster.show("error","QR Code ของนิสิตไม่ถูกต้อง");
+              this.toaster.show("error","! เกิดข้อผิดพลาดในการดำเนินการ");
+            }
+          })
+        }
+      });
+  }
+
+  onCancelCheckin(item:any){
+    console.log('onCancelCheckin()');
+    this.dialog
+      .open(DialogWarningConfirmComponent, {
+        data: {
+          icon: 'bi-clipboard2-x',
+          title: 'ยกเลิกการเข้าร่วมกิจกรรม',
+          yes: 'ใช่',
+          no: 'ไม่ใช่',
+          description: 'ยกเลิกบันทึกการเข้าร่วมกิจกรรม '+item.studentcode+' '+item.studentname,
+        },
+      })
+      .afterClosed()
+      .subscribe((data) => {  
+        if (data) {
+          console.log(item);
+          this.checkinservice.cancelcheckin(item.activity_id,item.enroll_token).subscribe({
+            next: ([row]) => {
+              this.toaster.show("success",row.studentcode+" ถูกยกเลิกบันทึกการเข้าร่วมกิจกรรมแล้ว")
+              this.load_enroll(this.id);
+            },
+            error: (err) => {
+              console.log(err);
+              this.toaster.show("error","! เกิดข้อผิดพลาดในการดำเนินการ");
+            }
+          })
+        }
+      });
+  }  
+
+  onCheckinList(items:any){
+    console.log('onCheckinList() :',items);
+    this.dialog
+      .open(DialogInfoConfirmComponent, {
+        data: {
+          icon: 'bi-clipboard2-check',
+          title: 'บันทึกการเข้าร่วมกิจกรรม',
+          yes: 'ใช่',
+          no: 'ไม่ใช่',
+          description: 'บันทึกการเข้าร่วมกิจกรรมที่เลือก ทั้งหมด '+items.length+' รายการ',
+        },
+      })
+      .afterClosed()
+      .subscribe((dialogresponse) => {  
+        if (dialogresponse) {
+          console.log(items);
+          this.checkinservice.checkinlist(items).subscribe({
+            next: ([row]) => {
+              console.log('checkin for :'+row)
+              this.toaster.show("success","บันทึกการเข้าร่วมแล้ว "+row.affectedRows+" รายการ")
+              this.load_enroll(this.id);
+            },
+            error: (err) => {
+              console.log(err);
+              this.toaster.show("error","เกิดข้อผิดพลาดในการบันทึก");
             }
           })
 
-          // this.enrollservice.update(item.enroll_id).subscribe({
-          //   next: (res) => {
-          //     console.log(res);
-          //     if (res.affectedRows === 1) {
-          //       this.toaster.show('success', 'บันทึกการเข้าร่วมกิจกรรมแล้ว');
-				  //       this.load_enroll(this.id);
-          //     }
-          //   },
-          //   error: (err) => {
-          //     this.toaster.show('error', 'ผิดพลาด: ' + err);
-          //   },
-          // });
+        }
+      });
+  }
+
+  onCancelCheckinList(items:any){
+    console.log('onCancelCheckinList() :',items);
+    this.dialog
+      .open(DialogWarningConfirmComponent, {
+        data: {
+          icon: 'bi-clipboard2-x',
+          title: 'ยกเลิกบันทึกการเข้าร่วมกิจกรรม',
+          yes: 'ใช่',
+          no: 'ไม่ใช่',
+          description: 'ยกเลิกการเข้าร่วมกิจกรรมที่เลือก ทั้งหมด '+items.length+' รายการ',
+        },
+      })
+      .afterClosed()
+      .subscribe((dialogresponse) => {  
+        if (dialogresponse) {
+          console.log(items);
+          this.checkinservice.cancelcheckinlist(items).subscribe({
+            next: ([row]) => {
+              console.log('checkin for :'+row)
+              this.toaster.show("success","ยกเลิกการเข้าร่วมแล้ว "+row.affectedRows+" รายการ")
+              this.load_enroll(this.id);
+            },
+            error: (err) => {
+              console.log(err);
+              this.toaster.show("error","เกิดข้อผิดพลาดในการบันทึก");
+            }
+          })
 
         }
       });

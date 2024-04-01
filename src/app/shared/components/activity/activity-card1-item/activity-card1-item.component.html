@@ -1,5 +1,6 @@
 <div class="col">
   <div class="card">
+    <a href="#/activity?id={{item.activity_id}}">
     <img
       class="img-fluid"
       [src]="
@@ -7,21 +8,35 @@
         '../assets/images/image_not_available.png'
       "
     />
+    </a>
 
     <div class="card-body">
-      <h5 class="card-title">{{ item.activity_name }}</h5>
+      
+      <h5 class="card-title"><a href="#/activity?id={{item.activity_id}}">{{ item.activity_name }}</a></h5>
+      
       <div class="small text-mute fst-italic">
         <i class="bi bi-calendar4-event me-1 text-primary"></i
-        >{{ item.activity_date_from | thaidate }}
+        >วันที่จัดกิจกรรม 
+        {{ item.activity_date_from | thaidate:'short' }}
       </div>
-      <div class="card-text">
-        {{ item.activity_description }}
+
+      <div class="small text-mute fst-italic">
+        <i class="bi bi-geo-alt me-1 text-primary"></i> 
+        {{ item.activity_place||'-'}}
+      </div>      
+
+      <div class="small fst-italic"><i class="bi bi-trophy-fill text-gold me-1"></i>ชั่วโมงกิจกรรม
+      {{item.activity_hour}}
+      <span *ngIf="item.activity_hour_loan>0" class="badge bg-purple ms-1">กยศ.<i class="bi bi-plus"></i>{{item.activity_hour_loan}}</span>
       </div>
+      <!-- <div class="card-text my-2">
+        {{ item.activity_description |truncate:100 }}
+      </div> -->
       <!-- <div class="small text-mute fst-italic">
         <i class="bi bi-award text-primary"></i>โดย {{item.faculty_name}}
       </div> -->
 
-      <div class="small my-2 fst-italic">
+      <div class="small fst-italic">
         <!-- <ng-container *ngIf="item.activity_register_to | isExpiredDate; else openregister">
           <div class="badge bg-danger">ปิดรับสมัคร</div>
         </ng-container>
@@ -38,37 +53,41 @@
 
 
 
-        <!-- <ng-container *ngIf="item.activity_status=='w'">
-          <ng-container  *ngIf="!(item.activity_register<item.activity_receive); else ifRegisterNotFull">
-              <span class="badge bg-danger">เต็ม</span>
-          </ng-container>
-          <ng-template #ifRegisterNotFull>
-              <span *ngIf="isBetween==-1" class="badge bg-warning">ยังไม่เปิดรับ</span>          
-              <span *ngIf="isBetween==0" class="badge bg-success">เปิดรับ</span>
-              <span *ngIf="isBetween==1" class="badge bg-danger">หมดเวลารับ</span>
-          </ng-template>
-       </ng-container> -->
-
 
 
       </div>
 
+      <div class="small fst-italic">
+          <i class="bi bi-people me-1"></i>จำนวนที่รับ {{ item.activity_receive }} ลงทะเบียนแล้ว {{
+            item.activity_register
+          }}
+      </div>
+
+      
+      <div *ngIf="item.activity_faculty;else noFacultyDefine;">
+
+          <div *ngIf="item.activity_faculty.length===1;else morefac" class="small fst-italic">
+            <div class="" *ngFor="let fac of item.activity_faculty">
+              <i class="bi bi-bookmark-star me-1 text-danger me-1"></i><span class="text-danger me-1">รับเฉพาะ</span>{{fac.faculty_name}}
+            </div>       
+          </div>
+          <ng-template #morefac >
+            <div class="small fst-italic">
+              <i class="bi bi-bookmarks me-1 text-primary me-1"></i>รับหลายคณะ
+            </div>
+          </ng-template>
+
+      </div>
+      <ng-template class="mt-2" #noFacultyDefine>
+        <div class="badge bg-warning me-1">ยังไม่กำหนดคณะที่จะรับสม้คร</div>
+      </ng-template>
 
 
 
 
 
-      <!-- isExpireDate={{item.activity_register_to | isExpiredDate}}
-      เปิดลงทะเบียน
-      {{ item.activity_register_from | thaidate : "short" }} ถึง
-      {{ item.activity_register_to | thaidate : "short" }}       -->
+<!--       
       <div class="d-flex justify-content-between mt-3">
-        <!-- <ng-container
-          *ngIf="
-            item.activity_register < item.activity_receive;
-            else showFullLabel
-          "
-        > -->
         <ng-container *ngIf="isBetween==0;else noRegister">
           <button class="btn btn-sm btn-success" (click)="onJoin.emit(item)">
             เข้าร่วม
@@ -80,16 +99,28 @@
           </button>
         </ng-template>
         <ng-template #showFullLabel>
-          <!-- <a class="btn btn-sm btn-danger">เต็ม</a> -->
           <div class="small text-white bg-danger px-2 py-1 m-1">เต็ม</div>
-          <!-- <div *ngIf="item.activity_register>=item.activity_receive" class="position-absolute badge bg-danger  p-2 m-2">เต็ม</div> -->
         </ng-template>
         <div class="small text-mute fst-italic">
           <i class="bi bi-people me-1"></i>{{ item.activity_receive }}/{{
             item.activity_register
           }}
         </div>
-      </div>
+      </div> 
+    -->
+<div class="mt-2">
+      <ng-container *ngIf="item.activity_status=='w'">
+          <ng-container  *ngIf="!(item.activity_register<item.activity_receive); else ifRegisterNotFull">
+              <span class="badge bg-danger">เต็ม</span>
+          </ng-container>
+          <ng-template #ifRegisterNotFull>
+              <span *ngIf="isBetween==-1" class="badge bg-warning">ยังไม่เปิดรับ</span>          
+              <span *ngIf="isBetween==0" class="badge bg-success">เปิดรับ</span>
+              <span *ngIf="isBetween==1" class="badge bg-danger">หมดเวลารับสมัคร</span>
+          </ng-template>
+      </ng-container>
+</div>
+
     </div>
   </div>
 </div>
