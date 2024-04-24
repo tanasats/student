@@ -51,7 +51,7 @@ export class EnrollListComponent implements OnChanges {
 
   ngOnChanges(): void {
     if(this.items.length>0){
-      console.log("OnChange() @Input() items=",this.items);
+      console.log("Component.OnChange() and has @Input().items=",this.items);
       this.itemsFilter=this.items;
 
       this.items.forEach((item)=>{ item.selected=false;  });
@@ -59,6 +59,7 @@ export class EnrollListComponent implements OnChanges {
       console.log(this.registeredcount);
       this.formfilter.reset();
       this.isHasFilter=false;
+
     }
   }
 
